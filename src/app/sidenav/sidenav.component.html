@@ -5,8 +5,11 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar >Menu</mat-toolbar>
     <mat-nav-list *ngFor='let screen of this.screens'>
-      <a mat-list-item routerLink="/screen.value">{{screen.value}}</a>
-     
+      <a mat-list-item >{{screen.Titulo}}</a>
+      <!--<mat-tree *ngFor='let s of screen'>
+        <mat-tree-node> {{s.titulo}} </mat-tree-node>
+      
+      </mat-tree>-->
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

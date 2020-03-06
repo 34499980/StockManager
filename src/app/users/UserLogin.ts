@@ -11,15 +11,44 @@ export class UserLogin implements  iUser{
     _rules: String
 
     getScreensByRule(): Observable<any> {        
-         let screens  = [
-            {
-                value: 'Administracion'
-            },{
-                value:'Perfil'
-            }
-        ]
-        return of(screens);
-       
-    }
+        let screens  = [
+           {
+               Titulo:"Usuarios",                
+               SubTitulos: [
+                   {
+                    titulo:"Administracion"
+                   },
+                   {
+                       titulo:"Perfil"
+                   }
+                               
+               ]
+           },
+           {
+               Titulo:"Sucursales",                
+               SubTitulos: [
+                   {
+                    titulo:"Movimientos"
+                   },
+                   {
+                       titulo:"Ventas"
+                   }
+                               
+               ]
+           },
+           {
+               Titulo:"Mercaderia",                
+               SubTitulos: [
+                   {
+                    titulo:"Stock"
+                   }
+                               
+               ]
+           }
+           
+       ]
+       return of(screens);
+      
+   }
     
 }
