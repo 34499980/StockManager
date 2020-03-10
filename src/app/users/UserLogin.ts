@@ -14,33 +14,33 @@ export class UserLogin implements  iUser{
         let screens  = [
            {
                Titulo:"Usuarios",                
-               SubTitulos: [
+               SubTitulo: [
                    {
-                    titulo:"Administracion"
+                    Titulo:"Administracion"
                    },
                    {
-                       titulo:"Perfil"
+                    Titulo:"Perfil"
                    }
                                
                ]
            },
            {
                Titulo:"Sucursales",                
-               SubTitulos: [
+               SubTitulo: [
                    {
-                    titulo:"Movimientos"
+                    Titulo:"Movimientos"
                    },
                    {
-                       titulo:"Ventas"
+                    Titulo:"Ventas"
                    }
                                
                ]
            },
            {
                Titulo:"Mercaderia",                
-               SubTitulos: [
+               SubTitulo: [
                    {
-                    titulo:"Stock"
+                    Titulo:"Stock"
                    }
                                
                ]

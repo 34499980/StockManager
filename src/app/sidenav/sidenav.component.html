@@ -4,13 +4,27 @@
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar >Menu</mat-toolbar>
-    <mat-nav-list *ngFor='let screen of this.screens'>
-      <a mat-list-item >{{screen.Titulo}}</a>
-      <!--<mat-tree *ngFor='let s of screen'>
-        <mat-tree-node> {{s.titulo}} </mat-tree-node>
-      
-      </mat-tree>-->
-    </mat-nav-list>
+    <!--<mat-nav-list *ngFor='let screen of this.screens'>
+      <a mat-list-item >{{screen.Titulo}}</a>-->
+      <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+        <!-- This is the tree node template for leaf nodes -->
+        <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+          <!-- use a disabled button to provide padding for tree leaf -->
+          <button mat-icon-button > {{node.Titulo}}</button>
+         
+        </mat-tree-node>
+        <!-- This is the tree node template for expandable nodes -->
+        <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+          <button mat-icon-button matTreeNodeToggle
+                  [attr.aria-label]="'toggle ' + node.name">
+            <mat-icon class="mat-icon-rtl-mirror">
+              {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+            </mat-icon>{{node.Titulo}}
+          </button>
+          
+        </mat-tree-node>
+      </mat-tree>
+   <!--</mat-nav-list>-->
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
@@ -24,7 +38,7 @@
       </button>
       <span  *ngIf="isHandset$ | async">Menu</span>
     </mat-toolbar>
-    <!-- Add Content Here -->    
+   
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
