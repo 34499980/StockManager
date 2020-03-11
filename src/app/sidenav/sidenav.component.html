@@ -3,28 +3,45 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-    <mat-toolbar >Menu</mat-toolbar>
+    <mat-toolbar color="primary" >Menu</mat-toolbar>
     <!--<mat-nav-list *ngFor='let screen of this.screens'>
       <a mat-list-item >{{screen.Titulo}}</a>-->
-      <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-        <!-- This is the tree node template for leaf nodes -->
-        <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
-          <!-- use a disabled button to provide padding for tree leaf -->
-          <button mat-icon-button > {{node.Titulo}}</button>
-         
-        </mat-tree-node>
-        <!-- This is the tree node template for expandable nodes -->
-        <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
-          <button mat-icon-button matTreeNodeToggle
-                  [attr.aria-label]="'toggle ' + node.name">
-            <mat-icon class="mat-icon-rtl-mirror">
-              {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-            </mat-icon>{{node.Titulo}}
-          </button>
-          
-        </mat-tree-node>
-      </mat-tree>
+     
    <!--</mat-nav-list>-->
+   <ngb-accordion  #acc="ngbAccordion"  activeIds="ngb-panel-0">
+   <ngb-panel *ngFor='let screen of this.screens ; let index = index' id="{{index}}">
+    <ng-template ngbPanelHeader>
+      <div class="d-flex align-items-center justify-content-between">
+        <button ngbPanelToggle class="btn btn-link container-fluid text-left pl-0">{{screen.Titulo}}</button>
+       
+      </div>
+    </ng-template>
+    <ng-template *ngFor=" let s of screen.SubTitulo" ngbPanelContent>
+      <ngb-accordion  activeIds="0">
+        <ngb-panel  *ngFor=" let s of screen.SubTitulo">
+          <ng-template  ngbPanelTitle>
+               {{s.Titulo}}
+          </ng-template>
+      </ngb-panel>
+      </ngb-accordion>
+    </ng-template>      
+  </ngb-panel>
+</ngb-accordion>
+   
+   <!--<ngb-accordion  #acc="ngbAccordion"  activeIds="ngb-panel-0">
+    <ngb-panel  *ngFor='let screen of this.screens ; let index = index' id="{{index}}" title="{{screen.Titulo}}" >
+      <ng-template *ngFor=" let s of screen.SubTitulo" ngbPanelContent>
+        <ngb-accordion  activeIds="0">
+          <ngb-panel  *ngFor=" let s of screen.SubTitulo">
+            <ng-template  ngbPanelTitle>
+                 {{s.Titulo}}
+            </ng-template>
+        </ngb-panel>
+        </ngb-accordion>
+      </ng-template>      
+    </ngb-panel>  
+  </ngb-accordion>-->
+
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">

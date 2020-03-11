@@ -81,13 +81,13 @@ export class SidenavComponent {
   constructor(private breakpointObserver: BreakpointObserver, user: UserLogin) {
     this.user = user;
     this.dataSource.data = this.TREE_DATA;
-    this.user.getScreensByRule().subscribe(data => {this.dataSource.data = data})
+    
    
   }
 
   ngOnInit(){
     
-    //this.user.getScreensByRule().subscribe(data => {this.dataSource.data = data})
+    this.user.getScreensByRule().subscribe(data => {this.screens = data})
   }
 
 }

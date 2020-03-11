@@ -15,6 +15,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatListModule,
     MatTreeModule,
     MatIconModule, 
-    MatButtonModule
+    MatButtonModule,
+    NgbModule
      
   ],
   providers: [],

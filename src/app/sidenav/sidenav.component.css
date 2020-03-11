@@ -1,18 +1,7 @@
-.sidenav-container {
-  height: 100%;
-  color: primary;
+::ng-deep .card {
+  margin-bottom: 0px;
 }
 
-.sidenav {
-  width: 200px;
-}
-
-.sidenav .mat-toolbar {
-  background: inherit;
-}
-
-.mat-toolbar.mat-primary {
-  position: sticky;
-  top: 0;
-  z-index: 1;
+::ng-deep .card .card-header.active > a > span {
+  color: #1d2124;
 }
