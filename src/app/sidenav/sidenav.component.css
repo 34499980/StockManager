@@ -1,7 +1,4 @@
-::ng-deep .card {
-  margin-bottom: 0px;
-}
-
-::ng-deep .card .card-header.active > a > span {
-  color: #1d2124;
+.buttonPadding{
+  padding-top: 5;
+  padding-bottom: 5;
 }

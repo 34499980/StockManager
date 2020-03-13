@@ -8,39 +8,24 @@
       <a mat-list-item >{{screen.Titulo}}</a>-->
      
    <!--</mat-nav-list>-->
-   <ngb-accordion  #acc="ngbAccordion"  activeIds="ngb-panel-0">
-   <ngb-panel *ngFor='let screen of this.screens ; let index = index' id="{{index}}">
-    <ng-template ngbPanelHeader>
-      <div class="d-flex align-items-center justify-content-between">
-        <button ngbPanelToggle class="btn btn-link container-fluid text-left pl-0">{{screen.Titulo}}</button>
-       
-      </div>
-    </ng-template>
-    <ng-template *ngFor=" let s of screen.SubTitulo" ngbPanelContent>
-      <ngb-accordion  activeIds="0">
-        <ngb-panel  *ngFor=" let s of screen.SubTitulo">
-          <ng-template  ngbPanelTitle>
-               {{s.Titulo}}
-          </ng-template>
-      </ngb-panel>
-      </ngb-accordion>
-    </ng-template>      
-  </ngb-panel>
-</ngb-accordion>
-   
-   <!--<ngb-accordion  #acc="ngbAccordion"  activeIds="ngb-panel-0">
-    <ngb-panel  *ngFor='let screen of this.screens ; let index = index' id="{{index}}" title="{{screen.Titulo}}" >
-      <ng-template *ngFor=" let s of screen.SubTitulo" ngbPanelContent>
-        <ngb-accordion  activeIds="0">
-          <ngb-panel  *ngFor=" let s of screen.SubTitulo">
-            <ng-template  ngbPanelTitle>
-                 {{s.Titulo}}
-            </ng-template>
-        </ngb-panel>
-        </ngb-accordion>
-      </ng-template>      
-    </ngb-panel>  
-  </ngb-accordion>-->
+   <mat-accordion displayMode="" >
+    <mat-expansion-panel *ngFor="let item of this.screens">
+      <mat-expansion-panel-header class="mat-row">
+        <span class="mat-cell">{{item.Titulo}}</span>
+      </mat-expansion-panel-header>
+      
+        <div *ngFor="let i of item.SubTitulo">
+         
+            <a mat-button href="#" style="width: 100%;" id="btn{{i.Titulo}}">{{i.Titulo}}</a>
+           
+         
+        </div>
+    
+    </mat-expansion-panel>
+  </mat-accordion>
+
+
+
 
   </mat-sidenav>
   <mat-sidenav-content>

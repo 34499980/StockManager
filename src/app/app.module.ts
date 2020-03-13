@@ -14,8 +14,11 @@ import { MatListModule } from '@angular/material/list';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
+
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { MatExpansionModule} from '@angular/material/expansion';
+import {MatButtonModule} from '@angular/material/button';
+
 
 @NgModule({
   declarations: [
@@ -31,10 +34,10 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     MatSidenavModule,
     MatListModule,
     MatTreeModule,
-    MatIconModule, 
-    MatButtonModule,
-    NgbModule
-     
+    MatIconModule,     
+    NgbModule,
+    MatExpansionModule,    
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
