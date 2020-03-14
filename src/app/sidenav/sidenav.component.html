@@ -8,7 +8,7 @@
       <a mat-list-item >{{screen.Titulo}}</a>-->
      
    <!--</mat-nav-list>-->
-   <mat-accordion displayMode="" >
+   <mat-accordion displayMode="" hideToggle="true" >
     <mat-expansion-panel *ngFor="let item of this.screens">
       <mat-expansion-panel-header class="mat-row">
         <span class="mat-cell">{{item.Titulo}}</span>

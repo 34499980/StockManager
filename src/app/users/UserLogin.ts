@@ -1,54 +1,27 @@
 import { iUser } from './IUser'
 import { Observable, of } from 'rxjs'
+import { UserService } from '../services/user.service';
+import { Injectable } from '@angular/core';
 
-export class UserLogin implements  iUser{
-  [x: string]: any
+
+
+@Injectable({
+    providedIn: 'root'
+  })
+export class UserLogin implements  iUser{   
+ 
    
     _name: String
     _lastName: String
     _userName: String
     _password: String
     _rules: String
+    private _userService
 
-    getScreensByRule(): Observable<any> {        
-        let screens  = [
-           {
-               Titulo:"Usuarios",                
-               SubTitulo: [
-                   {
-                    Titulo:"Administracion"
-                   },
-                   {
-                    Titulo:"Perfil"
-                   }
-                               
-               ]
-           },
-           {
-               Titulo:"Sucursales",                
-               SubTitulo: [
-                   {
-                    Titulo:"Movimientos"
-                   },
-                   {
-                    Titulo:"Ventas"
-                   }
-                               
-               ]
-           },
-           {
-               Titulo:"Mercaderia",                
-               SubTitulo: [
-                   {
-                    Titulo:"Stock"
-                   }
-                               
-               ]
-           }
-           
-       ]
-       return of(screens);
-      
-   }
-    
+    constructor(private userService: UserService){
+        this._userService = userService;
+    }
+    getScreensByRule(): Observable<any> {
+      return  this._userService.getScreensByRule();
+    }
 }
