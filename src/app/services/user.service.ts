@@ -11,10 +11,10 @@ export class UserService {
   getScreensByRule(): Observable<any> {        
     let screens  = [
        {
-           Titulo:"Usuarios",                
+           Titulo:"Administracion",                
            SubTitulo: [
                {
-                Titulo:"Administracion"
+                Titulo:"Usuarios"
                },
                {
                 Titulo:"Perfil"
