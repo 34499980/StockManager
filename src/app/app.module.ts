@@ -11,13 +11,15 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { MatListModule } from '@angular/material/list';
-import { SidenavComponent } from './sidenav/sidenav.component';
+
 import { MatTreeModule } from '@angular/material/tree';
 import { MatIconModule } from '@angular/material/icon';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { MatExpansionModule} from '@angular/material/expansion';
 import {MatButtonModule} from '@angular/material/button';
+import { SidenavComponent } from './arquitectura/componentes/sidenav/sidenav.component';
+import { ArquitecturaModule } from './arquitectura/arquitectura.module';
 
 
 
@@ -25,22 +27,14 @@ import {MatButtonModule} from '@angular/material/button';
 @NgModule({
   declarations: [
     AppComponent,    
-    SidenavComponent,
+    
     
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    LayoutModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatListModule,
-    MatTreeModule,
-    MatIconModule,     
-    NgbModule,
-    MatExpansionModule,    
-    MatButtonModule,
+   
+   
+   
+    ArquitecturaModule
     
   ],
   providers: [],

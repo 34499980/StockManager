@@ -5,11 +5,6 @@ import { ArquitecturaModule } from '../arquitectura/arquitectura.module';
 
 
 
-
-
-
-
-
 @NgModule({
   declarations: [UsuariosComponent],
   imports: [
