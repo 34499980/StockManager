@@ -20,10 +20,13 @@ import { MatExpansionModule} from '@angular/material/expansion';
 import {MatButtonModule} from '@angular/material/button';
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,    
-    SidenavComponent
+    SidenavComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatIconModule,     
     NgbModule,
     MatExpansionModule,    
-    MatButtonModule
+    MatButtonModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
