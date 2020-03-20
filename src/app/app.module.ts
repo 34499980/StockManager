@@ -20,6 +20,8 @@ import { MatExpansionModule} from '@angular/material/expansion';
 import {MatButtonModule} from '@angular/material/button';
 import { SidenavComponent } from './arquitectura/componentes/sidenav/sidenav.component';
 import { ArquitecturaModule } from './arquitectura/arquitectura.module';
+import { SucursalesModule } from './sucursales/sucursales.module';
+import { ServicesModule } from './services/services.module';
 
 
 
@@ -31,10 +33,10 @@ import { ArquitecturaModule } from './arquitectura/arquitectura.module';
     
   ],
   imports: [
-   
-   
-   
-    ArquitecturaModule
+    ArquitecturaModule,
+    SucursalesModule
+    
+    
     
   ],
   providers: [],

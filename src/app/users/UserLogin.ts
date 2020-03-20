@@ -24,4 +24,7 @@ export class UserLogin implements  iUser{
     getScreensByRule(): Observable<any> {
       return  this._userService.getScreensByRule();
     }
+    getUsuarios(): Observable<any>{
+        return  this._userService.getUsuarios();
+    }
 }

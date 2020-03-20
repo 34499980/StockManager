@@ -8,7 +8,7 @@ export class UserService {
 
   constructor() { }
   
-  getScreensByRule(): Observable<any> {        
+    getScreensByRule(): Observable<any> {        
     let screens  = [
        {
            Titulo:"Administracion",                
@@ -47,5 +47,37 @@ export class UserService {
    ]
    return of(screens);
   
-}
+    }
+    getUsuarios(): Observable<any> {        
+    let usuarios  = [
+       {
+           Titulo:"Ariel Brenman",                
+           Datos: [
+               {
+                Nombre:"Ariel",
+                Apellido:"Brenman",
+                Edad:"30",
+                FechaIngreso:"20/03/2020"
+               }
+              
+                           
+           ]
+       },
+       {
+           Titulo:"Melisa Potap",                
+           Datos: [
+            {
+                Nombre:"Melisa",
+                Apellido:"Potap",
+                Edad:"26",
+                FechaIngreso:"20/03/2020"
+               }
+                           
+           ]
+       }
+       
+   ]
+   return of(usuarios);
+  
+    }
 }

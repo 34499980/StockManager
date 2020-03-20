@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PaneluserComponent } from './componentes/paneluser/paneluser.component';
 import { SidenavComponent } from './componentes/sidenav/sidenav.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,6 +13,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button';
 import { AppRoutingModule } from '../app-routing.module';
+import { PaneluserComponent } from './componentes/paneluser/paneluser.component';
 
 
 
@@ -36,6 +36,6 @@ import { AppRoutingModule } from '../app-routing.module';
     MatExpansionModule,    
     MatButtonModule,
   ],
-  exports:[PaneluserComponent,SidenavComponent]
+  exports:[SidenavComponent,PaneluserComponent]
 })
 export class ArquitecturaModule { }
