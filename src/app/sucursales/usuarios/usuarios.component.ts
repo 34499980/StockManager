@@ -21,7 +21,7 @@ export class UsuariosComponent implements OnInit {
    this._usuariosSearch = this.Usuarios;
   }
   FiltrarUsuario(): void{
-    if(this._searchUser==" " || this._searchUser==undefined || this._searchUser.length-1 == 0){
+    if(this._searchUser==" " || this._searchUser==undefined || this._searchUser.length == 0){
       this._usuariosSearch = this.Usuarios
     }else{
       this._usuariosSearch = [] 
