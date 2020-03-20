@@ -3,22 +3,19 @@ import { CommonModule } from '@angular/common';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { ArquitecturaModule } from '../arquitectura/arquitectura.module';
 import { FormsModule } from '@angular/forms';
+import { PerfilComponent } from './perfil/perfil.component';
+import { AppRoutingModule } from '../app-routing.module';
 
 
 
 
 @NgModule({
-  declarations: [UsuariosComponent],
+  declarations: [UsuariosComponent, PerfilComponent],
   imports: [
     CommonModule,
     ArquitecturaModule,
-    FormsModule
-    
-    
-    
-    
-    
-    
+    FormsModule,
+    AppRoutingModule   
   ]
 })
 export class SucursalesModule { }

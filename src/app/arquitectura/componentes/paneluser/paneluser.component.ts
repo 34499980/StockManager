@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-paneluser',
@@ -7,10 +8,18 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class PaneluserComponent implements OnInit {
  @Input() Usuario: any
-  constructor() { }
+  user: any
+ _router: Router
+  constructor(router: Router) {
+    this._router = router
+   }
 
   ngOnInit(): void {
     
   }
+  VerPerfil(user: any): void{
+    this._router.navigate(["Perfil",user.Datos[0].userName])
+  }
+
 
 }

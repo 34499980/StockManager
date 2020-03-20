@@ -27,4 +27,7 @@ export class UserLogin implements  iUser{
     getUsuarios(): Observable<any>{
         return  this._userService.getUsuarios();
     }
+    getUsuariosById(userIndex: String): Observable<any> {
+        return  this._userService.getUsuariosById();
+    }
 }
