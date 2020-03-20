@@ -7,17 +7,16 @@
             
             <td  style="width: 60%;" >
                
-                    <input style="width: 80%; " class="form-control form-control-sm " type="text" placeholder="Search" aria-label="Search" mdbInput>
+                    <input style="width: 80%; " class="form-control form-control-sm " [(ngModel)]="this._searchUser"  (keyup)="FiltrarUsuario()" type="text" placeholder="Search" aria-label="Search" mdbInput>
              
             </td>
             <td style="width: 20%;"></td>
         </tr>        
     </table>
     <br>
-    <ul >
+    <ul *ngFor="let user of this._usuariosSearch">
         <li>
-            <a></a>
-            <app-paneluser ></app-paneluser>
+            <app-paneluser [Usuario]="user" ></app-paneluser>
         </li>        
     </ul>
    

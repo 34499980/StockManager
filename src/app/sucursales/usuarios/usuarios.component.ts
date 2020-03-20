@@ -8,14 +8,32 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./usuarios.component.css']
 })
 export class UsuariosComponent implements OnInit {
- // _userService: UserService
+  _userService: UserService
   Usuarios: any
-  constructor(/*userService: UserService*/) {
-   // this._userService = userService
+  _searchUser: any;
+  _usuariosSearch :any
+  constructor(userService: UserService) {
+    this._userService = userService
    }
 
   ngOnInit(): void {
-  // this._userService.getUsuarios().subscribe(res => {this.Usuarios = res})
+   this._userService.getUsuarios().subscribe(res => {this.Usuarios = res})
+   this._usuariosSearch = this.Usuarios;
+  }
+  FiltrarUsuario(): void{
+    if(this._searchUser==" " || this._searchUser==undefined || this._searchUser.length-1 == 0){
+      this._usuariosSearch = this.Usuarios
+    }else{
+      this._usuariosSearch = [] 
+      for(let index in this.Usuarios){
+        let user = this.Usuarios[index] 
+        if(user.Titulo.toLowerCase().indexOf(this._searchUser.toLowerCase()) != -1){
+          this._usuariosSearch.push(user)
+        }
+
+      }    
+  
+    }
   }
 
 }

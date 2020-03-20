@@ -19,6 +19,7 @@ import { PaneluserComponent } from './componentes/paneluser/paneluser.component'
 
 
 
+
 @NgModule({
   declarations: [SidenavComponent,PaneluserComponent],
   imports: [
