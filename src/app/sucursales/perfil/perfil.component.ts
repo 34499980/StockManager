@@ -2,15 +2,18 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
+
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent implements OnInit {
+  
  _usuario: any
 _actiavateRoute: ActivatedRoute
 _userService: UserService
+
   constructor(actiavateRoute: ActivatedRoute,userService: UserService) {
     this._actiavateRoute = actiavateRoute
     this._userService = userService
@@ -23,3 +26,4 @@ _userService: UserService
   }
 
 }
+

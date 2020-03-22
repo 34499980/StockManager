@@ -14,6 +14,11 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button';
 import { AppRoutingModule } from '../app-routing.module';
 import { PaneluserComponent } from './componentes/paneluser/paneluser.component';
+import {MatFormFieldModule} from '@angular/material/form-field'
+import {MatInputModule} from '@angular/material/input';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { InputrequiredComponent } from './componentes/inputrequired/inputrequired.component';
+
 
 
 
@@ -21,7 +26,7 @@ import { PaneluserComponent } from './componentes/paneluser/paneluser.component'
 
 
 @NgModule({
-  declarations: [SidenavComponent,PaneluserComponent],
+  declarations: [SidenavComponent,PaneluserComponent, InputrequiredComponent],
   imports: [
     CommonModule,
     BrowserModule,
@@ -36,7 +41,11 @@ import { PaneluserComponent } from './componentes/paneluser/paneluser.component'
     NgbModule,
     MatExpansionModule,    
     MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  exports:[SidenavComponent,PaneluserComponent]
+  exports:[SidenavComponent,PaneluserComponent,InputrequiredComponent]
 })
 export class ArquitecturaModule { }
