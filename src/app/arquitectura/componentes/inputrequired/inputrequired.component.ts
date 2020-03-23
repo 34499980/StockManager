@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
 
@@ -8,15 +8,26 @@ import {ErrorStateMatcher} from '@angular/material/core';
   styleUrls: ['./inputrequired.component.css']
 })
 export class InputrequiredComponent implements OnInit {
-  emailFormControl = new FormControl('', [
+  FormControl = new FormControl('', [
     Validators.required,
     Validators.email,
   ]);
-  
+  _value: any
   matcher = new MyErrorStateMatcher();
+ @Input() param: any
+ @Input() type: any
+ @Input() user: any
+ @Input() array: any
+
+
+
   constructor() { }
 
   ngOnInit(): void {
+   if(this.user != null){
+     this._value = this.user[0]["Datos"][0][this.param]
+   }
+    
   }
 
 }

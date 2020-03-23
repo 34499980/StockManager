@@ -55,13 +55,21 @@ export class UserService {
            Datos: [
                {
                 userName: "abrenman",
+                Password: "asd",
                 Nombre:"Ariel",
                 Apellido:"Brenman",
-                Edad:"30",
-                FechaIngreso:"20/03/2020"
-               }
-              
-                           
+                DNI: "34499980",
+                FechaNacimiento:"16/05/1989",
+                FechaIngreso:"20/03/2020",
+                Email: "aribrenman@gmail.com",
+                Direccion: [
+                    {
+                        Calle:"av scalabrini Ortiz",
+                        Piso: "6",
+                        Depto: "D"
+                    }
+                ]
+               }                          
            ]
        },
        {
@@ -82,23 +90,31 @@ export class UserService {
    return of(usuarios);
   
     }
-    getUsuariosById(userIndex: String): Observable<any> {        
-        let usuarios  = [
+    getUsuariosById(userIndex: String): Observable<any> {  
+        let usuarios: any 
+        if(userIndex!= null){      
+        
+        usuarios = [
            {
-               Titulo:"Ariel Brenman",                
-               Datos: [
-                   {
-                    userName: "abrenman",
-                    Nombre:"Ariel",
-                    Apellido:"Brenman",
-                    Edad:"30",
-                    FechaIngreso:"20/03/2020"
-                   }                 
-                               
-               ]
+            Titulo:"Ariel Brenman",                
+            Datos: [
+                {
+                 userName: "abrenman",
+                 Password: "asd",
+                 Nombre:"Ariel",
+                 Apellido:"Brenman",
+                 DNI: "34499980",
+                 FechaNacimiento:"16/05/1989",
+                 FechaIngreso:"20/03/2020",
+                 Email: "aribrenman@gmail.com",
+                 Direccion: "av scalabrini ortiz 2170 6D"
+                }                          
+            ]
            }
            
        ]
+    }
+        
        return of(usuarios);
       
     }

@@ -25,6 +25,7 @@ import { InputrequiredComponent } from './componentes/inputrequired/inputrequire
 
 
 
+
 @NgModule({
   declarations: [SidenavComponent,PaneluserComponent, InputrequiredComponent],
   imports: [

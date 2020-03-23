@@ -1,12 +1,12 @@
 <form class="example-form">
     <table style=" width: 100%;">       
       <br>
-       <tr >
+       <tr *ngFor="let p of this._param">
            <td style="width: 20%;"></td>
            
-           <td  style="width: 60%;" >
+           <td  style="width: 80%;" >
               
-              <app-inputrequired></app-inputrequired>
+              <app-inputrequired [param]="p.param" [type]="p.type"   [user]="this._usuario"></app-inputrequired>
             
            </td>
            <td style="width: 20%;"></td>

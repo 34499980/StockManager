@@ -15,15 +15,16 @@ const routes: Routes = [
     component: MercaderiaComponent   
   }
   ,
+  
+  {
+    path: 'Perfil',
+    component: PerfilComponent   
+  },
   {
     path: 'Perfil/:userName',
     component: PerfilComponent   
   }
-  ,
-  {
-    path: 'Perfil',
-    component: PerfilComponent   
-  }
+  
 ];
 
 @NgModule({
