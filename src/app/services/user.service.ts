@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { Usuario } from '../arquitectura/class/usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -117,5 +118,8 @@ export class UserService {
         
        return of(usuarios);
       
+    }
+    saveUsuario(user: Usuario){
+        
     }
 }

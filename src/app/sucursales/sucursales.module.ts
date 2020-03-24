@@ -5,6 +5,7 @@ import { ArquitecturaModule } from '../arquitectura/arquitectura.module';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { PerfilComponent } from './perfil/perfil.component';
 import { AppRoutingModule } from '../app-routing.module';
+import {MatButtonModule} from '@angular/material/button'
 
 
 
@@ -18,6 +19,7 @@ import { AppRoutingModule } from '../app-routing.module';
     FormsModule,
     AppRoutingModule ,   
     ReactiveFormsModule,
+    MatButtonModule
   ]
 })
 export class SucursalesModule { }

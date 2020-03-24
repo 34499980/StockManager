@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
+
 
 @Component({
   selector: 'app-inputrequired',
@@ -18,7 +19,8 @@ export class InputrequiredComponent implements OnInit {
  @Input() type: any
  @Input() user: any
  @Input() array: any
-
+ @Output() _parent = new EventEmitter<any>();
+ _parentResponse: string[] = []
 
 
   constructor() { }
@@ -28,6 +30,10 @@ export class InputrequiredComponent implements OnInit {
      this._value = this.user[0]["Datos"][0][this.param]
    }
     
+  }
+  updateValue(){
+    this._parentResponse.push(this.param,this._value) 
+    this._parent.emit(this._parentResponse)
   }
 
 }

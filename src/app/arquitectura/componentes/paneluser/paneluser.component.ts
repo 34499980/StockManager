@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { Usuario } from '../../class/usuario';
 
 @Component({
   selector: 'app-paneluser',
