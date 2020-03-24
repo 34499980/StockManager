@@ -41,6 +41,10 @@ export class ArquitecturaService {
       {
         param: "Direccion",
         type: "text",       
+      },
+      {
+        param: "CodPostal",
+        type: "text"
       }
     ]
     return of(param)

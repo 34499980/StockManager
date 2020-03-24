@@ -6,30 +6,33 @@
       
         
          <div *ngFor="let datos of Usuario.Datos">
-           <table>
-             <tr>
-               <td><a class="bold">Nombre: </a></td>
-               <td><a> {{datos.Nombre}}: </a></td>
-             </tr>
-             <tr>
-                <td><a class="bold">Apellido: </a></td>
-                <td><a> {{datos.Apellido}}: </a></td>
-              </tr>
-              <tr>
-                  <td><a class="bold">Edad: </a></td>
-                  <td><a> {{datos.Edad}}: </a></td>
-                </tr>
+           <table *ngFor="let p of _param">
                 <tr>
-                    <td><a class="bold">FechaIngreso: </a></td>
-                    <td><a>{{datos.FechaIngreso}}: </a></td>
-                  </tr>
+                  <td style="font-weight: bold;" >
+                    {{p.param}}:                   
+                  </td>
+                  <td>
+                    {{datos[p.param]}}
+                  </td>
+                </tr>
                   <br>
                   <tr>
-                      <td><button type="button" (click)="VerPerfil(Usuario)" mat-stroked-button>Editar</button></td>
-                      <td><button mat-raised-button color="warn">Borrar</button></td>
-                    </tr>
+                     
+                  </tr>
 
-           </table>          
+           </table> 
+           <table>
+             <tr>
+               <td>
+                <button type="button" (click)="VerPerfil(Usuario)" mat-stroked-button>Editar</button>
+               </td>
+               <td>
+                <button mat-raised-button color="warn">Borrar</button>     
+              </td>
+             </tr>
+           </table>
+          
+              
          </div>
             
       

@@ -63,25 +63,26 @@ export class UserService {
                 FechaNacimiento:"16/05/1989",
                 FechaIngreso:"20/03/2020",
                 Email: "aribrenman@gmail.com",
-                Direccion: [
-                    {
-                        Calle:"av scalabrini Ortiz",
-                        Piso: "6",
-                        Depto: "D"
-                    }
+                Direccion: "av scalabrini ortiz 6D",
+                CodPostal: "1425"
+                 }                          
                 ]
-               }                          
-           ]
        },
        {
            Titulo:"Melisa Potap",                
            Datos: [
             {
-                userName: "mpotap",
+                userName: "mPotap",
+                Password: "asd",
                 Nombre:"Melisa",
                 Apellido:"Potap",
-                Edad:"26",
-                FechaIngreso:"20/03/2020"
+                DNI: "37805059",
+                FechaNacimiento:"10/07/1992",
+                FechaIngreso:"20/03/2020",
+                Email: "melipotap@gmail.com",
+                Direccion: "av scalabrini ortiz 6D",
+                CodPostal: "1425"
+               
                }
                            
            ]
@@ -108,7 +109,8 @@ export class UserService {
                  FechaNacimiento:"16/05/1989",
                  FechaIngreso:"20/03/2020",
                  Email: "aribrenman@gmail.com",
-                 Direccion: "av scalabrini ortiz 2170 6D"
+                 Direccion: "av scalabrini ortiz 2170 6D",
+                 CodPostal: "1425"
                 }                          
             ]
            }
