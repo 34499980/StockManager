@@ -21,6 +21,18 @@ export class PaneluserComponent implements OnInit {
 
   ngOnInit(): void {
     this._arquitecturaService.getCampos().subscribe(res => {this._param = res})
+    let i = 0
+    while(i < this._param.length){
+      if(this._param[i].param != "Password")
+      {
+        i++
+      }else{
+        break;
+      }
+      
+    }
+    this._param.splice(i,1)    
+    
   }
   VerPerfil(user: any): void{
     this._router.navigate(["Perfil",user.Datos[0].userName])
