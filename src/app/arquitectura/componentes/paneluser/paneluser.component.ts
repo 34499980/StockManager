@@ -23,7 +23,7 @@ export class PaneluserComponent implements OnInit {
     this._arquitecturaService.getCampos().subscribe(res => {this._param = res})
     let i = 0
     while(i < this._param.length){
-      if(this._param[i].param != "Password")
+      if(this._param[i].type != "password")
       {
         i++
       }else{
