@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { UsuariosComponent } from './sucursales/usuarios/usuarios.component';
 import { MercaderiaComponent } from './stock/mercaderia/mercaderia.component';
 import { PerfilComponent } from './sucursales/perfil/perfil.component';
+import { VentasComponent } from './sucursales/ventas/ventas.component';
 
 
 const routes: Routes = [ 
@@ -23,6 +24,11 @@ const routes: Routes = [
   {
     path: 'Perfil/:userName',
     component: PerfilComponent   
+  }
+  ,
+  {
+    path: 'Ventas',
+    component: VentasComponent   
   }
   
 ];
