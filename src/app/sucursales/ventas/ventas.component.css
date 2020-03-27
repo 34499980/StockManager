@@ -42,3 +42,18 @@ input.mat-input-element {
 .mat-icon-button.mat-success {
   color:#155724;
 }
+p {
+  font-family: Lato;
+}
+.TransparentButton {
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+.bold{
+  font-weight: bold;
+}

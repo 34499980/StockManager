@@ -3,6 +3,7 @@ export class Articulo{
     Price: Number
     Name: string
     Brand: string
+    Model: string
     Description: string
    
 }

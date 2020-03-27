@@ -15,6 +15,7 @@ export class StockService {
         Price:"10000",
         Name:"Iron Man",
         Brand:"DitoYs",
+        Model: "azul",
         Description: "Muñeco articulado con luces. Lleva dos pilas."
       }
 

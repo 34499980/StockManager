@@ -49,6 +49,43 @@ export class ArquitecturaService {
     ]
     return of(param)
   }
- 
+ getColumnsGridVentas(): Observable<any>{
+  let columns = [
+    {
+      headerName:"Codigo",
+      field: "Code"
+      
+    },
+    {
+      headerName: "Nombre",
+      field: "Name"
+    },
+    {
+      headerName: "Marca",
+      field: "Brand"
+    },    
+    {
+      headerName: "Modelo",
+      field: "Model"
+    },
+    {
+      headerName: "Precio",
+      field: "Price"
+    },
+    {
+      headerName: "Unidades",
+      field: "Unity"
+    },
+    {
+      headerName: "SubTotal",
+      field: "SubTotal"
+    },
+    {
+      headerName: " ",
+      field: "delete"
+    }
+  ]
+  return of(columns)
+ }
 
 }

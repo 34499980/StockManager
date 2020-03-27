@@ -5,10 +5,10 @@ import { UserService } from './user.service';
 
 
 @NgModule({
-  declarations: [UserService],
+  declarations: [],
   imports: [
     CommonModule
   ],
-  exports:[UserService]
+  exports:[]
 })
 export class ServicesModule { }
