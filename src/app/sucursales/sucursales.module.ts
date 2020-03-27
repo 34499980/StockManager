@@ -9,7 +9,6 @@ import {MatButtonModule} from '@angular/material/button';
 import { VentasComponent } from './ventas/ventas.component'
 import { MatInputModule } from '@angular/material/input';
 import { MatRippleModule } from '@angular/material/core';
-import { AgGridModule } from 'ag-grid-angular';
 import { ServicesModule } from '../services/services.module';
 
 
@@ -26,8 +25,8 @@ import { ServicesModule } from '../services/services.module';
     ReactiveFormsModule,
     MatButtonModule,    
     MatInputModule,
-    MatRippleModule,    
-    AgGridModule
+    MatRippleModule,   
+    
     
   ]
 })
