@@ -17,7 +17,7 @@ export class PDFService {
       return true
     }
   };
-  
+  //doc.text('Total: '+ total,15,15)
   doc.autoTable({
     styleUrls: ['./style.css'],
    
@@ -25,9 +25,11 @@ export class PDFService {
      columns
     ,
     body: 
-    rows
+    rows,
+    Text
     
   })
+ 
   doc.save('table.pdf')
 
   }

@@ -18,6 +18,7 @@ export class VentasComponent implements OnInit {
   _arquitecturaService: ArquitecturaService
   _columns : any
   _rowData: any[]=[]
+  _rowtoPDF: any[]=[]
   _total: Number
 
   constructor(stockService: StockService,aruitecturaService: ArquitecturaService, pdfService: PDFService) {
@@ -38,7 +39,7 @@ export class VentasComponent implements OnInit {
         index.Unity++
         index.SubTotal = index.Price * index.Unity
       }else{
-        let row = new Row(this._articule,1);
+        let row = new Row(this._articule,'1');
         this._rowData.push(row)
        }
     
@@ -94,10 +95,39 @@ export class VentasComponent implements OnInit {
   
   cleanVariables(){
     this._searchCode = undefined
+    this._rowtoPDF =[]
   
   }
+  finish(){
+    if(this._rowData.length > 0)
+    {
+    this.generarPDF()
+    }
+  }
   generarPDF(){
-    this._pdfService.generarPDF(this._columns,this._rowData)
+   
+    for(let i = 0; i<this._rowData.length;i++){
+      
+      let articulAux = new Articulo
+      articulAux.Code = this._rowData[i].Code 
+      articulAux.Brand = this._rowData[i].Brand 
+      articulAux.Name = this._rowData[i].Name 
+      articulAux.Model = this._rowData[i].Model 
+      articulAux.Price = this._rowData[i].Price 
+     
+      let row = new Row(articulAux,this._rowData[i].Unity)
+      row.SubTotal = this._rowData[i].Price * this._rowData[i].Unity
+      this._rowtoPDF.push(row)
+    } 
+    let articulAux = new Articulo
+    
+    let row = new Row(articulAux,"Total: ", this._total) 
+    this._rowtoPDF.push(row)
+    
+   
+   
+    
+    this._pdfService.generarPDF(this._columns,this._rowtoPDF)
   }
  
  
@@ -108,17 +138,20 @@ export class VentasComponent implements OnInit {
   Brand: string
   Model: string
   Price: Number
-  Unity: Number
+  Unity: string
   SubTotal: Number
-  constructor(articule: Articulo, unity: Number){
+ 
+  constructor(articule: Articulo, unity: string, total?: Number){
     this.Code = articule.Code
     this.Name = articule.Name
     this.Brand = articule.Brand
     this.Model = articule.Model
     this.Price = articule.Price
     this.Unity = unity
-    this.SubTotal = articule.Price
+    this.SubTotal = total==undefined? articule.Price: total
+    
 
   
   }
+  
 }

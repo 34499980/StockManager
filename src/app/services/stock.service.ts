@@ -12,7 +12,7 @@ export class StockService {
     let stock = [
       {
         Code: "0000000001",
-        Price:"10000",
+        Price:"500",
         Name:"Iron Man",
         Brand:"DitoYs",
         Model: "azul",
