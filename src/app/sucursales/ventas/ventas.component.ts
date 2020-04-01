@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { StockService } from 'src/app/services/stock.service';
 import { Articulo } from 'src/app/arquitectura/class/Articulo';
 import { ArquitecturaService } from 'src/app/services/arquitectura.service';
+import { PDFService } from 'src/app/services/pdf.service';
+
 
 @Component({
   selector: 'app-ventas',
@@ -12,14 +14,16 @@ export class VentasComponent implements OnInit {
   _articule: Articulo = new Articulo
   _searchCode: String
   _stockService: StockService
+  _pdfService: PDFService
   _arquitecturaService: ArquitecturaService
   _columns : any
   _rowData: any[]=[]
   _total: Number
 
-  constructor(stockService: StockService,aruitecturaService: ArquitecturaService) {
+  constructor(stockService: StockService,aruitecturaService: ArquitecturaService, pdfService: PDFService) {
     this._stockService = stockService
     this._arquitecturaService = aruitecturaService
+    this._pdfService = pdfService
    }
 
   ngOnInit(): void {
@@ -91,6 +95,9 @@ export class VentasComponent implements OnInit {
   cleanVariables(){
     this._searchCode = undefined
   
+  }
+  generarPDF(){
+    this._pdfService.generarPDF(this._columns,this._rowData)
   }
  
  
