@@ -16,6 +16,7 @@ export class UserLogin implements  iUser{
     _userName: String
     _password: String
     _rules: String
+    _sucursal: String
     private _userService
 
     constructor(private userService: UserService){

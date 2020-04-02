@@ -1,0 +1,47 @@
+<table style=" width: 50%; align-content: center;" >
+    <tr>
+        <td>
+          <mat-form-field appearance="outline">
+              <mat-label>Fecha desde</mat-label>
+              <input matInput type="date" placeholder="Fecha desde"[(ngModel)]="this._fechaDesde" >               
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="outline">
+            <mat-label>Fecha hasta</mat-label>
+            <input matInput type="date" placeholder="Fecha hasta"[(ngModel)]="this._fechaHasta">               
+          </mat-form-field>
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+         <td>
+            <mat-form-field appearance="outline">
+                <mat-label>Sucursal</mat-label>
+                <input matInput type="text" placeholder="Sucursal"[(ngModel)]="this._sucursal"> 
+            </mat-form-field>
+        </td>
+        <td style="visibility: hidden">
+            <mat-form-field appearance="outline">
+                <mat-label>Usuario</mat-label>
+                <input matInput type="text" placeholder="Usuario"[(ngModel)]="this._usuario">  
+            </mat-form-field>
+        </td>
+       
+        <td> </td>
+    </tr>
+    <tr>
+        <td>
+         <button mat-raised-button color="primary" (click)="searchMovimientosRows()">Buscar</button>
+        </td>
+    </tr>
+</table>
+<div style="padding-left: 7%">
+    <ag-grid-angular
+    style="width: 1010px; height: 500px;"
+    class="ag-theme-balham"
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+>
+</ag-grid-angular>
+</div>

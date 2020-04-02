@@ -9,14 +9,15 @@ import {MatButtonModule} from '@angular/material/button';
 import { VentasComponent } from './ventas/ventas.component'
 import { MatInputModule } from '@angular/material/input';
 import { MatRippleModule } from '@angular/material/core';
-import { ServicesModule } from '../services/services.module';
+import { MovimientosComponent } from './movimientos/movimientos.component';
+import {AgGridModule } from 'ag-grid-angular'
 
 
 
 
 
 @NgModule({
-  declarations: [UsuariosComponent, PerfilComponent, VentasComponent],
+  declarations: [UsuariosComponent, PerfilComponent, VentasComponent, MovimientosComponent],
   imports: [
     CommonModule,
     ArquitecturaModule,
@@ -25,7 +26,8 @@ import { ServicesModule } from '../services/services.module';
     ReactiveFormsModule,
     MatButtonModule,    
     MatInputModule,
-    MatRippleModule,   
+    MatRippleModule, 
+    AgGridModule.withComponents([])  
     
     
   ]

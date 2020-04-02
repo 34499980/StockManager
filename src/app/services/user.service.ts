@@ -124,4 +124,33 @@ export class UserService {
     saveUsuario(user: Usuario){
         
     }
+    getMovimientosRows(fechaDesde?: Date, fechaHaasta?: Date, usuario?: String, sucursal?: String ): Observable<any>{
+        let rows = [
+            {
+                date: '02/04/2020',
+                user: 'abrenman',
+                total: '20000',
+                sucursal: '1',
+                remito: 'Remito1202004021618'
+            },
+            {
+                date: '01/04/2020',
+                user: 'mpotap',
+                total: '10000',
+                sucursal: '1',
+                remito: 'Remito1202004011618'
+            },
+            {
+                date: '02/04/2020',
+                user: 'abrenman',
+                total: '5000',
+                sucursal: '1',
+                remito: 'Remito1202004011718'
+            }
+        ]
+
+
+        return of(rows)
+    }
 }
+  

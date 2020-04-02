@@ -87,5 +87,42 @@ export class ArquitecturaService {
   ]
   return of(columns)
  }
+ getColumnsGridMovimientos(): Observable<any>{
+  let columns = [
+    {
+      headerName:"Fecha",
+      field: "date",
+      sortable: true,
+      filter: true
+      
+    },
+    {
+      headerName: "Usuario",
+      field: "user",
+      sortable: true,
+      filter: true
+    },
+    {
+      headerName: "Monto",
+      field: "total",
+      sortable: true,
+      filter: true
+    },    
+    {
+      headerName: "Remito",
+      field: "remito",
+      sortable: true,
+      filter: true
+    },
+    {
+      headerName: "Sucursal",
+      field: "sucursal",
+      sortable: true,
+      filter: true
+    }
+  ]
+  return of(columns)
+ }
+
 
 }

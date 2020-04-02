@@ -4,6 +4,7 @@ import { UsuariosComponent } from './sucursales/usuarios/usuarios.component';
 import { MercaderiaComponent } from './stock/mercaderia/mercaderia.component';
 import { PerfilComponent } from './sucursales/perfil/perfil.component';
 import { VentasComponent } from './sucursales/ventas/ventas.component';
+import { MovimientosComponent } from './sucursales/movimientos/movimientos.component';
 
 
 const routes: Routes = [ 
@@ -14,9 +15,11 @@ const routes: Routes = [
   {
     path: 'Stock',
     component: MercaderiaComponent   
-  }
-  ,
-  
+  },  
+  {
+    path: 'Movimientos',
+    component: MovimientosComponent   
+  },  
   {
     path: 'Perfil',
     component: PerfilComponent   
