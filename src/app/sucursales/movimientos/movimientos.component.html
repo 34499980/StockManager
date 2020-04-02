@@ -1,27 +1,27 @@
-<table style=" width: 50%; align-content: center;" >
+<table style=" width: 100%; align-content: center;" >
     <tr>
-        <td>
+        <td class="tdSmall">
           <mat-form-field appearance="outline">
               <mat-label>Fecha desde</mat-label>
               <input matInput type="date" placeholder="Fecha desde"[(ngModel)]="this._fechaDesde" >               
           </mat-form-field>
         </td>
-        <td>
+        <td class="tdSmall">
           <mat-form-field appearance="outline">
             <mat-label>Fecha hasta</mat-label>
             <input matInput type="date" placeholder="Fecha hasta"[(ngModel)]="this._fechaHasta">               
           </mat-form-field>
         </td>
-        <td></td>
+        <td style="text-align: center"> <button mat-raised-button color="primary" (click)="searchMovimientosRows()">Search</button></td>
     </tr>
     <tr>
-         <td>
+         <td class="tdSmall">
             <mat-form-field appearance="outline">
                 <mat-label>Sucursal</mat-label>
                 <input matInput type="text" placeholder="Sucursal"[(ngModel)]="this._sucursal"> 
             </mat-form-field>
         </td>
-        <td style="visibility: hidden">
+        <td class="tdSmall" style="visibility: hidden">
             <mat-form-field appearance="outline">
                 <mat-label>Usuario</mat-label>
                 <input matInput type="text" placeholder="Usuario"[(ngModel)]="this._usuario">  
@@ -32,11 +32,14 @@
     </tr>
     <tr>
         <td>
-         <button mat-raised-button color="primary" (click)="searchMovimientosRows()">Buscar</button>
+        
         </td>
     </tr>
 </table>
+<br>
 <div style="padding-left: 7%">
+    <button mat-raised-button color="success">Export xlsx</button>
+    <button mat-flat-button color="warn" (click)="exportPDF()" >Export PDF</button>
     <ag-grid-angular
     style="width: 1010px; height: 500px;"
     class="ag-theme-balham"

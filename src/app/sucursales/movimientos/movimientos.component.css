@@ -5,8 +5,8 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-td{
-  width: 30%;
+.tdSmall{
+  width: 20%;
   padding-left: 1%
   
 }

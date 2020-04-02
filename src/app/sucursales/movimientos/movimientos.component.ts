@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ArquitecturaService } from 'src/app/services/arquitectura.service';
 import { UserService } from 'src/app/services/user.service';
+import { PDFService } from 'src/app/services/pdf.service';
 
 @Component({
   selector: 'app-movimientos',
@@ -16,9 +17,11 @@ export class MovimientosComponent implements OnInit {
   _sucursal: String
   _arquitecturaService: ArquitecturaService  
   _userService: UserService
-  constructor(arquitecturaService: ArquitecturaService, userService: UserService) {
+  _pdfService: PDFService
+  constructor(arquitecturaService: ArquitecturaService, userService: UserService, pdfService: PDFService) {
     this._arquitecturaService = arquitecturaService
     this._userService = userService
+    this._pdfService = pdfService
     this._arquitecturaService.getColumnsGridMovimientos().subscribe(res => {this.columnDefs = res})
    }
 
@@ -31,6 +34,9 @@ export class MovimientosComponent implements OnInit {
                                           this._usuario,
                                           this._sucursal
                                         ).subscribe(res => {this.rowData = res})
+  }
+  exportPDF(){
+    this._pdfService.generarPDF(this.columnDefs,this.rowData,'Movimientos')
   }
  
 

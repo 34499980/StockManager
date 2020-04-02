@@ -10,7 +10,7 @@ export class PDFService {
  
   constructor() { }
 
-  generarPDF(columns: any, rows: any){
+  generarPDF(columns: any, rows: any,name: String){
   let doc = new jsPDF();
   let specialElementHandlers = {
     '#editor' : function (element, renderer){
@@ -30,7 +30,7 @@ export class PDFService {
     
   })
  
-  doc.save('table.pdf')
+  doc.save(name+'.pdf')
 
   }
 

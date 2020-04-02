@@ -91,34 +91,44 @@ export class ArquitecturaService {
   let columns = [
     {
       headerName:"Fecha",
+      header:"Fecha",
       field: "date",
       sortable: true,
-      filter: true
+      filter: true,
+      dataKey: 'date'
       
     },
     {
       headerName: "Usuario",
+      header: "Usuario",
       field: "user",
       sortable: true,
-      filter: true
+      filter: true,
+      dataKey : 'user'
     },
     {
       headerName: "Monto",
+      header: "Monto",
       field: "total",
       sortable: true,
-      filter: true
+      filter: true,
+      dataKey: 'total'
     },    
     {
       headerName: "Remito",
+      header: "Remito",
       field: "remito",
       sortable: true,
-      filter: true
+      filter: true,
+      dataKey: 'remito'
     },
     {
       headerName: "Sucursal",
+      header: "Sucursal",
       field: "sucursal",
       sortable: true,
-      filter: true
+      filter: true,
+      dataKey:'sucursal'
     }
   ]
   return of(columns)

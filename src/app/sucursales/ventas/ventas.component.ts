@@ -127,7 +127,7 @@ export class VentasComponent implements OnInit {
    
    
     
-    this._pdfService.generarPDF(this._columns,this._rowtoPDF)
+    this._pdfService.generarPDF(this._columns,this._rowtoPDF,'Remito')
   }
  
  
