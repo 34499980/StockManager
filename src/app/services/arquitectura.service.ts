@@ -90,6 +90,15 @@ export class ArquitecturaService {
  getColumnsGridMovimientos(): Observable<any>{
   let columns = [
     {
+      headerName:"ID",
+      header:"id",
+      field: "ID",
+      sortable: true,
+      filter: true,
+      dataKey: 'ID'
+      
+    },
+    {
       headerName:"Fecha",
       header:"Fecha",
       field: "date",

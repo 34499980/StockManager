@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 
 import { ArquitecturaModule } from './arquitectura/arquitectura.module';
 import { SucursalesModule } from './sucursales/sucursales.module';
+import { FacturacionModule } from './facturacion/facturacion.module';
 
 
 
@@ -20,7 +21,8 @@ import { SucursalesModule } from './sucursales/sucursales.module';
   ],
   imports: [
     ArquitecturaModule,
-    SucursalesModule
+    SucursalesModule,
+    FacturacionModule
     
     
     

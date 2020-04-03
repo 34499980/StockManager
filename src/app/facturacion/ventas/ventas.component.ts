@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { StockService } from 'src/app/services/stock.service';
 import { Articulo } from 'src/app/arquitectura/class/Articulo';
-import { ArquitecturaService } from 'src/app/services/arquitectura.service';
+import { StockService } from 'src/app/services/stock.service';
 import { PDFService } from 'src/app/services/pdf.service';
+import { ArquitecturaService } from 'src/app/services/arquitectura.service';
+
+
 
 
 @Component({

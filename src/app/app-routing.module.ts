@@ -3,8 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { UsuariosComponent } from './sucursales/usuarios/usuarios.component';
 import { MercaderiaComponent } from './stock/mercaderia/mercaderia.component';
 import { PerfilComponent } from './sucursales/perfil/perfil.component';
-import { VentasComponent } from './sucursales/ventas/ventas.component';
 import { MovimientosComponent } from './sucursales/movimientos/movimientos.component';
+import { VentasComponent } from './facturacion/ventas/ventas.component';
+import { AnularComponent } from './facturacion/anular/anular.component';
+import { AnularcionesComponent } from './sucursales/anularciones/anularciones.component';
 
 
 const routes: Routes = [ 
@@ -32,6 +34,15 @@ const routes: Routes = [
   {
     path: 'Ventas',
     component: VentasComponent   
+  }
+  ,
+  {
+    path: 'Anular',
+    component: AnularComponent   
+  },
+  {
+    path: 'Anulaciones',
+    component: AnularcionesComponent   
   }
   
 ];

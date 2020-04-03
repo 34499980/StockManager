@@ -6,18 +6,18 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { PerfilComponent } from './perfil/perfil.component';
 import { AppRoutingModule } from '../app-routing.module';
 import {MatButtonModule} from '@angular/material/button';
-import { VentasComponent } from './ventas/ventas.component'
 import { MatInputModule } from '@angular/material/input';
 import { MatRippleModule } from '@angular/material/core';
 import { MovimientosComponent } from './movimientos/movimientos.component';
-import {AgGridModule } from 'ag-grid-angular'
+import {AgGridModule } from 'ag-grid-angular';
+import { AnularcionesComponent } from './anularciones/anularciones.component'
 
 
 
 
 
 @NgModule({
-  declarations: [UsuariosComponent, PerfilComponent, VentasComponent, MovimientosComponent],
+  declarations: [UsuariosComponent, PerfilComponent, MovimientosComponent, AnularcionesComponent],
   imports: [
     CommonModule,
     ArquitecturaModule,

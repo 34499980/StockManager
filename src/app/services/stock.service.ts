@@ -8,7 +8,7 @@ export class StockService {
 
   constructor() { }
 
-  public getStockByCode(): Observable<any>{
+   getStockByCode(): Observable<any>{
     let stock = [
       {
         Code: "0000000001",
