@@ -87,6 +87,28 @@ export class ArquitecturaService {
   ]
   return of(columns)
  }
+ getColumnsGridAnular(): Observable<any>{
+  let columns = [
+    {
+      header:"Id Transacción",
+      dataKey: "Trans"
+      
+    },
+    {
+      header: "Fecha",
+      dataKey: "date"
+    },
+    {
+      header: "Usuario",
+      dataKey: "user"
+    },    
+    {
+      header: "Total",
+      dataKey: "total"
+    }
+  ]
+  return of(columns)
+ }
  getColumnsGridMovimientos(): Observable<any>{
   let columns = [
     {

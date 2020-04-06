@@ -21,11 +21,11 @@ export class MovimientosComponent implements OnInit {
   constructor(arquitecturaService: ArquitecturaService, userService: UserService, pdfService: PDFService) {
     this._arquitecturaService = arquitecturaService
     this._userService = userService
-    this._pdfService = pdfService
-    this._arquitecturaService.getColumnsGridMovimientos().subscribe(res => {this.columnDefs = res})
+    this._pdfService = pdfService   
    }
 
   ngOnInit(): void {
+    this._arquitecturaService.getColumnsGridMovimientos().subscribe(res => {this.columnDefs = res})
     this._userService.getMovimientosRows().subscribe(res => {this.rowData = res})
   }
   searchMovimientosRows(){
