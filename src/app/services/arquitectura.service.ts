@@ -91,20 +91,32 @@ export class ArquitecturaService {
   let columns = [
     {
       header:"Id Transacción",
-      dataKey: "Trans"
+      field: "ID"
       
     },
     {
       header: "Fecha",
-      dataKey: "date"
+      field: "date"
     },
     {
       header: "Usuario",
-      dataKey: "user"
+      field: "user"
     },    
     {
       header: "Total",
-      dataKey: "total"
+      field: "total"
+    },    
+    {
+      header: "Remito",
+      field: "remito"
+    },    
+    {
+      header: "Estado",
+      field: "state"
+    },    
+    {
+      header: "Anular",
+      field: "Anular"
     }
   ]
   return of(columns)

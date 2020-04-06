@@ -161,5 +161,39 @@ export class UserService {
 
         return of(rows)
     }
+    getAnularRows(fechaDesde?: Date, fechaHaasta?: Date, usuario?: String, sucursal?: String, ID?: Number ): Observable<any>{
+        let rows = [
+            {
+                ID:'01',
+                date: '02/04/2020',
+                user: 'abrenman',
+                total: '20000',
+                remito: 'Remito1202004021618',
+                state: 'Finalizada'
+            },
+            {
+                ID:'02',
+                date: '01/04/2020',
+                user: 'mpotap',
+                total: '10000',               
+                remito: 'Remito1202004011618',
+                state: 'Finalizada'
+            },
+            {
+                ID:'03',
+                date: '02/04/2020',
+                user: 'abrenman',
+                total: '5000',               
+                remito: 'Remito1202004011718',
+                state: 'Finalizada'
+            }
+        ]
+
+
+        return of(rows)
+    }
+    cancelRemito(ID: Number){
+
+    }
 }
   

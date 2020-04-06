@@ -18,6 +18,8 @@ import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { InputrequiredComponent } from './componentes/inputrequired/inputrequired.component';
+import { DialogconfirmComponent } from './componentes/dialogconfirm/dialogconfirm.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 
@@ -28,7 +30,7 @@ import { InputrequiredComponent } from './componentes/inputrequired/inputrequire
 
 
 @NgModule({
-  declarations: [SidenavComponent,PaneluserComponent, InputrequiredComponent],
+  declarations: [SidenavComponent,PaneluserComponent, InputrequiredComponent, DialogconfirmComponent],
   imports: [
     CommonModule,
     BrowserModule,
@@ -46,8 +48,10 @@ import { InputrequiredComponent } from './componentes/inputrequired/inputrequire
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule
+    
   ],
-  exports:[SidenavComponent,PaneluserComponent,InputrequiredComponent]
+  exports:[SidenavComponent,PaneluserComponent,InputrequiredComponent,DialogconfirmComponent,MatDialogModule]
 })
 export class ArquitecturaModule { }

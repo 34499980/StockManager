@@ -15,6 +15,7 @@ export class AnularcionesComponent implements OnInit {
   _fechaHasta: Date
   _usuario: String
   _sucursal: String
+  _visible: boolean = false
   _arquitecturaService: ArquitecturaService  
   _userService: UserService
   _pdfService: PDFService

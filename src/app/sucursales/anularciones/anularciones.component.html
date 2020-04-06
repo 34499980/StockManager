@@ -1,4 +1,4 @@
-<table style=" width: 100%; align-content: center;" >
+<table style=" width: 100%; align-content: center;"  >
     <tr>
         <td class="tdSmall">
           <mat-form-field appearance="outline">
@@ -12,7 +12,7 @@
             <input matInput type="date" placeholder="Fecha hasta"[(ngModel)]="this._fechaHasta">               
           </mat-form-field>
         </td>
-        <td style="text-align: center"> <button mat-raised-button color="primary" (click)="searchMovimientosRows()">Search</button></td>
+        <td style="text-align: center"> <button mat-raised-button color="primary" >Search</button></td>
     </tr>
     <tr>
          <td class="tdSmall">
@@ -43,9 +43,9 @@
 </table>
 
 <br>
-<div style="padding-left: 1%">
+<div style="padding-left: 1%" [style.visibility]="this._visible?  'visible': 'hidden'">
     <button mat-raised-button color="success">Export xlsx</button>
-    <button mat-flat-button color="warn" (click)="exportPDF()" >Export PDF</button>
+    <button mat-flat-button color="warn"  >Export PDF</button>
     <ag-grid-angular
     style="width: 1215px; height: 500px;"
     class="ag-theme-balham"
