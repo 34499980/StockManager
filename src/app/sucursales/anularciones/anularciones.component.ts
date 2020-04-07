@@ -26,8 +26,16 @@ export class AnularcionesComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this._arquitecturaService.getColumnsGridMovimientos().subscribe(res => {this.columnDefs = res})
-    this._userService.getMovimientosRows().subscribe(res => {this.rowData = res})
+    this._arquitecturaService.getColumnsGridAnuladas().subscribe(res => {this.columnDefs = res})
+    
   }
-
+  searchAnulaciones(){
+    this._userService.getAnulacionesRows().subscribe(res => {
+                                                              this.rowData = res,
+                                                              this._visible = true
+                                                            })
+  }
+  exportPDF(){
+    this._pdfService.generarPDF(this.columnDefs,this.rowData,'Anulaciones')
+  }
 }

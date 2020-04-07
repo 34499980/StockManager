@@ -197,6 +197,21 @@ export class UserService {
     {
         return true;
     }
+    getAnulacionesRows(fechaDesde?: Date,fechaHasta?: Date,sucursal?: string,usuario?: string, Id?: number): Observable<any>{
+        let Row = [
+            {
+                ID:'01',
+                dateProcess: '02/04/2020',
+                user: 'abrenman',
+                total: '20000',
+                sucursal: '1',
+                remito: 'Remito1202004021618',
+                dateAnnultmen: '07/04/2020'
+            }
+        ]
+
+        return of(Row)
+    }
    
 }
   

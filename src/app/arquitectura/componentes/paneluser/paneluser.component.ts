@@ -20,7 +20,7 @@ export class PaneluserComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this._arquitecturaService.getCampos().subscribe(res => {this._param = res})
+    this._arquitecturaService.getCamposPerfil().subscribe(res => {this._param = res})
     let i = 0
     while(i < this._param.length){
       if(this._param[i].type != "password")

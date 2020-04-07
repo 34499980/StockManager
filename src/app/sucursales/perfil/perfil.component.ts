@@ -29,7 +29,7 @@ static user: Usuario = new Usuario
   ngOnInit(): void {
    let userIndex = this._actiavateRoute.snapshot.paramMap.get('userName')
    this._userService.getUsuariosById(userIndex).subscribe(res => {this._usuario = res})
-   this._arquitecturaService.getCampos().subscribe(res => {this._param = res})
+   this._arquitecturaService.getCamposPerfil().subscribe(res => {this._param = res})
   }
   updateUsuario(value: any){
     let val = value.pop() 

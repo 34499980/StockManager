@@ -7,7 +7,7 @@ import { Observable, of } from 'rxjs';
 export class ArquitecturaService {
 
   constructor() { }
-  getCampos(): Observable<any> {
+  getCamposPerfil(): Observable<any> {
     let param = [
       {
         param:"userName",
@@ -121,7 +121,7 @@ export class ArquitecturaService {
   ]
   return of(columns)
  }
- getColumnsGridMovimientos(): Observable<any>{
+ getColumnsGridAnuladas(): Observable<any>{
   let columns = [
     {
       headerName:"ID",
@@ -129,16 +129,19 @@ export class ArquitecturaService {
       field: "ID",
       sortable: true,
       filter: true,
-      dataKey: 'ID'
+      dataKey: 'ID',
+      width: 100   
+      
       
     },
     {
-      headerName:"Fecha",
-      header:"Fecha",
-      field: "date",
+      headerName:"Fecha proceso",
+      header:"Fecha proceso",
+      field: "dateProcess",
       sortable: true,
       filter: true,
-      dataKey: 'date'
+      dataKey: 'dateProcess',
+      width: 150   
       
     },
     {
@@ -147,7 +150,8 @@ export class ArquitecturaService {
       field: "user",
       sortable: true,
       filter: true,
-      dataKey : 'user'
+      dataKey : 'user',
+      width: 150   
     },
     {
       headerName: "Monto",
@@ -155,7 +159,76 @@ export class ArquitecturaService {
       field: "total",
       sortable: true,
       filter: true,
-      dataKey: 'total'
+      dataKey: 'total',
+      width: 150 
+    },    
+    {
+      headerName: "Remito",
+      header: "Remito",
+      field: "remito",
+      sortable: true,
+      filter: true,
+      dataKey: 'remito'
+    },
+    {
+      headerName: "Sucursal",
+      header: "Sucursal",
+      field: "sucursal",
+      sortable: true,
+      filter: true,
+      dataKey:'sucursal'
+    },
+    {
+      headerName:"Fecha anulación",
+      header:"Fecha anulación",
+      field: "dateAnnultmen",
+      sortable: true,
+      filter: true,
+      dataKey: 'dateAnnultmen',
+      width: 150   
+    }
+  ]
+  return of(columns)
+ }
+ getColumnsGridMovimientos(): Observable<any>{
+  let columns = [
+    {
+      headerName:"ID",
+      header:"id",
+      field: "ID",
+      sortable: true,
+      filter: true,
+      dataKey: 'ID',
+      width: 100   
+      
+    },
+    {
+      headerName:"Fecha",
+      header:"Fecha",
+      field: "date",
+      sortable: true,
+      filter: true,
+      dataKey: 'date',
+      width: 150   
+      
+    },
+    {
+      headerName: "Usuario",
+      header: "Usuario",
+      field: "user",
+      sortable: true,
+      filter: true,
+      dataKey : 'user',
+      width: 150   
+    },
+    {
+      headerName: "Monto",
+      header: "Monto",
+      field: "total",
+      sortable: true,
+      filter: true,
+      dataKey: 'total',
+      width: 150   
     },    
     {
       headerName: "Remito",
