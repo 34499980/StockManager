@@ -249,6 +249,73 @@ export class ArquitecturaService {
   ]
   return of(columns)
  }
+ getColumnsGridStock(): Observable<any>{
+  let columns = [
+    {
+      headerName:"ID",
+      header:"id",
+      field: "ID",
+      sortable: true,
+      filter: true,
+      dataKey: 'Code',
+      width: 100   
+      
+    },
+    {
+      headerName:"Nombre",
+      header:"Nombre",
+      field: "name",
+      sortable: true,
+      filter: true,
+      dataKey: 'Name',
+      width: 150   
+      
+    },
+    {
+      headerName: "Marca",
+      header: "Brand",
+      field: "brand",
+      sortable: true,
+      filter: true,
+      dataKey : 'Bran',
+      width: 150   
+    },
+    {
+      headerName: "Modelo",
+      header: "Model",
+      field: "model",
+      sortable: true,
+      filter: true,
+      dataKey: 'Model',
+      width: 150   
+    },    
+    {
+      headerName: "Sucursal",
+      header: "Sucursal",
+      field: "sucursal",
+      sortable: true,
+      filter: true,
+      dataKey:'Sucursal'
+    },    
+    {
+      headerName: "Cantidad",
+      header: "Cantidad",
+      field: "Count",
+      sortable: true,
+      filter: true,
+      dataKey:'Count'
+    },    
+    {
+      headerName: "Detalles",
+      header: "Detalles",
+      field: "Details",
+      sortable: true,
+      filter: true,
+      dataKey:'Details'
+    }
+  ]
+  return of(columns)
+ }
 
 
 }

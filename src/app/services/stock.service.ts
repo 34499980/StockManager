@@ -22,4 +22,28 @@ export class StockService {
     ]
     return of(stock)
   }
+  getStock(codigo?: Number, nombre?: string, marca?: string, modelo?: string, sucursal?: string){
+    let stock = [
+      {
+        Code: "0000000001",
+        Price:"500",
+        Name:"Iron Man",
+        Brand:"DitoYs",
+        Model: "azul",
+        Sucursal: "1",
+        Count: '5'
+      },
+      {
+        Code: "0000000002",
+        Price:"1000",
+        Name:"War machine",
+        Brand:"DitoYs",
+        Model: "negro",
+        Sucursal: "2",
+        Count: '3'
+      }
+
+    ]
+    return of(stock)
+  }
 }
