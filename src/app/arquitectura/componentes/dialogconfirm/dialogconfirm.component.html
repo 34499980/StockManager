@@ -11,7 +11,7 @@
                 <button mat-button>Cancel</button>
                 <button mat-raised-button color="primary">Confirm</button>
         </div>-->
-        <h2 mat-dialog-title>Confirmacion de anulación</h2>
+        <h2 mat-dialog-title>{{this._data.title}}</h2>
         <mat-dialog-content class="mat-typography">
              <table>
                  <tr>
@@ -26,7 +26,7 @@
                    <td>
                      <mat-form-field appearance="outline">
                       <mat-label>Password</mat-label>
-                       <input matInput type="text" placeholder="Password"[(ngModel)]="this._password" >               
+                       <input matInput type="password" placeholder="Password"[(ngModel)]="this._password" >               
                      </mat-form-field>
                     </td>   
                   </tr>
@@ -34,5 +34,5 @@
         </mat-dialog-content>
         <mat-dialog-actions align="end">
           <button mat-button mat-dialog-close>Cancel</button>
-          <button mat-raised-button color="primary">Confirm</button>
+          <button mat-raised-button color="primary"(click)="validateAdminUser()">Confirm</button>
         </mat-dialog-actions>

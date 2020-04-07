@@ -192,8 +192,11 @@ export class UserService {
 
         return of(rows)
     }
-    cancelRemito(ID: Number){
-
+    
+    validateAdminUser(usuario: string, password: string): boolean
+    {
+        return true;
     }
+   
 }
   

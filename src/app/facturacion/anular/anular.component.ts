@@ -3,6 +3,7 @@ import { ArquitecturaService } from 'src/app/services/arquitectura.service';
 import { UserService } from 'src/app/services/user.service';
 import { DialogconfirmComponent } from 'src/app/arquitectura/componentes/dialogconfirm/dialogconfirm.component';
 import { MatDialog } from '@angular/material/dialog';
+import { FacturacionService } from 'src/app/services/facturacion.service';
 
 @Component({
   selector: 'app-anular',
@@ -23,9 +24,11 @@ export class AnularComponent implements OnInit {
   _dialog: MatDialog 
   _arquitecturaService: ArquitecturaService
   _userService: UserService
-  constructor(arquitecturaService: ArquitecturaService,userService: UserService,dialog: MatDialog) {
+  _facturacionService: FacturacionService
+  constructor(arquitecturaService: ArquitecturaService,userService: UserService,dialog: MatDialog,facturacionService: FacturacionService) {
     this._arquitecturaService = arquitecturaService
     this._userService = userService
+    this._facturacionService = facturacionService
     this._dialog = dialog
    }
 
@@ -49,14 +52,19 @@ export class AnularComponent implements OnInit {
   }
   cancelRemito(ID: Number){
     this.openDialog()
-    this._userService.cancelRemito(ID)
+   this._ID = ID
     
   }
-  openDialog() {
-    const dialogRef = this._dialog.open(DialogconfirmComponent);
+  openDialog() {    
+    const dialogRef = this._dialog.open(DialogconfirmComponent, {
+       disableClose: true,
+       data : {title: "Confirmación gerente"}
+     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      if(result == true){
+        this._facturacionService.cancelRemito(this._ID)
+      }
     });
   }
 
