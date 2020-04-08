@@ -1,7 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { trigger, transition, animateChild, query, style, animate } from '@angular/animations';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Articulo } from '../../class/Articulo';
+import { StockService } from 'src/app/services/stock.service';
+export interface ModalData {
+  _articul: Articulo
+  
+}
 @Component({
   selector: 'app-modaldetails',
   templateUrl: './modaldetails.component.html',
@@ -62,11 +67,16 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
             })
 export class ModaldetailsComponent implements OnInit {
  _modalgRef :  MatDialogRef<ModaldetailsComponent>
-  constructor(modalgRef: MatDialogRef<ModaldetailsComponent>) {
+   _data: ModalData
+   _stockService: StockService   
+  constructor(modalgRef: MatDialogRef<ModaldetailsComponent>,  stockService: StockService,@Inject(MAT_DIALOG_DATA) data: ModalData) {
     this._modalgRef = modalgRef
+    this._stockService = stockService
+    this._data = data
    }
 
   ngOnInit(): void {
+  
   }
   close(){
     this._modalgRef.close()   

@@ -3,6 +3,7 @@ import { StockService } from 'src/app/services/stock.service';
 import { ArquitecturaService } from 'src/app/services/arquitectura.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ModaldetailsComponent } from 'src/app/arquitectura/componentes/modaldetails/modaldetails.component';
+import { Articulo } from 'src/app/arquitectura/class/Articulo';
 
 @Component({
   selector: 'app-mercaderia',
@@ -38,10 +39,12 @@ export class MercaderiaComponent implements OnInit {
                                                })
   }
   
-  openDialog() {    
+  openDialog(value: Articulo) { 
+    let articul: Articulo 
+    this._stockService.getStockByCode(value.Code).subscribe(res => {articul = res[0]})
     const dialogRef = this._modal.open(ModaldetailsComponent, {
        disableClose: true,
-       data : {title: "Confirmación gerente"}
+       data : {_articul: articul}
      });
 
     dialogRef.afterClosed().subscribe(result => {

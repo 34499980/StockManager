@@ -1,15 +1,53 @@
 <div class="backdrop" [@backdrop] class="modal" >
-<div class="box" [@box] style="width: 50%; height: 50%; align-content: center;text-align: center">
-	<div #container style="width: 50%; height: 50%;  align-content: center;text-align: center"  >
+<div class="box" [@box] style="width: 80%; height: 80%; align-content: center;text-align: center">
+	<div #container style="width: 80%; height: 80%;  align-content: center;text-align: center"  >
 
-        <table class="modal">
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
+        <table >
             <tr>
-               <td><button mat-raised-button color="primary" (click)="close()">Ok</button></td>               
+               <td >
+                <mat-form-field appearance="outline">
+                    <mat-label>Codigo</mat-label>
+                    <input matInput type="text" placeholder="Codigo" disabled=true [(ngModel)]="this._data._articul.Code" >               
+                </mat-form-field>
+               </td>
+            </tr>            
+             <tr> 
+               <td >
+                 <mat-form-field appearance="outline">
+                  <mat-label>Nombre</mat-label>
+                     <input matInput type="text" placeholder="Nombre" disabled=true [(ngModel)]="this._data._articul.Name" >               
+                </mat-form-field>
+                        </td>
+            </tr>
+            <tr>
+              <td >
+               <mat-form-field appearance="outline">
+                   <mat-label>Model</mat-label>
+                    <input matInput type="text" placeholder="Modelo" disabled=true  [(ngModel)]="this._data._articul.Model" >               
+                   </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td >
+                <mat-form-field appearance="outline">
+                  <mat-label>Marca</mat-label>
+                  <input matInput type="text" placeholder="Marca" disabled=true  [(ngModel)]="this._data._articul.Brand" >               
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td >
+                <mat-form-field appearance="outline">
+                  <mat-label>Descripcion</mat-label>
+                  <textarea  matInput type="text" style="resize: none;"  placeholder="Descripcion" disabled=true  [(ngModel)]="this._data._articul.Description" > </textarea>              
+                </mat-form-field>
+               </td> 
+            </tr>  
+                
+            <tr>
+               <td></td>               
             </tr>
         </table>
+        <button style="align-content: center; display: block" mat-raised-button color="primary" (click)="close()">Ok</button>
     </div>
 </div>

@@ -76,7 +76,7 @@ export class VentasComponent implements OnInit {
   }
 
   searchArticulo(){
-    this._stockService.getStockByCode().subscribe(
+    this._stockService.getStockByCode(this._searchCode).subscribe(
       res => {     
       for(let index in res){
         this._articule = res[index] as Articulo
