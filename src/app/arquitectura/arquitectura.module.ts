@@ -20,6 +20,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { InputrequiredComponent } from './componentes/inputrequired/inputrequired.component';
 import { DialogconfirmComponent } from './componentes/dialogconfirm/dialogconfirm.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { ModaldetailsComponent } from './componentes/modaldetails/modaldetails.component';
 
 
 
@@ -30,7 +31,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
-  declarations: [SidenavComponent,PaneluserComponent, InputrequiredComponent, DialogconfirmComponent],
+  declarations: [SidenavComponent,PaneluserComponent, InputrequiredComponent, DialogconfirmComponent, ModaldetailsComponent],
   imports: [
     CommonModule,
     BrowserModule,

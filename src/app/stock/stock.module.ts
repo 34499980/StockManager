@@ -10,6 +10,7 @@ import { MatRippleModule } from '@angular/material/core';
 
 
 
+
 @NgModule({
   declarations: [MercaderiaComponent],
   imports: [
@@ -21,6 +22,7 @@ import { MatRippleModule } from '@angular/material/core';
     MatButtonModule,    
     MatInputModule,
     MatRippleModule, 
+    
   ]
 })
 export class StockModule { }
