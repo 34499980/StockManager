@@ -5,7 +5,7 @@
          <td >
             <mat-form-field appearance="outline">
                 <mat-label>Codigo Articulo</mat-label>
-                <input matInput type="text" [(ngModel)]="this._searchCodeIngreso" (ngModelChange)="cargarCodigo()"  [maxLength]="10" placeholder="codigo articulo">               
+                <input matInput type="text" [(ngModel)]="this._searchCodeIngreso" (ngModelChange)="cargarCodigo(this._searchCodeIngreso, this._rowDataIngreso,'I')"  [maxLength]="10" placeholder="codigo articulo">               
                
               </mat-form-field>
         </td>
@@ -31,9 +31,9 @@
             <td >{{r.Brand}}</td>
             <td >{{r.Model}}</td>
             <td >{{r.Price}}</td>
-            <td><button class="TransparentButton" (click)="delete(r.Code)" > -   </button>{{r.Unity}}<button class="TransparentButton" (click)="Add(r.Code)" >   + </button ></td>
+            <td><button class="TransparentButton" (click)="delete(r.Code,this._rowDataIngreso,'I')" > -   </button>{{r.Unity}}<button class="TransparentButton" (click)="Add('I',r.Code,this._rowDataIngreso)" >   + </button ></td>
             <td>{{r.SubTotal}}</td>
-            <td > <button mat-button style="text-align: center; padding-bottom: 1%" (click)="remove(r.Code)" >x</button></td>
+            <td > <button mat-button style="text-align: center; padding-bottom: 1%" (click)="remove(r.Code,this._rowDataIngreso,'I')" >x</button></td>
         </tr>
         <tr>
             <td></td>
@@ -52,7 +52,7 @@
          <td >
             <mat-form-field appearance="outline">
                 <mat-label>Codigo Articulo</mat-label>
-                <input matInput type="text" [(ngModel)]="this._searchCodeEgreso" (ngModelChange)="cargarCodigo()"  [maxLength]="10" placeholder="codigo articulo">               
+                <input matInput type="text" [(ngModel)]="this._searchCodeEgreso" (ngModelChange)="cargarCodigo(this._searchCodeEgreso,this._rowDataEgreso,'E')"  [maxLength]="10" placeholder="codigo articulo">               
                
               </mat-form-field>
         </td>
@@ -74,9 +74,9 @@
             <td >{{r.Brand}}</td>
             <td >{{r.Model}}</td>
             <td >{{r.Price}}</td>
-            <td><button class="TransparentButton" (click)="delete(r.Code)" > -   </button>{{r.Unity}}<button class="TransparentButton" (click)="Add(r.Code)" >   + </button ></td>
+            <td><button class="TransparentButton" (click)="delete(r.Code,this._rowDataEgreso,'E')" > -   </button>{{r.Unity}}<button class="TransparentButton" (click)="Add('E',r.Code,this._rowDataEgreso)" >   + </button ></td>
             <td>{{r.SubTotal}}</td>
-            <td > <button mat-button style="text-align: center; padding-bottom: 1%" (click)="remove(r.Code)" >x</button></td>
+            <td > <button mat-button style="text-align: center; padding-bottom: 1%" (click)="remove(r.Code,this._rowDataEgreso,'E')" >x</button></td>
         </tr>
         <tr>
             <td></td>
@@ -103,9 +103,9 @@
             <td>{{r.Name}}</td>
             <td >{{r.Brand}}</td>
             <td >{{r.Price}}</td>
-            <td><button class="TransparentButton" (click)="delete(r.Code)" > -   </button>{{r.Unity}}<button class="TransparentButton" (click)="Add(r.Code)" >   + </button ></td>
+            <td><button class="TransparentButton" (click)="delete(r.Code,this._rowDataEgreso,'E')" > -   </button>{{r.Unity}}<button class="TransparentButton" (click)="Add(r.Code)" >   + </button ></td>
             <td>{{r.SubTotal}}</td>
-            <td > <button mat-button style="text-align: center; padding-bottom: 1%" (click)="remove(r.Code)" >x</button></td>
+            <td > <button mat-button style="text-align: center; padding-bottom: 1%" (click)="remove(r.Code,this._rowDataEgreso,'E')" >x</button></td>
         </tr>
         <tr>
             <td></td>

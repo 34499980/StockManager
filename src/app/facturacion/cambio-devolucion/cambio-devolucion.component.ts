@@ -38,50 +38,64 @@ export class CambioDevolucionComponent implements OnInit {
     this._totalIngreso = 0
     this._arquitecturaService.getColumnsGridVentas().subscribe(res => {this._columns = res})
   }
-  Add(value?: Number){
+  Add( status?: string,value?: Number, rows?: any){
     if((value == undefined && this._searchCodeIngreso != undefined)|| value != undefined){
-     let index = this._rowDataIngreso.find(x => x.Code == this._articule.Code)
+     let index = rows.find(x => x.Code == this._articule.Code)
       if(index != undefined)
       {
         index.Unity++
         index.SubTotal = index.Price * index.Unity
       }else{
         let row = new Row(this._articule,'1');
-        this._rowDataIngreso.push(row)
+        rows.push(row)
        }
-    
-      this.calcularTotal()
+       if(status == 'I'){
+        this._totalIngreso = this.calcularTotal(rows)
+       }else{
+        this._totalEgreso = this.calcularTotal(rows)
+       }
+     
       this.cleanVariables()
       }
      
   }
-  delete(value?: Number){
-    let index = this._rowDataIngreso.find(x => x.Code == this._articule.Code)
+  delete(value?: Number, rows?: any, status?: string){
+    let index = rows.find(x => x.Code == this._articule.Code)
     if(index != undefined && index.Unity > 1)
     {
       index.Unity--
       index.SubTotal = index.Price * index.Unity
     }
+    if(status == 'I'){
+     this._totalIngreso = this.calcularTotal(rows)
+    }else{
+      this._totalEgreso = this.calcularTotal(rows)
+    }
     
-    this.calcularTotal()
+   
     this.cleanVariables()
     
   }
-  remove(value?: Number){
-    let index = this._rowDataIngreso.find(x => x.Code == value)
-    this._rowDataIngreso.splice(index,1)
-    this. calcularTotal()
+  remove(value?: Number, rows?: any, status?: string){
+    let index = rows.find(x => x.Code == value)
+    rows.splice(index,1)
+    if(status =='I'){
+     this._totalIngreso = this. calcularTotal(rows)
+    }else{
+      this._totalEgreso = this. calcularTotal(rows)
+    }
+    
     this.cleanVariables()
   }
-  cargarCodigo(){
-    if(this._searchCodeIngreso.length == 10){
-      this.searchArticulo()
-      this.Add()
+  cargarCodigo(searchCode: String,rows: any, status: string){
+    if(searchCode.length == 10){
+      this.searchArticulo(searchCode)
+      this.Add(status,0,rows)
     }
   }
 
-  searchArticulo(){
-    this._stockService.getStockByCode(this._searchCodeIngreso).subscribe(
+  searchArticulo(searchCode: String){
+    this._stockService.getStockByCode(searchCode).subscribe(
       res => {     
       for(let index in res){
         this._articule = res[index] as Articulo
@@ -90,17 +104,21 @@ export class CambioDevolucionComponent implements OnInit {
     )
    
   }
-  calcularTotal(){
-    if(this._rowDataIngreso.length > 0){
-      for(let index in this._rowDataIngreso){
-        this._totalIngreso = this._rowDataIngreso[index].SubTotal
+
+  calcularTotal(rows: any): number{
+      let result
+    if(rows.length > 0){
+      for(let index in rows){
+        result = rows[index].SubTotal
       }
     }else{
-      this._totalIngreso = 0;
+      result = 0;
     }
+    return result
   }
   
   cleanVariables(){
+    this._searchCodeEgreso= undefined
     this._searchCodeIngreso = undefined
     this._rowtoPDF =[]
   
