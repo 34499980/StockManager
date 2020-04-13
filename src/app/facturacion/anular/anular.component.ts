@@ -58,7 +58,7 @@ export class AnularComponent implements OnInit {
   openDialog() {    
     const dialogRef = this._dialog.open(DialogconfirmComponent, {
        disableClose: true,
-       data : {title: "Confirmación gerente"}
+       data : {title: "Confirmación gerente", admConfirm: true}
      });
 
     dialogRef.afterClosed().subscribe(result => {

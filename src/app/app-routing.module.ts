@@ -7,6 +7,7 @@ import { MovimientosComponent } from './sucursales/movimientos/movimientos.compo
 import { VentasComponent } from './facturacion/ventas/ventas.component';
 import { AnularComponent } from './facturacion/anular/anular.component';
 import { AnularcionesComponent } from './sucursales/anularciones/anularciones.component';
+import { CambioDevolucionComponent } from './facturacion/cambio-devolucion/cambio-devolucion.component';
 
 
 const routes: Routes = [ 
@@ -43,6 +44,10 @@ const routes: Routes = [
   {
     path: 'Anulaciones',
     component: AnularcionesComponent   
+  },
+  {
+    path: 'Cambios/Devolución',
+    component: CambioDevolucionComponent   
   }
   
 ];

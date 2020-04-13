@@ -14,7 +14,7 @@
         <h2 mat-dialog-title>{{this._data.title}}</h2>
         <mat-dialog-content class="mat-typography">
              <table>
-                 <tr>
+                 <tr [hidden]="!this._data.admConfirm">
                     <td>
                        <mat-form-field appearance="outline">
                          <mat-label>Usuario</mat-label>
@@ -22,7 +22,7 @@
                        </mat-form-field>
                     </td>   
                  </tr>
-                 <tr>
+                 <tr [hidden]="!this._data.admConfirm">
                    <td>
                      <mat-form-field appearance="outline">
                       <mat-label>Password</mat-label>

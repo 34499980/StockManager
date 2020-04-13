@@ -37,6 +37,9 @@ export class UserService {
                },
                {
                 Titulo:"Anular"
+               },
+               {
+                Titulo:"Cambios/Devolución"
                }
                            
            ]

@@ -2,14 +2,17 @@
 <div class="box" [@box] style="width: 80%; height: 80%; align-content: center;text-align: center">
 	<div #container style="width: 80%; height: 80%;  align-content: center;text-align: center"  >
 
-        <table >
+        <table>
+          <tr><td></td></tr>
             <tr>
-               <td >
+               <td style="padding-top: 10%" >
                 <mat-form-field appearance="outline">
                     <mat-label>Codigo</mat-label>
                     <input matInput type="text" placeholder="Codigo" disabled=true [(ngModel)]="this._data._articul.Code" >               
                 </mat-form-field>
                </td>
+               <td style="width: 50%" > </td>
+               <td rowspan="5" style="width: 50%"><button style="background-color: transparent; width: 100%; height: 300px" disabled="true">Image</button></td>
             </tr>            
              <tr> 
                <td >
@@ -48,6 +51,7 @@
                <td></td>               
             </tr>
         </table>
-        <button style="align-content: center; display: block" mat-raised-button color="primary" (click)="close()">Ok</button>
+       
     </div>
 </div>
+<button  class="center" mat-raised-button color="primary" (click)="close()">Ok</button>

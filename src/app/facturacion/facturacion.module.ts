@@ -9,11 +9,12 @@ import { MatRippleModule } from '@angular/material/core';
 import { AgGridModule } from 'ag-grid-angular';
 import { VentasComponent } from './ventas/ventas.component';
 import { AnularComponent } from './anular/anular.component';
+import { CambioDevolucionComponent } from './cambio-devolucion/cambio-devolucion.component';
 
 
 
 @NgModule({
-  declarations: [VentasComponent, AnularComponent],
+  declarations: [VentasComponent, AnularComponent, CambioDevolucionComponent],
   imports: [
     CommonModule,
     ArquitecturaModule,

@@ -4,6 +4,8 @@ import { UserService } from 'src/app/services/user.service';
 
 export interface DialogData {
   title: string;
+  text: string
+  admConfirm: boolean
   
 }
 @Component({
@@ -27,7 +29,7 @@ export class DialogconfirmComponent implements OnInit {
   ngOnInit(): void {
   }
  validateAdminUser(){ 
-  if(this._usuario != "" && this._usuario != undefined && this._password != "" && this._password != undefined)
+  if(this._usuario != "" && this._usuario != undefined && this._password != "" && this._password != undefined || !this._data.admConfirm)
   {
     if(this._userService.validateAdminUser(this._usuario,this._password))
     {
