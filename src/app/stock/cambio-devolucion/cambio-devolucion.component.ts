@@ -5,6 +5,7 @@ import { PDFService } from 'src/app/services/pdf.service';
 import { ArquitecturaService } from 'src/app/services/arquitectura.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogconfirmComponent } from 'src/app/arquitectura/componentes/dialogconfirm/dialogconfirm.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cambio-devolucion',
@@ -25,12 +26,14 @@ export class CambioDevolucionComponent implements OnInit {
   _totalIngreso: Number
   _totalEgreso: Number
   _dialog: MatDialog
+  _router: Router
 
-  constructor(stockService: StockService,aruitecturaService: ArquitecturaService, pdfService: PDFService,dialog: MatDialog) {
+  constructor(stockService: StockService,aruitecturaService: ArquitecturaService, pdfService: PDFService,dialog: MatDialog,router: Router) {
     this._stockService = stockService
     this._arquitecturaService = aruitecturaService
     this._pdfService = pdfService
     this._dialog = dialog
+    this._router = router
    }
 
   ngOnInit(): void {
@@ -162,7 +165,7 @@ export class CambioDevolucionComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result == true){
-        
+        this._router.navigate(['Pago'])
       }
     });
   }

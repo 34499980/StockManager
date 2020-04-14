@@ -7,7 +7,9 @@ import { MovimientosComponent } from './sucursales/movimientos/movimientos.compo
 import { VentasComponent } from './facturacion/ventas/ventas.component';
 import { AnularComponent } from './facturacion/anular/anular.component';
 import { AnularcionesComponent } from './sucursales/anularciones/anularciones.component';
-import { CambioDevolucionComponent } from './facturacion/cambio-devolucion/cambio-devolucion.component';
+import { CambioDevolucionComponent } from './stock/cambio-devolucion/cambio-devolucion.component';
+import { PagoComponent } from './facturacion/pago/pago.component';
+
 
 
 const routes: Routes = [ 
@@ -48,6 +50,9 @@ const routes: Routes = [
   {
     path: 'Cambios/Devolución',
     component: CambioDevolucionComponent   
+  },{
+    path: 'Pago',
+    component: PagoComponent  
   }
   
 ];

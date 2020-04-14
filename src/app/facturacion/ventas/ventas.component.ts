@@ -3,6 +3,9 @@ import { Articulo } from 'src/app/arquitectura/class/Articulo';
 import { StockService } from 'src/app/services/stock.service';
 import { PDFService } from 'src/app/services/pdf.service';
 import { ArquitecturaService } from 'src/app/services/arquitectura.service';
+import { Router } from '@angular/router';
+import { DialogconfirmComponent } from 'src/app/arquitectura/componentes/dialogconfirm/dialogconfirm.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 
@@ -22,11 +25,15 @@ export class VentasComponent implements OnInit {
   _rowData: any[]=[]
   _rowtoPDF: any[]=[]
   _total: Number
+  _router: Router
+  _dialog: MatDialog
 
-  constructor(stockService: StockService,aruitecturaService: ArquitecturaService, pdfService: PDFService) {
+  constructor(stockService: StockService,aruitecturaService: ArquitecturaService, pdfService: PDFService,router: Router,dialog: MatDialog) {
     this._stockService = stockService
     this._arquitecturaService = aruitecturaService
     this._pdfService = pdfService
+    this._router = router
+    this._dialog = dialog
    }
 
   ngOnInit(): void {
@@ -103,7 +110,7 @@ export class VentasComponent implements OnInit {
   finish(){
     if(this._rowData.length > 0)
     {
-    this.generarPDF()
+     this.openDialog()
     }
   }
   generarPDF(){
@@ -131,6 +138,19 @@ export class VentasComponent implements OnInit {
     
     this._pdfService.generarPDF(this._columns,this._rowtoPDF,'Remito')
   }
+  openDialog() {    
+    const dialogRef = this._dialog.open(DialogconfirmComponent, {
+       disableClose: true,
+       data : {title: "Confirmar proceso", admConfirm: false}
+     });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result == true){
+        this._router.navigate(['Pago'])
+      }
+    });
+  }
+
  
  
 }

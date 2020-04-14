@@ -7,12 +7,13 @@ import { AppRoutingModule } from '../app-routing.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatRippleModule } from '@angular/material/core';
+import { CambioDevolucionComponent } from './cambio-devolucion/cambio-devolucion.component';
 
 
 
 
 @NgModule({
-  declarations: [MercaderiaComponent],
+  declarations: [MercaderiaComponent,CambioDevolucionComponent],
   imports: [
     CommonModule,
     ArquitecturaModule,
