@@ -3,7 +3,7 @@ import { Articulo } from 'src/app/arquitectura/class/Articulo';
 import { StockService } from 'src/app/services/stock.service';
 import { PDFService } from 'src/app/services/pdf.service';
 import { ArquitecturaService } from 'src/app/services/arquitectura.service';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { DialogconfirmComponent } from 'src/app/arquitectura/componentes/dialogconfirm/dialogconfirm.component';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -146,7 +146,12 @@ export class VentasComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result == true){
-        this._router.navigate(['Pago'])
+        const queryParams: any = {};
+        queryParams.myArray = JSON.stringify(this._rowData);
+        const navigationExtras: NavigationExtras = {
+          queryParams
+        };
+        this._router.navigate(['Pago'],navigationExtras)
       }
     });
   }

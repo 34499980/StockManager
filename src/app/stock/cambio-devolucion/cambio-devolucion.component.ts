@@ -5,7 +5,7 @@ import { PDFService } from 'src/app/services/pdf.service';
 import { ArquitecturaService } from 'src/app/services/arquitectura.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogconfirmComponent } from 'src/app/arquitectura/componentes/dialogconfirm/dialogconfirm.component';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-cambio-devolucion',
@@ -165,7 +165,12 @@ export class CambioDevolucionComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result == true){
-        this._router.navigate(['Pago'])
+        const queryParams: any = {};
+        queryParams.myArray = JSON.stringify(this._rowDataEgreso);
+        const navigationExtras: NavigationExtras = {
+          queryParams
+        };
+        this._router.navigate(['Pago'],navigationExtras)
       }
     });
   }

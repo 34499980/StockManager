@@ -50,10 +50,12 @@ const routes: Routes = [
   {
     path: 'Cambios/Devolución',
     component: CambioDevolucionComponent   
-  },{
+  },
+  {
     path: 'Pago',
     component: PagoComponent  
   }
+  
   
 ];
 

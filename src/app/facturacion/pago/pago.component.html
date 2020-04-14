@@ -1,1 +1,25 @@
-<p>pago works!</p>
+<table>
+    <tr>
+        <td>
+            <h2>Productos</h2>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table class="table pd-b-5" style="width: 30%">
+                <thead>
+                    <th>Producto</th>
+                    <th>Unidades</th>
+                    <th>Subtotal</th>
+               </thead>
+               <tbody style="text-align: center">
+                   <tr *ngFor="let r of this._rows">
+                    <td>{{r.Name}}</td>
+                    <td>{{r.Unity}}</td>
+                    <td>{{r.SubTotal}}</td>
+                   </tr>
+               </tbody>
+            </table>
+        </td>
+    </tr>
+</table>
