@@ -40,6 +40,9 @@ export class UserService {
                },
                {
                 Titulo:"Cambios/Devolución"
+               },
+               {
+                Titulo:"Despachos"
                }
                            
            ]

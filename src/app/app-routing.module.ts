@@ -9,6 +9,7 @@ import { AnularComponent } from './facturacion/anular/anular.component';
 import { AnularcionesComponent } from './sucursales/anularciones/anularciones.component';
 import { CambioDevolucionComponent } from './stock/cambio-devolucion/cambio-devolucion.component';
 import { PagoComponent } from './facturacion/pago/pago.component';
+import { DespachosComponent } from './stock/despachos/despachos.component';
 
 
 
@@ -54,6 +55,10 @@ const routes: Routes = [
   {
     path: 'Pago',
     component: PagoComponent  
+  },
+  {
+    path: 'Despachos',
+    component: DespachosComponent  
   }
   
   

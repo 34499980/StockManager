@@ -6,6 +6,7 @@ import { ArquitecturaService } from 'src/app/services/arquitectura.service';
 import { Router, NavigationExtras } from '@angular/router';
 import { DialogconfirmComponent } from 'src/app/arquitectura/componentes/dialogconfirm/dialogconfirm.component';
 import { MatDialog } from '@angular/material/dialog';
+import { FacturacionService } from 'src/app/services/facturacion.service';
 
 
 
@@ -21,6 +22,7 @@ export class VentasComponent implements OnInit {
   _stockService: StockService
   _pdfService: PDFService
   _arquitecturaService: ArquitecturaService
+  _facturacionService: FacturacionService
   _columns : any
   _rowData: any[]=[]
   _rowtoPDF: any[]=[]
@@ -28,10 +30,11 @@ export class VentasComponent implements OnInit {
   _router: Router
   _dialog: MatDialog
 
-  constructor(stockService: StockService,aruitecturaService: ArquitecturaService, pdfService: PDFService,router: Router,dialog: MatDialog) {
+  constructor(stockService: StockService,aruitecturaService: ArquitecturaService, pdfService: PDFService,router: Router,dialog: MatDialog, facturacionService: FacturacionService) {
     this._stockService = stockService
     this._arquitecturaService = aruitecturaService
     this._pdfService = pdfService
+    this._facturacionService = facturacionService
     this._router = router
     this._dialog = dialog
    }
@@ -146,12 +149,9 @@ export class VentasComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result == true){
-        const queryParams: any = {};
-        queryParams.myArray = JSON.stringify(this._rowData);
-        const navigationExtras: NavigationExtras = {
-          queryParams
-        };
-        this._router.navigate(['Pago'],navigationExtras)
+        this._facturacionService.rows = this._rowData
+       
+        this._router.navigate(['Pago'])
       }
     });
   }

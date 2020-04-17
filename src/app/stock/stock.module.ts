@@ -8,12 +8,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatRippleModule } from '@angular/material/core';
 import { CambioDevolucionComponent } from './cambio-devolucion/cambio-devolucion.component';
+import { DespachosComponent } from './despachos/despachos.component';
 
 
 
 
 @NgModule({
-  declarations: [MercaderiaComponent,CambioDevolucionComponent],
+  declarations: [MercaderiaComponent,CambioDevolucionComponent, DespachosComponent],
   imports: [
     CommonModule,
     ArquitecturaModule,

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { FacturacionService } from 'src/app/services/facturacion.service';
 
 @Component({
   selector: 'app-pago',
@@ -9,12 +10,15 @@ import { ActivatedRoute } from '@angular/router';
 export class PagoComponent implements OnInit {  
   _rows : any
   _activatedRoute: ActivatedRoute
-  constructor(private activatedRoute: ActivatedRoute) {
+  _facturacionService: FacturacionService
+  constructor(private activatedRoute: ActivatedRoute, facturacionService: FacturacionService) {
     this._activatedRoute = activatedRoute
+    this._facturacionService = facturacionService
    }
 
   ngOnInit(): void {
-    this._rows = JSON.parse(this._activatedRoute.snapshot.queryParamMap.get('myArray'));
+    this._rows = this._facturacionService.rows
+    //this._rows = JSON.parse();
   }
 
 }
