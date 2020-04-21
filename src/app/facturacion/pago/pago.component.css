@@ -57,3 +57,16 @@ p {
 .bold{
   font-weight: bold;
 }
+.center{
+  align-content: center;
+   display: block;
+   position: absolute;
+  justify-content:  center;
+
+}
+.floatedTable {
+  float:left;
+}
+.inlineTable {
+  display: inline-block;
+}

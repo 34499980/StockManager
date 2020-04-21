@@ -17,7 +17,7 @@ export class FacturacionService {
       Titulo: 'Efectivo'
     },
     {
-      Titulo: 'Debtido'
+      Titulo: 'Debito'
     },
     {
       Titulo: 'Credito'

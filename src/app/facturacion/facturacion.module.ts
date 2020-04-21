@@ -12,12 +12,13 @@ import { AnularComponent } from './anular/anular.component';
 import {MatRadioModule} from '@angular/material/radio';
 import { PagoComponent } from './pago/pago.component';
 import { MatListModule } from '@angular/material/list';
+import { TruncatePipe } from './pipes/truncate.pipe';
 
 
 
 
 @NgModule({
-  declarations: [VentasComponent, AnularComponent, PagoComponent],
+  declarations: [VentasComponent, AnularComponent, PagoComponent,TruncatePipe],
   imports: [
     CommonModule,
     ArquitecturaModule,
@@ -28,7 +29,7 @@ import { MatListModule } from '@angular/material/list';
     MatInputModule,
     MatRippleModule, 
     MatRadioModule,
-    MatListModule,
+    MatListModule,    
     AgGridModule.withComponents([])  
   ]
 })
