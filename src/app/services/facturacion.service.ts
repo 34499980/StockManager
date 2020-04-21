@@ -25,18 +25,30 @@ export class FacturacionService {
   ]
   return of(result)
   }
-  getCoutas(): Observable<any>{
-    let result = [
-      {
-        Cuota: 1
-      },
-      {
-        Cuota: 3
-      },
-      {
-        Cuota: 6
-      }
-    ]
+  getCoutas(value): Observable<any>{
+    let result= null
+    if(value=="Debito"){
+      
+       result = [
+        {
+          Cuota: 1
+        }
+      ]
+    }else{
+      result = [
+        {
+          Cuota: 1
+        },
+        {
+          Cuota: 3
+        },
+        {
+          Cuota: 6
+        }
+      ]
+    }
+    
     return of(result)
   }
+ 
 }

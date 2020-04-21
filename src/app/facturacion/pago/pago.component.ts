@@ -25,7 +25,7 @@ export class PagoComponent implements OnInit {
   ngOnInit(): void {
     this._rows = this._facturacionService.rows
     this._facturacionService.getMetodoPago().subscribe(res => {this._methods = res})
-    this._facturacionService.getCoutas().subscribe(res => {this._cuotas = res})
+    
    this._total = this.calcularTotal(this._rows)
   }
   calcularTotal(rows: any): number{
@@ -40,10 +40,19 @@ export class PagoComponent implements OnInit {
   return result
 }
  radioChange(value){
-  if(value=="Efectivo"){
+   switch(value){
+    case 'Efectivo':
     this._bCredito = false
-  }else{
+    break;
+    case 'Debito':
     this._bCredito = true
-  }
+    this._facturacionService.getCoutas(value).subscribe(res => {this._cuotas = res})
+    break;
+    case 'Credito':
+    this._bCredito = true
+    this._facturacionService.getCoutas(value).subscribe(res => {this._cuotas = res})
+    break;
+   }
+ 
  }
 }
