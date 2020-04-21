@@ -40,9 +40,6 @@ export class UserService {
                },
                {
                 Titulo:"Cambios/Devolución"
-               },
-               {
-                Titulo:"Despachos"
                }
                            
            ]
@@ -52,6 +49,9 @@ export class UserService {
            SubTitulo: [
                {
                 Titulo:"Stock"
+               },
+               {
+                Titulo:"Despachos"
                }
                            
            ]

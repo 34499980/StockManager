@@ -21,5 +21,40 @@
                </tbody>
             </table>
         </td>
+        <td>
+            <table style="width: 100%">
+                <tr>
+                    <td style="width: 30%">
+                        <mat-list role="list">
+                            <mat-list-item role="listitem" *ngFor="let m of this._methods; let i = index" >
+                                <mat-radio-button color="primary" [value]="i" (click)="radioChange(m.Titulo)" >{{m.Titulo}}</mat-radio-button>
+                            </mat-list-item>
+                        </mat-list>
+                    </td>
+                    <td style="width: 30%"></td>
+                    <td style="width: 30%"></td>
+                </tr>
+                <tr>
+                    <td style="width: 30%">
+                      <mat-form-field style="text-align: center"  appearance="outline">
+                          <mat-label style="text-align: center">Total</mat-label>
+                           <input matInput type="text" [ngModel]="this._total"  disabled=true > 
+                      </mat-form-field>   
+                    </td>
+                   
+                                         
+                         
+                    <td colspan="2" style=" width: 30%; padding-right: 5%; align-content: center" [ngStyle]="{'visibility':this._bCredito ? 'visible' : 'hidden'}" >
+                       <select style="width: 80%">
+                          <option *ngFor="let c of this._cuotas">
+                              {{c.Cuota}} cuotas de {{(this._total/c.Cuota)}}
+                          </option>
+                        </select>
+                    </td>
+               
+                </tr>
+                
+            </table>
+        </td>
     </tr>
 </table>

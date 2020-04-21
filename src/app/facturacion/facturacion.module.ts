@@ -9,8 +9,10 @@ import { MatRippleModule } from '@angular/material/core';
 import { AgGridModule } from 'ag-grid-angular';
 import { VentasComponent } from './ventas/ventas.component';
 import { AnularComponent } from './anular/anular.component';
-
+import {MatRadioModule} from '@angular/material/radio';
 import { PagoComponent } from './pago/pago.component';
+import { MatListModule } from '@angular/material/list';
+
 
 
 
@@ -25,6 +27,8 @@ import { PagoComponent } from './pago/pago.component';
     MatButtonModule,    
     MatInputModule,
     MatRippleModule, 
+    MatRadioModule,
+    MatListModule,
     AgGridModule.withComponents([])  
   ]
 })
