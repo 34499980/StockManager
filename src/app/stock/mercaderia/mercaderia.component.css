@@ -47,4 +47,11 @@ input.mat-input-element {
 p {
   font-family: Lato;
 }
-
+.right{
+  align-content: right;
+   display: block;
+   position: absolute;
+  justify-content:  right;
+  margin-left: auto;
+  margin-right: auto;
+}

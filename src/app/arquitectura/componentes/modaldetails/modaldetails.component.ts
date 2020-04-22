@@ -5,7 +5,7 @@ import { Articulo } from '../../class/Articulo';
 import { StockService } from 'src/app/services/stock.service';
 export interface ModalData {
   _articul: Articulo
-  
+  bDsiable: boolean
 }
 @Component({
   selector: 'app-modaldetails',
@@ -15,11 +15,13 @@ export interface ModalData {
 export class ModaldetailsComponent implements OnInit {
  _modalgRef :  MatDialogRef<ModaldetailsComponent>
    _data: ModalData
+   _bDsiable
    _stockService: StockService   
   constructor(modalgRef: MatDialogRef<ModaldetailsComponent>,  stockService: StockService,@Inject(MAT_DIALOG_DATA) data: ModalData) {
     this._modalgRef = modalgRef
     this._stockService = stockService
     this._data = data
+   
    }
 
   ngOnInit(): void {

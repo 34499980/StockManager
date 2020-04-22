@@ -34,14 +34,16 @@
             </mat-form-field>
         </td>            
         
-    </tr>
+    </tr> 
+   
     <tr>
-        <td>
-        
-        </td>
+      <td></td>
+      <td></td>
+      <td style="text-align: right; padding-right: 3%" ><button mat-raised-button (click)="openDialog()" color="success">Alta</button></td>
     </tr>
 </table>
-<table class="table pd-b-5" [style.visibility]="this._visible? 'visible': 'hidden'" >
+<br>
+<table class="table pd-b-5" [style.visibility]="this._visible? 'visible': 'hidden'" >   
     <thead>
         <tr >
             <th *ngFor="let column of this._columns" style="text-align: center">
