@@ -30,4 +30,7 @@ export class ModaldetailsComponent implements OnInit {
   close(){
     this._modalgRef.close()   
   }
+  OpenDirectory(){
+    window.open("file:///")
+  }
 }
