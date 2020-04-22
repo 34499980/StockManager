@@ -168,6 +168,7 @@ export class CambioDevolucionComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result == true){
+       this._facturacionService.rowsDevolucion = this._rowDataIngreso
        this._facturacionService.rows = this._rowDataEgreso
         this._router.navigate(['Pago'])
       }

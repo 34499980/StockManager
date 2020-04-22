@@ -6,6 +6,7 @@ import { Subject, of, Observable } from 'rxjs';
 })
 export class FacturacionService {
   public rows = new Object;
+  public rowsDevolucion = new Object;
   constructor() { }
   cancelRemito(ID: Number){
         

@@ -10,7 +10,12 @@
                     <th>Subtotal</th>
                </thead>
                <tbody style="text-align: center">
-                   <tr *ngFor="let r of this._rows">
+                <tr *ngFor="let r of this._rowsInPut">
+                    <td>{{r.Name}}</td>
+                    <td>{{r.Unity}}</td>
+                    <td>-{{r.SubTotal}}</td>
+                   </tr>
+                   <tr *ngFor="let r of this._rowsOutPut">
                     <td>{{r.Name}}</td>
                     <td>{{r.Unity}}</td>
                     <td>{{r.SubTotal}}</td>
@@ -24,7 +29,7 @@
                     <td style="width: 50%" >
                         <mat-list role="list">
                             <mat-list-item role="listitem" *ngFor="let m of this._methods; let i = index" >
-                                <mat-radio-button color="primary" [value]="i" (click)="radioChange(m.Titulo)" >{{m.Titulo}}</mat-radio-button>
+                                <mat-radio-button  color="primary" [value]="i" (click)="radioChange(m.Titulo)" >{{m.Titulo}}</mat-radio-button>
                             </mat-list-item>
                         </mat-list>
                     </td>
@@ -35,7 +40,7 @@
                     <td style="width: 50%">
                       <mat-form-field style="text-align: center"  appearance="outline">
                           <mat-label style="text-align: center">Total</mat-label>
-                           <input style="color:green" matInput type="text" value="${{this._total}}"  disabled=true > 
+                           <input  [ngStyle]="{'color': this._total > -1? 'green' : 'red'}" matInput type="text" value="${{this._total}}"  disabled=true > 
                       </mat-form-field>   
                     </td>
                    
