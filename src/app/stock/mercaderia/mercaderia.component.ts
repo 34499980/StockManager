@@ -45,11 +45,10 @@ export class MercaderiaComponent implements OnInit {
       this._stockService.getStockByCode(value.Code).subscribe(res => {articul = res[0]})
     }else{
       articul = new Articulo
-    }
-   
+    }    
     const dialogRef = this._modal.open(ModaldetailsComponent, {
        disableClose: true,
-       data : {_articul: articul, bDsiable: value!=undefined? "true": "false"}
+       data : {_articul: articul, bDsiable: value!=undefined? true: false}
      });
 
     dialogRef.afterClosed().subscribe(result => {

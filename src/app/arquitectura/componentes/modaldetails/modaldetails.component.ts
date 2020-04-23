@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { trigger, transition, animateChild, query, style, animate } from '@angular/animations';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Articulo } from '../../class/Articulo';
@@ -15,22 +15,49 @@ export interface ModalData {
 export class ModaldetailsComponent implements OnInit {
  _modalgRef :  MatDialogRef<ModaldetailsComponent>
    _data: ModalData
-   _bDsiable
-   _stockService: StockService   
+   _bDsiable: any
+   _stockService: StockService  
+   @ViewChild('#codigo') codigo  : any 
   constructor(modalgRef: MatDialogRef<ModaldetailsComponent>,  stockService: StockService,@Inject(MAT_DIALOG_DATA) data: ModalData) {
     this._modalgRef = modalgRef
     this._stockService = stockService
     this._data = data
+    
    
+
    }
 
   ngOnInit(): void {
-  
+    if(this._data.bDsiable){
+      this._bDsiable = true
+    }else{
+      this._bDsiable = false
+    }
   }
   close(){
     this._modalgRef.close()   
   }
   OpenDirectory(){
-    window.open("file:///")
+    //window.open("file:///")
+  
+
   }
+  cargarCodigo(){
+    
+    if(this._data._articul.Code.length == 10){
+      this.searchArticulo()
+     
+    }
+  }
+  searchArticulo(){
+    this._stockService.getStockByCode(this._data._articul.Code).subscribe(
+      res => {     
+      for(let index in res){
+        this._data._articul = res[index] as Articulo
+      }
+    }
+    )
+   
+  }
+
 }
