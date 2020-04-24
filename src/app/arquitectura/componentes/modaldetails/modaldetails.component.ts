@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, ElementRef } from '@angular/core';
 import { trigger, transition, animateChild, query, style, animate } from '@angular/animations';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Articulo } from '../../class/Articulo';
@@ -17,11 +17,13 @@ export class ModaldetailsComponent implements OnInit {
    _data: ModalData
    _bDsiable: any
    _stockService: StockService  
-   @ViewChild('#codigo') codigo  : any 
+   _fileSelected: File = null
+   @ViewChild('file') file :ElementRef
   constructor(modalgRef: MatDialogRef<ModaldetailsComponent>,  stockService: StockService,@Inject(MAT_DIALOG_DATA) data: ModalData) {
     this._modalgRef = modalgRef
     this._stockService = stockService
     this._data = data
+
     
    
 
@@ -37,9 +39,8 @@ export class ModaldetailsComponent implements OnInit {
   close(){
     this._modalgRef.close()   
   }
-  OpenDirectory(){
-    //window.open("file:///")
-  
+  OnFileSelected(event){   
+    this.file.nativeElement.click()
 
   }
   cargarCodigo(){
