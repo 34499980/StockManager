@@ -21,7 +21,7 @@ import { InputrequiredComponent } from './componentes/inputrequired/inputrequire
 import { DialogconfirmComponent } from './componentes/dialogconfirm/dialogconfirm.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ModaldetailsComponent } from './componentes/modaldetails/modaldetails.component';
-
+import { NgFallimgModule } from 'ng-fallimg';
 
 
 
@@ -50,7 +50,8 @@ import { ModaldetailsComponent } from './componentes/modaldetails/modaldetails.c
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+   
     
   ],
   exports:[SidenavComponent,PaneluserComponent,InputrequiredComponent,DialogconfirmComponent,MatDialogModule]

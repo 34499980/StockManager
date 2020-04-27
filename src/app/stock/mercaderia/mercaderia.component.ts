@@ -31,6 +31,7 @@ export class MercaderiaComponent implements OnInit {
 
   ngOnInit(): void {
     this._arquitecturaService.getColumnsGridStock().subscribe(res => {this._columns = res})
+    this.openDialog()
   }
   searchStock(){
     this._stockService.getStock().subscribe(res => {

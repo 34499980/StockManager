@@ -3,6 +3,7 @@ import { trigger, transition, animateChild, query, style, animate } from '@angul
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Articulo } from '../../class/Articulo';
 import { StockService } from 'src/app/services/stock.service';
+import { Observable } from 'rxjs';
 export interface ModalData {
   _articul: Articulo
   bDsiable: boolean
@@ -41,8 +42,12 @@ export class ModaldetailsComponent implements OnInit {
   }
   OnFileSelected(event){   
     this.file.nativeElement.click()
+    this._fileSelected = event.target.files
+   
 
   }
+ 
+
   cargarCodigo(){
     
     if(this._data._articul.Code.length == 10){
