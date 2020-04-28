@@ -47,26 +47,12 @@ export class ModaldetailsComponent implements OnInit {
     this.file.nativeElement.click()
     this._fileSelected = <File>event.target.files[0]
     if(this._fileSelected != undefined){
-    this._stockService.startUpload( this._fileSelected)
-    //console.log(image)
-      
+  
     }
    
 
   }
-  saveAsProject(){
-    //you can enter your own file name and extension
-    this.writeContents(this._fileSelected, 'Sample File'+'.jpg', 'image/png');
-  }
-  writeContents(content, fileName, contentType) {
-    var a = document.createElement('a');
-    var file = new Blob([content], {type: contentType});
-    a.href = URL.createObjectURL(file);
-    a.pathname = fileName;
-    this._path= a.pathname
-    //a.click();
-  }
- 
+  
 
   cargarCodigo(){
     
