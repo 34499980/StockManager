@@ -1,11 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Input } from '@angular/core';
 import { Observable, of } from 'rxjs';
+
+import { finalize } from 'rxjs/operators';
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class StockService {
-
+ 
   constructor() { }
 
    getStockByCode(code: String): Observable<any>{
@@ -64,4 +68,9 @@ export class StockService {
     ]
     return of(stock)
   }
+
+ 
+    startUpload(file) {  
+
+    }
 }

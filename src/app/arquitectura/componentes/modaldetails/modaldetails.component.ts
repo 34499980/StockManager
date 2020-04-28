@@ -47,7 +47,7 @@ export class ModaldetailsComponent implements OnInit {
     this.file.nativeElement.click()
     this._fileSelected = <File>event.target.files[0]
     if(this._fileSelected != undefined){
-    this. saveAsProject()
+    this._stockService.startUpload( this._fileSelected)
     //console.log(image)
       
     }
