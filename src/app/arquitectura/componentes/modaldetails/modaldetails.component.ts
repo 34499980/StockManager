@@ -19,6 +19,8 @@ export class ModaldetailsComponent implements OnInit {
    _bDsiable: any
    _stockService: StockService  
    _fileSelected: File = null
+   _fileNotFound: any
+   _path: any
    @ViewChild('file') file :ElementRef
   constructor(modalgRef: MatDialogRef<ModaldetailsComponent>,  stockService: StockService,@Inject(MAT_DIALOG_DATA) data: ModalData) {
     this._modalgRef = modalgRef
@@ -36,15 +38,33 @@ export class ModaldetailsComponent implements OnInit {
     }else{
       this._bDsiable = false
     }
+    this._fileNotFound = '../../../../assets/imageNotFound.png'
   }
   close(){
     this._modalgRef.close()   
   }
   OnFileSelected(event){   
     this.file.nativeElement.click()
-    this._fileSelected = event.target.files
+    this._fileSelected = <File>event.target.files[0]
+    if(this._fileSelected != undefined){
+    this. saveAsProject()
+    //console.log(image)
+      
+    }
    
 
+  }
+  saveAsProject(){
+    //you can enter your own file name and extension
+    this.writeContents(this._fileSelected, 'Sample File'+'.jpg', 'image/png');
+  }
+  writeContents(content, fileName, contentType) {
+    var a = document.createElement('a');
+    var file = new Blob([content], {type: contentType});
+    a.href = URL.createObjectURL(file);
+    a.pathname = fileName;
+    this._path= a.pathname
+    //a.click();
   }
  
 
