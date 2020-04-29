@@ -17,9 +17,10 @@ export class StockService {
           Price:"500",
           Name:"Iron Man",
           Brand:"DitoYs",
-          Model: "azul",
+          Model: "rojo",
           Count:5,
-          Description: "Muñeco articulado con luces. Lleva dos pilas."
+          Description: "Muñeco articulado con luces. Lleva dos pilas.",
+          Image: '../../../../assets/ironman.png'
         }
       ]
      }else{
@@ -32,7 +33,8 @@ export class StockService {
           Model: "negro",
           Sucursal: "2",
           Count: '3',
-          Description: "Muñeco articulado con luces. Lleva dos pilas."
+          Description: "Muñeco articulado con luces. Lleva dos pilas.",
+          Image: '../../../../assets/warmachine.jpg'
         }
       ]
      } 

@@ -86,7 +86,7 @@
          </td>
         
            <td rowspan="5" style="width: 50%">
-            <img width="100%" height="300px" [src]="this._fileSelected == undefined ? this._fileNotFound :  this._path" (click)="OnFileSelected($event)" >
+            <img width="100%" height="300px" [src]="this._fileSelected == undefined ? this._fileNotSelected :  this._fileSelected" (click)="OnFileSelected($event)" >
             <!--<button mat-stroked-button style="width: 100%; height: 300px" (click)="OnFileSelected($event)" [disabled]="this._data.bDsiable">Image</button>-->
             <input  type="file" #file (change)="OnFileSelected($event)" style="visibility: hidden" [disabled]="this._data.bDsiable"/>
           </td>

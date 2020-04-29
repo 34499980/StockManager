@@ -6,5 +6,6 @@ export class Articulo{
     Model: string
     Count:number
     Description: string
+    Image: string
    
 }

@@ -19,8 +19,7 @@ export class ModaldetailsComponent implements OnInit {
    _bDsiable: any
    _stockService: StockService  
    _fileSelected: File = null
-   _fileNotFound: any
-   _path: any
+   _fileNotSelected: any 
    @ViewChild('file') file :ElementRef
   constructor(modalgRef: MatDialogRef<ModaldetailsComponent>,  stockService: StockService,@Inject(MAT_DIALOG_DATA) data: ModalData) {
     this._modalgRef = modalgRef
@@ -38,14 +37,19 @@ export class ModaldetailsComponent implements OnInit {
     }else{
       this._bDsiable = false
     }
-    this._fileNotFound = '../../../../assets/imageNotFound.png'
+    if(this._data._articul.Image == undefined){
+      this._fileNotSelected = '../../../../assets/imageNotFound.png'
+    }else{
+      this._fileNotSelected = this._data._articul.Image
+    }
+    
   }
   close(){
     this._modalgRef.close()   
   }
   OnFileSelected(event){   
     this.file.nativeElement.click()
-    this._fileSelected = <File>event.target.files[0]
+    this._fileSelected = <File>event.target.files == undefined ? undefined : <File>event.target.files[0]
     if(this._fileSelected != undefined){
   
     }
@@ -66,6 +70,8 @@ export class ModaldetailsComponent implements OnInit {
       res => {     
       for(let index in res){
         this._data._articul = res[index] as Articulo
+        this._fileNotSelected = this._data._articul.Image
+        
       }
     }
     )
