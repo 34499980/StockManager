@@ -10,7 +10,7 @@ import { Articulo } from 'src/app/arquitectura/class/Articulo';
 })
 export class DespachosComponent implements OnInit {
   _despacho: String
-  _rowData: any
+  _rowData: any[]=[]
   _columns: any
  _disableButton: boolean 
  _articule: Articulo
@@ -33,7 +33,7 @@ export class DespachosComponent implements OnInit {
      if(this._despacho.length == 10){
       this._disableButton = true
       this._titleButtonCreate = "Cancel" 
-      this._stockService.getDespachoRows(this._despacho).subscribe(res => {this._rows = res})
+      this._stockService.getDespachoRows(this._despacho).subscribe(res => {this._rowData = res})
       this._arquitecturaService.getDespachoColumnsData().subscribe(res => {this._columns = res})     
      } else{
       this._arquitecturaService.openDialog("Error","Ingreso un formato de despacho incorrecto")
