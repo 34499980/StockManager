@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogMessageComponent } from '../arquitectura/componentes/dialogMessage/dialogMessage.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ArquitecturaService {
-
-  constructor() { }
+ _dialog: MatDialog
+  constructor(dialog: MatDialog) {
+    this._dialog = dialog
+   }
   getCamposPerfil(): Observable<any> {
     let param = [
       {
@@ -316,6 +320,154 @@ export class ArquitecturaService {
   ]
   return of(columns)
  }
+ getDespachoColumns(): Observable<any>{
+  let result = [
+    {
+      headerName:"ID",
+      header:"ID",
+      field: "ID",
+      sortable: true,
+      filter: true,
+      dataKey: 'Code',
+      width: 100   
+    },
+    {
+     headerName:"FECHA CREACION",
+     header:"FECHA CREACION",
+     field: "datecreate",
+     sortable: true,
+     filter: true,
+     dataKey: 'datecreate',
+     width: 100   
+    },
+    {
+      headerName:"USUARIO",
+      header:"USUARIO",
+      field: "user",
+      sortable: true,
+      filter: true,
+      dataKey: 'user',
+      width: 100   
+     },
+     {
+      headerName:"ORIGEN",
+      header:"ORIGEN",
+      field: "origin",
+      sortable: true,
+      filter: true,
+      dataKey: 'origin',
+      width: 100   
+     },
+     {
+      headerName:"DESTINO",
+      header:"DESTINO",
+      field: "destiny",
+      sortable: true,
+      filter: true,
+      dataKey: 'destiny',
+      width: 100   
+     },
+     {
+      headerName:"ESTADO",
+      header:"ESTADO",
+      field: "state",
+      sortable: true,
+      filter: true,
+      dataKey: 'state',
+      width: 100   
+     },
+     {
+      headerName:"FECHA DESPACHADO",
+      header:"FECHA DESPACHADO",
+      field: "datedispatched",
+      sortable: true,
+      filter: true,
+      dataKey: 'datedispatched',
+      width: 100   
+     },
+     {
+      headerName:"FECHA RECIBIDO",
+      header:"FECHA RECIBIDO",
+      field: "datereceived",
+      sortable: true,
+      filter: true,
+      dataKey: 'datereceived',
+      width: 100   
+     }
+     ,
+     {
+      headerName:"Bultos",
+      header:"Bultos",
+      field: "items",
+      sortable: true,
+      filter: true,
+      dataKey: 'items',
+      width: 100   
+     }
+  ]
 
+  return of(result)
+ }
+ getDespachoColumnsData(): Observable<any>{
+  let result = [{
+    headerName:"CODIGO",
+    header:"CODIGO",
+    field: "code",
+    sortable: true,
+    filter: true,
+    dataKey: 'code',
+    width: 100   
+  },
+  {
+   headerName:"Nombre",
+   header:"Nombre",
+   field: "name",
+   sortable: true,
+   filter: true,
+   dataKey: 'name',
+   width: 100   
+  },
+  {
+    headerName:"MARCA",
+    header:"MARCA",
+    field: "brand",
+    sortable: true,
+    filter: true,
+    dataKey: 'brand',
+    width: 100   
+   },
+   {
+    headerName:"MODELO",
+    header:"MODELO",
+    field: "model",
+    sortable: true,
+    filter: true,
+    dataKey: 'model',
+    width: 100   
+   },
+   {
+    headerName:"UNIDADES",
+    header:"UNIDADES",
+    field: "Unity",
+    sortable: true,
+    filter: true,
+    dataKey: 'destiny',
+    width: 100   
+   }]
+
+  return of(result)
+ }
+ openDialog(title: string, text: string){
+  const dialogRef = this._dialog.open(DialogMessageComponent, {
+    disableClose: true,
+    data : {_title: title, _text: text}
+  });
+
+ dialogRef.afterClosed().subscribe(result => {
+   if(result == true){
+    
+   }
+ });
+}
 
 }

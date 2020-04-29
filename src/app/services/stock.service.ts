@@ -67,5 +67,16 @@ export class StockService {
     return of(stock)
   }
  
-  
+  getDespachoRows(despacho: String): Observable<any>{
+    let result = []
+
+
+    return of(result)
+  }
+  getDespachoDataRows(despacho: String): Observable<any>{
+    let result = []
+
+
+    return of(result)
+  }
 }

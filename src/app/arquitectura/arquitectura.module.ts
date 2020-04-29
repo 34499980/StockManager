@@ -22,6 +22,7 @@ import { DialogconfirmComponent } from './componentes/dialogconfirm/dialogconfir
 import {MatDialogModule} from '@angular/material/dialog';
 import { ModaldetailsComponent } from './componentes/modaldetails/modaldetails.component';
 import { NgFallimgModule } from 'ng-fallimg';
+import { DialogMessageComponent } from './componentes/dialogMessage/dialogMessage.component';
 
 
 
@@ -31,7 +32,7 @@ import { NgFallimgModule } from 'ng-fallimg';
 
 
 @NgModule({
-  declarations: [SidenavComponent,PaneluserComponent, InputrequiredComponent, DialogconfirmComponent, ModaldetailsComponent],
+  declarations: [SidenavComponent,PaneluserComponent, InputrequiredComponent, DialogconfirmComponent, ModaldetailsComponent,DialogMessageComponent],
   imports: [
     CommonModule,
     BrowserModule,
@@ -54,6 +55,6 @@ import { NgFallimgModule } from 'ng-fallimg';
    
     
   ],
-  exports:[SidenavComponent,PaneluserComponent,InputrequiredComponent,DialogconfirmComponent,MatDialogModule]
+  exports:[SidenavComponent,PaneluserComponent,InputrequiredComponent,DialogconfirmComponent,MatDialogModule,DialogMessageComponent]
 })
 export class ArquitecturaModule { }
