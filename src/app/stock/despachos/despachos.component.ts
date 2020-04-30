@@ -27,27 +27,33 @@ export class DespachosComponent implements OnInit {
     this._despacho = ""
     this._titleButtonCreate = "Create" 
     this._disableButton = false  
+    this._searchCode = undefined
     this._arquitecturaService.getDespachoColumns().subscribe(res => {this._columns = res})
+    this._stockService.getDespachoRows().subscribe(res => {this._rowData = res})
   }
   searchDespatched(){ 
      if(this._despacho.length == 10){
       this._disableButton = true
       this._titleButtonCreate = "Cancel" 
-      this._stockService.getDespachoRows(this._despacho).subscribe(res => {this._rowData = res})
+      this._rowData = []
+      //this._stockService.getDespachoDataRows(this._despacho).subscribe(res => {this._rowData = res})
       this._arquitecturaService.getDespachoColumnsData().subscribe(res => {this._columns = res})     
      } else{
       this._arquitecturaService.openDialog("Error","Ingreso un formato de despacho incorrecto")
-     }  
-      
-       
-    
+     }       
+  
+  }  
+  assignDispatched(dispatched: string){
+    this._despacho = dispatched
+    this._disableButton = true
+    this._titleButtonCreate = "Cancel" 
+    this._rowData = []
+   // this._stockService.getDespachoDataRows(this._despacho).subscribe(res => {this._rowData = res})
+    this._arquitecturaService.getDespachoColumnsData().subscribe(res => {this._columns = res})     
   }
   createCancelDispatched(){
     if(this._disableButton){
-      this._titleButtonCreate = "Create" 
-      this._disableButton = false  
-      this._arquitecturaService.getDespachoColumns().subscribe(res => {this._columns = res})
-      this._despacho = ""
+     this.ngOnInit()
     }
   }
   cargarCodigo(){
@@ -57,7 +63,7 @@ export class DespachosComponent implements OnInit {
     }
   }
   searchArticulo(){
-    this._stockService.getStockByCode(this._searchCode).subscribe(
+    this._stockService.getDespachoDataRows(this._despacho,this._searchCode).subscribe(
       res => {     
       for(let index in res){
         this._articule = res[index] as Articulo
@@ -67,19 +73,33 @@ export class DespachosComponent implements OnInit {
    
   }
   Add(value?: Number){
+    if(value != undefined){
+      this._searchCode = value
+      this.searchArticulo()
+    }
     if((value == undefined && this._searchCode != undefined)|| value != undefined){
      let index = this._rowData.find(x => x.Code == this._articule.Code)
       if(index != undefined)
-      {
-        index.Unity++
-        index.SubTotal = index.Price * index.Unity
+      {      
+        index.Unity++       
       }else{
         let row = new Row(this._articule,'1');
         this._rowData.push(row)
        }   
   
       }
+      this._searchCode = undefined
      
+  }
+  delete(value?: Number){
+    let index = this._rowData.find(x => x.Code == this._articule.Code)
+    if(index != undefined && index.Unity > 1)
+    {
+      index.Unity--
+      index.SubTotal = index.Price * index.Unity
+    }  
+
+    
   }
   
   

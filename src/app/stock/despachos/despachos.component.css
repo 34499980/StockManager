@@ -57,3 +57,6 @@ p {
 .bold{
   font-weight: bold;
 }
+.textCenter{
+  text-align: center
+}

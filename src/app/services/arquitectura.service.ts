@@ -329,7 +329,7 @@ export class ArquitecturaService {
       sortable: true,
       filter: true,
       dataKey: 'Code',
-      width: 100   
+      width: 10   
     },
     {
      headerName:"FECHA CREACION",
@@ -338,7 +338,7 @@ export class ArquitecturaService {
      sortable: true,
      filter: true,
      dataKey: 'datecreate',
-     width: 100   
+     width: 200   
     },
     {
       headerName:"USUARIO",
@@ -347,7 +347,7 @@ export class ArquitecturaService {
       sortable: true,
       filter: true,
       dataKey: 'user',
-      width: 100   
+      width: 200   
      },
      {
       headerName:"ORIGEN",
@@ -356,7 +356,7 @@ export class ArquitecturaService {
       sortable: true,
       filter: true,
       dataKey: 'origin',
-      width: 100   
+      width: 200   
      },
      {
       headerName:"DESTINO",
@@ -365,7 +365,7 @@ export class ArquitecturaService {
       sortable: true,
       filter: true,
       dataKey: 'destiny',
-      width: 100   
+      width: 200   
      },
      {
       headerName:"ESTADO",
@@ -374,7 +374,7 @@ export class ArquitecturaService {
       sortable: true,
       filter: true,
       dataKey: 'state',
-      width: 100   
+      width: 50   
      },
      {
       headerName:"FECHA DESPACHADO",
@@ -383,7 +383,7 @@ export class ArquitecturaService {
       sortable: true,
       filter: true,
       dataKey: 'datedispatched',
-      width: 100   
+      width: 200   
      },
      {
       headerName:"FECHA RECIBIDO",
@@ -392,7 +392,7 @@ export class ArquitecturaService {
       sortable: true,
       filter: true,
       dataKey: 'datereceived',
-      width: 100   
+      width: 200   
      }
      ,
      {
@@ -402,7 +402,7 @@ export class ArquitecturaService {
       sortable: true,
       filter: true,
       dataKey: 'items',
-      width: 100   
+      width: 200   
      }
   ]
 
@@ -410,48 +410,48 @@ export class ArquitecturaService {
  }
  getDespachoColumnsData(): Observable<any>{
   let result = [{
-    headerName:"CODIGO",
-    header:"CODIGO",
-    field: "code",
+    headerName:"Code",
+    header:"Code",
+    field: "Code",
     sortable: true,
     filter: true,
-    dataKey: 'code',
+    dataKey: 'Code',
     width: 100   
   },
   {
    headerName:"Nombre",
-   header:"Nombre",
-   field: "name",
+   header:"Name",
+   field: "Name",
    sortable: true,
    filter: true,
-   dataKey: 'name',
+   dataKey: 'Name',
    width: 100   
   },
   {
-    headerName:"MARCA",
-    header:"MARCA",
-    field: "brand",
+    headerName:"Marca",
+    header:"Brand",
+    field: "Brand",
     sortable: true,
     filter: true,
-    dataKey: 'brand',
+    dataKey: 'Brand',
     width: 100   
    },
    {
-    headerName:"MODELO",
-    header:"MODELO",
-    field: "model",
+    headerName:"Modelo",
+    header:"Model",
+    field: "Model",
     sortable: true,
     filter: true,
-    dataKey: 'model',
+    dataKey: 'Model',
     width: 100   
    },
    {
-    headerName:"UNIDADES",
-    header:"UNIDADES",
+    headerName:"Unidades",
+    header:"Unity",
     field: "Unity",
     sortable: true,
     filter: true,
-    dataKey: 'destiny',
+    dataKey: 'Unity',
     width: 100   
    }]
 
