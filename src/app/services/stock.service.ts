@@ -128,4 +128,7 @@ export class StockService {
    
    return of(result)
   }
+  changeDespachoState(despacho: String){
+
+  }
 }

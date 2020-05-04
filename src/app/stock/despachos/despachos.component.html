@@ -4,7 +4,7 @@
         <td  class="tdSmall">
                 <mat-form-field appearance="outline">
                         <mat-label>Codigo despacho</mat-label>
-                        <input matInput type="text" [(ngModel)]="this._despacho"   placeholder="Codigo despacho" maxlength="10" [disabled]="this._disableButton"   >               
+                        <input matInput type="text" [(ngModel)]="this._despacho" (ngModelChange)="cargarDespacho()"   placeholder="Codigo despacho" maxlength="10" [disabled]="this._disableButton"   >               
                     </mat-form-field>
         </td>       
        
@@ -21,7 +21,7 @@
     </tr>
     <tr>
             <td></td>
-            <td></td>
+            <td ></td>
             <td style="text-align: right; padding-right: 3%" ><button mat-raised-button (click)="createCancelDispatched()" color="success">{{this._titleButtonCreate}}</button></td>
           </tr>
 </table>
@@ -80,4 +80,11 @@
         <td><button class="TransparentButton" (click)="delete(r.Code)" > -   </button>{{r.Unity}}<button class="TransparentButton" (click)="Add(r.Code)" >   + </button ></td>
     </tr>-->
    </tbody>
+</table>
+<table style="width: 100%">
+   <tr>
+           <td style="width: 30%"></td>
+           <td style="width: 30%"></td>
+      <td [style.visibility]="this._disableButton? 'visible': 'hidden'"style="text-align: right; padding-right: 3%" ><button mat-raised-button (click)="finish()" color="warn">Finalizar</button></td>
+  </tr>
 </table>

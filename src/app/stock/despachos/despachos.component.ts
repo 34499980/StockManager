@@ -11,6 +11,7 @@ import { Articulo } from 'src/app/arquitectura/class/Articulo';
 export class DespachosComponent implements OnInit {
   _despacho: String
   _rowData: any[]=[]
+  _rowDataDispatchedOrigin: any[]=[]
   _columns: any
  _disableButton: boolean 
  _articule: Articulo
@@ -87,6 +88,22 @@ export class DespachosComponent implements OnInit {
     )
    
   }
+  cargarDespacho(){
+    if(this._despacho==" " || this._despacho==undefined || this._despacho.length == 0){
+      this._stockService.getDespachoRows().subscribe(res => {this._rowData = res})
+    }else{    
+      this._rowData = [] 
+      this._stockService.getDespachoRows().subscribe(res => {this._rowDataDispatchedOrigin = res})
+      for(let index in this._rowDataDispatchedOrigin){
+        let row = this._rowDataDispatchedOrigin[index] 
+        if(row.ID.indexOf(this._despacho) != -1){
+          this._rowData.push(row)
+        }
+
+      }    
+  
+    }
+  }
   Add(value?: Number){
     let index
     if(value != undefined){      
@@ -94,21 +111,32 @@ export class DespachosComponent implements OnInit {
     }else{
       index = this._rowData.find(x => x.Code == this._articule.Code)
     }
-    if(index.Count < index.Unity)
+    if(index.Count < index.Unity && (index.Count == 0 && this._searchCode != undefined)){
         index.Count++      
      
+  }else{
+    if(index.Count < index.Unity && (index.Count >0)){
+      index.Count++      
+  }
+}
   }
   delete(value?: Number){
     let index = this._rowData.find(x => x.Code == value)
-    if(index != undefined && index.Count > 1)
+    if(index != undefined && index.Count > 0)
     {
-      index.Count--
-     
-    }  
-
-    
+      index.Count--     
+    }     
   }
-  
+  finish(){
+   let bFlag = this._rowData.find(x => x.Count!= x.Unity)
+   if(bFlag){
+     this._arquitecturaService.openDialog('Warning','Quedaron bultos sin leer!')
+   }
+   else{
+     this.createCancelDispatched()
+     this._stockService.changeDespachoState(this._despacho)
+   }
+  } 
   
 
 }
