@@ -96,9 +96,9 @@ export class StockService {
 
     return of(result)
   }
-  getDespachoDataRows(despacho: String,code: string): Observable<any>{
+  getDespachoDataRows(despacho: String): Observable<any>{
     let result
-    if(code=="0000000001"){
+  
      result = [
        {
          Code: "0000000001",
@@ -106,13 +106,11 @@ export class StockService {
          Name:"Iron Man",
          Brand:"DitoYs",
          Model: "rojo",
-         Count:5,
+         Unity:5,
          Description: "Muñeco articulado con luces. Lleva dos pilas.",
          Image: '../../../../assets/ironman.png'
-       }
-     ]
-    }else{
-     result = [
+       },
+    
        {
          Code: "0000000002",
          Price:"1000",
@@ -120,12 +118,12 @@ export class StockService {
          Brand:"DitoYs",
          Model: "negro",
          Sucursal: "2",
-         Count: '3',
+         Unity: '3',
          Description: "Muñeco articulado con luces. Lleva dos pilas.",
          Image: '../../../../assets/warmachine.jpg'
        }
      ]
-    } 
+    
 
    
    return of(result)

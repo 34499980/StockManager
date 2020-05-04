@@ -15,6 +15,8 @@ export class DespachosComponent implements OnInit {
  _disableButton: boolean 
  _articule: Articulo
  _searchCode: any
+  _OkImage: string
+  _NotOkImage: string
   _stockService: StockService
   _titleButtonCreate : string
   _arquitecturaService: ArquitecturaService
@@ -24,6 +26,8 @@ export class DespachosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this._OkImage = '../../../../assets/ok_check.png'
+    this._NotOkImage = '../../../../assets/notok_check.png'
     this._despacho = ""
     this._titleButtonCreate = "Create" 
     this._disableButton = false  
@@ -48,7 +52,15 @@ export class DespachosComponent implements OnInit {
     this._disableButton = true
     this._titleButtonCreate = "Cancel" 
     this._rowData = []
-   // this._stockService.getDespachoDataRows(this._despacho).subscribe(res => {this._rowData = res})
+    this._stockService.getDespachoDataRows(this._despacho).subscribe(
+      res => {     
+      for(let index in res){
+        this._articule = res[index] as Articulo
+        let row = new Row(this._articule);
+        this._rowData.push(row)
+      }
+    }
+    )
     this._arquitecturaService.getDespachoColumnsData().subscribe(res => {this._columns = res})     
   }
   createCancelDispatched(){
@@ -58,45 +70,40 @@ export class DespachosComponent implements OnInit {
   }
   cargarCodigo(){
     if(this._searchCode.length == 10){
-      this.searchArticulo()
-      this.Add()
+      //this.searchArticulo()
+      this.Add(this._searchCode)
+      this._searchCode = undefined
     }
   }
   searchArticulo(){
-    this._stockService.getDespachoDataRows(this._despacho,this._searchCode).subscribe(
+    this._stockService.getDespachoDataRows(this._despacho).subscribe(
       res => {     
       for(let index in res){
         this._articule = res[index] as Articulo
+        //let row = new Row(this._articule);
+        //this._rowData.push(row)
       }
     }
     )
    
   }
   Add(value?: Number){
-    if(value != undefined){
-      this._searchCode = value
-      this.searchArticulo()
+    let index
+    if(value != undefined){      
+       index = this._rowData.find(x => x.Code == value)
+    }else{
+      index = this._rowData.find(x => x.Code == this._articule.Code)
     }
-    if((value == undefined && this._searchCode != undefined)|| value != undefined){
-     let index = this._rowData.find(x => x.Code == this._articule.Code)
-      if(index != undefined)
-      {      
-        index.Unity++       
-      }else{
-        let row = new Row(this._articule,'1');
-        this._rowData.push(row)
-       }   
-  
-      }
-      this._searchCode = undefined
+    if(index.Count < index.Unity)
+        index.Count++      
      
   }
   delete(value?: Number){
-    let index = this._rowData.find(x => x.Code == this._articule.Code)
-    if(index != undefined && index.Unity > 1)
+    let index = this._rowData.find(x => x.Code == value)
+    if(index != undefined && index.Count > 1)
     {
-      index.Unity--
-      index.SubTotal = index.Price * index.Unity
+      index.Count--
+     
     }  
 
     
@@ -112,17 +119,21 @@ class Row{
   Brand: string
   Model: string
   Price: Number
-  Unity: string
-  SubTotal: Number
+  Unity: Number
+  Count: Number
+  width: number
+  height: number
  
-  constructor(articule: Articulo, unity: string, total?: Number){
+  constructor(articule: Articulo){
     this.Code = articule.Code
     this.Name = articule.Name
     this.Brand = articule.Brand
     this.Model = articule.Model
     this.Price = articule.Price
-    this.Unity = unity
-    this.SubTotal = total==undefined? articule.Price: total
+    this.Unity = articule.Unity
+    this.Count = 0
+    this.width = 2
+    this.height = 2
     
 
   }

@@ -4,7 +4,7 @@ export class Articulo{
     Name: string
     Brand: string
     Model: string
-    Count:number
+    Unity:number
     Description: string
     Image: string
    

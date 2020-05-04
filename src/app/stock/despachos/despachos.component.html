@@ -37,6 +37,7 @@
          </th>
               
         <ng-template #column>
+                <th>Cantidad</th>
                <th>Validado</th>
          </ng-template>
         
@@ -62,7 +63,10 @@
                         <td>{{r.Name}}</td>
                         <td>{{r.Model}}</td>
                         <td>{{r.Brand}}</td>
-                        <td><button class="TransparentButton" (click)="delete(r.Code)" > -   </button>{{r.Unity}}<button class="TransparentButton" (click)="Add(r.Code)" >   + </button ></td>
+                        <td>{{r.Unity}}</td>
+                        <td><button class="TransparentButton" (click)="delete(r.Code)" > - </button > {{r.Count}}<button class="TransparentButton" (click)="Add(r.Code)" >   + </button ></td>
+                        <td><img  [style.width]="r.Count == r.Unity ? '40%' : '40%'"[style.heigth]="r.Count == r.Unity ? '20%' : '20%'"  [src]="r.Count == r.Unity ? this._OkImage : this._NotOkImage"></td>                      
+                       
                 </tr>
         </tbody>
   </ng-template> 
