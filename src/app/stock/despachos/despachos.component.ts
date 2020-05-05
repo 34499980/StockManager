@@ -12,6 +12,7 @@ import { ModaldetailsComponent } from 'src/app/arquitectura/componentes/modaldet
   styleUrls: ['./despachos.component.css']
 })
 export class DespachosComponent implements OnInit {
+  _type: string
   _despacho: String
   _rowData: any[]=[]
   _rowDataDispatchedOrigin: any[]=[]
@@ -34,6 +35,7 @@ export class DespachosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this._type = "dispatched"
     this._OkImage = '../../../../assets/ok_check.png'
     this._NotOkImage = '../../../../assets/notok_check.png'
     this._despacho = ""
@@ -45,6 +47,7 @@ export class DespachosComponent implements OnInit {
   }
   searchDespatched(){ 
      if(this._despacho.length == 10){
+      this._type = "dispatchedSelected"
       this._disableButton = true
       this._titleButtonCreate = "Cancel" 
       this._rowData = []
@@ -57,6 +60,7 @@ export class DespachosComponent implements OnInit {
   }  
   assignDispatched(dispatched: string){
     this._despacho = dispatched
+    this._type = "dispatchedSelected"
     this._disableButton = true
     this._titleButtonCreate = "Cancel" 
     this._rowData = []
@@ -64,7 +68,7 @@ export class DespachosComponent implements OnInit {
       res => {     
       for(let index in res){
         this._articule = res[index] as Articulo
-        let row = new Row(this._articule);
+        let row = new Row(this._articule, this._type == "dispatchedSelected"?0:1);
         this._rowData.push(row)
       }
     }
@@ -73,7 +77,16 @@ export class DespachosComponent implements OnInit {
   }
   createCancelDispatched(){
     if(this._disableButton){
+      this._type = "dispatched"
      this.ngOnInit()
+    }else{
+      this._type = "createDispached"
+      this._disableButton = true
+      this._titleButtonCreate = "Cancel" 
+      this._despacho =  this._stockService.createDispatched()
+      this._arquitecturaService.getDespachoColumnsData().subscribe(res => {this._columns = res})     
+      this._rowData = []
+
     }
   }
   cargarCodigo(){
@@ -113,19 +126,42 @@ export class DespachosComponent implements OnInit {
   }
   Add(value?: Number){
     let index
-    if(value != undefined){      
-       index = this._rowData.find(x => x.Code == value)
+    switch(this._type){
+      case "createDispached":
+          index = this._rowData.find(x => x.Code == value)
+          if(index!=undefined){
+            if(index.Count < index.Unity)
+              index.Count++
+          }else{
+            this._stockService.getStockByCode(value.toString()).subscribe(
+              res => {     
+              for(let index in res){
+                this._articule = res[index] as Articulo
+              }
+            }
+            )
+            let row = new Row(this._articule, 1)
+            this._rowData.push(row)
+          }
+      break;
+      default:
+      
+      if(value != undefined){      
+         index = this._rowData.find(x => x.Code == value)
+      }else{
+        index = this._rowData.find(x => x.Code == this._articule.Code)
+      }
+      if(index.Count < index.Unity && (index.Count == 0 && this._searchCode != undefined)){
+          index.Count++      
+       
     }else{
-      index = this._rowData.find(x => x.Code == this._articule.Code)
-    }
-    if(index.Count < index.Unity && (index.Count == 0 && this._searchCode != undefined)){
+      if(index.Count < index.Unity && (index.Count >0)){
         index.Count++      
-     
-  }else{
-    if(index.Count < index.Unity && (index.Count >0)){
-      index.Count++      
-  }
-}
+    }
+   }
+      break;
+    }
+   
   }
   delete(value?: Number){
     let index = this._rowData.find(x => x.Code == value)
@@ -135,14 +171,16 @@ export class DespachosComponent implements OnInit {
     }     
   }
   finish(){
-   let bFlag = this._rowData.find(x => x.Count!= x.Unity)
-   if(bFlag){
-     this._arquitecturaService.openDialog('Warning','Quedaron bultos sin leer!')
-   }
-   else{
-     this.createCancelDispatched()
-     this._stockService.changeDespachoState(this._despacho)
-   }
+    if(this._rowData.length != 0){
+       let bFlag = this._rowData.find(x => x.Count!= x.Unity)
+       if(bFlag){
+         this._arquitecturaService.openDialog('Warning','Quedaron bultos sin leer!')
+       }
+       else{
+        this.createCancelDispatched()
+         this._stockService.changeDespachoState(this._despacho)
+       }
+    }
   } 
   openDialog() {    
     const dialogRef = this._dialog.open(DialogconfirmComponent, {
@@ -169,6 +207,7 @@ export class DespachosComponent implements OnInit {
       }
     });
   }
+ 
 
 
 }
@@ -184,14 +223,14 @@ class Row{
   width: number
   height: number
  
-  constructor(articule: Articulo){
+  constructor(articule: Articulo,count: number){
     this.Code = articule.Code
     this.Name = articule.Name
     this.Brand = articule.Brand
     this.Model = articule.Model
     this.Price = articule.Price
     this.Unity = articule.Unity
-    this.Count = 0
+    this.Count = count
     this.width = 2
     this.height = 2
     

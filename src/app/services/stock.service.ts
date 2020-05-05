@@ -18,7 +18,7 @@ export class StockService {
           Name:"Iron Man",
           Brand:"DitoYs",
           Model: "rojo",
-          Count:5,
+          Unity:5,
           Description: "Muñeco articulado con luces. Lleva dos pilas.",
           Image: '../../../../assets/ironman.png'
         }
@@ -32,7 +32,7 @@ export class StockService {
           Brand:"DitoYs",
           Model: "negro",
           Sucursal: "2",
-          Count: '3',
+          Unity: '3',
           Description: "Muñeco articulado con luces. Lleva dos pilas.",
           Image: '../../../../assets/warmachine.jpg'
         }
@@ -133,5 +133,9 @@ export class StockService {
   }
   updateDataByDispatched(despacho: string){
 
+  }
+  createDispatched(): string{
+
+    return "0000000009"
   }
 }

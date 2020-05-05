@@ -27,60 +27,85 @@
 </table>
 <br>
 <br>
-<table class="table pd-b-5" >
-   <thead>
-        <th  *ngFor="let c of this._columns">
-            {{c.header}}
-        </th>
-        <th *ngIf="!this._disableButton; else column">
-               Ver
-         </th>
-              
-        <ng-template #column>
-                <th>Cantidad</th>
-               <th>Validado</th>
-         </ng-template>
-        
-   </thead>
-   <tbody *ngIf="!this._disableButton; else body">      
-    <tr *ngFor="let r of this._rowData">
-            <td>{{r.ID}}</td>
-            <td >{{r.datecreate}}</td>
-            <td >{{r.user}}</td>
-            <td class="textCenter"  >{{r.origin}}</td>
-            <td class="textCenter" >{{r.destiny}}</td>
-            <td class="textCenter" >{{r.state}}</td>
-            <td class="textCenter" >{{r.datedespatched}}</td>
-            <td class="textCenter"  >{{r.daterecived}}</td>
-            <td class="textCenter"  >{{r.items}}</td>
-            <td style="text-align: left"><button mat-raised-button (click)="assignDispatched(r.ID)" color="primary">Ver</button></td>  
-    </tr>
-   </tbody>
-   <ng-template #body>
-        <tbody>
+<div *ngIf="this._type=='dispatched'; else dispatchedSelected">
+        <table class="table pd-b-5" >
+        <thead>
+                <th  *ngFor="let c of this._columns">
+                        {{c.header}}
+                </th>
+                <th>
+                        Ver
+                </th>
+                        
+               
+                
+        </thead>
+        <tbody >      
                 <tr *ngFor="let r of this._rowData">
+                        <td>{{r.ID}}</td>
+                        <td >{{r.datecreate}}</td>
+                        <td >{{r.user}}</td>
+                        <td class="textCenter"  >{{r.origin}}</td>
+                        <td class="textCenter" >{{r.destiny}}</td>
+                        <td class="textCenter" >{{r.state}}</td>
+                        <td class="textCenter" >{{r.datedespatched}}</td>
+                        <td class="textCenter"  >{{r.daterecived}}</td>
+                        <td class="textCenter"  >{{r.items}}</td>
+                        <td style="text-align: left"><button mat-raised-button (click)="assignDispatched(r.ID)" color="primary">Ver</button></td>  
+                </tr>
+        </tbody>        
+        
+
+        </table>
+</div>
+<ng-template #dispatchedSelected>
+        <div *ngIf="this._type=='dispatchedSelected'; else createDispatched">
+           <table class="table pd-b-5">
+               <thead>
+                   <th  *ngFor="let c of this._columns">
+                                            {{c.header}}
+                  </th>                  
+                    <th>Cantidad</th>
+                    <th>Validado</th>
+                  </thead> 
+                  <tbody >      
+                     <tr *ngFor="let r of this._rowData">
                         <td>{{r.Code}}</td>
                         <td>{{r.Name}}</td>
-                        <td>{{r.Model}}</td>
-                        <td>{{r.Brand}}</td>
-                        <td>{{r.Unity}}</td>
-                        <td><button class="TransparentButton" (click)="delete(r.Code)" > - </button > {{r.Count}}<button class="TransparentButton" (click)="Add(r.Code)" >   + </button ></td>
-                        <td><img  [style.width]="r.Count == r.Unity ? '40%' : '40%'"[style.heigth]="r.Count == r.Unity ? '20%' : '20%'"  [src]="r.Count == r.Unity ? this._OkImage : this._NotOkImage"></td>                      
-                       
-                </tr>
-        </tbody>
-  </ng-template> 
-   <tbody [style.visibility]="this._disableButton? 'visible' : 'hidden'">
-        
-   <!-- <tr *ngFor="let r of this._rowData">
-        <td>{{r.Code}}</td>
-        <td>{{r.Name}}</td>
-        <td>{{r.Model}}</td>
-        <td>{{r.Brand}}</td>
-        <td><button class="TransparentButton" (click)="delete(r.Code)" > -   </button>{{r.Unity}}<button class="TransparentButton" (click)="Add(r.Code)" >   + </button ></td>
-    </tr>-->
-   </tbody>
-</table>
+                         <td>{{r.Model}}</td>
+                         <td>{{r.Brand}}</td>
+                         <td>{{r.Unity}}</td>
+                         <td><button class="TransparentButton" (click)="delete(r.Code)" > - </button > {{r.Count}}<button class="TransparentButton" (click)="Add(r.Code)" >   + </button ></td>
+                         <td><img  [style.width]="r.Count == r.Unity ? '40%' : '40%'"[style.heigth]="r.Count == r.Unity ? '20%' : '20%'"  [src]="r.Count == r.Unity ? this._OkImage : this._NotOkImage"></td>                      
+                                               
+                       </tr>
+                  </tbody>   
+           </table>
+        </div>
+        <ng-template #createDispatched>
+            <div *ngIf="this._type=='createDispached'">
+                <table class="table pd-b-5" >
+                       <thead>
+                          <th  *ngFor="let c of this._columns">
+                              {{c.header}}
+                          </th>                  
+                           <th>Cantidad</th>                          
+                        </thead> 
+                        <tbody >      
+                           <tr *ngFor="let r of this._rowData">
+                                <td>{{r.Code}}</td>
+                                <td>{{r.Name}}</td>
+                                <td>{{r.Model}}</td>
+                                <td>{{r.Brand}}</td>
+                                <td>{{r.Unity}}</td>
+                                <td><button class="TransparentButton" (click)="delete(r.Code)" > - </button > {{r.Count}}<button class="TransparentButton" (click)="Add(r.Code)" >   + </button ></td>
+                            </tr>
+                        </tbody>   
+                </table>
+              </div>
+        </ng-template>
+</ng-template>
+
 <table style="width: 100%">
    <tr>
            <td style="width: 30%"></td>
