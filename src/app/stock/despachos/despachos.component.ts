@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { StockService } from 'src/app/services/stock.service';
 import { ArquitecturaService } from 'src/app/services/arquitectura.service';
 import { Articulo } from 'src/app/arquitectura/class/Articulo';
+import { DialogconfirmComponent } from 'src/app/arquitectura/componentes/dialogconfirm/dialogconfirm.component';
+import { MatDialog } from '@angular/material/dialog';
+import { ModaldetailsComponent } from 'src/app/arquitectura/componentes/modaldetails/modaldetails.component';
 
 @Component({
   selector: 'app-despachos',
@@ -21,9 +24,13 @@ export class DespachosComponent implements OnInit {
   _stockService: StockService
   _titleButtonCreate : string
   _arquitecturaService: ArquitecturaService
-  constructor(stockService: StockService, arquitecturaService: ArquitecturaService) { 
+  _dialog: MatDialog
+  _modal: MatDialog
+  constructor(stockService: StockService, arquitecturaService: ArquitecturaService,dialog: MatDialog,modal: MatDialog) { 
     this._stockService = stockService
     this._arquitecturaService = arquitecturaService
+    this._dialog = dialog
+    this._modal = modal
   }
 
   ngOnInit(): void {
@@ -137,7 +144,32 @@ export class DespachosComponent implements OnInit {
      this._stockService.changeDespachoState(this._despacho)
    }
   } 
+  openDialog() {    
+    const dialogRef = this._dialog.open(DialogconfirmComponent, {
+       disableClose: true,
+       data : {title: "Confirmación gerente", admConfirm: true}
+     });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(true){
+        this.openModal()
+      }
+    });
+  }
+  openModal() { 
   
+    const dialogRef = this._modal.open(ModaldetailsComponent, {
+       disableClose: true,
+       data : {_despacho:this._despacho, _screen:"despacho"}
+     });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result == true){
+      
+      }
+    });
+  }
+
 
 }
 

@@ -131,4 +131,7 @@ export class StockService {
   changeDespachoState(despacho: String){
 
   }
+  updateDataByDispatched(despacho: string){
+
+  }
 }

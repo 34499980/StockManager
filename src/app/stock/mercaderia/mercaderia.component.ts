@@ -49,7 +49,7 @@ export class MercaderiaComponent implements OnInit {
     }    
     const dialogRef = this._modal.open(ModaldetailsComponent, {
        disableClose: true,
-       data : {_articul: articul, bDsiable: value!=undefined? true: false}
+       data : { _screen :"articulo",_articul: articul, bDsiable: value!=undefined? true: false}
      });
 
     dialogRef.afterClosed().subscribe(result => {

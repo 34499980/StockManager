@@ -328,8 +328,7 @@ export class ArquitecturaService {
       field: "ID",
       sortable: true,
       filter: true,
-      dataKey: 'Code',
-      width: 10   
+      dataKey: 'Code'
     },
     {
      headerName:"FECHA CREACION",
@@ -337,8 +336,7 @@ export class ArquitecturaService {
      field: "datecreate",
      sortable: true,
      filter: true,
-     dataKey: 'datecreate',
-     width: 200   
+     dataKey: 'datecreate'
     },
     {
       headerName:"USUARIO",
@@ -346,8 +344,7 @@ export class ArquitecturaService {
       field: "user",
       sortable: true,
       filter: true,
-      dataKey: 'user',
-      width: 200   
+      dataKey: 'user'
      },
      {
       headerName:"ORIGEN",
@@ -355,8 +352,7 @@ export class ArquitecturaService {
       field: "origin",
       sortable: true,
       filter: true,
-      dataKey: 'origin',
-      width: 200   
+      dataKey: 'origin'
      },
      {
       headerName:"DESTINO",
@@ -364,8 +360,7 @@ export class ArquitecturaService {
       field: "destiny",
       sortable: true,
       filter: true,
-      dataKey: 'destiny',
-      width: 200   
+      dataKey: 'destiny'
      },
      {
       headerName:"ESTADO",
@@ -373,8 +368,7 @@ export class ArquitecturaService {
       field: "state",
       sortable: true,
       filter: true,
-      dataKey: 'state',
-      width: 50   
+      dataKey: 'state'
      },
      {
       headerName:"FECHA DESPACHADO",
@@ -382,8 +376,7 @@ export class ArquitecturaService {
       field: "datedispatched",
       sortable: true,
       filter: true,
-      dataKey: 'datedispatched',
-      width: 200   
+      dataKey: 'datedispatched'
      },
      {
       headerName:"FECHA RECIBIDO",
@@ -391,8 +384,7 @@ export class ArquitecturaService {
       field: "datereceived",
       sortable: true,
       filter: true,
-      dataKey: 'datereceived',
-      width: 200   
+      dataKey: 'datereceived'
      }
      ,
      {
@@ -401,8 +393,7 @@ export class ArquitecturaService {
       field: "items",
       sortable: true,
       filter: true,
-      dataKey: 'items',
-      width: 200   
+      dataKey: 'items'
      }
   ]
 
