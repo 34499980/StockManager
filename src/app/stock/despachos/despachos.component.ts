@@ -172,16 +172,25 @@ export class DespachosComponent implements OnInit {
   }
   finish(){
     if(this._rowData.length != 0){
-       let bFlag = this._rowData.find(x => x.Count!= x.Unity)
-       if(bFlag){
-         this._arquitecturaService.openDialog('Warning','Quedaron bultos sin leer!')
-       }
-       else{
-        this.createCancelDispatched()
-         this._stockService.changeDespachoState(this._despacho)
-       }
+      switch(this._type){
+        case "createDispached":
+         this._stockService.createDispatched()
+         this.ngOnInit()
+        break;
+        default:
+        let bFlag = this._rowData.find(x => x.Count!= x.Unity)
+        if(bFlag){
+          this._arquitecturaService.openDialog('Warning','Quedaron bultos sin leer!')
+        }
+        else{
+         this.createCancelDispatched()
+          this._stockService.changeDespachoState(this._despacho)
+        }
+        break;
+      
     }
   } 
+  }
   openDialog() {    
     const dialogRef = this._dialog.open(DialogconfirmComponent, {
        disableClose: true,
