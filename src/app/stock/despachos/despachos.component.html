@@ -9,7 +9,7 @@
         </td>       
        
         <td style="text-align: left; padding-right: 3%" ><button mat-raised-button (click)="searchDespatched()" color="primary">Search</button></td>
-        <td [style.visibility]="this._disableButton? 'visible': 'hidden'"style="text-align: right; padding-right: 3%" ><button mat-raised-button (click)="openDialog()" color="warn">Ayuda</button></td>
+        <td [style.visibility]="this._type == 'dispatchedSelected'? 'visible': 'hidden'"style="text-align: right; padding-right: 3%" ><button mat-raised-button (click)="openDialog()" color="warn">Ayuda</button></td>
     </tr>
     <tr>
         <td>
