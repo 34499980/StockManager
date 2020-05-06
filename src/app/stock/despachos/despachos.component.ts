@@ -82,8 +82,7 @@ export class DespachosComponent implements OnInit {
     }else{
       this._type = "createDispached"
       this._disableButton = true
-      this._titleButtonCreate = "Cancel" 
-      this._despacho =  this._stockService.createDispatched()
+      this._titleButtonCreate = "Cancel"          
       this._arquitecturaService.getDespachoColumnsData().subscribe(res => {this._columns = res})     
       this._rowData = []
 
@@ -174,7 +173,8 @@ export class DespachosComponent implements OnInit {
     if(this._rowData.length != 0){
       switch(this._type){
         case "createDispached":
-         this._stockService.createDispatched()
+        let newDispacher =  this._stockService.createDispatched()
+        this._arquitecturaService.openDialog("Message","Se genero el despacho con numero: "+newDispacher)  
          this.ngOnInit()
         break;
         default:
