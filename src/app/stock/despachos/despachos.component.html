@@ -89,16 +89,18 @@
                           <th  *ngFor="let c of this._columns">
                               {{c.header}}
                           </th>                  
-                           <th>Cantidad</th>                          
+                           <th>Cantidad</th> 
+                           <th></th>                         
                         </thead> 
                         <tbody >      
-                           <tr *ngFor="let r of this._rowData">
+                           <tr *ngFor="let r of this._rowData; let i = index">
                                 <td>{{r.Code}}</td>
                                 <td>{{r.Name}}</td>
                                 <td>{{r.Model}}</td>
                                 <td>{{r.Brand}}</td>
                                 <td>{{r.Unity}}</td>
                                 <td><button class="TransparentButton" (click)="delete(r.Code)" > - </button > {{r.Count}}<button class="TransparentButton" (click)="Add(r.Code)" >   + </button ></td>
+                                <td > <img  style="width: 40px;height: 40px;" (click)="remove(r.Code,i)"  src="../../../../assets/notok_check.png"></td>
                             </tr>
                         </tbody>   
                 </table>

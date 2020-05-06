@@ -45,7 +45,7 @@ export class VentasComponent implements OnInit {
   }
   Add(value?: Number){
     if((value == undefined && this._searchCode != undefined)|| value != undefined){
-     let index = this._rowData.find(x => x.Code == this._articule.Code)
+     let index = this._rowData.find(x => x.Code == value)
       if(index != undefined)
       {
         index.Unity++
@@ -61,7 +61,7 @@ export class VentasComponent implements OnInit {
      
   }
   delete(value?: Number){
-    let index = this._rowData.find(x => x.Code == this._articule.Code)
+    let index = this._rowData.find(x => x.Code == value)
     if(index != undefined && index.Unity > 1)
     {
       index.Unity--
@@ -72,16 +72,16 @@ export class VentasComponent implements OnInit {
     this.cleanVariables()
     
   }
-  remove(value?: Number){
+  remove(value?: Number,i?: number){
     let index = this._rowData.find(x => x.Code == value)
-    this._rowData.splice(index,1)
+    this._rowData.splice(i,1)
     this. calcularTotal()
     this.cleanVariables()
   }
   cargarCodigo(){
     if(this._searchCode.length == 10){
       this.searchArticulo()
-      this.Add()
+      this.Add(Number(this._articule.Code))
     }
   }
 
@@ -96,9 +96,10 @@ export class VentasComponent implements OnInit {
    
   }
   calcularTotal(){
+    this._total = 0;
     if(this._rowData.length > 0){
       for(let index in this._rowData){
-        this._total = this._rowData[index].SubTotal
+        this._total = Number(this._total) + Number(this._rowData[index].SubTotal)
       }
     }else{
       this._total = 0;

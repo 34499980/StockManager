@@ -216,7 +216,11 @@ export class DespachosComponent implements OnInit {
       }
     });
   }
- 
+  remove(value?: Number,i?: number){
+    let index = this._rowData.find(x => x.Code == value)
+    this._rowData.splice(i,1)
+   
+  }
 
 
 }

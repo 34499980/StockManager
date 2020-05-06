@@ -71,7 +71,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let r of this._rowData">
+        <tr *ngFor="let r of this._rowData; let i = index">
             <td >{{r.Code}}</td>
             <td>{{r.Name}}</td>
             <td >{{r.Brand}}</td>
@@ -79,7 +79,7 @@
             <td >{{r.Price}}</td>
             <td><button class="TransparentButton" (click)="delete(r.Code)" > -   </button>{{r.Unity}}<button class="TransparentButton" (click)="Add(r.Code)" >   + </button ></td>
             <td>{{r.SubTotal}}</td>
-            <td > <button mat-button style="text-align: center; padding-bottom: 1%" (click)="remove(r.Code)" >x</button></td>
+            <td > <img  style="width: 40px;height: 40px;" (click)="remove(r.Code,i)"  src="../../../../assets/notok_check.png"></td>
         </tr>
         <tr>
             <td></td>
