@@ -1,16 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { Articulo } from '../arquitectura/class/Articulo';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StockService {
-
-  constructor() { }
-
+  http: HttpClient
+  constructor(http: HttpClient) {
+    this.http = http
+   }
+saveStock(articulo : Articulo){
+  this.http.put(environment.RestFullApi+'Stock',articulo).subscribe(res=> res,
+                                                                    error => alert(error.message))
+}
    getStockByCode(code: String): Observable<any>{
      let result
-     if(code=="0000000001"){
+    /* if(code=="0000000001"){
       result = [
         {
           Code: "0000000001",
@@ -37,13 +45,21 @@ export class StockService {
           Image: '../../../../assets/warmachine.jpg'
         }
       ]
-     } 
-
+     } */
+     this.http.get(environment.RestFullApi+'Stock/'+code).subscribe(res => {
+                                                                            return res
+                                                                           },
+                                                                           error => alert(error.message))
     
     return of(result)
   }
-  getStock(codigo?: Number, nombre?: string, marca?: string, modelo?: string, sucursal?: string){
-    let stock = [
+  getStock(code?: Number, name?: string, brand?: string, model?: string, sucursal?: string){
+    let result
+    this.http.get(environment.RestFullApi+'Stock/'+code).subscribe(res => {
+                                                                            return res
+                                                                          },
+                                                                          error => alert(error.message))
+    /* = [
       {
         Code: "0000000001",
         Price:"500",
@@ -63,8 +79,8 @@ export class StockService {
         Count: '3'
       }
 
-    ]
-    return of(stock)
+    ]*/
+    return of(result)
   }
  
   getDespachoRows(): Observable<any>{

@@ -13,7 +13,8 @@ export const environment = {
     messagingSenderId: "135052875317",
     appId: "1:135052875317:web:b5ff184a9fbb137272037c",
     measurementId: "G-CW12YL47YQ"
-  }
+  },
+  RestFullApi: 'http://localhost:51826/api/'
 };
 
 /*

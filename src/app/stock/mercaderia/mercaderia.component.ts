@@ -34,7 +34,7 @@ export class MercaderiaComponent implements OnInit {
     
   }
   searchStock(){
-    this._stockService.getStock().subscribe(res => {
+    this._stockService.getStock(this._codigo).subscribe(res => {
                                                 this._rowData = res,
                                                 this._visible = true
                                                })
