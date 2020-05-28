@@ -112,5 +112,8 @@ export class ModaldetailsComponent implements OnInit {
   saveDispatched(){
     this._stockService.updateDataByDispatched(this._data._despacho)
   }
+  save(){
+    this._stockService.saveStock(this._data._articul)
+  }
 
 }

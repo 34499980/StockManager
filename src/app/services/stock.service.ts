@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Articulo } from '../arquitectura/class/Articulo';
 
@@ -13,8 +13,15 @@ export class StockService {
     this.http = http
    }
 saveStock(articulo : Articulo){
-  this.http.put(environment.RestFullApi+'Stock',articulo).subscribe(res=> res,
-                                                                    error => alert(error.message))
+  const httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  }
+    const body=JSON.stringify(articulo);
+    console.log(body)
+  this.http.post(environment.RestFullApi+'Stock',body,httpOptions).subscribe(res=> res,
+                                                                    error => {return error})
 }
    getStockByCode(code: String): Observable<any>{
      let result

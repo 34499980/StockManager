@@ -102,7 +102,7 @@
   <div *ngIf="this._data._screen == 'articulo'; else buttonNext1">
     <button   mat-button color="primary" [style.visibility]="!this._bDsiable? 'visible': 'hidden'" (click)="close()">Cancel</button>
     <button   mat-flat-button color="primary" [style.visibility]="this._bDsiable? 'visible': 'hidden'" (click)="close()">Ok</button>
-    <button   mat-flat-button color="primary" [style.visibility]="!this._bDsiable? 'visible': 'hidden'" (click)="close()">Save</button> 
+    <button   mat-flat-button color="primary" [style.visibility]="!this._bDsiable? 'visible': 'hidden'" (click)="save()">Save</button> 
   </div>
   <ng-template #buttonNext1>
      <div>
