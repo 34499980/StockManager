@@ -5,6 +5,7 @@ import { Articulo } from 'src/app/arquitectura/class/Articulo';
 import { DialogconfirmComponent } from 'src/app/arquitectura/componentes/dialogconfirm/dialogconfirm.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ModaldetailsComponent } from 'src/app/arquitectura/componentes/modaldetails/modaldetails.component';
+import { DispatchService } from 'src/app/services/dispatch.service';
 
 @Component({
   selector: 'app-despachos',
@@ -25,11 +26,13 @@ export class DespachosComponent implements OnInit {
   _stockService: StockService
   _titleButtonCreate : string
   _arquitecturaService: ArquitecturaService
+  _dispatchService: DispatchService
   _dialog: MatDialog
   _modal: MatDialog
-  constructor(stockService: StockService, arquitecturaService: ArquitecturaService,dialog: MatDialog,modal: MatDialog) { 
+  constructor(stockService: StockService,dispatchService: DispatchService, arquitecturaService: ArquitecturaService,dialog: MatDialog,modal: MatDialog) { 
     this._stockService = stockService
     this._arquitecturaService = arquitecturaService
+    this._dispatchService = dispatchService
     this._dialog = dialog
     this._modal = modal
   }
@@ -43,7 +46,7 @@ export class DespachosComponent implements OnInit {
     this._disableButton = false  
     this._searchCode = undefined
     this._arquitecturaService.getDespachoColumns().subscribe(res => {this._columns = res})
-    this._stockService.getDespachoRows().subscribe(res => {this._rowData = res})
+    this._dispatchService.getDespachoRows().subscribe(res => {this._rowData = res})
   }
   searchDespatched(){ 
      if(this._despacho.length == 10){
@@ -64,7 +67,7 @@ export class DespachosComponent implements OnInit {
     this._disableButton = true
     this._titleButtonCreate = "Cancel" 
     this._rowData = []
-    this._stockService.getDespachoDataRows(this._despacho).subscribe(
+    this._dispatchService.getDespachoDataRows(this._despacho).subscribe(
       res => {     
       for(let index in res){
         this._articule = res[index] as Articulo
@@ -96,7 +99,7 @@ export class DespachosComponent implements OnInit {
     }
   }
   searchArticulo(){
-    this._stockService.getDespachoDataRows(this._despacho).subscribe(
+    this._dispatchService.getDespachoDataRows(this._despacho).subscribe(
       res => {     
       for(let index in res){
         this._articule = res[index] as Articulo
@@ -109,10 +112,10 @@ export class DespachosComponent implements OnInit {
   }
   cargarDespacho(){
     if(this._despacho==" " || this._despacho==undefined || this._despacho.length == 0){
-      this._stockService.getDespachoRows().subscribe(res => {this._rowData = res})
+      this._dispatchService.getDespachoRows().subscribe(res => {this._rowData = res})
     }else{    
       this._rowData = [] 
-      this._stockService.getDespachoRows().subscribe(res => {this._rowDataDispatchedOrigin = res})
+      this._dispatchService.getDespachoRows().subscribe(res => {this._rowDataDispatchedOrigin = res})
       for(let index in this._rowDataDispatchedOrigin){
         let row = this._rowDataDispatchedOrigin[index] 
         if(row.ID.indexOf(this._despacho) != -1){
@@ -173,7 +176,7 @@ export class DespachosComponent implements OnInit {
     if(this._rowData.length != 0){
       switch(this._type){
         case "createDispached":
-        let newDispacher =  this._stockService.createDispatched()
+        let newDispacher =  this._dispatchService.createDispatched()
         this._arquitecturaService.openDialog("Message","Se genero el despacho con numero: "+newDispacher)  
          this.ngOnInit()
         break;
@@ -184,7 +187,7 @@ export class DespachosComponent implements OnInit {
         }
         else{
          this.createCancelDispatched()
-          this._stockService.changeDespachoState(this._despacho)
+          this._dispatchService.changeDespachoState(this._despacho)
         }
         break;
       
