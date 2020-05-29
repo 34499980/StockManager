@@ -13,14 +13,8 @@ export class StockService {
     this.http = http
    }
 saveStock(articulo : Articulo){
-  const httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  }
-    const body=JSON.stringify(articulo);
-    console.log(body)
-  this.http.post(environment.RestFullApi+'Stock',body,httpOptions).subscribe(res=> res,
+ 
+  this.http.post(environment.RestFullApi+'Stock',articulo).subscribe(res=> res,
                                                                     error => {return error})
 }
    getStockByCode(code: String): Observable<any>{
