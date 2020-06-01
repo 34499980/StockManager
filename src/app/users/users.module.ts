@@ -6,6 +6,7 @@ import { ArquitecturaModule } from '../arquitectura/arquitectura.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -19,6 +20,7 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     MatInputModule,
     MatFormFieldModule,
+    ReactiveFormsModule
     
   ],
   exports:[PageLoginComponent]

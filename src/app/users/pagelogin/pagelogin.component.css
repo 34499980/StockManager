@@ -1,46 +1,36 @@
-.example-form {
-    min-width: 150px;
-    max-width: 500px;
+.Center{  
+  position: absolute;
+    top: 20%;
+    left: 40%;
+  
+    width: 35%;
+    height: 35%;
+}
+.input{
+  width: 60%;
+}
+
+form{  
+  height: 100%;
+  width:50%; 
+  margin:0 auto;
+}
+
+@media screen and (max-width: 500px) {
+  .input{
+    width: 100% important!;
+  }
+  .Center{  
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    
+      width: 100%;
+      height: 100%;
+  }
+  div{
     width: 100%;
   }
   
-  .example-full-width {
-    width: 100%;
-  }
-  
-  .example-button-row button,
-  .example-button-row a {
-    margin-right: 8px;
-  }
-  
-  /* Success syling */
-  
-  .mat-button.mat-success,
-  .mat-stroked-button.mat-success {
-      color: #155724;
-  }
-  .mat-button.mat-success:hover,
-  .mat-stroked-button.mat-success:hover {
-    background-color: #f0fff3;
-  }
-  
-  .mat-raised-button.mat-success,
-  .mat-flat-button.mat-success,
-  .mat-fab.mat-success,
-  .mat-mini-fab.mat-success {
-    color: #f0fff3;
-    background-color: #155724;
-  }
-  
-  .mat-icon-button.mat-success {
-    color:#155724;
-  }
-  .center{
-    align-content: center;
-     display: block;
-     position: absolute;
-    justify-content:  center;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
+
+}

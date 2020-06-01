@@ -1,10 +1,10 @@
 export class Usuario{
-    _userName: string
-    _password: string
-    _nombre: string
-    _apellido: string
-    _fechaNacimiento: Date
-    _fechoIngreso: Date
-    _email: string
-    _direccion: string
+    userName: string
+    password: string
+    nombre: string
+    apellido: string
+    fechaNacimiento: Date
+    fechoIngreso: Date
+    email: string
+    direccion: string
 }

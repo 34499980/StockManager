@@ -5,33 +5,40 @@ import { map } from 'rxjs/operators';
 
 
 import { Usuario } from '../arquitectura/class/usuario';
+import { environment } from 'src/environments/environment';
+
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
     private currentUserSubject: BehaviorSubject<Usuario>;
-    public currentUser: Observable<Usuario>;
+    public currentUser: Observable<Usuario>;   
+    
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient ) {
         this.currentUserSubject = new BehaviorSubject<Usuario>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
+       
     }
 
     public get currentUserValue(): Usuario {
         return this.currentUserSubject.value;
     }
 
-    login(username: string, password: string) {
-        return this.http.post<any>(`/users/authenticate`, { username, password })
-            .pipe(map(user => {
-                // login successful if there's a jwt token in the response
-                if (user && user.token) {
-                    // store user details and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                    this.currentUserSubject.next(user);
-                }
+    login(username: string, password: string): any { 
+        try{ 
+        let user: Usuario = new Usuario() 
+        user.userName = username
+        user.password = password     
+        this.http.get(environment.RestFullApi+'/User/'+  JSON.stringify(user) )
+            .subscribe(user => {
+                            
 
-                return user;
-            }));
+                return user
+            },
+            error=>{return error});
+        }catch(ex){
+            throw ex;
+        }
     }
 
     logout() {
