@@ -49,7 +49,7 @@ export class PageLoginComponent implements OnInit {
   get f() { return this.loginForm.controls; }
 
   onSubmit() {
-      try{
+     
       this.submitted = true;
 
       // stop here if form is invalid
@@ -58,13 +58,25 @@ export class PageLoginComponent implements OnInit {
       }
 
       
-      this.authenticationService.login(this.f.username.value, this.f.password.value)
-          
+      this.authenticationService.login(this.f.username.value, this.f.password.value).pipe(
+                                                                                        first()
+                                                                                        ).subscribe(
+                                                                                            res => {res},
+                                                                                            error => {
+                                                                                                let message
+                                                                                                switch(error.status){
+                                                                                                    case 0:
+                                                                                                        message = 'Error de conexion al servicio.'
+                                                                                                    break;
+
+                                                                                                }
+                                                                                                this._arquitecturaService.openDialog('error',message),
+                                                                                                this.loading = false
+                                                                                            }
+        )       
          
       this.loading = true;
      
-    }catch(ex){
-       this._arquitecturaService.openDialog('Error',ex.message)
-  }
+   
 }
 }
