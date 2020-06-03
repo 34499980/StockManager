@@ -14,6 +14,7 @@ export class AuthenticationService {
     private currentUserSubject: BehaviorSubject<Usuario>;
     public currentUser: Observable<Usuario>; 
     _arquitecturaService: ArquitecturaService  
+    public loginVisible: boolean = true
     
 
     constructor(private http: HttpClient, arquitecturaService: ArquitecturaService ) {
@@ -31,9 +32,15 @@ export class AuthenticationService {
         let result: Observable<any>
         let user: Usuario = new Usuario() 
         user.userName = username
-        user.password = password     
-       return  this.http.get(environment.RestFullApi+'/User/'+  JSON.stringify(user) )
-            .pipe(map(res => {return res}))
+        user.password = password  
+        
+        let request = JSON.stringify(user).toString()
+       return  this.http.post(environment.RestFullApi+'User/',  user)
+            .pipe(map(res => 
+                {
+                    return res
+                })
+                )
                     
 
         

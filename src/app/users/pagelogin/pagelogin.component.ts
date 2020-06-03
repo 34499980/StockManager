@@ -6,6 +6,8 @@ import { first } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { AlertService } from 'src/app/services/alert.service';
 import { ArquitecturaService } from 'src/app/services/arquitectura.service';
+import { AppComponent } from 'src/app/app.component';
+import { UserLogin } from '../UserLogin';
 
 @Component({
   selector: 'app-pagelogin',
@@ -26,7 +28,11 @@ export class PageLoginComponent implements OnInit {
       private router: Router,
       private authenticationService: AuthenticationService,
       private alertService: AlertService,
-      arquitecturaService: ArquitecturaService
+      arquitecturaService: ArquitecturaService,
+      private userLogin: UserLogin,
+      private app: AppComponent,
+      private autentication: AuthenticationService
+     
   ) {
       this._arquitecturaService = arquitecturaService
       // redirect to home if already logged in
@@ -43,6 +49,13 @@ export class PageLoginComponent implements OnInit {
 
       // get return url from route parameters or default to '/'
       this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+  }
+  login(){
+      this.autentication.loginVisible = false
+     // this.app.loginVisible = false
+    this.userLogin._userName = this.f.username.value
+    this.userLogin._password = this.f.password.value
+    this.router.navigate(['Home'])
   }
 
   // convenience getter for easy access to form fields
@@ -61,16 +74,26 @@ export class PageLoginComponent implements OnInit {
       this.authenticationService.login(this.f.username.value, this.f.password.value).pipe(
                                                                                         first()
                                                                                         ).subscribe(
-                                                                                            res => {res},
+                                                                                            res => 
+                                                                                            {this.login()},
                                                                                             error => {
+                                                                                               
+                                                                                               
+                                                                                                
                                                                                                 let message
                                                                                                 switch(error.status){
                                                                                                     case 0:
                                                                                                         message = 'Error de conexion al servicio.'
                                                                                                     break;
+                                                                                                    case 500:
+                                                                                                        message = error.error.ExceptionMessage
+                                                                                                     break;
 
                                                                                                 }
-                                                                                                this._arquitecturaService.openDialog('error',message),
+                                                                                                 //desa
+                                                                                                 this.router.navigate(['Home']),
+                                                                                                 //prod
+                                                                                               // this._arquitecturaService.openDialog('error',message),
                                                                                                 this.loading = false
                                                                                             }
         )       

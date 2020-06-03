@@ -15,9 +15,8 @@ import { UserLogin } from 'src/app/users/UserLogin';
   providers:[UserLogin]
 })
 
-export class SidenavComponent {
- user: UserLogin
- screens: any
+export class SidenavComponent { 
+  screens: any
  
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -28,16 +27,19 @@ export class SidenavComponent {
 
 
 
-  constructor(private breakpointObserver: BreakpointObserver, user: UserLogin) {
-    this.user = user;
+  constructor(private breakpointObserver: BreakpointObserver,private user: UserLogin) {
+   
 
     
    
   }
 
   ngOnInit(){
-    
     this.user.getScreensByRule().subscribe(data => {this.screens = data})
+    
+  }
+  public getScrrens(){
+  //  this.user.getScreensByRule().subscribe(data => {this.screens = data})
   }
 
 

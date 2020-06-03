@@ -11,12 +11,12 @@ import { Injectable } from '@angular/core';
 export class UserLogin implements  iUser{   
  
    
-    _name: String
-    _lastName: String
-    _userName: String
-    _password: String
-    _rules: String
-    _sucursal: String
+    public _name: String
+    public _lastName: string
+    public _userName: string
+    public _password: string
+    public _rules: String
+    public _sucursal: String
     private _userService
 
     constructor(private userService: UserService){

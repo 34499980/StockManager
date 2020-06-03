@@ -7,13 +7,15 @@ import { StockModule } from './stock/stock.module';
 import { ServicesModule } from './services/services.module';
 import { RulesModule } from './rules/rules.module';
 import { UsersModule } from './users/users.module';
+import { HomeComponent } from './sucursales/usuarios/home/home.component';
 
 
 
 
 @NgModule({
   declarations: [
-    AppComponent,    
+    AppComponent,
+    HomeComponent,    
     
     
   ],

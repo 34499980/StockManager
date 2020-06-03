@@ -10,6 +10,7 @@ import { AnularcionesComponent } from './sucursales/anularciones/anularciones.co
 import { CambioDevolucionComponent } from './stock/cambio-devolucion/cambio-devolucion.component';
 import { PagoComponent } from './facturacion/pago/pago.component';
 import { DespachosComponent } from './stock/despachos/despachos.component';
+import { HomeComponent } from './sucursales/usuarios/home/home.component';
 
 
 
@@ -59,6 +60,9 @@ const routes: Routes = [
   {
     path: 'Despachos',
     component: DespachosComponent  
+  },{
+    path: 'Home',
+    component: HomeComponent  
   }
   
   
