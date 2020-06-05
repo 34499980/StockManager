@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -11,10 +11,11 @@ import { ArquitecturaService } from './arquitectura.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
+    private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     private currentUserSubject: BehaviorSubject<Usuario>;
     public currentUser: Observable<Usuario>; 
     _arquitecturaService: ArquitecturaService  
-    public loginVisible: boolean = true
+
     
 
     constructor(private http: HttpClient, arquitecturaService: ArquitecturaService ) {
@@ -23,9 +24,12 @@ export class AuthenticationService {
         this._arquitecturaService = arquitecturaService
        
     }
-
-    public get currentUserValue(): Usuario {
-        return this.currentUserSubject.value;
+    get isLoggedIn() {
+        return this.loggedIn.asObservable();
+      }
+    Autorization(value){
+        this.loggedIn.next(true)
+        
     }
 
     login(username: string, password: string) { 
@@ -33,13 +37,19 @@ export class AuthenticationService {
         let user: Usuario = new Usuario() 
         user.userName = username
         user.password = password  
-        
+        const headers = new HttpHeaders();
+      headers.append('Access-Control-Allow-Headers', 'Content-Type');
+      headers.append('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+      headers.append('Access-Control-Allow-Origin', '*');
+      let options = {headers: headers}
         let request = JSON.stringify(user).toString()
-       return  this.http.post(environment.RestFullApi+'User/',  user)
+       return  this.http.post<any>(environment.RestFullApi+'User/',  user)
             .pipe(map(res => 
                 {
-                    return res
+                   this.Autorization(res)
+                    
                 })
+               
                 )
                     
 

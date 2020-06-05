@@ -3,6 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { UserLogin } from 'src/app/users/UserLogin';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 
  
@@ -17,7 +18,8 @@ import { UserLogin } from 'src/app/users/UserLogin';
 
 export class SidenavComponent { 
   screens: any
- 
+  isLoggedIn$: Observable<boolean>;
+
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -27,7 +29,7 @@ export class SidenavComponent {
 
 
 
-  constructor(private breakpointObserver: BreakpointObserver,private user: UserLogin) {
+  constructor(private breakpointObserver: BreakpointObserver,private user: UserLogin,private authenticationService: AuthenticationService) {
    
 
     
@@ -35,6 +37,8 @@ export class SidenavComponent {
   }
 
   ngOnInit(){
+    this.isLoggedIn$ = this.authenticationService.isLoggedIn;
+    
     this.user.getScreensByRule().subscribe(data => {this.screens = data})
     
   }

@@ -11,6 +11,7 @@ import { CambioDevolucionComponent } from './stock/cambio-devolucion/cambio-devo
 import { PagoComponent } from './facturacion/pago/pago.component';
 import { DespachosComponent } from './stock/despachos/despachos.component';
 import { HomeComponent } from './sucursales/usuarios/home/home.component';
+import { PageLoginComponent } from './users/pagelogin/pagelogin.component';
 
 
 
@@ -63,6 +64,9 @@ const routes: Routes = [
   },{
     path: 'Home',
     component: HomeComponent  
+  },{
+    path: 'PageLogin',
+    component: PageLoginComponent  
   }
   
   
