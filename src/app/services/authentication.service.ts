@@ -7,10 +7,12 @@ import { map } from 'rxjs/operators';
 import { Usuario } from '../arquitectura/class/usuario';
 import { environment } from 'src/environments/environment';
 import { ArquitecturaService } from './arquitectura.service';
+import { FindValueSubscriber } from 'rxjs/internal/operators/find';
 
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
+    private logged: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
     private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     private currentUserSubject: BehaviorSubject<Usuario>;
     public currentUser: Observable<Usuario>; 
@@ -27,9 +29,12 @@ export class AuthenticationService {
     get isLoggedIn() {
         return this.loggedIn.asObservable();
       }
+      get isLogged() {
+        return this.logged.asObservable();
+      }
     Autorization(value){
         this.loggedIn.next(true)
-        
+        this.logged.next(false)
     }
 
     login(username: string, password: string) { 
