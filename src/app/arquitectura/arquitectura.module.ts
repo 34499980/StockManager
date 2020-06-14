@@ -23,6 +23,10 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { ModaldetailsComponent } from './componentes/modaldetails/modaldetails.component';
 import { NgFallimgModule } from 'ng-fallimg';
 import { DialogMessageComponent } from './componentes/dialogMessage/dialogMessage.component';
+import { RouterModule } from '@angular/router';
+
+
+
 
 
 
@@ -52,7 +56,8 @@ import { DialogMessageComponent } from './componentes/dialogMessage/dialogMessag
     FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
-   
+    RouterModule.forRoot([])
+    
     
   ],
   exports:[SidenavComponent,PaneluserComponent,InputrequiredComponent,DialogconfirmComponent,MatDialogModule,DialogMessageComponent]

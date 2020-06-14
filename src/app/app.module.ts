@@ -11,7 +11,6 @@ import { HomeComponent } from './sucursales/usuarios/home/home.component';
 
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +27,7 @@ import { HomeComponent } from './sucursales/usuarios/home/home.component';
     StockModule,
     ServicesModule,
     UsersModule
-    
+   
     
     
   ],
