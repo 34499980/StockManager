@@ -62,6 +62,7 @@ export class PageLoginComponent implements OnInit {
 
     this.userLogin._userName = this.f.username.value
     this.userLogin._password = this.f.password.value
+    this.loading = false
     this.router.navigate(['Home'])
   }
 

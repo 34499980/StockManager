@@ -8,6 +8,7 @@ import { Usuario } from '../arquitectura/class/usuario';
 import { environment } from 'src/environments/environment';
 import { ArquitecturaService } from './arquitectura.service';
 import { FindValueSubscriber } from 'rxjs/internal/operators/find';
+import { PageLoginComponent } from '../users/pagelogin/pagelogin.component';
 
 
 @Injectable({ providedIn: 'root' })
@@ -63,9 +64,11 @@ export class AuthenticationService {
        
     }
 
+  
     logout() {
-        // remove user from local storage to log user out
-        localStorage.removeItem('currentUser');
-        this.currentUserSubject.next(null);
+      this.loggedIn.next(false)
+        this.logged.next(true)
+        
+    
     }
 }

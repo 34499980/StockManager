@@ -1,9 +1,20 @@
+<mat-toolbar color="primary" *ngIf="isLogged$ | async as isLoggedIn">
+  
+  <!--button mat-button routerLink="login" *ngIf="!isLoggedIn; else notLoggedIn">Login</button>
+  <ng-template #notLoggedIn>
+    <button mat-button (click)="onLogout()">Logout</button>
+  </ng-template -->
+  
+</mat-toolbar>
+
 <mat-sidenav-container class="sidenav-container" color="primary" *ngIf="isLoggedIn$ | async as isLoggedIn">
   <mat-sidenav #drawer class="sidenav" fixedInViewport
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-    <mat-toolbar color="primary" >Menu</mat-toolbar>
+    <mat-toolbar color="primary" >Menu
+      
+    </mat-toolbar>
     <!--<mat-nav-list *ngFor='let screen of this.screens'>
       <a mat-list-item >{{screen.Titulo}}</a>-->
      
@@ -39,6 +50,7 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span  *ngIf="isHandset$ | async">Menu</span>
+      <button mat-button class="right" (click)="logout()" *ngIf="isLoggedIn">Logout</button>
     </mat-toolbar>
    
     <router-outlet></router-outlet>

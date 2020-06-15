@@ -2,3 +2,11 @@
   padding-top: 5;
   padding-bottom: 5;
 }
+.right{
+  align-content: right;
+   display: block;
+   position: absolute;
+  justify-content:  right;
+  margin-left: auto;
+  margin-right: auto;
+}
