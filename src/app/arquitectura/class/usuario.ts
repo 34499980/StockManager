@@ -1,6 +1,6 @@
 export class Usuario{
     userName: string
-    password: string
+    Password: string
     nombre: string
     apellido: string
     fechaNacimiento: Date

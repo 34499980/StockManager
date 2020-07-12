@@ -10,11 +10,13 @@ import { AppComponent } from 'src/app/app.component';
 import { UserLogin } from '../UserLogin';
 import { Observable } from 'rxjs';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-pagelogin',
   templateUrl: './pagelogin.component.html',
-  styleUrls: ['./pagelogin.component.css']
+  styleUrls: ['./pagelogin.component.css'],
+  providers: [AuthenticationService,UserService]
 })
 export class PageLoginComponent implements OnInit {
   _usuario: any
@@ -41,6 +43,7 @@ export class PageLoginComponent implements OnInit {
       arquitecturaService: ArquitecturaService,
       private userLogin: UserLogin,     
       private breakpointObserver: BreakpointObserver,
+      private userService: UserService
      
   ) {
       this._arquitecturaService = arquitecturaService
@@ -68,7 +71,9 @@ export class PageLoginComponent implements OnInit {
 
   // convenience getter for easy access to form fields
   get f() { return this.loginForm.controls; }
-
+  getUsers(){
+    this.userService.getUsuarios().subscribe(res => {console.log(res)})
+  }
   onSubmit() {
      
       this.submitted = true;
@@ -79,31 +84,17 @@ export class PageLoginComponent implements OnInit {
       }
 
       
-      this.authenticationService.login(this.f.username.value, this.f.password.value)
-                                                                                        .subscribe(
-                                                                                            res => 
-                                                                                            {this.login()},
-                                                                                            error => {
-                                                                                                this._arquitecturaService.openDialog('error',error.message)
-                                                                                               ,  this.loading = false
-                                                                                                
-                                                                                                /*let message
-                                                                                                switch(error.status){
-                                                                                                    case 0:
-                                                                                                        message = 'Error de conexion al servicio.'
-                                                                                                    break;
-                                                                                                    case 500:
-                                                                                                        message = error.error.ExceptionMessage
-                                                                                                     break;*/
-
-                                                                                                }
-                                                                                                 //desa
-                                                                                                // this.router.navigate(['Home']),
-                                                                                                 //prod
-                                                                                               
-                                                                                              
-                                                                                            
-        )       
+      this.authenticationService.login(this.f.username.value, this.f.password.value).subscribe(res => 
+                                                                                                  {
+                                                                                                    if(res){
+                                                                                                      this.login()
+                                                                                                    }else{
+                                                                                                      this.loading = false;
+                                                                                                      this._arquitecturaService.openDialog("Error","Error en el usuario o contraseña!")
+                                                                                                    }
+                                                                                                  }
+                                                                                                  )
+                                                                                        
          
       this.loading = true;
      

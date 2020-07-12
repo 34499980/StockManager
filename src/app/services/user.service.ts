@@ -1,13 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Usuario } from '../arquitectura/class/usuario';
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Environment } from 'ag-grid-community';
+import { environment } from 'src/environments/environment';
+import { ArquitecturaService } from './arquitectura.service';
+import { map } from 'rxjs/operators';
+const headers = new HttpHeaders();
+headers.append('Access-Control-Allow-Headers', 'Content-Type');
+headers.append('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+headers.append('Access-Control-Allow-Origin', '*');
+let options = {headers: headers}
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor() { }
+  constructor(private http: HttpClient, private arquitecturaService: ArquitecturaService) { }
   
     getScreensByRule(): Observable<any> {        
     let screens  = [
@@ -62,46 +71,11 @@ export class UserService {
   
     }
     getUsuarios(): Observable<any> {        
-    let usuarios  = [
-       {
-           Titulo:"Ariel Brenman",                
-           Datos: [
-               {
-                userName: "abrenman",
-                Password: "asd",
-                Nombre:"Ariel",
-                Apellido:"Brenman",
-                DNI: "34499980",
-                FechaNacimiento:"16/05/1989",
-                FechaIngreso:"20/03/2020",
-                Email: "aribrenman@gmail.com",
-                Direccion: "av scalabrini ortiz 6D",
-                CodPostal: "1425"
-                 }                          
-                ]
-       },
-       {
-           Titulo:"Melisa Potap",                
-           Datos: [
-            {
-                userName: "mPotap",
-                Password: "asd",
-                Nombre:"Melisa",
-                Apellido:"Potap",
-                DNI: "37805059",
-                FechaNacimiento:"10/07/1992",
-                FechaIngreso:"20/03/2020",
-                Email: "melipotap@gmail.com",
-                Direccion: "av scalabrini ortiz 6D",
-                CodPostal: "1425"
-               
-               }
-                           
-           ]
-       }
-       
-   ]
-   return of(usuarios);
+      
+       return  this.http.get(environment.RestFullApi+'Usuario').pipe(map(res =>{return res},
+                                                                error => {this.arquitecturaService.openDialog("Error!",error.message)}))
+   
+   return of(null);
   
     }
     getUsuariosById(userIndex: String): Observable<any> {  

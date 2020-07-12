@@ -10,7 +10,11 @@ import { ArquitecturaService } from './arquitectura.service';
 import { FindValueSubscriber } from 'rxjs/internal/operators/find';
 import { PageLoginComponent } from '../users/pagelogin/pagelogin.component';
 
-
+const headers = new HttpHeaders();
+headers.append('Access-Control-Allow-Headers', 'Content-Type');
+headers.append('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+headers.append('Access-Control-Allow-Origin', '*');
+let options = {headers: headers}
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
     private logged: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
@@ -42,19 +46,14 @@ export class AuthenticationService {
         let result: Observable<any>
         let user: Usuario = new Usuario() 
         user.userName = username
-        user.password = password  
-        const headers = new HttpHeaders();
-      headers.append('Access-Control-Allow-Headers', 'Content-Type');
-      headers.append('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
-      headers.append('Access-Control-Allow-Origin', '*');
-      let options = {headers: headers}
-        let request = JSON.stringify(user).toString()
-       return  this.http.post<any>(environment.RestFullApi+'User/',  user)
-            .pipe(map(res => 
-                {
-                   this.Autorization(res)
-                    
-                })
+        user.Password = password  
+     
+       
+   
+        return this.http.post(environment.RestFullApi+'Authentication', user,options)
+            .pipe(map(res =>  {this.Autorization(res)
+                              return res},
+                      error => {return error})
                
                 )
                     
