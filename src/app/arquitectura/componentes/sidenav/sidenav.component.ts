@@ -77,7 +77,7 @@ export class SidenavComponent {
     this.userLogin._userName = this.f.username.value
     this.userLogin._password = this.f.password.value
     this.loading = false
-    this.router.navigate(['Home'])
+    this.router.navigate(['/'])
   }
   get f() { return this.loginForm.controls; }
   onSubmit() {
