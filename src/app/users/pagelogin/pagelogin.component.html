@@ -1,6 +1,10 @@
-
+<!--<mat-toolbar color="primary" *ngIf="isLoggedIn$ | async as isLoggedIn">
+  
+  
+    
+  </mat-toolbar>
 <form class="center"  [formGroup]="loginForm" (ngSubmit)="onSubmit()" *ngIf="isLoggedIn$ | async as isLoggedIn">
-    <!--<form class="center"  [formGroup]="loginForm" *ngIf="isLoggedIn$ | async as isLoggedIn">-->
+   
     <div class="Center">
     <h2>Login</h2>
     <div class="form-group" class="input">
@@ -24,7 +28,5 @@
         </button>
     </div>
 </div>
-<!--<button (click)="getUsers()">GetUsuarios
 
-</button>-->
-</form>
+</form>  -->
