@@ -8,6 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Usuario } from '../../class/usuario';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ArquitecturaService } from 'src/app/services/arquitectura.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 
  
@@ -17,8 +18,8 @@ import { ArquitecturaService } from 'src/app/services/arquitectura.service';
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.css'],
-  providers:[UserLogin]
-})
+  providers:[UserLogin,ToastService]
+}) 
 
 export class SidenavComponent { 
   screens: any
@@ -43,7 +44,7 @@ export class SidenavComponent {
 
 
   constructor(private breakpointObserver: BreakpointObserver,private user: UserLogin,private authenticationService: AuthenticationService,private route: ActivatedRoute,
-    private router: Router, private formBuilder: FormBuilder,  private userLogin: UserLogin  ) {
+    private router: Router, private formBuilder: FormBuilder,  private userLogin: UserLogin, private toastService : ToastService  ) {
    
 
     
@@ -96,6 +97,7 @@ export class SidenavComponent {
                                                                                                     this.login()
                                                                                                   }else{
                                                                                                     this.loading = false;
+                                                                                                    this.toastService.error(this.authenticationService.ErrorMessage)
                                                                                                     //this._arquitecturaService.openDialog("Error","Error en el usuario o contraseña!")
                                                                                                   }
                                                                                                 }

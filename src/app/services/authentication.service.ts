@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, throwError, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 
@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 import { ArquitecturaService } from './arquitectura.service';
 import { FindValueSubscriber } from 'rxjs/internal/operators/find';
 import { PageLoginComponent } from '../users/pagelogin/pagelogin.component';
+import { exception } from 'console';
 
 const headers = new HttpHeaders();
 headers.append('Access-Control-Allow-Headers', 'Content-Type');
@@ -22,6 +23,7 @@ export class AuthenticationService {
     private currentUserSubject: BehaviorSubject<Usuario>;
     public currentUser: Observable<Usuario>; 
     _arquitecturaService: ArquitecturaService  
+    public ErrorMessage = new String()
 
     
 
@@ -42,10 +44,17 @@ export class AuthenticationService {
         this.loggedIn.next(true)
         this.logged.next(false)
       }
+      return value
     }
-    handleError(error: HttpErrorResponse){
-    
-      return throwError(error);
+    handleError(value){
+      try{
+      let start = value.error.indexOf(':')+1
+      let end = value.error.indexOf(' at ') - start
+      this.ErrorMessage = value.error.substr(start,end)}
+      catch(ex){
+        this.arquitecturaService.openDialog("Error","Se genero un error interno. Si persiste, comuniquise con el administrador.")
+      }
+      //return throwError(error);
       }
     login(username: string, password: string) { 
         let result: Observable<any>
@@ -56,14 +65,12 @@ export class AuthenticationService {
        
    
         return this.http.post(environment.RestFullApi+'Authentication', user,options)
-            .pipe( catchError((err: HttpErrorResponse ) => {return '0';}),map(res =>  {this.Autorization(res)
-                              return res})
-               
-                )
-                    
-
-        
-                
+            .pipe( map(res => {return this.Autorization(res)}),
+            catchError((err, caught)=> {
+             this. handleError(err)
+             return of(false);
+            })
+            )
        
     }
 

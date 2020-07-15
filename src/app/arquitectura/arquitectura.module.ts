@@ -33,8 +33,6 @@ import { RouterModule } from '@angular/router';
 
 
 
-
-
 @NgModule({
   declarations: [SidenavComponent,PaneluserComponent, InputrequiredComponent, DialogconfirmComponent, ModaldetailsComponent,DialogMessageComponent],
   imports: [
