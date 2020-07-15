@@ -8,8 +8,7 @@ import { Usuario } from '../arquitectura/class/usuario';
 import { environment } from 'src/environments/environment';
 import { ArquitecturaService } from './arquitectura.service';
 import { FindValueSubscriber } from 'rxjs/internal/operators/find';
-import { PageLoginComponent } from '../users/pagelogin/pagelogin.component';
-import { exception } from 'console';
+
 
 const headers = new HttpHeaders();
 headers.append('Access-Control-Allow-Headers', 'Content-Type');
