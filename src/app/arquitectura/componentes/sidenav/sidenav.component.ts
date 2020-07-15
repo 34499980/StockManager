@@ -92,11 +92,11 @@ export class SidenavComponent {
     
     this.authenticationService.login(this.f.username.value, this.f.password.value).subscribe(res => 
                                                                                                 {
-                                                                                                  if(res){
+                                                                                                  if(Boolean(Number(res))){
                                                                                                     this.login()
                                                                                                   }else{
                                                                                                     this.loading = false;
-                                                                                                    this._arquitecturaService.openDialog("Error","Error en el usuario o contraseña!")
+                                                                                                    //this._arquitecturaService.openDialog("Error","Error en el usuario o contraseña!")
                                                                                                   }
                                                                                                 }
                                                                                                 )

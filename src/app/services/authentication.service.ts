@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 
 import { Usuario } from '../arquitectura/class/usuario';
@@ -25,7 +25,7 @@ export class AuthenticationService {
 
     
 
-    constructor(private http: HttpClient, arquitecturaService: ArquitecturaService ) {
+    constructor(private http: HttpClient,private arquitecturaService: ArquitecturaService ) {
         this.currentUserSubject = new BehaviorSubject<Usuario>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
         this._arquitecturaService = arquitecturaService
@@ -38,10 +38,15 @@ export class AuthenticationService {
         return this.logged.asObservable();
       }
     Autorization(value){
+      if(Boolean(Number(value))){
         this.loggedIn.next(true)
         this.logged.next(false)
+      }
     }
-
+    handleError(error: HttpErrorResponse){
+    
+      return throwError(error);
+      }
     login(username: string, password: string) { 
         let result: Observable<any>
         let user: Usuario = new Usuario() 
@@ -51,9 +56,8 @@ export class AuthenticationService {
        
    
         return this.http.post(environment.RestFullApi+'Authentication', user,options)
-            .pipe(map(res =>  {this.Autorization(res)
-                              return res},
-                      error => {return error})
+            .pipe( catchError((err: HttpErrorResponse ) => {return '0';}),map(res =>  {this.Autorization(res)
+                              return res})
                
                 )
                     
