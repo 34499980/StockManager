@@ -5,6 +5,9 @@ import { environment } from 'src/environments/environment';
 import { catchError, map } from 'rxjs/operators';
 import { ArquitecturaService } from './arquitectura.service';
 import { UserLogin } from '../users/UserLogin';
+import { AuthenticationService } from './authentication.service';
+import { Usuario } from '../arquitectura/class/usuario';
+import { Dispatch } from '../arquitectura/class/Dispatch';
 const headers = new HttpHeaders();
 headers.append('Access-Control-Allow-Headers', 'Content-Type');
 headers.append('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
@@ -15,7 +18,7 @@ let options = {headers: headers}
 })
 export class DispatchService {
 
-  constructor(private http: HttpClient,private arquitecturaService: ArquitecturaService,private userLogin: UserLogin) { }
+  constructor(private http: HttpClient,private arquitecturaService: ArquitecturaService,private authentication: AuthenticationService) { }
   handleError(value){
     try{
     let start = value.error.indexOf(':')+1
@@ -30,11 +33,13 @@ export class DispatchService {
   changeDespachoState(){
   
   }
-  CreateDispatched(origen: String,destino:String): Observable<any>{
-    let request = [{Origin: origen,
-                    Destiny: destino,
-                    IdUser: this.userLogin._userName}]
-    return this.http.post<any>(environment.RestFullApi+'Dispatch',request,options).pipe(map(res => {return res}),
+  CreateDispatched(origen: String,destino:String): Observable<any>{    
+    let dispatch: Dispatch = new Dispatch() 
+    dispatch.Origin = origen
+    dispatch.Destiny = destino
+    dispatch.User = this.authentication.getSession()
+    
+    return this.http.post<any>(environment.RestFullApi+'Dispatch',dispatch,options).pipe(map(res => {return res}),
     catchError((err, caught)=>{
       this.handleError(err)
       return of(false);

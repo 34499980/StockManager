@@ -38,11 +38,15 @@ export class AuthenticationService {
       get isLogged() {
         return this.logged.asObservable();
       }
+      getSession(): any{
+       return localStorage.getItem("user");
+      }
     Autorization(value){
-      if(Boolean(Number(value))){
+     
         this.loggedIn.next(true)
         this.logged.next(false)
-      }
+        localStorage.setItem("user", value.userName)
+      
       return value
     }
     handleError(value){
@@ -64,7 +68,7 @@ export class AuthenticationService {
        
    
         return this.http.post(environment.RestFullApi+'Authentication', user,options)
-            .pipe( map(res => {return this.Autorization(res)}),
+            .pipe( map(res => {return this.Autorization(user)}),
             catchError((err, caught)=> {
              this. handleError(err)
              return of(false);

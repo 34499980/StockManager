@@ -1,5 +1,6 @@
 export class Dispatch{
     Code: String
-    Origen: String
+    Origin: String
     Destiny: String
+    User: String
 }
