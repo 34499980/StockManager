@@ -106,7 +106,7 @@ export class ModaldetailsComponent implements OnInit {
       case "CrearDespacho":    
        let dispatch= new Dispatch() 
        dispatch.Code = this._dispatch
-       dispatch.Origen = this._origen
+       dispatch.Origin = this._origen
        dispatch.Destiny = this._destino   
         this._modalgRef.close(dispatch)   
         break;
