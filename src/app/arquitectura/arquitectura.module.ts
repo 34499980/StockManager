@@ -24,7 +24,7 @@ import { ModaldetailsComponent } from './componentes/modaldetails/modaldetails.c
 import { NgFallimgModule } from 'ng-fallimg';
 import { DialogMessageComponent } from './componentes/dialogMessage/dialogMessage.component';
 import { RouterModule } from '@angular/router';
-
+import {MatSelectModule} from '@angular/material/select';
 
 
 
@@ -54,6 +54,7 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
+    MatSelectModule,
     
     RouterModule.forRoot([])
     

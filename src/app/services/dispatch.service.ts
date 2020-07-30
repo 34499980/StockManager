@@ -1,17 +1,45 @@
 import { Injectable } from '@angular/core';
 import { of, Observable } from 'rxjs';
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { catchError, map } from 'rxjs/operators';
+import { ArquitecturaService } from './arquitectura.service';
+import { UserLogin } from '../users/UserLogin';
+const headers = new HttpHeaders();
+headers.append('Access-Control-Allow-Headers', 'Content-Type');
+headers.append('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+headers.append('Access-Control-Allow-Origin', '*');
+let options = {headers: headers}
 @Injectable({
   providedIn: 'root'
 })
 export class DispatchService {
 
-  constructor() { }
-  changeDespachoState(despacho: String){
-
+  constructor(private http: HttpClient,private arquitecturaService: ArquitecturaService,private userLogin: UserLogin) { }
+  handleError(value){
+    try{
+    let start = value.error.indexOf(':')+1
+    let end = value.error.indexOf(' at ') - start
+    this.arquitecturaService.openDialog("Error",value.substring(start,end))
+    }
+    catch(ex){
+      this.arquitecturaService.openDialog("Error","Se genero un error interno. Si persiste, comuniquise con el administrador.")
+    }
+    //return throwError(error);
+    }
+  changeDespachoState(){
+  
   }
-  updateDataByDispatched(despacho: string){
-
+  CreateDispatched(origen: String,destino:String): Observable<any>{
+    let request = [{Origin: origen,
+                    Destiny: destino,
+                    IdUser: this.userLogin._userName}]
+    return this.http.post<any>(environment.RestFullApi+'Dispatch',request,options).pipe(map(res => {return res}),
+    catchError((err, caught)=>{
+      this.handleError(err)
+      return of(false);
+    })
+)
   }
   createDispatched(): string{
 

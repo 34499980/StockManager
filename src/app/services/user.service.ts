@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Environment } from 'ag-grid-community';
 import { environment } from 'src/environments/environment';
 import { ArquitecturaService } from './arquitectura.service';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 const headers = new HttpHeaders();
 headers.append('Access-Control-Allow-Headers', 'Content-Type');
 headers.append('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
@@ -17,6 +17,17 @@ let options = {headers: headers}
 export class UserService {
 
   constructor(private http: HttpClient, private arquitecturaService: ArquitecturaService) { }
+  handleError(value){
+    try{
+    let start = value.error.indexOf(':')+1
+    let end = value.error.indexOf(' at ') - start
+   
+    }
+    catch(ex){
+      this.arquitecturaService.openDialog("Error","Se genero un error interno. Si persiste, comuniquise con el administrador.")
+    }
+    //return throwError(error);
+    }
   
     getScreensByRule(): Observable<any> {        
     let screens  = [
@@ -192,6 +203,18 @@ export class UserService {
 
         return of(Row)
     }
+    getAllSucursal(): Observable<any> {        
+      
+        return  this.http.get(environment.RestFullApi+'Sucursal').pipe(map(res =>{return res},
+                                                                 error => {this.arquitecturaService.openDialog("Error!",error.message)}),
+                                                                 catchError((err, caught)=> {
+                                                                    this. handleError(err)
+             return of(false);
+            })
+            )
+       
+    }
+
    
 }
   

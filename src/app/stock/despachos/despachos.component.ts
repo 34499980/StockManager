@@ -88,6 +88,7 @@ export class DespachosComponent implements OnInit {
       this._titleButtonCreate = "Cancel"          
       this._arquitecturaService.getDespachoColumnsData().subscribe(res => {this._columns = res})     
       this._rowData = []
+      this.openModal("CrearDespacho")
 
     }
   }
@@ -185,10 +186,7 @@ export class DespachosComponent implements OnInit {
         if(bFlag){
           this._arquitecturaService.openDialog('Warning','Quedaron bultos sin leer!')
         }
-        else{
-         this.createCancelDispatched()
-          this._dispatchService.changeDespachoState(this._despacho)
-        }
+       
         break;
       
     }
@@ -202,20 +200,20 @@ export class DespachosComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(true){
-        this.openModal()
+        this.openModal("EditarDespacho")
       }
     });
   }
-  openModal() { 
+  openModal(type) { 
   
     const dialogRef = this._modal.open(ModaldetailsComponent, {
        disableClose: true,
-       data : {_despacho:this._despacho, _screen:"despacho"}
+       data : {_despacho:this._despacho, _screen: type}
      });
 
     dialogRef.afterClosed().subscribe(result => {
       if(result == true){
-      
+        this._despacho = result
       }
     });
   }

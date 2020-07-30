@@ -13,8 +13,8 @@ export class UserLogin implements  iUser{
    
     public _name: String
     public _lastName: string
-    public _userName: string
-    public _password: string
+    public _userName = new String()
+    public _password = new String()
     public _rules: String
     public _sucursal: String
     private _userService

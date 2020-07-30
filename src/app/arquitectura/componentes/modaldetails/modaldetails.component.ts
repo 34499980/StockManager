@@ -6,6 +6,9 @@ import { StockService } from 'src/app/services/stock.service';
 import { Observable } from 'rxjs';
 import { ArquitecturaService } from 'src/app/services/arquitectura.service';
 import { DispatchService } from 'src/app/services/dispatch.service';
+import { UserService } from 'src/app/services/user.service';
+import { FormControl, Validators } from '@angular/forms';
+import { Dispatch } from '../../class/Dispatch';
 export interface ModalData {
   _articul: Articulo
   bDsiable: boolean
@@ -20,6 +23,12 @@ export interface ModalData {
 })
 export class ModaldetailsComponent implements OnInit {
  _modalgRef :  MatDialogRef<ModaldetailsComponent>
+ 
+  selectFormControl = new FormControl('', Validators.required);
+   _origen: any
+   _destino: any
+   _dispatch:any
+   _sucursal: any
    _data: ModalData
    _bDsiable: any
    _rowData: any
@@ -29,14 +38,16 @@ export class ModaldetailsComponent implements OnInit {
    _fileSelected: File = null
    _fileNotSelected: any  
    _arquitecturaService: ArquitecturaService
+   _userService: UserService
    @ViewChild('file') file :ElementRef
-  constructor(modalgRef: MatDialogRef<ModaldetailsComponent>,  stockService: StockService,@Inject(MAT_DIALOG_DATA) data: ModalData,arquitecturaService: ArquitecturaService,dispatchService: DispatchService) {
+  constructor(modalgRef: MatDialogRef<ModaldetailsComponent>,  stockService: StockService,@Inject(MAT_DIALOG_DATA) data: ModalData,arquitecturaService: ArquitecturaService,dispatchService: DispatchService,private userService: UserService) {
     this._modalgRef = modalgRef
     this._stockService = stockService
     this._data = data
     this._arquitecturaService = arquitecturaService
     this._dispatchServices = dispatchService
-    
+    this._userService = userService
+   
    
 
    }
@@ -60,8 +71,20 @@ export class ModaldetailsComponent implements OnInit {
         this._arquitecturaService.getDespachoColumnsData().subscribe(res => {this._columns = res} )
         this._dispatchServices.getDespachoDataRows(this._data._despacho).subscribe(res => {this._rowData = res})
       break;
+      case"CrearDespacho":
+      this._sucursal = [{name: "example"}]
+      this._userService.getAllSucursal().subscribe(res => {this._sucursal = res})
+      break;
+    
     }
    
+  }
+  changeSucursal(sucursal,type){
+    if( type== "origen"){
+      this._origen = sucursal
+    }else{
+      this._destino = sucursal
+    }    
   }
   Add(value?: Number){
     let index
@@ -79,7 +102,19 @@ export class ModaldetailsComponent implements OnInit {
   }
  
   close(){
-    this._modalgRef.close()   
+    switch (this._data._screen){
+      case "CrearDespacho":    
+       let dispatch= new Dispatch() 
+       dispatch.Code = this._dispatch
+       dispatch.Origen = this._origen
+       dispatch.Destiny = this._destino   
+        this._modalgRef.close(dispatch)   
+        break;
+        default:
+          this._modalgRef.close()   
+          break;
+    }
+    
   }
   OnFileSelected(event){   
     this.file.nativeElement.click()
@@ -111,8 +146,8 @@ export class ModaldetailsComponent implements OnInit {
     )
    
   }
-  saveDispatched(){
-    this._dispatchServices.updateDataByDispatched(this._data._despacho)
+  saveDispatched(){    
+    this._dispatchServices.CreateDispatched(this._origen.id,this._destino.id).subscribe(res => {this._dispatch = res})
   }
   save(){
     this._stockService.saveStock(this._data._articul)
