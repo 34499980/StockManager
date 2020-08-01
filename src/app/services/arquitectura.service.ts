@@ -325,26 +325,26 @@ export class ArquitecturaService {
     {
       headerName:"ID",
       header:"ID",
-      field: "ID",
+      field: "id",
       sortable: true,
       filter: true,
-      dataKey: 'Code'
+      dataKey: 'id'
     },
     {
      headerName:"FECHA CREACION",
      header:"FECHA CREACION",
-     field: "datecreate",
+     field: "dateCreate",
      sortable: true,
      filter: true,
-     dataKey: 'datecreate'
+     dataKey: 'dateCreate'
     },
     {
       headerName:"USUARIO",
       header:"USUARIO",
-      field: "user",
+      field: "idUser",
       sortable: true,
       filter: true,
-      dataKey: 'user'
+      dataKey: 'idUser'
      },
      {
       headerName:"ORIGEN",
@@ -365,35 +365,35 @@ export class ArquitecturaService {
      {
       headerName:"ESTADO",
       header:"ESTADO",
-      field: "state",
+      field: "idState",
       sortable: true,
       filter: true,
-      dataKey: 'state'
+      dataKey: 'idState'
      },
      {
       headerName:"FECHA DESPACHADO",
       header:"FECHA DESPACHADO",
-      field: "datedispatched",
+      field: "dateDispatched",
       sortable: true,
       filter: true,
-      dataKey: 'datedispatched'
+      dataKey: 'dateDispatched'
      },
      {
       headerName:"FECHA RECIBIDO",
       header:"FECHA RECIBIDO",
-      field: "datereceived",
+      field: "dateRecived",
       sortable: true,
       filter: true,
-      dataKey: 'datereceived'
+      dataKey: 'dateRecived'
      }
      ,
      {
       headerName:"Bultos",
       header:"Bultos",
-      field: "items",
+      field: "unity",
       sortable: true,
       filter: true,
-      dataKey: 'items'
+      dataKey: 'unity'
      }
   ]
 

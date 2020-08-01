@@ -212,9 +212,9 @@ export class DespachosComponent implements OnInit {
      });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result == true){
-        this._despacho = result
-      }
+      
+        this._despacho = result.Code
+      
     });
   }
   remove(value?: Number,i?: number){
