@@ -69,7 +69,7 @@ export class DespachosComponent implements OnInit {
     this._rowData = []
     this._dispatchService.getDespachoDataRows(this._despacho).subscribe(
       res => {     
-      for(let index in res){
+      for(let index in res.stock){
         this._articule = res[index] as Articulo
         let row = new Row(this._articule, this._type == "dispatchedSelected"?0:1);
         this._rowData.push(row)
