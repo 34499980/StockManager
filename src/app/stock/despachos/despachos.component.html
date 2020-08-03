@@ -42,7 +42,7 @@
         </thead>
         <tbody >      
                 <tr *ngFor="let r of this._rowData">
-                        <td>{{r.id}}</td>
+                        <td>{{r.code}}</td>
                         <td >{{r.dateCreate}}</td>
                         <td >{{r.usuario.userName}}</td>
                         <td class="textCenter"  >{{r.sucOrigin.address}}</td>
@@ -51,7 +51,7 @@
                         <td class="textCenter" >{{r.dateDispatched}}</td>
                         <td class="textCenter"  >{{r.dateRecived}}</td>
                         <td class="textCenter"  >{{r.unity}}</td>
-                        <td style="text-align: left"><button mat-raised-button (click)="assignDispatched(r.id)" color="primary">Ver</button></td>  
+                        <td style="text-align: left"><button mat-raised-button (click)="assignDispatched(r.code)" color="primary">Ver</button></td>  
                 </tr>
         </tbody>        
         

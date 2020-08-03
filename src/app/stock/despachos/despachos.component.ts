@@ -54,7 +54,7 @@ export class DespachosComponent implements OnInit {
       this._disableButton = true
       this._titleButtonCreate = "Cancel" 
       this._rowData = []
-      //this._stockService.getDespachoDataRows(this._despacho).subscribe(res => {this._rowData = res})
+     // this._stockService.getStockByCode(this._despacho).subscribe(res => {this._rowData = res})
       this._arquitecturaService.getDespachoColumnsData().subscribe(res => {this._columns = res})     
      } else{
       this._arquitecturaService.openDialog("Error","Ingreso un formato de despacho incorrecto")
@@ -147,6 +147,13 @@ export class DespachosComponent implements OnInit {
             this._rowData.push(row)
           }
       break;
+      case "dispatchedSelected":
+          this._stockService.getStockByCode(value.toString()).subscribe(  res => {     
+            for(let index in res){
+              this._rowData.push(res[index])
+            }
+          })
+        break;
       default:
       
       if(value != undefined){      
@@ -213,7 +220,7 @@ export class DespachosComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       
-        this._despacho = result.Code
+        this._despacho = result.code
       
     });
   }
