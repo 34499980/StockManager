@@ -60,10 +60,10 @@ export class ModaldetailsComponent implements OnInit {
       }else{
         this._bDsiable = false
       }
-      if(this._data._articul.Image == undefined){
+      if(this._data._articul.image == undefined){
         this._fileNotSelected = '../../../../assets/imageNotFound.png'
       }else{
-        this._fileNotSelected = this._data._articul.Image
+        this._fileNotSelected = this._data._articul.image
       }
       
       break;
@@ -88,13 +88,13 @@ export class ModaldetailsComponent implements OnInit {
   }
   Add(value?: Number){
     let index
-    index = this._rowData.find(x => x.Code == value)
+    index = this._rowData.find(x => x.code == value)
    
       index.Unity++      
 
 }
   delete(value?: Number){
-    let index = this._rowData.find(x => x.Code == value)
+    let index = this._rowData.find(x => x.code == value)
     if(index.Unity > 0)
     {
       index.Unity--     
@@ -129,19 +129,19 @@ export class ModaldetailsComponent implements OnInit {
 
   cargarCodigo(){
     
-    if(this._data._articul.Code.length == 10){
+    if(this._data._articul.code.length == 10){
       this.searchArticulo()
      
     }
   }
   searchArticulo(){
-    this._stockService.getStockByCode(this._data._articul.Code).subscribe(
+    this._stockService.getStockByCode(this._data._articul.code).subscribe(
       res => {     
-      for(let index in res){
-        this._data._articul = res[index] as Articulo
-        this._fileNotSelected = this._data._articul.Image
+        if(res != null)
+        this._data._articul = res as Articulo
         
-      }
+        
+      
     }
     )
    
@@ -152,6 +152,7 @@ export class ModaldetailsComponent implements OnInit {
   }
   save(){
     this._stockService.saveStock(this._data._articul)
+    this.close()
   }
 
 }

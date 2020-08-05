@@ -81,7 +81,7 @@ export class VentasComponent implements OnInit {
   cargarCodigo(){
     if(this._searchCode.length == 10){
       this.searchArticulo()
-      this.Add(Number(this._articule.Code))
+      this.Add(Number(this._articule.code))
     }
   }
 
@@ -122,14 +122,14 @@ export class VentasComponent implements OnInit {
     for(let i = 0; i<this._rowData.length;i++){
       
       let articulAux = new Articulo
-      articulAux.Code = this._rowData[i].Code 
-      articulAux.Brand = this._rowData[i].Brand 
-      articulAux.Name = this._rowData[i].Name 
-      articulAux.Model = this._rowData[i].Model 
-      articulAux.Price = this._rowData[i].Price 
+      articulAux.code = this._rowData[i].code 
+      articulAux.brand = this._rowData[i].brand 
+      articulAux.name = this._rowData[i].name 
+      articulAux.model = this._rowData[i].model 
+      articulAux.price = this._rowData[i].price 
      
-      let row = new Row(articulAux,this._rowData[i].Unity)
-      row.SubTotal = this._rowData[i].Price * this._rowData[i].Unity
+      let row = new Row(articulAux,this._rowData[i].unity)
+      row.SubTotal = this._rowData[i].price * this._rowData[i].unity
       this._rowtoPDF.push(row)
     } 
     let articulAux = new Articulo
@@ -170,13 +170,13 @@ export class VentasComponent implements OnInit {
   SubTotal: Number
  
   constructor(articule: Articulo, unity: string, total?: Number){
-    this.Code = articule.Code
-    this.Name = articule.Name
-    this.Brand = articule.Brand
-    this.Model = articule.Model
-    this.Price = articule.Price
+    this.Code = articule.code
+    this.Name = articule.name
+    this.Brand = articule.brand
+    this.Model = articule.model
+    this.Price = articule.price
     this.Unity = unity
-    this.SubTotal = total==undefined? articule.Price: total
+    this.SubTotal = total==undefined? articule.price: total
     
 
   

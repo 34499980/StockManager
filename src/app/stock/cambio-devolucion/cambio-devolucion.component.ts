@@ -46,7 +46,7 @@ export class CambioDevolucionComponent implements OnInit {
   }
   Add( status?: string,value?: Number, rows?: any){
     if((value == undefined && this._searchCodeIngreso != undefined)|| value != undefined){
-     let index = rows.find(x => x.Code == this._articule.Code)
+     let index = rows.find(x => x.Code == this._articule.code)
       if(index != undefined)
       {
         index.Unity++
@@ -66,7 +66,7 @@ export class CambioDevolucionComponent implements OnInit {
      
   }
   delete(value?: Number, rows?: any, status?: string){
-    let index = rows.find(x => x.Code == this._articule.Code)
+    let index = rows.find(x => x.Code == this._articule.code)
     if(index != undefined && index.Unity > 1)
     {
       index.Unity--
@@ -83,7 +83,7 @@ export class CambioDevolucionComponent implements OnInit {
     
   }
   remove(value?: Number, rows?: any, status?: string){
-    let index = rows.find(x => x.Code == value)
+    let index = rows.find(x => x.code == value)
     rows.splice(index,1)
     if(status =='I'){
      this._totalIngreso = this. calcularTotal(rows)
@@ -104,7 +104,7 @@ export class CambioDevolucionComponent implements OnInit {
     this._stockService.getStockByCode(searchCode).subscribe(
       res => {     
       for(let index in res){
-        this._articule = res[index] as Articulo
+        this._articule = res as Articulo
       }
     }
     )
@@ -140,11 +140,11 @@ export class CambioDevolucionComponent implements OnInit {
     for(let i = 0; i<this._rowDataIngreso.length;i++){
       
       let articulAux = new Articulo
-      articulAux.Code = this._rowDataIngreso[i].Code 
-      articulAux.Brand = this._rowDataIngreso[i].Brand 
-      articulAux.Name = this._rowDataIngreso[i].Name 
-      articulAux.Model = this._rowDataIngreso[i].Model 
-      articulAux.Price = this._rowDataIngreso[i].Price 
+      articulAux.code = this._rowDataIngreso[i].Code 
+      articulAux.brand = this._rowDataIngreso[i].Brand 
+      articulAux.name = this._rowDataIngreso[i].Name 
+      articulAux.model = this._rowDataIngreso[i].Model 
+      articulAux.price = this._rowDataIngreso[i].Price 
      
       let row = new Row(articulAux,this._rowDataIngreso[i].Unity)
       row.SubTotal = this._rowDataIngreso[i].Price * this._rowDataIngreso[i].Unity
@@ -188,13 +188,13 @@ export class CambioDevolucionComponent implements OnInit {
   SubTotal: Number
  
   constructor(articule: Articulo, unity: string, total?: Number){
-    this.Code = articule.Code
-    this.Name = articule.Name
-    this.Brand = articule.Brand
-    this.Model = articule.Model
-    this.Price = articule.Price
+    this.Code = articule.code
+    this.Name = articule.name
+    this.Brand = articule.brand
+    this.Model = articule.model
+    this.Price = articule.price
     this.Unity = unity
-    this.SubTotal = total==undefined? articule.Price: total
+    this.SubTotal = total==undefined? articule.price: total
     
 
   

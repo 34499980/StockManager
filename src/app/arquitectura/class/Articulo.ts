@@ -1,11 +1,12 @@
 export class Articulo{
-    Code: string
-    Price: Number
-    Name: string
-    Brand: string
-    Model: string
-    Unity:number
-    Description: string
-    Image: string
+    code: string
+    price: Number
+    name: string
+    brand: string
+    model: string
+    unity:number
+    description: string
+    image: string
+    stock_sucursal: any[]
    
 }

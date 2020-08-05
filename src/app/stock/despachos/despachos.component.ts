@@ -159,7 +159,7 @@ export class DespachosComponent implements OnInit {
       if(value != undefined){      
          index = this._rowData.find(x => x.Code == value)
       }else{
-        index = this._rowData.find(x => x.Code == this._articule.Code)
+        index = this._rowData.find(x => x.Code == this._articule.code)
       }
       if(index.Count < index.Unity && (index.Count == 0 && this._searchCode != undefined)){
           index.Count++      
@@ -183,9 +183,8 @@ export class DespachosComponent implements OnInit {
   finish(){
     if(this._rowData.length != 0){
       switch(this._type){
-        case "createDispached":
-        let newDispacher =  this._dispatchService.createDispatched()
-        this._arquitecturaService.openDialog("Message","Se genero el despacho con numero: "+newDispacher)  
+        case "createDispached":        
+        //this._arquitecturaService.openDialog("Message","Se genero el despacho con numero: "+newDispacher)  
          this.ngOnInit()
         break;
         default:
@@ -245,12 +244,12 @@ class Row{
   height: number
  
   constructor(articule: Articulo,count: number){
-    this.Code = articule.Code
-    this.Name = articule.Name
-    this.Brand = articule.Brand
-    this.Model = articule.Model
-    this.Price = articule.Price
-    this.Unity = articule.Unity
+    this.Code = articule.code
+    this.Name = articule.name
+    this.Brand = articule.brand
+    this.Model = articule.model
+    this.Price = articule.price
+    this.Unity = articule.unity
     this.Count = count
     this.width = 2
     this.height = 2

@@ -43,7 +43,7 @@ export class MercaderiaComponent implements OnInit {
   openDialog(value?: Articulo) { 
     let articul: Articulo 
     if(value != undefined){
-      this._stockService.getStockByCode(value.Code).subscribe(res => {articul = res[0]})
+      this._stockService.getStockByCode(value.code).subscribe(res => {articul = res[0]})
     }else{
       articul = new Articulo
     }    

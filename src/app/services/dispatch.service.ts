@@ -52,10 +52,7 @@ export class DispatchService {
     })
 )
   }
-  createDispatched(): string{
 
-    return "0000000009"
-  }
   getDespachoDataRows(despacho: String): Observable<any>{
     return  this.http.get(environment.RestFullApi+'Dispatch/'+despacho).pipe(map(res =>{return res},
       error => {this.arquitecturaService.openDialog("Error!",error.message)}),
