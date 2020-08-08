@@ -3,7 +3,7 @@
         <td class="tdSmall">
           <mat-form-field appearance="outline">
               <mat-label>Codigo</mat-label>
-              <input matInput type="text" placeholder="Codigo"[(ngModel)]="this._codigo" >               
+              <input matInput type="text" maxlength="10" placeholder="Codigo"[(ngModel)]="this._codigo" >               
           </mat-form-field>
         </td>
         <td class="tdSmall">
@@ -28,10 +28,16 @@
             </mat-form-field>
         </td>  
         <td >
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="fill">
                 <mat-label>Sucursal</mat-label>
-                <input matInput type="text" placeholder="Sucursal"[(ngModel)]="this._sucursal">  
-            </mat-form-field>
+                <mat-select  [(ngModel)]="this._selectedItem.name" (selectionChange)="changeSucursal($event.value)">                       
+                  <mat-option *ngFor="let s of this._sucursal" [value]="s.name" >
+                    {{s.name}}
+                  </mat-option>
+                </mat-select>
+                
+               
+              </mat-form-field>
         </td>            
         
     </tr> 

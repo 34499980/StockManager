@@ -129,13 +129,13 @@ export class ModaldetailsComponent implements OnInit {
 
   cargarCodigo(){
     
-    if(this._data._articul.code.length == 10){
+    if(this._data._articul.qr.length == 10){
       this.searchArticulo()
      
     }
   }
   searchArticulo(){
-    this._stockService.getStockByCode(this._data._articul.code).subscribe(
+    this._stockService.getStockByCode(this._data._articul.qr).subscribe(
       res => {     
         if(res != null)
         this._data._articul = res as Articulo

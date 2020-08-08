@@ -9,6 +9,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRippleModule } from '@angular/material/core';
 import { CambioDevolucionComponent } from './cambio-devolucion/cambio-devolucion.component';
 import { DespachosComponent } from './despachos/despachos.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
@@ -24,6 +26,10 @@ import { DespachosComponent } from './despachos/despachos.component';
     MatButtonModule,    
     MatInputModule,
     MatRippleModule, 
+    MatFormFieldModule,
+    FormsModule,
+    MatSelectModule
+    
     
   ]
 })

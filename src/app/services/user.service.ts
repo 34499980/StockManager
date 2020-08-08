@@ -89,6 +89,13 @@ export class UserService {
    return of(null);
   
     }
+    getUsuariosByUserName(user: string): Observable<any> {
+        return  this.http.get(environment.RestFullApi+'Usuario/'+user).pipe(map(res =>{return res},
+            error => {this.arquitecturaService.openDialog("Error!",error.message)}))
+
+            return of(null);
+
+    }
     getUsuariosById(userIndex: String): Observable<any> {  
         let usuarios: any 
         if(userIndex!= null){      

@@ -59,14 +59,20 @@ saveStock(stock : Articulo){
         })
       )
   }
-  getStock(code?: Number, name?: string, brand?: string, model?: string, sucursal?: string){
-    let result
-    this.http.get(environment.RestFullApi+'Stock/'+code).subscribe(res => {
-                                                                            return res
-                                                                          },
-                                                                          error => alert(error.message))
-   
-    return of(result)
+  getStock(code?: string, name?: string, brand?: string, model?: string, sucursal?: string){
+    let articul = new Articulo
+    articul.qr = code == undefined? "" : code
+    articul.name = name == undefined? "" : name
+    articul.brand = brand == undefined? "" : brand
+    articul.model = model == undefined? "" : model
+    articul.stock_sucursal.push(sucursal)
+    return  this.http.get(environment.RestFullApi+'Stock/'+articul).pipe(map(res =>{return res},
+      error => {this.arquitecturaService.openDialog("Error!",error.message)}),
+      catchError((err, caught)=> {
+         this. handleError(err)
+      return of(false);
+        })
+      )
   }
  
   

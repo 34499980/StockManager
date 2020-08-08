@@ -4,6 +4,9 @@ import { ArquitecturaService } from 'src/app/services/arquitectura.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ModaldetailsComponent } from 'src/app/arquitectura/componentes/modaldetails/modaldetails.component';
 import { Articulo } from 'src/app/arquitectura/class/Articulo';
+import { UserService } from 'src/app/services/user.service';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-mercaderia',
@@ -11,26 +14,35 @@ import { Articulo } from 'src/app/arquitectura/class/Articulo';
   styleUrls: ['./mercaderia.component.css']
 })
 export class MercaderiaComponent implements OnInit {
-  _rowData: any[] = []
+  selectFormControl = new FormControl('', [Validators.required]);
+  _user: any
+  _rowData: any
   _columns: any[] = []
   _usuario: any
   _nombre: any
   _codigo: any
   _modelo: any
+  _selectedItem: any
   _sucursal: any
   _marca: any
   _modal: MatDialog
   _visible: boolean = false
   _stockService: StockService
   _arquitecturaService: ArquitecturaService
-  constructor(stockService: StockService,arquitecturaService: ArquitecturaService,modal: MatDialog) { 
+  constructor(stockService: StockService,arquitecturaService: ArquitecturaService,modal: MatDialog,private userService: UserService,private authentication: AuthenticationService) { 
     this._stockService = stockService
     this._arquitecturaService = arquitecturaService
     this._modal = modal
   }
 
   ngOnInit(): void {
-    this._arquitecturaService.getColumnsGridStock().subscribe(res => {this._columns = res})
+    let userSearch = this.authentication.getSession()
+    this.userService.getUsuariosByUserName(userSearch).subscribe(res => {this._user = res, 
+    this.userService.getAllSucursal().subscribe(res => {this._sucursal = res,
+      this.selectFormControl.patchValue({name: this._sucursal.find( x => x.id == this._user.idSucursal)}),
+      this._selectedItem =  this._sucursal.find( x => x.id == this._user.idSucursal)
+                                                 })
+    this._arquitecturaService.getColumnsGridStock().subscribe(res => {this._columns = res})})
     
   }
   searchStock(){
@@ -39,7 +51,9 @@ export class MercaderiaComponent implements OnInit {
                                                 this._visible = true
                                                })
   }
-  
+  changeSucursal(sucursal){
+
+  }
   openDialog(value?: Articulo) { 
     let articul: Articulo 
     if(value != undefined){
