@@ -6,6 +6,7 @@ import { Articulo } from '../arquitectura/class/Articulo';
 import { AuthenticationService } from './authentication.service';
 import { ArquitecturaService } from './arquitectura.service';
 import { map, catchError } from 'rxjs/operators';
+import { JsonPipe } from '@angular/common';
 
 const headers = new HttpHeaders();
 headers.append('Access-Control-Allow-Headers', 'Content-Type');
@@ -59,14 +60,17 @@ saveStock(stock : Articulo){
         })
       )
   }
-  getStock(code?: string, name?: string, brand?: string, model?: string, sucursal?: string){
-    let articul = new Articulo
-    articul.qr = code == undefined? "" : code
-    articul.name = name == undefined? "" : name
-    articul.brand = brand == undefined? "" : brand
-    articul.model = model == undefined? "" : model
-    articul.stock_sucursal.push(sucursal)
-    return  this.http.get(environment.RestFullApi+'Stock/'+articul).pipe(map(res =>{return res},
+  getStock(code?: string, name?: string, brand?: string, model?: string, sucursal?: number){
+    let query = "where "   
+    query += "idsucursal ="+sucursal
+    code == undefined? query :query +=  " and code = "+ code
+    name == undefined? query :query +=  " and code = "+ name
+    brand == undefined? query :query +=  " and code = "+ brand
+    model == undefined? query:query +=  " and code = "+ model
+   
+   
+
+    return  this.http.get(environment.RestFullApi+'Stock/'+ query).pipe(map(res =>{return res},
       error => {this.arquitecturaService.openDialog("Error!",error.message)}),
       catchError((err, caught)=> {
          this. handleError(err)

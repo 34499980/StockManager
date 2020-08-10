@@ -8,6 +8,7 @@ export class Articulo{
     unity:number
     description: string
     image: string    
-    stock_sucursal: any[]
+    idsucursal: number
+    stock_sucursal: any[] = []
    
 }

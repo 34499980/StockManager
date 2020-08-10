@@ -36,6 +36,7 @@ export class MercaderiaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this._selectedItem = {name:'loading...'}
     let userSearch = this.authentication.getSession()
     this.userService.getUsuariosByUserName(userSearch).subscribe(res => {this._user = res, 
     this.userService.getAllSucursal().subscribe(res => {this._sucursal = res,
@@ -46,7 +47,12 @@ export class MercaderiaComponent implements OnInit {
     
   }
   searchStock(){
-    this._stockService.getStock(this._codigo).subscribe(res => {
+    this._stockService.getStock(this._codigo,
+                                this._nombre,
+                                this._modelo,
+                                this._modelo,
+                                this._selectedItem.id,
+                                             ).subscribe(res => {
                                                 this._rowData = res,
                                                 this._visible = true
                                                })
