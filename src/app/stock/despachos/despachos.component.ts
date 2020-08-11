@@ -180,11 +180,11 @@ export class DespachosComponent implements OnInit {
       }else{
         index = this._rowData.find(x => x.Code == this._articule.code)
       }
-      if(index.Count < index.Unity && (index.Count == 0 && this._searchCode != undefined)){
+      if(index.Count < index.Stock_Sucursal[0].unity && (index.Count == 0 && this._searchCode != undefined)){
           index.Count++      
        
     }else{
-      if(index.Count < index.Unity && (index.Count >0)){
+      if(index.Count < index.Stock_Sucursal[0].unity && (index.Count >0)){
         index.Count++      
     }
    }
@@ -270,7 +270,7 @@ class Row{
     this.Brand = articule.brand
     this.Model = articule.model
     this.Price = articule.price
-    this.Unity = articule.unity
+    this.Unity = articule.stock_Sucursal[0].unity
     this.Stock_Sucursal = articule.stock_Sucursal
     this.Count = count
     this.width = 2
