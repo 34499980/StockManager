@@ -30,19 +30,22 @@ export class DispatchService {
     }
     //return throwError(error);
     }
-  changeDespachoState(){
-  
+  geteDespachoState(){
+    return  this.http.get(environment.RestFullApi+'States/'+"dispatch").pipe(map(res =>{return res},
+      error => {this.arquitecturaService.openDialog("Error!",error.message)}),
+      catchError((err, caught)=> {
+         this. handleError(err)
+      return of(false);
+        })
+      )
   }
   CreateDispatched(origen: String,destino:String): Observable<any>{    
     let dispatch: Dispatch = new Dispatch() 
    
     dispatch.Origin = origen
     dispatch.Destiny = destino
-    let user = this.authentication.getSession()
-    let request = [{
-      dispatch: dispatch,
-      user: user
-    }]
+    let user = this.authentication.getSession()   
+   
     
     
     return this.http.post<any>(environment.RestFullApi+'Dispatch',{dispatch,user},options).pipe(map(res => {return res}),
@@ -53,7 +56,7 @@ export class DispatchService {
 )
   }
 
-  getDespachoDataRows(despacho: String): Observable<any>{
+  getDespacho(despacho: String): Observable<any>{
     return  this.http.get(environment.RestFullApi+'Dispatch/'+despacho).pipe(map(res =>{return res},
       error => {this.arquitecturaService.openDialog("Error!",error.message)}),
       catchError((err, caught)=> {

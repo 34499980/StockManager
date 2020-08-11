@@ -6,6 +6,8 @@ import { DialogconfirmComponent } from 'src/app/arquitectura/componentes/dialogc
 import { MatDialog } from '@angular/material/dialog';
 import { ModaldetailsComponent } from 'src/app/arquitectura/componentes/modaldetails/modaldetails.component';
 import { DispatchService } from 'src/app/services/dispatch.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-despachos',
@@ -14,7 +16,9 @@ import { DispatchService } from 'src/app/services/dispatch.service';
 })
 export class DespachosComponent implements OnInit {
   _type: string
+  _states: any
   _despacho: String
+  _dispatch: any
   _rowData: any[]=[]
   _rowDataDispatchedOrigin: any[]=[]
   _columns: any
@@ -29,7 +33,8 @@ export class DespachosComponent implements OnInit {
   _dispatchService: DispatchService
   _dialog: MatDialog
   _modal: MatDialog
-  constructor(stockService: StockService,dispatchService: DispatchService, arquitecturaService: ArquitecturaService,dialog: MatDialog,modal: MatDialog) { 
+  constructor(stockService: StockService,dispatchService: DispatchService, arquitecturaService: ArquitecturaService,dialog: MatDialog,modal: MatDialog,
+    private authenticationService : AuthenticationService, private userService: UserService) { 
     this._stockService = stockService
     this._arquitecturaService = arquitecturaService
     this._dispatchService = dispatchService
@@ -47,6 +52,7 @@ export class DespachosComponent implements OnInit {
     this._searchCode = undefined
     this._arquitecturaService.getDespachoColumns().subscribe(res => {this._columns = res})
     this._dispatchService.getDespachoRows().subscribe(res => {this._rowData = res})
+    this._dispatchService.geteDespachoState().subscribe(res => {this._states = res})
   }
   searchDespatched(){ 
      if(this._despacho.length == 10){
@@ -63,20 +69,33 @@ export class DespachosComponent implements OnInit {
   }  
   assignDispatched(dispatched: string){
     this._despacho = dispatched
-    this._type = "dispatchedSelected"
+    let user = this.authenticationService.getSession() 
+    this._dispatchService.getDespacho(dispatched).subscribe(res  => {this._dispatch = res,
+      this.userService.getUsuariosByUserName(user).subscribe(res => {user = res,this.fillDespacho(user)})
+    })
+    
+   
+    
+    this._arquitecturaService.getDespachoColumnsData().subscribe(res => {this._columns = res})     
+  }
+  fillDespacho(user){
+    if(this._dispatch.origin == user.idSucursal && this._dispatch.idState == this._states.find(x => x.description == "Creado").id){
+      this._type = "newDispatched"    
+     
+    }else{
+      this._type = "dispatchedSelected"
+    }
     this._disableButton = true
     this._titleButtonCreate = "Cancel" 
     this._rowData = []
-    this._dispatchService.getDespachoDataRows(this._despacho).subscribe(
-      res => {     
-      for(let index in res.stock){
-        this._articule = res[index] as Articulo
+       
+      for(let index in this._dispatch.stock){
+        this._articule = this._dispatch.stock[index] as Articulo
         let row = new Row(this._articule, this._type == "dispatchedSelected"?0:1);
         this._rowData.push(row)
       }
-    }
-    )
-    this._arquitecturaService.getDespachoColumnsData().subscribe(res => {this._columns = res})     
+    
+    
   }
   createCancelDispatched(){
     if(this._disableButton){
@@ -100,7 +119,7 @@ export class DespachosComponent implements OnInit {
     }
   }
   searchArticulo(){
-    this._dispatchService.getDespachoDataRows(this._despacho).subscribe(
+    this._dispatchService.getDespacho(this._despacho).subscribe(
       res => {     
       for(let index in res){
         this._articule = res[index] as Articulo
@@ -219,7 +238,8 @@ export class DespachosComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       
-        this._despacho = result.code
+        this._despacho = result.Code
+        this._type = "newDispatched"
       
     });
   }
@@ -242,6 +262,7 @@ class Row{
   Count: Number
   width: number
   height: number
+  Stock_Sucursal: any
  
   constructor(articule: Articulo,count: number){
     this.Code = articule.code
@@ -250,6 +271,7 @@ class Row{
     this.Model = articule.model
     this.Price = articule.price
     this.Unity = articule.unity
+    this.Stock_Sucursal = articule.stock_Sucursal
     this.Count = count
     this.width = 2
     this.height = 2

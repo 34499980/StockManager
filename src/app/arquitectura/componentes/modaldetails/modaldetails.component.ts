@@ -69,7 +69,7 @@ export class ModaldetailsComponent implements OnInit {
       break;
       case"despacho":
         this._arquitecturaService.getDespachoColumnsData().subscribe(res => {this._columns = res} )
-        this._dispatchServices.getDespachoDataRows(this._data._despacho).subscribe(res => {this._rowData = res})
+        this._dispatchServices.getDespacho(this._data._despacho).subscribe(res => {this._rowData = res})
       break;
       case"CrearDespacho":
       this._sucursal = [{name: "example"}]
@@ -147,7 +147,8 @@ export class ModaldetailsComponent implements OnInit {
    
   }
   saveDispatched(){    
-    this._dispatchServices.CreateDispatched(this._origen.id,this._destino.id).subscribe(res => {this._dispatch = res, this.close()})
+    this._dispatchServices.CreateDispatched(this._origen.id,this._destino.id).subscribe(res => {this._dispatch = res,
+                                                                                           this.close()})
    
   }
   save(){
