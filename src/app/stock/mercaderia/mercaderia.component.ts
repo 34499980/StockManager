@@ -16,6 +16,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class MercaderiaComponent implements OnInit {
   selectFormControl = new FormControl('', [Validators.required]);
   _user: any
+  _articulos: any
   _rowData: any
   _columns: any[] = []
   _usuario: any
@@ -53,30 +54,48 @@ export class MercaderiaComponent implements OnInit {
                                 this._modelo,
                                 this._selectedItem.id,
                                              ).subscribe(res => {
-                                                this._rowData = res,
+                                              this.filterArticulos(res),
                                                 this._visible = true
                                                })
   }
   changeSucursal(sucursal){
 
   }
+  filterArticulos(res){    
+    this._articulos = res
+    this._rowData = res
+    for(let index in res){
+      this._rowData[index].stock_Sucursal = res[index].stock_Sucursal.find(x => x.IdSucursal ==  this._selectedItem.Id)
+      this._rowData[index].sucursal = this._sucursal.find(x => x.id == this._rowData[index].stock_Sucursal.idSucursal)
+     
+    }
+  }
   openDialog(value?: Articulo) { 
     let articul: Articulo 
     if(value != undefined){
-      this._stockService.getStockByCode(value.code).subscribe(res => {articul = res[0]})
+      this._stockService.getStockByCode(value.qr).subscribe(res => {articul = res[0],
+                                                       articul.unity = articul.stock_Sucursal[0].unity
+                                                     this.open(articul,value)               
+      })
     }else{
-      articul = new Articulo
+      articul = new Articulo      
+      this.open(articul,value)    
     }    
-    const dialogRef = this._modal.open(ModaldetailsComponent, {
-       disableClose: true,
-       data : { _screen :"articulo",_articul: articul, bDsiable: value!=undefined? true: false}
-     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if(result == true){
-       
-      }
-    });
+   
   }
+  open(articul,value){
+ 
+    const dialogRef = this._modal.open(ModaldetailsComponent, {
+      disableClose: true,
+      data : { _screen :"articulo",_articul: articul, bDsiable: value!=undefined? true: false}
+    });
+
+   dialogRef.afterClosed().subscribe(result => {
+     if(result == true){
+      
+     }
+   });
+  }
+
 
 }

@@ -9,6 +9,6 @@ export class Articulo{
     description: string
     image: string    
     idsucursal: number
-    stock_sucursal: any[] = []
+    stock_Sucursal: any[] = []
    
 }
