@@ -104,11 +104,11 @@ export class ModaldetailsComponent implements OnInit {
   close(){
     switch (this._data._screen){
       case "CrearDespacho":    
-       let dispatch= new Dispatch() 
+      /* let dispatch= new Dispatch() 
        dispatch.Code = this._dispatch
        dispatch.Origin = this._origen
-       dispatch.Destiny = this._destino   
-        this._modalgRef.close(dispatch)   
+       dispatch.Destiny = this._destino */  
+        this._modalgRef.close(this._dispatch)   
         break;
         default:
           this._modalgRef.close()   

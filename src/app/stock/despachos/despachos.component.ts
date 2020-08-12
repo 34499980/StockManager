@@ -48,6 +48,7 @@ export class DespachosComponent implements OnInit {
     this._NotOkImage = '../../../../assets/notok_check.png'
     this._despacho = ""
     this._titleButtonCreate = "Create" 
+    this._rowData = []
     this._disableButton = false  
     this._searchCode = undefined
     this._arquitecturaService.getDespachoColumns().subscribe(res => {this._columns = res})
@@ -71,14 +72,14 @@ export class DespachosComponent implements OnInit {
     this._despacho = dispatched
     let user = this.authenticationService.getSession() 
     this._dispatchService.getDespacho(dispatched).subscribe(res  => {this._dispatch = res,
-      this.userService.getUsuariosByUserName(user).subscribe(res => {user = res,this.fillDespacho(user)})
+      this.userService.getUsuariosByUserName(user).subscribe(res => {user = res,this.setDispatchStyle(user)})
     })
     
    
     
     this._arquitecturaService.getDespachoColumnsData().subscribe(res => {this._columns = res})     
   }
-  fillDespacho(user){
+  setDispatchStyle(user){
     if(this._dispatch.origin == user.idSucursal && this._dispatch.idState == this._states.find(x => x.description == "Creado").id){
       this._type = "newDispatched"    
      
@@ -88,7 +89,9 @@ export class DespachosComponent implements OnInit {
     this._disableButton = true
     this._titleButtonCreate = "Cancel" 
     this._rowData = []
-       
+    this.fillDespacho()
+  }
+  fillDespacho(){  
       for(let index in this._dispatch.stock){
         this._articule = this._dispatch.stock[index] as Articulo
         let row = new Row(this._articule, this._type == "dispatchedSelected"?0:1);
@@ -149,6 +152,24 @@ export class DespachosComponent implements OnInit {
   Add(value?: Number){
     let index
     switch(this._type){
+      case "newDispatched":
+        index = this._rowData.find(x => x.Code == value)
+        if(index!=undefined){
+          if(index.Count < index.Unity)
+            index.Count++
+        }else{
+          this._stockService.getStockByCode(value.toString()).subscribe(
+            res => {     
+            for(let index in res){
+              this._articule = res[index] as Articulo
+              let row = new Row(this._articule, 1)
+              this._rowData.push(row)
+            }
+          }
+          )
+          
+        }
+    break;
       case "createDispached":
           index = this._rowData.find(x => x.Code == value)
           if(index!=undefined){
@@ -238,8 +259,10 @@ export class DespachosComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       
-        this._despacho = result.Code
+        this._despacho = result.code
+        this._dispatch = result
         this._type = "newDispatched"
+        this.fillDespacho()
       
     });
   }
