@@ -47,7 +47,7 @@ export class DespachosComponent implements OnInit {
     this._OkImage = '../../../../assets/ok_check.png'
     this._NotOkImage = '../../../../assets/notok_check.png'
     this._despacho = ""
-    this._titleButtonCreate = "Create" 
+    this._titleButtonCreate = "Salir" 
     this._rowData = []
     this._disableButton = false  
     this._searchCode = undefined
@@ -59,7 +59,7 @@ export class DespachosComponent implements OnInit {
      if(this._despacho.length == 10){
       this._type = "dispatchedSelected"
       this._disableButton = true
-      this._titleButtonCreate = "Cancel" 
+      this._titleButtonCreate = "Salir" 
       this._rowData = []
      // this._stockService.getStockByCode(this._despacho).subscribe(res => {this._rowData = res})
       this._arquitecturaService.getDespachoColumnsData().subscribe(res => {this._columns = res})     
@@ -87,7 +87,7 @@ export class DespachosComponent implements OnInit {
       this._type = "dispatchedSelected"
     }
     this._disableButton = true
-    this._titleButtonCreate = "Cancel" 
+    this._titleButtonCreate = "Salir" 
     this._rowData = []
     this.fillDespacho()
   }
@@ -107,7 +107,7 @@ export class DespachosComponent implements OnInit {
     }else{
       this._type = "createDispached"
       this._disableButton = true
-      this._titleButtonCreate = "Cancel"          
+      this._titleButtonCreate = "Salir"          
       this._arquitecturaService.getDespachoColumnsData().subscribe(res => {this._columns = res})     
       this._rowData = []
       this.openModal("CrearDespacho")
