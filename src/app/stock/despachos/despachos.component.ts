@@ -8,6 +8,7 @@ import { ModaldetailsComponent } from 'src/app/arquitectura/componentes/modaldet
 import { DispatchService } from 'src/app/services/dispatch.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { UserService } from 'src/app/services/user.service';
+import { Dispatch } from 'src/app/arquitectura/class/Dispatch';
 
 @Component({
   selector: 'app-despachos',
@@ -47,7 +48,7 @@ export class DespachosComponent implements OnInit {
     this._OkImage = '../../../../assets/ok_check.png'
     this._NotOkImage = '../../../../assets/notok_check.png'
     this._despacho = ""
-    this._titleButtonCreate = "Salir" 
+    this._titleButtonCreate = "Create" 
     this._rowData = []
     this._disableButton = false  
     this._searchCode = undefined
@@ -72,6 +73,9 @@ export class DespachosComponent implements OnInit {
     this._despacho = dispatched
     let user = this.authenticationService.getSession() 
     this._dispatchService.getDespacho(dispatched).subscribe(res  => {this._dispatch = res,
+      
+        this._dispatch = res as Dispatch
+     
       this.userService.getUsuariosByUserName(user).subscribe(res => {user = res,this.setDispatchStyle(user)})
     })
     
@@ -94,7 +98,7 @@ export class DespachosComponent implements OnInit {
   fillDespacho(){  
       for(let index in this._dispatch.stock){
         this._articule = this._dispatch.stock[index] as Articulo
-        let row = new Row(this._articule, this._type == "dispatchedSelected"?0:1);
+        let row = new Row(this._articule, this._dispatch.dispatch_stock[index].unity);
         this._rowData.push(row)
       }
     
@@ -103,6 +107,10 @@ export class DespachosComponent implements OnInit {
   createCancelDispatched(){
     if(this._disableButton){
       this._type = "dispatched"
+      for(let index in this._dispatch.stock){
+        this._dispatch.stock[index].Unity =  this._dispatch.stock[index].Count
+      }
+      this._dispatchService.updateDespacho( this._dispatch).subscribe()
      this.ngOnInit()
     }else{
       this._type = "createDispached"
@@ -164,6 +172,7 @@ export class DespachosComponent implements OnInit {
               this._articule = res[index] as Articulo
               let row = new Row(this._articule, 1)
               this._rowData.push(row)
+              this._dispatch.stock = this._rowData
             }
           }
           )
@@ -211,6 +220,7 @@ export class DespachosComponent implements OnInit {
    }
       break;
     }
+    this._dispatch.stock = this._rowData
    
   }
   delete(value?: Number){
@@ -218,12 +228,20 @@ export class DespachosComponent implements OnInit {
     if(index != undefined && index.Count > 0)
     {
       index.Count--     
-    }     
+    } 
+    if(index.Count == 0){
+      this._rowData = this._rowData.filter(x => x.Code != index.Code)
+    }   
+    this._dispatch.stock = this._rowData 
   }
   finish(){
     if(this._rowData.length != 0){
       switch(this._type){
         case "createDispached":        
+        //this._arquitecturaService.openDialog("Message","Se genero el despacho con numero: "+newDispacher)  
+         this.ngOnInit()
+        break;
+        case "newDispatched":        
         //this._arquitecturaService.openDialog("Message","Se genero el despacho con numero: "+newDispacher)  
          this.ngOnInit()
         break;
@@ -259,10 +277,15 @@ export class DespachosComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       
-        this._despacho = result.code
-        this._dispatch = result
-        this._type = "newDispatched"
-        this.fillDespacho()
+        if(result != undefined){
+             this._despacho = result.code
+             this._dispatch = result
+             this._type = "newDispatched"
+             this.fillDespacho()
+        }else{
+            this.ngOnInit()
+        }
+        
       
     });
   }
@@ -283,6 +306,7 @@ class Row{
   Price: Number
   Unity: Number
   Count: Number
+  QR: string
   width: number
   height: number
   Stock_Sucursal: any
@@ -293,6 +317,7 @@ class Row{
     this.Brand = articule.brand
     this.Model = articule.model
     this.Price = articule.price
+    this.QR = articule.qr
     this.Unity = articule.stock_Sucursal[0].unity
     this.Stock_Sucursal = articule.stock_Sucursal
     this.Count = count

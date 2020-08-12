@@ -65,6 +65,15 @@ export class DispatchService {
         })
       )
   }
+  updateDespacho(despacho){
+    return  this.http.put<any>(environment.RestFullApi+'Dispatch/'+despacho.code,despacho).pipe(map(res =>{return res},
+      error => {this.arquitecturaService.openDialog("Error!",error.message)}),
+      catchError((err, caught)=> {
+         this. handleError(err)
+      return of(false);
+        })
+      )
+  }
   getDespachoRows(): Observable<any>{
     return  this.http.get(environment.RestFullApi+'Dispatch').pipe(map(res =>{return res},
       error => {this.arquitecturaService.openDialog("Error!",error.message)}),

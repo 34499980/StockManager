@@ -137,8 +137,10 @@ export class ModaldetailsComponent implements OnInit {
   searchArticulo(){
     this._stockService.getStockByCode(this._data._articul.qr).subscribe(
       res => {     
-        if(res != null)
-        this._data._articul = res as Articulo
+        if(res.length > 0){
+        this._data._articul = res[0] as Articulo
+        this._rowData = res as Articulo
+        }
         
         
       

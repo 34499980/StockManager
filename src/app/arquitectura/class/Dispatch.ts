@@ -1,3 +1,5 @@
+import { Articulo } from './Articulo'
+
 export class Dispatch{
     Code: String
     Origin: String
@@ -8,5 +10,7 @@ export class Dispatch{
     idState: String
     idUser: String
     unity: String
+    stock: Articulo[]
+    stock_sucursal: any[]
    
 }
