@@ -165,6 +165,7 @@ export class DespachosComponent implements OnInit {
         if(index!=undefined){
           if(index.Count < index.Unity)
             index.Count++
+            index.Stock_Sucursal[0].unity --
         }else{
           this._stockService.getStockByCode(value.toString()).subscribe(
             res => {     
@@ -173,6 +174,7 @@ export class DespachosComponent implements OnInit {
               let row = new Row(this._articule, 1)
               this._rowData.push(row)
               this._dispatch.stock = this._rowData
+              row.Stock_Sucursal[0].unity --
             }
           }
           )
@@ -184,6 +186,7 @@ export class DespachosComponent implements OnInit {
           if(index!=undefined){
             if(index.Count < index.Unity)
               index.Count++
+              index.Stock_Sucursal[0].unity --
           }else{
             this._stockService.getStockByCode(value.toString()).subscribe(
               res => {     
@@ -193,6 +196,7 @@ export class DespachosComponent implements OnInit {
             }
             )
             let row = new Row(this._articule, 1)
+            this._dispatch.Stock_Sucursal[0].unity --
             this._rowData.push(row)
           }
       break;
@@ -211,11 +215,13 @@ export class DespachosComponent implements OnInit {
         index = this._rowData.find(x => x.Code == this._articule.code)
       }
       if(index.Count < index.Stock_Sucursal[0].unity && (index.Count == 0 && this._searchCode != undefined)){
-          index.Count++      
+          index.Count++     
+          index.Stock_Sucursal[0].unity -- 
        
     }else{
       if(index.Count < index.Stock_Sucursal[0].unity && (index.Count >0)){
         index.Count++      
+        index.Stock_Sucursal[0].unity --
     }
    }
       break;
@@ -227,7 +233,8 @@ export class DespachosComponent implements OnInit {
     let index = this._rowData.find(x => x.Code == value)
     if(index != undefined && index.Count > 0)
     {
-      index.Count--     
+      index.Count--    
+      index.Stock_Sucursal[0].unity ++ 
     } 
     if(index.Count == 0){
       this._rowData = this._rowData.filter(x => x.Code != index.Code)
@@ -318,7 +325,7 @@ class Row{
     this.Model = articule.model
     this.Price = articule.price
     this.QR = articule.qr
-    this.Unity = articule.stock_Sucursal[0].unity
+    this.Unity =  new Number(articule.stock_Sucursal[0].unity)
     this.Stock_Sucursal = articule.stock_Sucursal
     this.Count = count
     this.width = 2

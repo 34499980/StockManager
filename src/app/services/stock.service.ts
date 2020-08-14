@@ -62,11 +62,11 @@ saveStock(stock : Articulo){
   }
   getStock(code?: string, name?: string, brand?: string, model?: string, sucursal?: number){
     let query = "where "   
-    query += "idsucursal ="+sucursal
-    code == undefined || code == ""? query :query +=  " and code = '"+ code + "'"
-    name == undefined || name == ""? query :query +=  " and name = '"+ name + "'"
-    brand == undefined || brand == ""? query :query +=  " and brand = '"+ brand + "'"
-    model == undefined ||  model == ""? query:query +=  " and model = '"+ model + "'"
+    query += "idsucursal:"+sucursal
+    code == undefined || code == ""? query :query +=  " ; code:"+ code 
+    name == undefined || name == ""? query :query +=  " ; name:"+ name 
+    brand == undefined || brand == ""? query :query +=  " ; brand:"+ brand 
+    model == undefined ||  model == ""? query:query +=  " ; model:"+ model 
    
    
 

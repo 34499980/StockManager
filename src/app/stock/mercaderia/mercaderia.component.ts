@@ -50,7 +50,7 @@ export class MercaderiaComponent implements OnInit {
   searchStock(){
     this._stockService.getStock(this._codigo,
                                 this._nombre,
-                                this._modelo,
+                                this._marca,
                                 this._modelo,
                                 this._selectedItem.id,
                                              ).subscribe(res => {
