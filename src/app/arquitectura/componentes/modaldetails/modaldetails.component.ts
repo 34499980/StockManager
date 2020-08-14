@@ -185,6 +185,7 @@ export class ModaldetailsComponent implements OnInit {
      })
   }
   save(){
+    this._data._articul.stock_Sucursal.find(x => x.idSucursal ==   this._sucursal.find(z => z.name ==  this._selectedItem.name).id ).unity = this._data._articul.unity
     this._stockService.saveStock(this._data._articul)
     this.close()
   }

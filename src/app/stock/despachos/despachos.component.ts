@@ -97,8 +97,8 @@ export class DespachosComponent implements OnInit {
   }
   fillDespacho(){  
       for(let index in this._dispatch.stock){
-        this._articule = this._dispatch.stock[index] as Articulo
-        let row = new Row(this._articule, this._dispatch.dispatch_stock[index].unity);
+        this._articule = this._dispatch.stock[index] as Articulo        
+        let row = Object.assign({},new Row(this._articule, this._dispatch.dispatch_stock[index].unity))
         this._rowData.push(row)
       }
     
@@ -231,6 +231,7 @@ export class DespachosComponent implements OnInit {
   }
   delete(value?: Number){
     let index = this._rowData.find(x => x.Code == value)
+    this._articule
     if(index != undefined && index.Count > 0)
     {
       index.Count--    
@@ -239,7 +240,7 @@ export class DespachosComponent implements OnInit {
     if(index.Count == 0){
       this._rowData = this._rowData.filter(x => x.Code != index.Code)
     }   
-    this._dispatch.stock = this._rowData 
+   
   }
   finish(){
     if(this._rowData.length != 0){
