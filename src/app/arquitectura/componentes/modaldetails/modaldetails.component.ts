@@ -9,6 +9,7 @@ import { DispatchService } from 'src/app/services/dispatch.service';
 import { UserService } from 'src/app/services/user.service';
 import { FormControl, Validators } from '@angular/forms';
 import { Dispatch } from '../../class/Dispatch';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 export interface ModalData {
   _articul: Articulo
   bDsiable: boolean
@@ -25,12 +26,15 @@ export class ModaldetailsComponent implements OnInit {
  _modalgRef :  MatDialogRef<ModaldetailsComponent>
  
   selectFormControl = new FormControl('', Validators.required);
+    _user: any
    _origen: any
    _destino: any
    _dispatch:any
    _sucursal: any
    _data: ModalData
    _bDsiable: any
+   _DisableSucursal: any
+   _selectedItem: any
    _rowData: any
    _columns: any
    _stockService: StockService 
@@ -40,7 +44,7 @@ export class ModaldetailsComponent implements OnInit {
    _arquitecturaService: ArquitecturaService
    _userService: UserService
    @ViewChild('file') file :ElementRef
-  constructor(modalgRef: MatDialogRef<ModaldetailsComponent>,  stockService: StockService,@Inject(MAT_DIALOG_DATA) data: ModalData,arquitecturaService: ArquitecturaService,dispatchService: DispatchService,private userService: UserService) {
+  constructor(modalgRef: MatDialogRef<ModaldetailsComponent>,private authentication :AuthenticationService ,  stockService: StockService,@Inject(MAT_DIALOG_DATA) data: ModalData,arquitecturaService: ArquitecturaService,dispatchService: DispatchService,private userService: UserService) {
     this._modalgRef = modalgRef
     this._stockService = stockService
     this._data = data
@@ -53,6 +57,9 @@ export class ModaldetailsComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    let userSearch 
+    this._selectedItem = [{name: "example", disable: true}]
+    this._DisableSucursal = true
     switch(this._data._screen){
       case"articulo":
       if(this._data.bDsiable){
@@ -65,18 +72,32 @@ export class ModaldetailsComponent implements OnInit {
       }else{
         this._fileNotSelected = this._data._articul.image
       }
-      
+       userSearch = this.authentication.getSession()
+      this.userService.getUsuariosByUserName(userSearch).subscribe(res => {this._user = res, 
+        this._userService.getAllSucursal().subscribe(res => {this._sucursal = res,
+        this.selectFormControl.patchValue({name: this._sucursal.find( x => x.id == this._user.idSucursal).name}),
+        this._selectedItem =  this._sucursal.find( x => x.id == this._user.idSucursal)
+                                                 })
+                                                })
       break;
       case"despacho":
+      this._userService.getAllSucursal().subscribe(res => {this._sucursal = res})
         this._arquitecturaService.getDespachoColumnsData().subscribe(res => {this._columns = res} )
         this._dispatchServices.getDespacho(this._data._despacho).subscribe(res => {this._rowData = res})
       break;
       case"CrearDespacho":
-      this._sucursal = [{name: "example"}]
-      this._userService.getAllSucursal().subscribe(res => {this._sucursal = res})
+       userSearch = this.authentication.getSession()
+      this.userService.getUsuariosByUserName(userSearch).subscribe(res => {this._user = res, 
+        this._userService.getAllSucursal().subscribe(res => {this._sucursal = res,
+        this.selectFormControl.patchValue({name: this._sucursal.find( x => x.id == this._user.idSucursal)}),
+        this._selectedItem =  this._sucursal.find( x => x.id == this._user.idSucursal)
+                                                 })
+                                                })
       break;
+     
     
     }
+    
    
   }
   changeSucursal(sucursal,type){
@@ -140,6 +161,10 @@ export class ModaldetailsComponent implements OnInit {
         if(res.length > 0){
         this._data._articul = res[0] as Articulo
         this._rowData = res as Articulo
+        this._DisableSucursal = false
+        this._rowData.unity = res[0].stock_Sucursal.find(x => x.idSucursal ==  this._selectedItem .id).unity
+        this._data._articul.unity = res[0].stock_Sucursal.find(x => x.idSucursal ==  this._selectedItem .id).unity
+       
         }
         
         
@@ -152,6 +177,12 @@ export class ModaldetailsComponent implements OnInit {
     this._dispatchServices.CreateDispatched(this._origen.id,this._destino.id).subscribe(res => {this._dispatch = res,
                                                                                            this.close()})
    
+  }
+  updateSucursal(value){
+    this._userService.getAllSucursal().subscribe(res => {this._sucursal = res,
+    //this._selectedItem =  this._sucursal.find( x => x.name == value)
+    this._data._articul.unity =  this._data._articul.stock_Sucursal.find(x => x.idSucursal ==   this._sucursal.find(z => z.name == value).id ).unity
+     })
   }
   save(){
     this._stockService.saveStock(this._data._articul)
