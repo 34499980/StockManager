@@ -104,12 +104,13 @@ export class DespachosComponent implements OnInit {
     
     
   }
-  createCancelDispatched(){
+  UpdateDispatch(){
     if(this._disableButton){
       this._type = "dispatched"
       for(let index in this._dispatch.stock){
         this._dispatch.stock[index].Unity =  this._dispatch.stock[index].Count
       }
+      this._dispatch.dispatch_stock = null
       this._dispatchService.updateDespacho( this._dispatch).subscribe()
      this.ngOnInit()
     }else{
@@ -166,15 +167,19 @@ export class DespachosComponent implements OnInit {
           if(index.Count < index.Unity)
             index.Count++
             index.Stock_Sucursal[0].unity --
+            this._dispatch.stock.find(x => x.Code ==value).Stock_Sucursal.find(z => z.idSucursal == this._dispatch.idSucursal).unity--
         }else{
           this._stockService.getStockByCode(value.toString()).subscribe(
             res => {     
             for(let index in res){
+              if(res[0].stock_Sucursal.find(x => x.idSucursal == this._dispatch.origin).unity > 0){
               this._articule = res[index] as Articulo
               let row = new Row(this._articule, 1)
               this._rowData.push(row)
-              this._dispatch.stock = this._rowData
               row.Stock_Sucursal[0].unity --
+            }
+              //this._dispatch.stock.push(Object.assign({},res))
+             
             }
           }
           )
@@ -187,17 +192,21 @@ export class DespachosComponent implements OnInit {
             if(index.Count < index.Unity)
               index.Count++
               index.Stock_Sucursal[0].unity --
+              this._dispatch.stock.find(x => x.Code ==value).Stock_Sucursal.find(z => z.idSucursal == this._dispatch.idSucursal).unity--
           }else{
             this._stockService.getStockByCode(value.toString()).subscribe(
               res => {     
               for(let index in res){
+                if(res[0].stock_Sucursal.find(x => x.idSucursal == this._dispatch.origin).unity > 0){
                 this._articule = res[index] as Articulo
+                let row = new Row(this._articule, 1)
+                this._dispatch.Stock_Sucursal[0].unity --
+                this._rowData.push(row)
+                this._dispatch.stock.push(Object.assign({},this._articule))
+                }
               }
-            }
-            )
-            let row = new Row(this._articule, 1)
-            this._dispatch.Stock_Sucursal[0].unity --
-            this._rowData.push(row)
+            })
+          
           }
       break;
       case "dispatchedSelected":
@@ -217,11 +226,13 @@ export class DespachosComponent implements OnInit {
       if(index.Count < index.Stock_Sucursal[0].unity && (index.Count == 0 && this._searchCode != undefined)){
           index.Count++     
           index.Stock_Sucursal[0].unity -- 
+          this._dispatch.stock.find(x => x.Code ==value).Stock_Sucursal.find(z => z.idSucursal == this._dispatch.idSucursal).unity--
        
     }else{
       if(index.Count < index.Stock_Sucursal[0].unity && (index.Count >0)){
         index.Count++      
         index.Stock_Sucursal[0].unity --
+        this._dispatch.stock.find(x => x.Code ==value).Stock_Sucursal.find(z => z.idSucursal == this._dispatch.idSucursal).unity--
     }
    }
       break;
@@ -236,6 +247,7 @@ export class DespachosComponent implements OnInit {
     {
       index.Count--    
       index.Stock_Sucursal[0].unity ++ 
+      //this._dispatch.stock.find(x => x.Code ==value).Stock_Sucursal.find(z => z.idSucursal == this._dispatch.idSucursal).unity++
     } 
     if(index.Count == 0){
       this._rowData = this._rowData.filter(x => x.Code != index.Code)

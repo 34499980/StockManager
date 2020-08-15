@@ -40,11 +40,14 @@ export class MercaderiaComponent implements OnInit {
     this._selectedItem = {name:'loading...'}
     let userSearch = this.authentication.getSession()
     this.userService.getUsuariosByUserName(userSearch).subscribe(res => {this._user = res, 
-    this.userService.getAllSucursal().subscribe(res => {this._sucursal = res,
-      this.selectFormControl.patchValue({name: this._sucursal.find( x => x.id == this._user.idSucursal)}),
-      this._selectedItem =  this._sucursal.find( x => x.id == this._user.idSucursal)
-                                                 })
-    this._arquitecturaService.getColumnsGridStock().subscribe(res => {this._columns = res})})
+    this.userService.getAllSucursal().subscribe(
+                                                res => {this._sucursal = res,
+                                                        this._selectedItem = Object.assign({}, this._sucursal.find( x => x.id == this._user.idSucursal))
+                                                          }
+                                                  )
+    this._arquitecturaService.getColumnsGridStock().subscribe(
+                                                              res => {this._columns = res})}
+                                                              )
     
   }
   searchStock(){
@@ -59,18 +62,14 @@ export class MercaderiaComponent implements OnInit {
                                                })
   }
   changeSucursal(sucursal){
-    this.userService.getAllSucursal().subscribe(res => {this._sucursal = res
-      this._selectedItem =  this._sucursal.find( x => x.name == sucursal)
-      
-       })
+    this._selectedItem = Object.assign({}, this._sucursal.find( x => x.name == sucursal))
     
   }
   filterArticulos(res){    
     this._articulos = res
     this._rowData = res
     for(let index in res){
-      this._rowData[index].stock_Sucursal = res[index].stock_Sucursal.find(x => x.idSucursal == this._selectedItem.id)
-      console.log(this._selectedItem.Id)
+      this._rowData[index].stock_Sucursal = res[index].stock_Sucursal.find(x => x.idSucursal == this._selectedItem.id)      
       this._rowData[index].sucursal = Object.assign({},this._sucursal.find(x => x.id == this._rowData[index].stock_Sucursal.idSucursal))
      
     }
