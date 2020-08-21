@@ -108,9 +108,9 @@ export class DespachosComponent implements OnInit {
     if(this._disableButton){
       this._type = "dispatched"
       for(let index in this._dispatch.stock){
-        this._dispatch.stock[index].Unity =  this._dispatch.stock[index].Count
+        this._dispatch.stock[index].unity = this._rowData.find(x => x.code == this._dispatch.stock[index].code) != undefined?  this._rowData.find(x => x.code == this._dispatch.stock[index].code).Count : 0
       }
-      this._dispatch.dispatch_stock = null
+     // this._dispatch.dispatch_stock = null
       this._dispatchService.updateDespacho( this._dispatch).subscribe()
      this.ngOnInit()
     }else{
@@ -162,12 +162,12 @@ export class DespachosComponent implements OnInit {
     let index
     switch(this._type){
       case "newDispatched":
-        index = this._rowData.find(x => x.Code == value)
+        index = this._rowData.find(x => x.code == value)
         if(index!=undefined){
           if(index.Count < index.Unity)
             index.Count++
             index.Stock_Sucursal[0].unity --
-            this._dispatch.stock.find(x => x.Code ==value).Stock_Sucursal.find(z => z.idSucursal == this._dispatch.idSucursal).unity--
+            this._dispatch.stock.find(x => x.code ==value).stock_Sucursal.find(z  => z.idSucursal == this._dispatch.origin).unity--
         }else{
           this._stockService.getStockByCode(value.toString()).subscribe(
             res => {     
@@ -187,12 +187,12 @@ export class DespachosComponent implements OnInit {
         }
     break;
       case "createDispached":
-          index = this._rowData.find(x => x.Code == value)
+          index = this._rowData.find(x => x.code == value)
           if(index!=undefined){
             if(index.Count < index.Unity)
               index.Count++
               index.Stock_Sucursal[0].unity --
-              this._dispatch.stock.find(x => x.Code ==value).Stock_Sucursal.find(z => z.idSucursal == this._dispatch.idSucursal).unity--
+              this._dispatch.stock.find(x => x.code ==value).stock_Sucursal.find(z  => z.idSucursal == this._dispatch.origin).unity--
           }else{
             this._stockService.getStockByCode(value.toString()).subscribe(
               res => {     
@@ -219,20 +219,20 @@ export class DespachosComponent implements OnInit {
       default:
       
       if(value != undefined){      
-         index = this._rowData.find(x => x.Code == value)
+         index = this._rowData.find(x => x.code == value)
       }else{
-        index = this._rowData.find(x => x.Code == this._articule.code)
+        index = this._rowData.find(x => x.code == this._articule.code)
       }
       if(index.Count < index.Stock_Sucursal[0].unity && (index.Count == 0 && this._searchCode != undefined)){
           index.Count++     
           index.Stock_Sucursal[0].unity -- 
-          this._dispatch.stock.find(x => x.Code ==value).Stock_Sucursal.find(z => z.idSucursal == this._dispatch.idSucursal).unity--
+          this._dispatch.stock.find(x => x.code ==value).stock_Sucursal.find(z  => z.idSucursal == this._dispatch.origin).unity--
        
     }else{
       if(index.Count < index.Stock_Sucursal[0].unity && (index.Count >0)){
         index.Count++      
         index.Stock_Sucursal[0].unity --
-        this._dispatch.stock.find(x => x.Code ==value).Stock_Sucursal.find(z => z.idSucursal == this._dispatch.idSucursal).unity--
+        this._dispatch.stock.find(x => x.code ==value).stock_Sucursal.find(z  => z.idSucursal == this._dispatch.origin).unity--
     }
    }
       break;
@@ -250,7 +250,7 @@ export class DespachosComponent implements OnInit {
       //this._dispatch.stock.find(x => x.Code ==value).Stock_Sucursal.find(z => z.idSucursal == this._dispatch.idSucursal).unity++
     } 
     if(index.Count == 0){
-      this._rowData = this._rowData.filter(x => x.Code != index.Code)
+      this._rowData = this._rowData.filter(x => x.code != index.code)
     }   
    
   }
@@ -310,7 +310,7 @@ export class DespachosComponent implements OnInit {
     });
   }
   remove(value?: Number,i?: number){
-    let index = this._rowData.find(x => x.Code == value)
+    let index = this._rowData.find(x => x.code == value)
     this._rowData.splice(i,1)
    
   }
@@ -319,7 +319,7 @@ export class DespachosComponent implements OnInit {
 }
 
 class Row{
-  Code: string
+  code: string
   Name: string
   Brand: string
   Model: string
@@ -332,7 +332,7 @@ class Row{
   Stock_Sucursal: any
  
   constructor(articule: Articulo,count: number){
-    this.Code = articule.code
+    this.code = articule.code
     this.Name = articule.name
     this.Brand = articule.brand
     this.Model = articule.model
