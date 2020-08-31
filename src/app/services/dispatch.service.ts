@@ -22,8 +22,8 @@ export class DispatchService {
   handleError(value){
     try{
     let start = value.error.indexOf(':')+1
-    let end = value.error.indexOf(' at ') - start
-    this.arquitecturaService.openDialog("Error",value.substring(start,end))
+    let end = value.error.indexOf(' at ') 
+    this.arquitecturaService.openDialog("Error",value.error.substring(start,end))
     }
     catch(ex){
       this.arquitecturaService.openDialog("Error","Se genero un error interno. Si persiste, comuniquise con el administrador.")
@@ -65,8 +65,9 @@ export class DispatchService {
         })
       )
   }
-  updateDespacho(despacho){
-    return  this.http.put<any>(environment.RestFullApi+'Dispatch/'+despacho.code,despacho).pipe(map(res =>{return res},
+  updateDespacho(dispatch){
+    let user = this.authentication.getSession()
+    return  this.http.put<any>(environment.RestFullApi+'Dispatch/'+dispatch.code,{dispatch,user}).pipe(map(res =>{return res},
       error => {this.arquitecturaService.openDialog("Error!",error.message)}),
       catchError((err, caught)=> {
          this. handleError(err)

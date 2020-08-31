@@ -99,7 +99,7 @@
                    
                     <mat-form-field appearance="fill">
                       <mat-label>Sucursal origen</mat-label>
-                      <mat-select [formControl]="selectFormControl" required (selectionChange)="changeSucursal($event.value,'origen')">                       
+                      <mat-select [formControl]="selectFormControl"  (selectionChange)="changeSucursal($event.value,'origen')">                       
                         <mat-option *ngFor="let s of this._sucursal" [value]="s" >
                           {{s.name}}
                         </mat-option>

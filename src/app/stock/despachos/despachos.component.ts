@@ -113,12 +113,7 @@ export class DespachosComponent implements OnInit {
      // this._dispatch.dispatch_stock = null
       this._dispatchService.updateDespacho( this._dispatch).subscribe()
      this.ngOnInit()
-    }else{
-      this._type = "createDispached"
-      this._disableButton = true
-      this._titleButtonCreate = "Salir"          
-      this._arquitecturaService.getDespachoColumnsData().subscribe(res => {this._columns = res})     
-      this._rowData = []
+    }else{     
       this.openModal("CrearDespacho")
 
     }
@@ -261,8 +256,9 @@ export class DespachosComponent implements OnInit {
         //this._arquitecturaService.openDialog("Message","Se genero el despacho con numero: "+newDispacher)  
          this.ngOnInit()
         break;
-        case "newDispatched":        
-        //this._arquitecturaService.openDialog("Message","Se genero el despacho con numero: "+newDispacher)  
+        case "newDispatched":  
+        this._dispatch.idState = 2   
+        this.UpdateDispatch()
          this.ngOnInit()
         break;
         default:
@@ -297,7 +293,12 @@ export class DespachosComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       
-        if(result != undefined){
+        if(result != undefined && result != false){
+         // this._type = "createDispached"
+          this._disableButton = true
+          this._titleButtonCreate = "Salir"          
+          this._arquitecturaService.getDespachoColumnsData().subscribe(res => {this._columns = res})     
+          this._rowData = []
              this._despacho = result.code
              this._dispatch = result
              this._type = "newDispatched"

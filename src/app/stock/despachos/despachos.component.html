@@ -43,7 +43,13 @@
                                 <tr *ngFor="let r of this._rowData">
                                         <td>{{r.code}}</td>
                                         <td >{{r.dateCreate}}</td>
-                                        <td >{{r.usuario.userName}}</td>
+                                        <td >{{r.usuarioOrigin.userName}}</td>
+                                        <p *ngIf="r.usuarioDestiny; else nothing"><td >{{r.usuarioDestiny.userName}}</td></p>
+                                        <ng-template #nothing>
+                                                <p>
+                                                 
+                                                </p>
+                                              </ng-template>
                                         <td class="textCenter"  >{{r.sucOrigin.address}}</td>
                                         <td class="textCenter" >{{r.sucDestiny.address}}</td>
                                         <td class="textCenter" >{{r.state.description}}</td>
@@ -61,7 +67,7 @@
                             <th  *ngFor="let c of this._columns">
                                                      {{c.header}}
                            </th>                  
-                             <th>Cantidad</th>
+                             <th colspan="3">Cantidad</th>
                              <th>Validado</th>
                            </thead> 
                            <tbody >      
@@ -71,7 +77,7 @@
                                   <td>{{r.Model}}</td>
                                   <td>{{r.Brand}}</td>
                                   <td>{{r.Unity}}</td>
-                                  <td><button class="TransparentButton" (click)="delete(r.Code)" > - </button > {{r.Count}}<button class="TransparentButton" (click)="Add(r.Code)" >   + </button ></td>
+                                  <td ><button mat-mini-fab  [disabled]="this._dispatch.idState == 1?true:false" (click)="delete(r.Code)"  ></button ></td> <td>{{r.Count}}</td><td><button  mat-mini-fab [disabled]="this._dispatch.idState == 1?true:false" (click)="Add(r.Code)" ></button ></td>
                                   <td><img  [style.width]="r.Count == r.Unity ? '40%' : '40%'"[style.heigth]="r.Count == r.Unity ? '20%' : '20%'"  [src]="r.Count == r.Unity ? this._OkImage : this._NotOkImage"></td>                      
                                                         
                                 </tr>
@@ -84,7 +90,7 @@
                            <th  *ngFor="let c of this._columns">
                                {{c.header}}
                            </th>                  
-                            <th>Cantidad</th> 
+                            <th colspan="3" >Cantidad</th> 
                             <th></th>                         
                          </thead> 
                          <tbody >      
@@ -94,7 +100,7 @@
                                  <td>{{r.Model}}</td>
                                  <td>{{r.Brand}}</td>
                                  <td>{{r.Unity}}</td>
-                                 <td><button class="TransparentButton" (click)="delete(r.Code)" > - </button > {{r.Count}}<button class="TransparentButton" (click)="Add(r.Code)" >   + </button ></td>
+                                 <td ><button mat-mini-fab  [disabled]="this._dispatch.idState == 1?true:false" (click)="delete(r.Code)"  ></button ></td> <td>{{r.Count}}</td><td><button  mat-mini-fab [disabled]="this._dispatch.idState == 1?true:false" (click)="Add(r.Code)" ></button ></td>
                                  <td > <img  style="width: 40px;height: 40px;" (click)="remove(r.Code,i)"  src="../../../../assets/notok_check.png"></td>
                              </tr>
                          </tbody>   
@@ -106,7 +112,7 @@
                             <th  *ngFor="let c of this._columns">
                                                      {{c.header}}
                            </th>                  
-                             <th>Cantidad</th>                           
+                             <th colspan="3">Cantidad</th>                           
                            </thead> 
                            <tbody >      
                               <tr *ngFor="let r of this._rowData">
@@ -115,7 +121,7 @@
                                   <td>{{r.Model}}</td>
                                   <td>{{r.Brand}}</td>
                                   <td>{{r.Unity}}</td>
-                                  <td><button class="TransparentButton" (click)="delete(r.Code)" > - </button > {{r.Count}}<button class="TransparentButton" (click)="Add(r.Code)" >   + </button ></td>
+                                  <td ><button mat-mini-fab  [disabled]="this._dispatch.idState == 1?true:false" (click)="delete(r.Code)"  ></button ></td> <td>{{r.Count}}</td><td><button  mat-mini-fab [disabled]="this._dispatch.idState == 1?true:false" (click)="Add(r.Code)" ></button ></td>
                                  
                                                         
                                 </tr>

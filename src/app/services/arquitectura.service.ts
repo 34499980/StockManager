@@ -339,12 +339,20 @@ export class ArquitecturaService {
      dataKey: 'dateCreate'
     },
     {
-      headerName:"USUARIO",
-      header:"USUARIO",
-      field: "idUser",
+      headerName:"USUARIO ORIGEN",
+      header:"USUARIO ORIGEN",
+      field: "idUserOrigin",
       sortable: true,
       filter: true,
-      dataKey: 'idUser'
+      dataKey: 'idUserOrigin'
+     },
+     {
+      headerName:"USUARIO RECIBIDO",
+      header:"USUARIO RECIBIDO",
+      field: "idUserDestiny",
+      sortable: true,
+      filter: true,
+      dataKey: 'idUserDestiny'
      },
      {
       headerName:"ORIGEN",
