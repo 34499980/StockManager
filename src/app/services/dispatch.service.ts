@@ -23,14 +23,14 @@ export class DispatchService {
     try{
     let start = value.error.indexOf(':')+1
     let end = value.error.indexOf(' at ') 
-    this.arquitecturaService.openDialog("Error",value.error.substring(start,end))
+    this.arquitecturaService.openDialog("Error", value.error.substr(start,end))
     }
     catch(ex){
       this.arquitecturaService.openDialog("Error","Se genero un error interno. Si persiste, comuniquise con el administrador.")
     }
     //return throwError(error);
     }
-  geteDespachoState(){
+  GetDispatchStates(){
     return  this.http.get(environment.RestFullApi+'States/'+"dispatch").pipe(map(res =>{return res},
       error => {this.arquitecturaService.openDialog("Error!",error.message)}),
       catchError((err, caught)=> {
@@ -39,7 +39,7 @@ export class DispatchService {
         })
       )
   }
-  CreateDispatched(origen: String,destino:String): Observable<any>{    
+  CreateDispatch(origen: String,destino:String): Observable<any>{    
     let dispatch: Dispatch = new Dispatch() 
    
     dispatch.Origin = origen
@@ -56,8 +56,12 @@ export class DispatchService {
 )
   }
 
-  getDespacho(despacho: String): Observable<any>{
-    return  this.http.get(environment.RestFullApi+'Dispatch/'+despacho).pipe(map(res =>{return res},
+  GetDispatchById(dispatch: String): Observable<any>{
+    let user = this.authentication.getSession()   
+    let request = {
+      dispatch : dispatch
+    }
+    return  this.http.get(environment.RestFullApi+'Dispatch/'+ JSON.stringify(request)).pipe(map(res =>{return res},
       error => {this.arquitecturaService.openDialog("Error!",error.message)}),
       catchError((err, caught)=> {
          this. handleError(err)
@@ -65,7 +69,7 @@ export class DispatchService {
         })
       )
   }
-  updateDespacho(dispatch){
+  UpdateDispatch(dispatch){
     let user = this.authentication.getSession()
     return  this.http.put<any>(environment.RestFullApi+'Dispatch/'+dispatch.code,{dispatch,user}).pipe(map(res =>{return res},
       error => {this.arquitecturaService.openDialog("Error!",error.message)}),
@@ -75,8 +79,13 @@ export class DispatchService {
         })
       )
   }
-  getDespachoRows(): Observable<any>{
-    return  this.http.get(environment.RestFullApi+'Dispatch').pipe(map(res =>{return res},
+ GetAllDispatchBySucursal(): Observable<any>{
+  let user = this.authentication.getSession()   
+   let request = {
+    UserName : user
+   }
+
+    return  this.http.get(environment.RestFullApi+'Dispatch/'+ JSON.stringify(request)).pipe(map(res =>{return res},
       error => {this.arquitecturaService.openDialog("Error!",error.message)}),
       catchError((err, caught)=> {
          this. handleError(err)

@@ -53,8 +53,8 @@ export class DespachosComponent implements OnInit {
     this._disableButton = false  
     this._searchCode = undefined
     this._arquitecturaService.getDespachoColumns().subscribe(res => {this._columns = res})
-    this._dispatchService.getDespachoRows().subscribe(res => {this._rowData = res})
-    this._dispatchService.geteDespachoState().subscribe(res => {this._states = res})
+    this._dispatchService.GetAllDispatchBySucursal().subscribe(res => {this._rowData = res})
+    this._dispatchService.GetDispatchStates().subscribe(res => {this._states = res})
   }
   searchDespatched(){ 
      if(this._despacho.length == 10){
@@ -72,7 +72,7 @@ export class DespachosComponent implements OnInit {
   assignDispatched(dispatched: string){
     this._despacho = dispatched
     let user = this.authenticationService.getSession() 
-    this._dispatchService.getDespacho(dispatched).subscribe(res  => {this._dispatch = res,
+    this._dispatchService.GetDispatchById(dispatched).subscribe(res  => {this._dispatch = res,
       
         this._dispatch = res as Dispatch
      
@@ -111,7 +111,7 @@ export class DespachosComponent implements OnInit {
         this._dispatch.stock[index].unity = this._rowData.find(x => x.code == this._dispatch.stock[index].code) != undefined?  this._rowData.find(x => x.code == this._dispatch.stock[index].code).Count : 0
       }
      // this._dispatch.dispatch_stock = null
-      this._dispatchService.updateDespacho( this._dispatch).subscribe()
+      this._dispatchService.UpdateDispatch( this._dispatch).subscribe()
      this.ngOnInit()
     }else{     
       this.openModal("CrearDespacho")
@@ -126,7 +126,7 @@ export class DespachosComponent implements OnInit {
     }
   }
   searchArticulo(){
-    this._dispatchService.getDespacho(this._despacho).subscribe(
+    this._dispatchService.GetDispatchById(this._despacho).subscribe(
       res => {     
       for(let index in res){
         this._articule = res[index] as Articulo
@@ -139,10 +139,10 @@ export class DespachosComponent implements OnInit {
   }
   cargarDespacho(){
     if(this._despacho==" " || this._despacho==undefined || this._despacho.length == 0){
-      this._dispatchService.getDespachoRows().subscribe(res => {this._rowData = res})
+      this._dispatchService.GetAllDispatchBySucursal().subscribe(res => {this._rowData = res})
     }else{    
       this._rowData = [] 
-      this._dispatchService.getDespachoRows().subscribe(res => {this._rowDataDispatchedOrigin = res})
+      this._dispatchService.GetAllDispatchBySucursal().subscribe(res => {this._rowDataDispatchedOrigin = res})
       for(let index in this._rowDataDispatchedOrigin){
         let row = this._rowDataDispatchedOrigin[index] 
         if(row.ID.indexOf(this._despacho) != -1){

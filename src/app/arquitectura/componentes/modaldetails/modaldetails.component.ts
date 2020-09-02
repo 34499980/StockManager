@@ -83,7 +83,7 @@ export class ModaldetailsComponent implements OnInit {
       case"despacho":
       this._userService.getAllSucursal().subscribe(res => {this._sucursal = res})
         this._arquitecturaService.getDespachoColumnsData().subscribe(res => {this._columns = res} )
-        this._dispatchServices.getDespacho(this._data._despacho).subscribe(res => {this._rowData = res})
+        this._dispatchServices.GetDispatchById(this._data._despacho).subscribe(res => {this._rowData = res})
       break;
       case"CrearDespacho":
        userSearch = this.authentication.getSession()
@@ -174,7 +174,7 @@ export class ModaldetailsComponent implements OnInit {
    
   }
   saveDispatched(){    
-    this._dispatchServices.CreateDispatched(this._origen.id,this._destino.id).subscribe(res => {this._dispatch = res,
+    this._dispatchServices.CreateDispatch(this._origen.id,this._destino.id).subscribe(res => {this._dispatch = res,
                                                                                            this.close()})
    
   }

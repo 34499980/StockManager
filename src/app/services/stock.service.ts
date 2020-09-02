@@ -26,7 +26,7 @@ export class StockService {
     try{
     let start = value.error.indexOf(':')+1
     let end = value.error.indexOf(' at ') - start
-    this.arquitecturaService.openDialog("Error",value.substring(start,end))
+    this.arquitecturaService.openDialog("Error", value.error.substr(start,end))
     }
     catch(ex){
       this.arquitecturaService.openDialog("Error","Se genero un error interno. Si persiste, comuniquise con el administrador.")
