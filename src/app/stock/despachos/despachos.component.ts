@@ -74,7 +74,7 @@ export class DespachosComponent implements OnInit {
     let user = this.authenticationService.getSession() 
     this._dispatchService.GetDispatchById(dispatched).subscribe(res  => {this._dispatch = res,
       
-        this._dispatch = res as Dispatch
+        this._dispatch = res[0] as Dispatch
      
       this.userService.getUsuariosByUserName(user).subscribe(res => {user = res,this.setDispatchStyle(user)})
     })
@@ -162,7 +162,7 @@ export class DespachosComponent implements OnInit {
           if(index.Count < index.Unity)
             index.Count++
             index.Stock_Sucursal[0].unity --
-            this._dispatch.stock.find(x => x.code ==value).stock_Sucursal.find(z  => z.idSucursal == this._dispatch.origin).unity--
+            this._dispatch.stock.find(x => x.code ==value).stock_Sucursal.find(x => x.idSucursal == this._dispatch.origin).unity
         }else{
           this._stockService.getStockByCode(value.toString()).subscribe(
             res => {     
@@ -236,7 +236,7 @@ export class DespachosComponent implements OnInit {
    
   }
   delete(value?: Number){
-    let index = this._rowData.find(x => x.Code == value)
+    let index = this._rowData.find(x => x.code == value)
     this._articule
     if(index != undefined && index.Count > 0)
     {

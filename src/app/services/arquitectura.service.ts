@@ -415,7 +415,7 @@ export class ArquitecturaService {
     sortable: true,
     filter: true,
     dataKey: 'Code',
-    width: 100   
+    width: 60   
   },
   {
    headerName:"Nombre",
@@ -424,7 +424,7 @@ export class ArquitecturaService {
    sortable: true,
    filter: true,
    dataKey: 'Name',
-   width: 100   
+   width: 60   
   },
   {
     headerName:"Marca",
@@ -433,7 +433,7 @@ export class ArquitecturaService {
     sortable: true,
     filter: true,
     dataKey: 'Brand',
-    width: 100   
+    width: 60   
    },
    {
     headerName:"Modelo",
@@ -442,7 +442,7 @@ export class ArquitecturaService {
     sortable: true,
     filter: true,
     dataKey: 'Model',
-    width: 100   
+    width: 60   
    },
    {
     headerName:"Unidades",
@@ -451,7 +451,7 @@ export class ArquitecturaService {
     sortable: true,
     filter: true,
     dataKey: 'Unity',
-    width: 100   
+    width: 30   
    }]
 
   return of(result)

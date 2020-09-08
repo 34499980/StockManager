@@ -3,11 +3,7 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-td{
-  width: 30%;
-  padding-left: 1%
-  
-}
+
 .mat-form-field-appearance-outline .mat-form-field-outline {
   color: black;
 }
