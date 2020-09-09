@@ -62,7 +62,7 @@
                 </table>
          </div>
          <div *ngSwitchCase="'dispatchedSelected'">
-                <table class="table pd-b-5">
+                <table style="width: 90%;" class="table pd-b-5">
                         <thead>
                             <th  *ngFor="let c of this._columns">
                                                      {{c.header}}
@@ -77,8 +77,8 @@
                                   <td>{{r.Model}}</td>
                                   <td>{{r.Brand}}</td>
                                   <td>{{r.Unity}}</td>
-                                  <td ><button mat-mini-fab  [disabled]="this._dispatch.idState == 1?true:false" (click)="delete(r.Code)"  ></button ></td> <td>{{r.Count}}</td><td><button  mat-mini-fab [disabled]="this._dispatch.idState == 1?true:false" (click)="Add(r.Code)" ></button ></td>
-                                  <td><img  [style.width]="r.Count == r.Unity ? '40%' : '40%'"[style.heigth]="r.Count == r.Unity ? '20%' : '20%'"  [src]="r.Count == r.Unity ? this._OkImage : this._NotOkImage"></td>                      
+                                  <td ><button mat-mini-fab  [disabled]="this._dispatch.idState == 1?true:false" (click)="delete(r.code)"  ></button ></td> <td>{{r.Count}}</td><td><button  mat-mini-fab [disabled]="this._dispatch.idState == 1?true:false" (click)="Add(r.code)" ></button ></td>
+                                  <td><img  [style.width]="r.Count == r.Unity ? '5%' : '5%'"[style.heigth]="r.Count == r.Unity ? '5%' : '5%'"  [src]="r.Count == r.Unity ? this._OkImage : this._NotOkImage"></td>                      
                                                         
                                 </tr>
                            </tbody>   
@@ -135,6 +135,6 @@
    <tr>
            <td style="width: 30%"></td>
            <td style="width: 30%"></td>
-      <td [style.visibility]="this._disableButton? 'visible': 'hidden'"style="text-align: right; padding-right: 3%" ><button mat-raised-button (click)="finish()" color="warn">Finalizar</button></td>
+      <td [style.visibility]="this._disableButton && this._dispatch.idState == 1? 'visible': 'hidden'"style="text-align: right; padding-right: 3%" ><button mat-raised-button (click)="finish()" color="warn">Finalizar</button></td>
   </tr>
 </table>

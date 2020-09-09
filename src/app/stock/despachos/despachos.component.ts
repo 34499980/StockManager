@@ -104,8 +104,14 @@ export class DespachosComponent implements OnInit {
   }
   fillDespacho(){  
       for(let index in this._dispatch.stock){
-        this._articule = this._dispatch.stock[index] as Articulo        
-        let row = Object.assign({},new Row(this._articule, this._dispatch.dispatch_stock[index].unity))
+        this._articule = this._dispatch.stock[index] as Articulo 
+        let row
+        if( this._type == "newDispatched"){
+           row = Object.assign({},new Row(this._articule,this._dispatch.dispatch_stock[index].unity,this._articule.stock_Sucursal.find(x => x.idSucursal == this._dispatch.origin).unity))
+        }else{
+           row = Object.assign({},new Row(this._articule, 0,this._dispatch.dispatch_stock[index].unity))
+        }       
+        
         this._rowData.push(row)
       }
     
@@ -176,7 +182,7 @@ export class DespachosComponent implements OnInit {
             for(let index in res){
               if(res[0].stock_Sucursal.find(x => x.idSucursal == this._dispatch.origin).unity > 0){
               this._articule = res[index] as Articulo
-              let row = new Row(this._articule, 1)
+              let row = new Row(this._articule, 1,this._articule.stock_Sucursal.find(x => x.idSucursal == this._dispatch.origin).unity)
               this._rowData.push(row)
               row.Stock_Sucursal[0].unity --
             }
@@ -201,7 +207,7 @@ export class DespachosComponent implements OnInit {
               for(let index in res){
                 if(res[0].stock_Sucursal.find(x => x.idSucursal == this._dispatch.origin).unity > 0){
                 this._articule = res[index] as Articulo
-                let row = new Row(this._articule, 1)
+                let row = new Row(this._articule, 1,this._articule.stock_Sucursal.find(x => x.idSucursal == this._dispatch.origin).unity)
                 this._dispatch.Stock_Sucursal[0].unity --
                 this._rowData.push(row)
                 this._dispatch.stock.push(Object.assign({},this._articule))
@@ -212,11 +218,9 @@ export class DespachosComponent implements OnInit {
           }
       break;
       case "dispatchedSelected":
-          this._stockService.getStockByCode(value.toString()).subscribe(  res => {     
-            for(let index in res){
-              this._rowData.push(res[index])
-            }
-          })
+         let row = this._rowData.find(x => x.code == value)
+         if(row.Count < row.Unity)
+             row.Count++
         break;
       default:
       
@@ -251,7 +255,7 @@ export class DespachosComponent implements OnInit {
       index.Stock_Sucursal[0].unity ++ 
       //this._dispatch.stock.find(x => x.Code ==value).Stock_Sucursal.find(z => z.idSucursal == this._dispatch.idSucursal).unity++
     } 
-    if(index.Count == 0){
+    if(index.Count == 0 && this._type != "dispatchedSelected"){
       this._rowData = this._rowData.filter(x => x.code != index.code)
     }   
    
@@ -339,14 +343,14 @@ class Row{
   height: number
   Stock_Sucursal: any
  
-  constructor(articule: Articulo,count: number){
+  constructor(articule: Articulo,count: number,unity : number){
     this.code = articule.code
     this.Name = articule.name
     this.Brand = articule.brand
     this.Model = articule.model
     this.Price = articule.price
     this.QR = articule.qr
-    this.Unity =  new Number(articule.stock_Sucursal[0].unity)
+    this.Unity = unity
     this.Stock_Sucursal = articule.stock_Sucursal
     this.Count = count
     this.width = 2
