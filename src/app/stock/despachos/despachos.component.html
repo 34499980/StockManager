@@ -15,7 +15,7 @@
         <td>
           <mat-form-field appearance="outline" [style.visibility]="this._disableButton? 'visible': 'hidden'">
            <mat-label>Codigo Articulo</mat-label>
-           <input matInput type="text"   [(ngModel)]="this._searchCode" (ngModelChange)="cargarCodigo()"  [maxLength]="10" placeholder="codigo articulo">               
+           <input matInput type="text"  [(ngModel)]="this._searchCode" (ngModelChange)="cargarCodigo()"  [maxLength]="10" [disabled]="this._codeFlag"  placeholder="codigo articulo">               
          </mat-form-field>
         </td>
     </tr>

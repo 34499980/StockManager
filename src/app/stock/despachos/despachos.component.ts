@@ -34,6 +34,7 @@ export class DespachosComponent implements OnInit {
   _dispatchService: DispatchService
   _dialog: MatDialog
   _modal: MatDialog
+  _codeFlag : boolean
   constructor(stockService: StockService,dispatchService: DispatchService, arquitecturaService: ArquitecturaService,dialog: MatDialog,modal: MatDialog,
     private authenticationService : AuthenticationService, private userService: UserService) { 
     this._stockService = stockService
@@ -44,6 +45,7 @@ export class DespachosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this._codeFlag =  false
     this._type = "dispatched"
     this._OkImage = '../../../../assets/ok_check.png'
     this._NotOkImage = '../../../../assets/notok_check.png'
@@ -84,11 +86,16 @@ export class DespachosComponent implements OnInit {
     this._arquitecturaService.getDespachoColumnsData().subscribe(res => {this._columns = res})     
   }
   setDispatchStyle(user){
-    if(this._dispatch.origin == user.idSucursal && this._dispatch.idState == this._states.find(x => x.description == "Creado").id){
-      this._type = "newDispatched"    
+    if(this._dispatch.origin == user.idSucursal){
+      if(this._dispatch.idState != this._states.find(x => x.description == "Creado").id){
+        this._codeFlag = true
+      }
+          this._type = "newDispatched"       
+      
      
     }else{
       this._type = "dispatchedSelected"
+      this._codeFlag = false
     }
     this._disableButton = true
     this._titleButtonCreate = "Salir" 
