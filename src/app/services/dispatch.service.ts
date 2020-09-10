@@ -43,7 +43,7 @@ export class DispatchService {
     let dispatch: Dispatch = new Dispatch() 
    
     dispatch.Origin = origen
-    dispatch.Destiny = destino
+    dispatch.destiny = destino
     let user = this.authentication.getSession()   
    
     

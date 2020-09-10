@@ -2,8 +2,8 @@ import { Articulo } from './Articulo'
 
 export class Dispatch{
     Code: String
-    Origin: String
-    Destiny: String
+    Origin: String   
+    destiny: String
     DateCreate: String
     dateDispatched: String
     dateRecived: String
@@ -12,5 +12,6 @@ export class Dispatch{
     unity: String
     stock: Articulo[]
     stock_sucursal: any[]
+    stateText: String
    
 }

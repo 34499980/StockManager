@@ -1,4 +1,5 @@
 export class Articulo{
+    id: number
     code: string
     qr: string
     price: Number
@@ -6,6 +7,7 @@ export class Articulo{
     brand: string
     model: string
     unity:number
+    unityRead:number
     description: string
     image: string    
     idsucursal: number

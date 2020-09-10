@@ -54,9 +54,18 @@ export class DespachosComponent implements OnInit {
     this._rowData = []
     this._disableButton = false  
     this._searchCode = undefined
-    this._arquitecturaService.getDespachoColumns().subscribe(res => {this._columns = res})
-    this._dispatchService.GetAllDispatchBySucursal().subscribe(res => {this._rowData = res})
     this._dispatchService.GetDispatchStates().subscribe(res => {this._states = res})
+    this._arquitecturaService.getDespachoColumns().subscribe(res => {this._columns = res})
+    let user = this.authenticationService.getSession() 
+    this.userService.getUsuariosByUserName(user).subscribe(res => {user = res})
+    this._dispatchService.GetAllDispatchBySucursal().subscribe(res => {
+                                                                        for(let index in res){
+                                                                          let row = res[index] as Dispatch
+                                                                          row.stateText = row.idState == this._states.find(x => x.description == "Despachado").id && row.destiny == user.idSucursal? "Recibir": "Ver"
+                                                                          this._rowData.push(row)
+
+                                                                      }})
+    
   }
   searchDespatched(){ 
      if(this._despacho.length == 10){
@@ -72,39 +81,57 @@ export class DespachosComponent implements OnInit {
   
   }  
   assignDispatched(dispatched: string){
+    
     this._despacho = dispatched
-    let user = this.authenticationService.getSession() 
+    let user = this.authenticationService.getSession()   
+  
     this._dispatchService.GetDispatchById(dispatched).subscribe(res  => {this._dispatch = res,
       
         this._dispatch = res[0] as Dispatch
      
-      this.userService.getUsuariosByUserName(user).subscribe(res => {user = res,this.setDispatchStyle(user)})
+      this.userService.getUsuariosByUserName(user).subscribe(res => {user = res,this.setDispatchStyle(user,dispatched)})
     })
     
    
     
-    this._arquitecturaService.getDespachoColumnsData().subscribe(res => {this._columns = res})     
+        
   }
-  setDispatchStyle(user){
+  setDispatchStyle(user,code){
     if(this._dispatch.origin == user.idSucursal){
       if(this._dispatch.idState != this._states.find(x => x.description == "Creado").id){
         this._codeFlag = true
       }
-          this._type = "newDispatched"       
-      
+          this._type = "newDispatched" 
+          this._disableButton = true
+          this._titleButtonCreate = "Salir" 
+          this._rowData = []
+          this.fillDespacho()   
+             
+            
      
     }else{
-      this._type = "dispatchedSelected"
-      this._codeFlag = false
+      if(this._dispatch.idState == this._states.find(x => x.description == "Despachado").id)
+      {
+        this._dispatchService.GetDispatchById(code).subscribe(res  => {  this._dispatch = res[0] as Dispatch})
+        this._dispatch.idState = this._states.find(x => x.description == "Recibido").id
+        this._dispatchService.UpdateDispatch(this._dispatch).subscribe()
+        let row = this._rowData.find(x => x.code == code)
+        row.stateText = "Ver"
+      }else{
+        this._type = "dispatchedSelected"
+        this._codeFlag = false
+        this._disableButton = true
+        this._titleButtonCreate = "Salir" 
+        this._rowData = []
+        this.fillDespacho()
+      }
     }
-    this._disableButton = true
-    this._titleButtonCreate = "Salir" 
-    this._rowData = []
-    this.fillDespacho()
+    
   }
   fillDespacho(){  
       for(let index in this._dispatch.stock){
         this._articule = this._dispatch.stock[index] as Articulo 
+        this._articule.unityRead =  this._dispatch.dispatch_stock.find(x => x.idStock == this._articule.code).unityRead
         let row
         if( this._type == "newDispatched"){
            row = Object.assign({},new Row(this._articule,this._dispatch.dispatch_stock[index].unity,this._articule.stock_Sucursal.find(x => x.idSucursal == this._dispatch.origin).unity))
@@ -115,14 +142,23 @@ export class DespachosComponent implements OnInit {
         this._rowData.push(row)
       }
     
-    
+      this._arquitecturaService.getDespachoColumnsData().subscribe(res => {this._columns = res}) 
   }
   UpdateDispatch(){
     if(this._disableButton){
-      this._type = "dispatched"
-      for(let index in this._dispatch.stock){
-        this._dispatch.stock[index].unity = this._rowData.find(x => x.code == this._dispatch.stock[index].code) != undefined?  this._rowData.find(x => x.code == this._dispatch.stock[index].code).Count : 0
-      }
+      switch(this._type){
+        case "dispatchedSelected":
+          for(let index in this._rowData){
+          this._dispatch.dispatch_stock.find(x => x.idStock == this._rowData[index].id).UnityRead =  this._rowData[index].UnityRead
+          }
+          break;
+        case "newDispatched":
+          for(let index in this._dispatch.stock){
+            this._dispatch.stock[index].unity = this._rowData.find(x => x.code == this._dispatch.stock[index].code) != undefined?  this._rowData.find(x => x.code == this._dispatch.stock[index].code).Count : 0
+          }
+          break;
+      }     
+     
      // this._dispatch.dispatch_stock = null
       this._dispatchService.UpdateDispatch( this._dispatch).subscribe()
      this.ngOnInit()
@@ -219,8 +255,8 @@ export class DespachosComponent implements OnInit {
       break;
       case "dispatchedSelected":
          let row = this._rowData.find(x => x.code == value)
-         if(row.Count < row.Unity)
-             row.Count++
+         if(row.UnityRead < row.Unity)
+             row.UnityRead++
         break;
       default:
       
@@ -248,7 +284,18 @@ export class DespachosComponent implements OnInit {
   }
   delete(value?: Number){
     let index = this._rowData.find(x => x.code == value)
-    this._articule
+    switch(this._type){
+      case "dispatchedSelected":
+        if(index != undefined && index.UnityRead > 0)
+        {
+          index.UnityRead--    
+        
+          //this._dispatch.stock.find(x => x.Code ==value).Stock_Sucursal.find(z => z.idSucursal == this._dispatch.idSucursal).unity++
+        }   
+        break;
+
+        default:
+   
     if(index != undefined && index.Count > 0)
     {
       index.Count--    
@@ -258,6 +305,8 @@ export class DespachosComponent implements OnInit {
     if(index.Count == 0 && this._type != "dispatchedSelected"){
       this._rowData = this._rowData.filter(x => x.code != index.code)
     }   
+    break; 
+  }
    
   }
   finish(){
@@ -331,12 +380,14 @@ export class DespachosComponent implements OnInit {
 }
 
 class Row{
+  id: number
   code: string
   Name: string
   Brand: string
   Model: string
   Price: Number
   Unity: Number
+  UnityRead: Number
   Count: Number
   QR: string
   width: number
@@ -344,6 +395,7 @@ class Row{
   Stock_Sucursal: any
  
   constructor(articule: Articulo,count: number,unity : number){
+    this.id = articule.id
     this.code = articule.code
     this.Name = articule.name
     this.Brand = articule.brand
@@ -351,6 +403,7 @@ class Row{
     this.Price = articule.price
     this.QR = articule.qr
     this.Unity = unity
+    this.UnityRead = articule.unityRead
     this.Stock_Sucursal = articule.stock_Sucursal
     this.Count = count
     this.width = 2
