@@ -9,7 +9,7 @@
         </td>       
        
         <td [style.visibility]="this._type == 'dispatched'? 'visible': 'hidden'" style="text-align: left; padding-right: 3%" ><button mat-raised-button (click)="searchDespatched()" color="primary">Search</button></td>
-        <td [style.visibility]="this._type == 'dispatchedSelected'? 'visible': 'hidden'"style="text-align: right; padding-right: 3%" ><button mat-raised-button (click)="openDialog()" color="warn">Ayuda</button></td>
+        <td [style.visibility]="!this._codeFlag && (this._type == 'newDispatched' || this._type == 'dispatchedSelected')? 'visible': 'hidden'"style="text-align: right; padding-right: 3%" ><button mat-raised-button (click)="openDialog()" color="warn">Ayuda</button></td>
     </tr>
     <tr>
         <td>
@@ -77,7 +77,7 @@
                                   <td style="width: 15%; text-align: center;">{{r.Model}}</td>
                                   <td style="width: 15%; text-align: center;">{{r.Brand}}</td>
                                   <td style="width: 15%; text-align: center;">{{r.Unity}}</td>
-                                  <td ><button mat-mini-fab  [disabled]="this._dispatch.idState == 1?true:false" (click)="delete(r.code)"  ></button ></td> <td>{{r.UnityRead}}</td><td><button  mat-mini-fab [disabled]="this._dispatch.idState == 1?true:false" (click)="Add(r.code)" ></button ></td>
+                                  <td ><button mat-mini-fab  [disabled]="this._codeFlag && (this._type == 'newDispatched' || this._type == 'dispatchedSelected')? true: false" (click)="delete(r.code)"  ></button ></td> <td>{{r.UnityRead}}</td><td><button  mat-mini-fab [disabled]="this._codeFlag && (this._type == 'newDispatched' || this._type == 'dispatchedSelected')? true: false" (click)="Add(r.code)" ></button ></td>
                                   <td style="width: 15%; text-align: center;"><img  [style.width]="r.Count == r.Unity ? '25%' : '25%'" [src]="r.Count == r.Unity || r.UnityRead == r.Unity ? this._OkImage : this._NotOkImage"></td>                      
                                                         
                                 </tr>
@@ -135,6 +135,6 @@
    <tr>
            <td style="width: 30%"></td>
            <td style="width: 30%"></td>
-      <td [style.visibility]="this._disableButton && this._dispatch.idState == 1? 'visible': 'hidden'"style="text-align: right; padding-right: 3%" ><button mat-raised-button (click)="finish()" color="warn">Finalizar</button></td>
+      <td [style.visibility]="!this._codeFlag && (this._type == 'newDispatched' || this._type == 'dispatchedSelected')? 'visible': 'hidden'"style="text-align: right; padding-right: 3%" ><button mat-raised-button (click)="finish()" color="warn">Finalizar</button></td>
   </tr>
 </table>

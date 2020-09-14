@@ -137,7 +137,7 @@ export class DespachosComponent implements OnInit {
           this._type = "newDispatched" 
           this._disableButton = true
           this._titleButtonCreate = "Salir" 
-          this._rowData = []
+          this._rowData = []         
           this.fillDespacho()   
              
             
@@ -152,7 +152,7 @@ export class DespachosComponent implements OnInit {
         row.stateText = "Ver"
       }else{
         this._type = "dispatchedSelected"
-        this._codeFlag = false
+        this._codeFlag = this._dispatch.idState == this._states.find(x => x.description == "Recibido").id ? false : true
         this._disableButton = true
         this._titleButtonCreate = "Salir" 
         this._rowData = []
@@ -188,15 +188,17 @@ export class DespachosComponent implements OnInit {
         case "newDispatched":
           for(let index in this._dispatch.stock){
             this._dispatch.stock[index].unity = this._rowData.find(x => x.code == this._dispatch.stock[index].code) != undefined?  this._rowData.find(x => x.code == this._dispatch.stock[index].code).Count : 0
+           
           }
           break;
       }     
      
      // this._dispatch.dispatch_stock = null
-      this._dispatchService.UpdateDispatch( this._dispatch).subscribe()
+      this._dispatchService.UpdateDispatch(this._dispatch).subscribe()
+    
      this.ngOnInit()
     }else{     
-      this.openModal("CrearDespacho")
+      this.openModal("createDispatch")
 
     }
   }
@@ -355,7 +357,7 @@ export class DespachosComponent implements OnInit {
          this.ngOnInit()
         break;
         case "dispatchedSelected": 
-        let bFlag = this._rowData.find(x => x.Count!= x.Unity)
+        let bFlag = this._rowData.find(x => x.UnityRead != x.Unity)
         if(!bFlag){
           this._dispatch.idState = 4   
           this.UpdateDispatch()
@@ -391,17 +393,20 @@ export class DespachosComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       
         if(result != undefined && result != false){
+          if(this._type != 'dispatchedSelected'){
          // this._type = "createDispached"
-          this._disableButton = true
-          this._titleButtonCreate = "Salir"          
-          this._arquitecturaService.getDespachoColumnsData().subscribe(res => {this._columns = res})     
-          this._rowData = []
+            this._disableButton = true
+            this._titleButtonCreate = "Salir"          
+            this._arquitecturaService.getDespachoColumnsData().subscribe(res => {this._columns = res})     
+            this._rowData = []
              this._despacho = result.code
              this._dispatch = result
              this._type = "newDispatched"
              this.fillDespacho()
-        }else{
-           // this.ngOnInit()
+          }else{
+            this._rowData = []
+            this.assignDispatched(result.code)
+          }
         }
         
       

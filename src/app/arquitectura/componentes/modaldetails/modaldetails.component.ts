@@ -168,13 +168,20 @@ export class ModaldetailsComponent implements OnInit {
  
   close(){
     switch (this._data._screen){
-      case "CrearDespacho":    
+      case "createDispatch":    
       /* let dispatch= new Dispatch() 
        dispatch.Code = this._dispatch
        dispatch.Origin = this._origen
        dispatch.Destiny = this._destino */  
         this._modalgRef.close(this._dispatch)   
         break;
+        case "dispatchSelected":    
+        /* let dispatch= new Dispatch() 
+         dispatch.Code = this._dispatch
+         dispatch.Origin = this._origen
+         dispatch.Destiny = this._destino */  
+          this._modalgRef.close(this._dispatch)   
+          break;
         default:
           this._modalgRef.close()   
           break;
@@ -219,7 +226,7 @@ export class ModaldetailsComponent implements OnInit {
   }
   saveDispatched(){    
     switch(this._data._screen){
-      case 'createDispatched':
+      case 'createDispatch':
         this._dispatchServices.CreateDispatch(this._origen.id,this._destino.id).subscribe(res => {this._dispatch = res,
           this.close()})
         break;
