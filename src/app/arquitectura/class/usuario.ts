@@ -1,10 +1,11 @@
 export class Usuario{
     userName: string
-    Password: string
-    nombre: string
-    apellido: string
-    fechaNacimiento: Date
-    fechoIngreso: Date
+    password: string
+    first_name: string
+    last_name: string
+    dateAdmission: Date
+    dateborn: Date
     email: string
-    direccion: string
+    address: string
+    codPostal: string
 }

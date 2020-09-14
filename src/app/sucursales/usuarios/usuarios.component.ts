@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { ArquitecturaService } from 'src/app/services/arquitectura.service';
+import { Usuario } from 'src/app/arquitectura/class/usuario';
 
 
 @Component({
@@ -21,8 +22,10 @@ export class UsuariosComponent implements OnInit {
    }
 
   ngOnInit(): void {
-   this._userService.getUsuarios().subscribe(res => {this.Usuarios = res})
-   this._usuariosSearch = this.Usuarios;
+   this._userService.getUsuarios().subscribe(res => {this.Usuarios = res,
+                                                      this._usuariosSearch = this.Usuarios as Usuario;
+                                                   })
+
    
   }
   FiltrarUsuario(): void{

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Usuario } from '../../class/usuario';
 import { ArquitecturaService } from 'src/app/services/arquitectura.service';
@@ -9,9 +9,11 @@ import { ArquitecturaService } from 'src/app/services/arquitectura.service';
   styleUrls: ['./paneluser.component.css']
 })
 export class PaneluserComponent implements OnInit {
- @Input() Usuario: any
-  user: any
+ @Input() user: any
+  _image: string
   _param: any
+  @ViewChild('file') file :ElementRef
+  _fileSelected: File = null
   _arquitecturaService: ArquitecturaService
  _router: Router
   constructor(router: Router, arquitecturaService: ArquitecturaService) {
@@ -20,22 +22,23 @@ export class PaneluserComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this._image = "../../../../assets/userEmpty.jpg"
+    console.log(this.user)
     this._arquitecturaService.getCamposPerfil().subscribe(res => {this._param = res})
-    let i = 0
-    while(i < this._param.length){
-      if(this._param[i].type != "password")
-      {
-        i++
-      }else{
-        break;
-      }
-      
-    }
-    this._param.splice(i,1)    
+   
     
   }
   VerPerfil(user: any): void{
-    this._router.navigate(["Perfil",user.Datos[0].userName])
+    this._router.navigate(["Perfil",user.userName])
+  }
+  OnFileSelected(event){   
+    this.file.nativeElement.click()
+    this._fileSelected = <File>event.target.files == undefined ? undefined : <File>event.target.files[0]
+    if(this._fileSelected != undefined){
+  
+    }
+   
+
   }
 
 
