@@ -10,6 +10,39 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { UserService } from 'src/app/services/user.service';
 import { Dispatch } from 'src/app/arquitectura/class/Dispatch';
 
+class Row{
+  id: number
+  code: string
+  Name: string
+  Brand: string
+  Model: string
+  Price: Number
+  Unity: Number
+  UnityRead: Number
+  Count: Number
+  QR: string
+  width: number
+  height: number
+  Stock_Sucursal: any
+ 
+  constructor(articule: Articulo,count: number,unity : number){
+    this.id = articule.id
+    this.code = articule.code
+    this.Name = articule.name
+    this.Brand = articule.brand
+    this.Model = articule.model
+    this.Price = articule.price
+    this.QR = articule.qr
+    this.Unity = unity
+    this.UnityRead = articule.unityRead
+    this.Stock_Sucursal = articule.stock_Sucursal
+    this.Count = count
+    this.width = 2
+    this.height = 2
+    
+
+  }
+}
 @Component({
   selector: 'app-despachos',
   templateUrl: './despachos.component.html',
@@ -321,9 +354,13 @@ export class DespachosComponent implements OnInit {
         this.UpdateDispatch()
          this.ngOnInit()
         break;
-        default:
+        case "dispatchedSelected": 
         let bFlag = this._rowData.find(x => x.Count!= x.Unity)
-        if(bFlag){
+        if(!bFlag){
+          this._dispatch.idState = 4   
+          this.UpdateDispatch()
+           this.ngOnInit()
+        }else{
           this._arquitecturaService.openDialog('Warning','Quedaron bultos sin leer!')
         }
        
@@ -340,7 +377,7 @@ export class DespachosComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(true){
-        this.openModal("EditarDespacho")
+        this.openModal("dispatchSelected")
       }
     });
   }
@@ -364,7 +401,7 @@ export class DespachosComponent implements OnInit {
              this._type = "newDispatched"
              this.fillDespacho()
         }else{
-            this.ngOnInit()
+           // this.ngOnInit()
         }
         
       
@@ -379,36 +416,3 @@ export class DespachosComponent implements OnInit {
 
 }
 
-class Row{
-  id: number
-  code: string
-  Name: string
-  Brand: string
-  Model: string
-  Price: Number
-  Unity: Number
-  UnityRead: Number
-  Count: Number
-  QR: string
-  width: number
-  height: number
-  Stock_Sucursal: any
- 
-  constructor(articule: Articulo,count: number,unity : number){
-    this.id = articule.id
-    this.code = articule.code
-    this.Name = articule.name
-    this.Brand = articule.brand
-    this.Model = articule.model
-    this.Price = articule.price
-    this.QR = articule.qr
-    this.Unity = unity
-    this.UnityRead = articule.unityRead
-    this.Stock_Sucursal = articule.stock_Sucursal
-    this.Count = count
-    this.width = 2
-    this.height = 2
-    
-
-  }
-}

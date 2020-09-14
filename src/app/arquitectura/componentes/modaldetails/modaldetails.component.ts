@@ -17,6 +17,39 @@ export interface ModalData {
   _despacho: string
   
 }
+class Row{
+  id: number
+  code: string
+  Name: string
+  Brand: string
+  Model: string
+  Price: Number
+  Unity: Number
+  UnityRead: Number
+  Count: Number
+  QR: string
+  width: number
+  height: number
+  Stock_Sucursal: any
+ 
+  constructor(articule: Articulo,count: number,unity : number){
+    this.id = articule.id
+    this.code = articule.code
+    this.Name = articule.name
+    this.Brand = articule.brand
+    this.Model = articule.model
+    this.Price = articule.price
+    this.QR = articule.qr
+    this.Unity = unity
+    this.UnityRead = articule.unityRead
+    this.Stock_Sucursal = articule.stock_Sucursal
+    this.Count = count
+    this.width = 2
+    this.height = 2
+    
+
+  }
+}
 @Component({
   selector: 'app-modaldetails',
   templateUrl: './modaldetails.component.html',
@@ -33,8 +66,9 @@ export class ModaldetailsComponent implements OnInit {
    _sucursal: any
    _data: ModalData
    _bDsiable: any
-   _DisableSucursal: any
+   _DisableSucursal: any  
    _selectedItem: any
+   _articule: Articulo
    _rowData: any
    _columns: any
    _stockService: StockService 
@@ -57,6 +91,7 @@ export class ModaldetailsComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this._rowData = []
     let userSearch 
     this._selectedItem = [{name: "example", disable: true}]
     this._DisableSucursal = true
@@ -80,12 +115,21 @@ export class ModaldetailsComponent implements OnInit {
                                                  })
                                                 })
       break;
-      case"despacho":
+      case"dispatchSelected":
       this._userService.getAllSucursal().subscribe(res => {this._sucursal = res})
         this._arquitecturaService.getDespachoColumnsData().subscribe(res => {this._columns = res} )
-        this._dispatchServices.GetDispatchById(this._data._despacho).subscribe(res => {this._rowData = res})
+        this._dispatchServices.GetDispatchById(this._data._despacho).subscribe(res => {
+          this._dispatch = res[0] as Dispatch
+          for(let index in this._dispatch.stock){
+            this._articule = this._dispatch.stock[index] as Articulo            
+            let row           
+             row = new Row(this._articule, 0,this._dispatch.dispatch_stock[index].unity)
+                  
+            
+            this._rowData.push(row)
+          }})
       break;
-      case"CrearDespacho":
+      case"createDispatch":
        userSearch = this.authentication.getSession()
       this.userService.getUsuariosByUserName(userSearch).subscribe(res => {this._user = res, 
         this._userService.getAllSucursal().subscribe(res => {this._sucursal = res,
@@ -174,8 +218,20 @@ export class ModaldetailsComponent implements OnInit {
    
   }
   saveDispatched(){    
-    this._dispatchServices.CreateDispatch(this._origen.id,this._destino.id).subscribe(res => {this._dispatch = res,
-                                                                                           this.close()})
+    switch(this._data._screen){
+      case 'createDispatched':
+        this._dispatchServices.CreateDispatch(this._origen.id,this._destino.id).subscribe(res => {this._dispatch = res,
+          this.close()})
+        break;
+      case 'dispatchSelected':
+        for(let index in this._rowData){
+          this._dispatch.dispatch_stock.find(x => x.idStock == this._rowData[index].id).Unity = this._rowData[index].Unity 
+        }
+        this._dispatchServices.UpdateDispatch(this._dispatch).subscribe(res => this.close())
+        break;
+    }
+    
+   
    
   }
   updateSucursal(value){

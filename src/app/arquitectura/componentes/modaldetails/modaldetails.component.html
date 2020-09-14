@@ -87,7 +87,7 @@
       </table>
       
     </div>
-    <div *ngSwitchCase="'CrearDespacho'">
+    <div *ngSwitchCase="'createDispatch'">
       <table >
         <tbody >
           <tr><td></td></tr>
@@ -134,7 +134,7 @@
       </table>
     </div>
   
-    <div *ngSwitchDefault>
+    <div *ngSwitchCase="'dispatchSelected'">
       <div  style="width: 700px; height: 500px">       
         <table class="table pd-b-5">
           <thead>
@@ -145,10 +145,10 @@
               <tbody style="width: 100%" >
                   <tr *ngFor="let r of this._rowData" style="width: 100%" >
                       <td  style="text-align: center" >{{r.code}}</td>
-                      <td style="text-align: center">{{r.name}}</td>
-                      <td style="text-align: center">{{r.model}}</td>
-                      <td style="text-align: center">{{r.brand}}</td>
-                      <td style="text-align: center"><button class="TransparentButton" (click)="delete(r.Code)" > - </button > {{r.Unity}}<button class="TransparentButton" (click)="Add(r.Code)" >   + </button ></td>
+                      <td style="text-align: center">{{r.Name}}</td>
+                      <td style="text-align: center">{{r.Model}}</td>
+                      <td style="text-align: center">{{r.Brand}}</td>
+                      <td style="text-align: center"><button class="TransparentButton" (click)="delete(r.code)" > - </button > {{r.Unity}}<button class="TransparentButton" (click)="Add(r.code)" >   + </button ></td>
                      
                      
               </tr>
@@ -173,7 +173,7 @@
       <button   mat-flat-button color="primary" [style.visibility]="this._bDsiable? 'visible': 'hidden'" (click)="close()">Ok</button>
       <button   mat-flat-button color="primary" [style.visibility]="!this._bDsiable? 'visible': 'hidden'" (click)="save()">Save</button> 
     </div>
-    <div *ngSwitchCase="'CrearDespacho'">
+    <div *ngSwitchCase="'createDispatch'">
       <div>
         <button   mat-button color="primary"  (click)="close()">Cancel</button>
         
@@ -181,7 +181,13 @@
      </div>
     </div>
     
-    <div *ngSwitchDefault></div>
+    <div *ngSwitchCase="'dispatchSelected'">
+      <div>
+        <button   mat-button color="primary"  (click)="close()">Cancel</button>
+        
+        <button   mat-flat-button color="primary"  (click)="saveDispatched()">Save</button> 
+     </div>
+    </div>
   </div>
 
   <div *ngIf="this._data._screen == 'articulo'; else buttonNext1">
