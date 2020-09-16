@@ -17,7 +17,7 @@ export class InputrequiredComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
  @Input() param: any
  @Input() type: any
- @Input() user: any
+ @Input() inputValue: any
  @Input() array: any
  @Output() _parent = new EventEmitter<any>();
  _parentResponse: string[] = []
@@ -26,8 +26,8 @@ export class InputrequiredComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-   if(this.user != null){
-     this._value = this.user[0]["Datos"][0][this.param]
+   if(this.inputValue != null){
+     this._value = this.inputValue
    }
     
   }

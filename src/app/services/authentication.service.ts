@@ -63,7 +63,7 @@ export class AuthenticationService {
         let result: Observable<any>
         let user: Usuario = new Usuario() 
         user.userName = username
-        user.Password = password  
+        user.password = password  
      
        
    

@@ -23,7 +23,7 @@ export class PaneluserComponent implements OnInit {
 
   ngOnInit(): void {
     this._image = "../../../../assets/userEmpty.jpg"
-    console.log(this.user)
+   
     this._arquitecturaService.getCamposPerfil().subscribe(res => {this._param = res})
    
     

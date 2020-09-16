@@ -1,22 +1,44 @@
-<form class="example-form">
-    <table style=" width: 100%;">       
-      <br>
-       <tr *ngFor="let p of this._param">
-           <td style="width: 20%;"></td>
-           
-           <td  style="width: 80%;" >
-              
-              <app-inputrequired [param]="p.param" [type]="p.type"  (_parent)="updateUsuario($event)" [(user)]="this._usuario"></app-inputrequired>
-            
+<form class="example-form center">
+
+    <table style="width: 100%;">
+        <tr>
+          <!--<td class="bold">UserName: </td>-->
+          <td><app-inputrequired [param]="'UserName'" [type]="'text'"  (_parent)="updateUsuario($event)" [(inputValue)]="this._user.userName"></app-inputrequired></td>
+          <!-- <td class="bold">Password: </td>-->
+          <td><app-inputrequired [param]="'Password'" [type]="'text'"  (_parent)="updateUsuario($event)" [(inputValue)]="this._user.password"></app-inputrequired></td>
+          <td rowspan="3"> 
+           <img width="50%" height="150px" [src]="this._image" (click)="OnFileSelected($event)" >
+           <!--<button mat-stroked-button style="width: 100%; height: 300px" (click)="OnFileSelected($event)" [disabled]="this._data.bDsiable">Image</button>-->
+           <input  type="file" #file (change)="OnFileSelected($event)" style="visibility: hidden" />
            </td>
-           <td style="width: 20%;"></td>
-       </tr>  
-       <br>
+        </tr>
+        <tr>
+         <!-- <td class="bold">Nombre: </td>-->
+         <td><app-inputrequired [param]="'Nombre'" [type]="'text'"  (_parent)="updateUsuario($event)" [(inputValue)]="this._user.first_name"></app-inputrequired></td>
+          <!-- <td class="bold">Apellido: </td>-->
+          <td><app-inputrequired [param]="'Apellido'" [type]="'text'"  (_parent)="updateUsuario($event)" [(inputValue)]="this._user.last_name"></app-inputrequired></td>
+       </tr>
+       <tr>
+        <!--  <td class="bold">FechaNacimiento: </td>-->
+         <td><app-inputrequired [param]="'FechaNacimiento'" [type]="'date'"  (_parent)="updateUsuario($event)" [(inputValue)]="this._user.dateborn"></app-inputrequired></td>
+          <!-- <td class="bold">FechaIngreso: </td>-->
+         <td><app-inputrequired [param]="'FechaIngreso'" [type]="'date'"  (_parent)="updateUsuario($event)" [(inputValue)]="this._user.dateAdmission"></app-inputrequired></td>
+       </tr>
+       <tr>
+         <!--  <td class="bold">Email: </td>-->
+         <td><app-inputrequired [param]="'Email'" [type]="'text'"  (_parent)="updateUsuario($event)" [(inputValue)]="this._user.email"></app-inputrequired></td>
+         <!--  <td class="bold">Direccion: </td>-->
+         <td><app-inputrequired [param]="'Direccion'" [type]="'text'"  (_parent)="updateUsuario($event)" [(inputValue)]="this._user.address"></app-inputrequired></td>
+          <!-- <td class="bold">CodPostal: </td>-->
+         <td><app-inputrequired [param]="'CodPostal'" [type]="'text'"  (_parent)="updateUsuario($event)" [(inputValue)]="this._user.codPostal"></app-inputrequired></td>
+
+       </tr>
+     
        <tr>
            <td colspan="3" style="width: 80%; text-align: center">
             <button mat-raised-button color color="success" (click)="saveUsuario()">Guardar</button>
            </td>
        </tr>      
    </table>
-  
+
 </form>

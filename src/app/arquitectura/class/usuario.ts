@@ -8,4 +8,16 @@ export class Usuario{
     email: string
     address: string
     codPostal: string
+
+    constructor(){
+        this.userName = ""
+        this.password = ""
+        this.first_name = ""
+        this.last_name = ""
+        this.dateAdmission = undefined
+        this.dateborn = undefined
+        this.email = ""
+        this.address = ""
+        this.codPostal = ""
+    }
 }
