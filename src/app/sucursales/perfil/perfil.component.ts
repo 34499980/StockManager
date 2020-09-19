@@ -14,12 +14,11 @@ export class PerfilComponent implements OnInit {
   _image: string
   @ViewChild('file') file :ElementRef
   _fileSelected: File = null
- _user: Usuario = new Usuario
+  user: Usuario = undefined
 _actiavateRoute: ActivatedRoute
 _userService: UserService
 _arquitecturaService: ArquitecturaService
 _columns: any
-inputValue: any
 static user: Usuario = new Usuario
 
 
@@ -32,8 +31,9 @@ static user: Usuario = new Usuario
   ngOnInit(): void {
    let userIndex = this._actiavateRoute.snapshot.paramMap.get('userName')
    if(userIndex != null){
-    this._userService.getUsuariosByUserName(userIndex).subscribe(res => {this._user = res as Usuario,console.log(this._user)})
+    this._userService.getUsuariosByUserName(userIndex).subscribe(res => {this.user = res as Usuario})
   }else{
+    this.user = new Usuario
     this._image = "../../../../assets/userEmpty.jpg"
   
   }
@@ -43,16 +43,16 @@ static user: Usuario = new Usuario
   updateUsuario(value: any){
     let val = value.pop() 
     let param = value.pop() 
-    if(this._user != undefined){
-       this._user[param] = val
+    if(this.user != undefined){
+       this.user[param] = val
     }else{
       PerfilComponent.user[param] = val
     }
   }
   saveUsuario(){
-    if(this._user== undefined)
-    this._user =  PerfilComponent.user
-    this._userService.saveUsuario(this._user);
+    if(this.user== undefined)
+    this.user =  PerfilComponent.user
+    this._userService.saveUsuario(this.user);
   }
   OnFileSelected(event){   
     this.file.nativeElement.click()

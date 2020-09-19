@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output,EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
+import { Usuario } from '../../class/usuario';
 
 
 @Component({
@@ -15,19 +16,28 @@ export class InputrequiredComponent implements OnInit {
   ]);
   _value: any
   matcher = new MyErrorStateMatcher();
- @Input() param: any
+ @Input() param: string
  @Input() type: any
  @Input() inputValue: any
  @Input() array: any
  @Output() _parent = new EventEmitter<any>();
+ @ViewChild("input") input: ElementRef
  _parentResponse: string[] = []
 
 
   constructor() { }
-
   ngOnInit(): void {
+    if(this.inputValue != null){
+      this._value = this.inputValue
+      if(this.type == 'date'){
+  
+      }
+  }
+}
+
+  ngOnChanges(): void {
    if(this.inputValue != null){
-     this._value = this.inputValue
+     this._value = this.inputValue[this.param]
    }
     
   }

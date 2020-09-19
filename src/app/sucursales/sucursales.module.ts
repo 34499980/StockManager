@@ -12,6 +12,7 @@ import { MovimientosComponent } from './movimientos/movimientos.component';
 import {AgGridModule } from 'ag-grid-angular';
 import { AnularcionesComponent } from './anularciones/anularciones.component'
 import { MatCardModule } from '@angular/material/card';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 
@@ -29,6 +30,7 @@ import { MatCardModule } from '@angular/material/card';
     MatInputModule,
     MatRippleModule, 
     MatCardModule,
+    MatProgressSpinnerModule,
     AgGridModule.withComponents([])  
     
     
