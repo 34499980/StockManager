@@ -8,6 +8,8 @@ export class Usuario{
     email: string
     address: string
     codPostal: string
+    idRule: number
+    Rule: string
 
     constructor(){
         this.userName = ""
@@ -19,5 +21,7 @@ export class Usuario{
         this.email = ""
         this.address = ""
         this.codPostal = ""
+        this.idRule = 0
+        this.Rule = ""
     }
 }

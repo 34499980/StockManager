@@ -1,6 +1,6 @@
 <form class="example-form">
   <div class="center">
-    <div *ngIf="this.user != undefined; else loading">
+    <div *ngIf="this.user != undefined && this._rules != undefined; else loading">
     <table style="width: 100%;background-color: white">
         <tr>
          <!-- <td class="bold">UserName: {{this._user.userName}}</td>-->
@@ -12,6 +12,20 @@
            <!--<button mat-stroked-button style="width: 100%; height: 300px" (click)="OnFileSelected($event)" [disabled]="this._data.bDsiable">Image</button>-->
            <input  type="file" #file (change)="OnFileSelected($event)" style="visibility: hidden" />
            </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field appearance="fill">
+              <mat-label>Categoria</mat-label>
+              <mat-select [formControl]="selectFormControl" [(ngModel)]="this._selectedItem.description"   required (selectionChange)="changeCategoria($event.value)">                       
+                <mat-option *ngFor="let r of this._rules" [value]="r.description" >
+                  {{r.description}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="selectFormControl.hasError('required')">Please choose a rule</mat-error>
+            
+            </mat-form-field>
+          </td>
         </tr>
         <tr>
          <!-- <td class="bold">Nombre: </td>-->

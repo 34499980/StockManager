@@ -221,6 +221,17 @@ export class UserService {
             )
        
     }
+    getAllRules(): Observable<any> {        
+      
+        return  this.http.get(environment.RestFullApi+'States'+"/rules").pipe(map(res =>{return res},
+                                                                 error => {this.arquitecturaService.openDialog("Error!",error.message)}),
+                                                                 catchError((err, caught)=> {
+                                                                    this. handleError(err)
+             return of(false);
+            })
+            )
+       
+    }
 
    
 }

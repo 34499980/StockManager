@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { ArquitecturaService } from 'src/app/services/arquitectura.service';
 import { Usuario } from 'src/app/arquitectura/class/usuario';
+import { FormControl, Validators } from '@angular/forms';
 
 
 @Component({
@@ -19,7 +20,10 @@ _actiavateRoute: ActivatedRoute
 _userService: UserService
 _arquitecturaService: ArquitecturaService
 _columns: any
-static user: Usuario = new Usuario
+_rules: any
+selectFormControl = new FormControl('', Validators.required);
+_selectedItem: any
+//static user: Usuario = new Usuario
 
 
   constructor(actiavateRoute: ActivatedRoute,userService: UserService,arquitecturaService: ArquitecturaService) {
@@ -29,9 +33,15 @@ static user: Usuario = new Usuario
    }
 
   ngOnInit(): void {
+    this._rules = undefined
+    this._userService.getAllRules().subscribe(res=>{this._rules = res,
+                                                  this._selectedItem = Object.assign({}, this._rules.find(x => x.description == "Vendedor"))
+                                                })
    let userIndex = this._actiavateRoute.snapshot.paramMap.get('userName')
    if(userIndex != null){
-    this._userService.getUsuariosByUserName(userIndex).subscribe(res => {this.user = res as Usuario})
+    this._userService.getUsuariosByUserName(userIndex).subscribe(res => {this.user = res as Usuario,
+                                                                        this.user.Rule = Object.assign({}, this._rules.find(x => x.id == this.user.idRule).description,
+                                                                         this._selectedItem = Object.assign({},this._rules.find(x => x.id == this.user.idRule)))})
   }else{
     this.user = new Usuario
     this._image = "../../../../assets/userEmpty.jpg"
@@ -40,18 +50,22 @@ static user: Usuario = new Usuario
 
    this._arquitecturaService.getCamposPerfil().subscribe(res => {this._columns = res})
   }
+  changeCategoria(rule){
+    this._selectedItem = Object.assign({}, this._rules.find( x => x.description == rule))
+    
+  }
   updateUsuario(value: any){
     let val = value.pop() 
     let param = value.pop() 
     if(this.user != undefined){
        this.user[param] = val
     }else{
-      PerfilComponent.user[param] = val
+      this.user[param] = val
     }
   }
   saveUsuario(){
     if(this.user== undefined)
-    this.user =  PerfilComponent.user
+   // this.user =  PerfilComponent.user
     this._userService.saveUsuario(this.user);
   }
   OnFileSelected(event){   
