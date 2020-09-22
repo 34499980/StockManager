@@ -125,8 +125,14 @@ export class UserService {
        return of(usuarios);
       
     }
-    saveUsuario(user: Usuario){
-        
+    saveUsuario(user: Usuario): Observable<any>{
+        return  this.http.post(environment.RestFullApi+'Usuario',user).pipe(map(res =>{return res},
+            error => {this.arquitecturaService.openDialog("Error!",error.message)}),
+            catchError((err, caught)=> {
+               this. handleError(err)
+        return of(false);
+})
+)
     }
     getMovimientosRows(fechaDesde?: Date, fechaHaasta?: Date, usuario?: String, sucursal?: String ): Observable<any>{
         let rows = [

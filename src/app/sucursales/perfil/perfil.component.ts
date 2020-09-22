@@ -4,6 +4,7 @@ import { UserService } from 'src/app/services/user.service';
 import { ArquitecturaService } from 'src/app/services/arquitectura.service';
 import { Usuario } from 'src/app/arquitectura/class/usuario';
 import { FormControl, Validators } from '@angular/forms';
+import { AlertService } from 'src/app/services/alert.service';
 
 
 @Component({
@@ -26,7 +27,7 @@ _selectedItem: any
 //static user: Usuario = new Usuario
 
 
-  constructor(actiavateRoute: ActivatedRoute,userService: UserService,arquitecturaService: ArquitecturaService) {
+  constructor(private alertService: AlertService,actiavateRoute: ActivatedRoute,userService: UserService,arquitecturaService: ArquitecturaService) {
     this._actiavateRoute = actiavateRoute
     this._userService = userService
     this._arquitecturaService = arquitecturaService
@@ -66,7 +67,13 @@ _selectedItem: any
   saveUsuario(){
     if(this.user== undefined)
    // this.user =  PerfilComponent.user
-    this._userService.saveUsuario(this.user);
+    this._userService.saveUsuario(this.user).subscribe(res => {
+                                                                if(res == true){
+                                                                  this.alertService.success("Usuario guardado!")
+                                                                }else{
+                                                                  this.alertService.success("Error al guardar usuario!")
+                                                                }
+    });
   }
   OnFileSelected(event){   
     this.file.nativeElement.click()

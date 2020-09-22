@@ -1,5 +1,5 @@
-<form class="example-form">
-  <div class="center">
+
+  <div class="center" style="width: 100%; height: 100%;">
     <div *ngIf="this.user != undefined && this._rules != undefined; else loading">
     <table style="width: 100%;background-color: white">
         <tr>
@@ -8,14 +8,14 @@
           <!-- <td class="bold">Password: </td>-->
           <td><app-inputrequired [param]="'Password'" [type]="'text'"  (_parent)="updateUsuario($event)" [(inputValue)]="this.user.password"></app-inputrequired></td>
           <td rowspan="3"> 
-           <img width="50%" height="150px" [src]="this._image" (click)="OnFileSelected($event)" >
+           <img width="25%" height="150px" [src]="this._image" (click)="OnFileSelected($event)" >
            <!--<button mat-stroked-button style="width: 100%; height: 300px" (click)="OnFileSelected($event)" [disabled]="this._data.bDsiable">Image</button>-->
            <input  type="file" #file (change)="OnFileSelected($event)" style="visibility: hidden" />
            </td>
         </tr>
         <tr>
           <td>
-            <mat-form-field appearance="fill">
+            <mat-form-field  appearance="fill">
               <mat-label>Categoria</mat-label>
               <mat-select [formControl]="selectFormControl" [(ngModel)]="this._selectedItem.description"   required (selectionChange)="changeCategoria($event.value)">                       
                 <mat-option *ngFor="let r of this._rules" [value]="r.description" >
@@ -60,4 +60,4 @@
     <mat-spinner class='center'></mat-spinner>
   </ng-template>
   </div>
-</form>
+

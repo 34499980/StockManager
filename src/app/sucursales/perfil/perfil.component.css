@@ -37,14 +37,18 @@
 .mat-icon-button.mat-success {
   color:#155724;
 }
-.center{
-  margin-top:0;
-  margin-right:auto;
-  margin-bottom:0;
-  margin-left:auto;
+.center{   
+  position:fixed;
+  margin-left:30%x; /* half of width */
+  margin-top:-20%;  /* half of height */
+  top:60%;
+  left:20%;
   
  
 }
 .card {
   max-width: 800px;
+}
+td{
+  padding-left: 3%;
 }

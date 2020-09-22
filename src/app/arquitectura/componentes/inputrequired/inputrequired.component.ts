@@ -10,7 +10,7 @@ import { Usuario } from '../../class/usuario';
   styleUrls: ['./inputrequired.component.css']
 })
 export class InputrequiredComponent implements OnInit {
-  FormControl = new FormControl('', [
+  formControl = new FormControl('', [
     Validators.required,
     Validators.email,
   ]);
@@ -30,7 +30,7 @@ export class InputrequiredComponent implements OnInit {
     if(this.inputValue != null){
       this._value = this.inputValue
       if(this.type == 'date'){
-  
+        this.formControl.patchValue(this._value)
       }
   }
 }
