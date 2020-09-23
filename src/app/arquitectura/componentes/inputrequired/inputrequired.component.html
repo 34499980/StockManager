@@ -1,12 +1,20 @@
-<mat-form-field class="example-full-width">
-        <mat-label>{{this.param}}</mat-label>
-        <input matInput type="{{this.type}}" #input [formControl]="formControl" (keyup)="updateValue()" [(ngModel)]="this._value" [errorStateMatcher]="matcher"  >
-       
-        <mat-hint></mat-hint>
-        <mat-error *ngIf="formControl.hasError('{{this.param}}') && !formControl.hasError('required')">
-         Por favor ingrese {{this.param}}
-        </mat-error>
-        <mat-error *ngIf="formControl.hasError('required')">
-          {{this.param}} es un campo <strong>obligatorio</strong>
-        </mat-error>
-      </mat-form-field>
+<div [ngSwitch]="this.type">
+  <div *ngSwitchCase="'date'">
+    <input class="form-control" #datePicker  placeholder="yyyy-mm-dd"
+    name="d2" #c2="ngModel" [(ngModel)]="this._value" ngbDatepicker #d2="ngbDatepicker">
+  </div>
+  <div *ngSwitchDefault>
+    <mat-form-field class="example-full-width">
+      <mat-label>{{this.param}}</mat-label>
+      <input matInput type="{{this.type}}" #input [formControl]="formControl" (keyup)="updateValue()" [(ngModel)]="this._value" [errorStateMatcher]="matcher"  >
+      
+      <mat-hint></mat-hint>
+      <mat-error *ngIf="formControl.hasError('{{this.param}}') && !formControl.hasError('required')">
+        Por favor ingrese {{this.param}}
+      </mat-error>
+      <mat-error *ngIf="formControl.hasError('required')">
+        {{this.param}} es un campo <strong>obligatorio</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+</div>
