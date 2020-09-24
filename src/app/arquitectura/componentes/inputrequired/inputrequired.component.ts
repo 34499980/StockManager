@@ -30,7 +30,7 @@ export class InputrequiredComponent implements OnInit {
     if(this.inputValue != null){
       this._value = this.inputValue
       if(this.type == 'date'){
-        this.formControl.patchValue(this._value)
+        this.formControl = new FormControl(this._value);
       }
   }
 }

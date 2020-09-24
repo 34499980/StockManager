@@ -1,7 +1,10 @@
 <div [ngSwitch]="this.type">
   <div *ngSwitchCase="'date'">
-    <input class="form-control" #datePicker  placeholder="yyyy-mm-dd"
-    name="d2" #c2="ngModel" [(ngModel)]="this._value" ngbDatepicker #d2="ngbDatepicker">
+    <mat-form-field>
+      <input matInput  [matDatepicker]="picker1" placeholder="{{this.param}}" [formControl]="formControl">
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
   </div>
   <div *ngSwitchDefault>
     <mat-form-field class="example-full-width">

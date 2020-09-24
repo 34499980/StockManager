@@ -25,6 +25,8 @@ import { NgFallimgModule } from 'ng-fallimg';
 import { DialogMessageComponent } from './componentes/dialogMessage/dialogMessage.component';
 import { RouterModule } from '@angular/router';
 import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule } from '@angular/material/datepicker'
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 
@@ -55,7 +57,8 @@ import {MatSelectModule} from '@angular/material/select';
     ReactiveFormsModule,
     MatDialogModule,
     MatSelectModule,
-    
+    MatDatepickerModule, 
+    MatNativeDateModule,
     RouterModule.forRoot([])
     
     
