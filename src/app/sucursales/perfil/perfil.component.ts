@@ -22,8 +22,10 @@ _userService: UserService
 _arquitecturaService: ArquitecturaService
 _columns: any
 _rules: any
+_sucursal: any
 selectFormControl = new FormControl('', Validators.required);
-_selectedItem: any
+_selectedCategoria: any
+_selectedSucursal: any
 //static user: Usuario = new Usuario
 
 
@@ -35,14 +37,16 @@ _selectedItem: any
 
   ngOnInit(): void {
     this._rules = undefined
+    this._userService.getAllSucursal().subscribe(res => {this._sucursal = res})
     this._userService.getAllRules().subscribe(res=>{this._rules = res,
-                                                  this._selectedItem = Object.assign({}, this._rules.find(x => x.description == "Vendedor"))
+                                                  this._selectedCategoria = Object.assign({}, this._rules.find(x => x.description == "Vendedor"))
                                                 })
    let userIndex = this._actiavateRoute.snapshot.paramMap.get('userName')
    if(userIndex != null){
     this._userService.getUsuariosByUserName(userIndex).subscribe(res => {this.user = res as Usuario,
-                                                                        this.user.Rule = Object.assign({}, this._rules.find(x => x.id == this.user.idRule).description,
-                                                                         this._selectedItem = Object.assign({},this._rules.find(x => x.id == this.user.idRule)))})
+                                                                        this.user.Rule = Object.assign({}, this._rules.find(x => x.id == this.user.idRule).description),
+                                                                        this.fillSelect()
+                                                                      })
   }else{
     this.user = new Usuario
     this._image = "../../../../assets/userEmpty.jpg"
@@ -51,18 +55,28 @@ _selectedItem: any
 
    this._arquitecturaService.getCamposPerfil().subscribe(res => {this._columns = res})
   }
+  fillSelect(){
+    this._selectedCategoria = Object.assign({},this._rules.find(x => x.id == this.user.idRule))
+    this._selectedSucursal= Object.assign({},this._sucursal.find(x => x.id == this.user.idSucursal))
+  }
   changeCategoria(rule){
-    this._selectedItem = Object.assign({}, this._rules.find( x => x.description == rule))
+    this._selectedCategoria = Object.assign({}, this._rules.find( x => x.description == rule))
+    
+  }
+  changeSucursal(rule){
+    this._selectedSucursal = Object.assign({}, this._sucursal.find( x => x.name == name))
     
   }
   updateUsuario(value: any){
-    let val = value.pop() 
-    let param = value.pop() 
-    if(this.user != undefined){
-       this.user[param] = val
-    }else{
-      this.user[param] = val
-    }
+    if(value.isTrusted == undefined){
+      let val = value.pop() 
+      let param = value.pop() 
+      if(this.user != undefined){
+        this.user[param] = val
+      }else{
+        this.user[param] = val
+      }
+   }
   }
   saveUsuario(){
     if(this.user== undefined)

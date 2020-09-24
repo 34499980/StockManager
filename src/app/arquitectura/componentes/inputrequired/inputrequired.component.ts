@@ -16,6 +16,7 @@ export class InputrequiredComponent implements OnInit {
   ]);
   _value: any
   matcher = new MyErrorStateMatcher();
+ @Input() placeHolder: string
  @Input() param: string
  @Input() type: any
  @Input() inputValue: any
@@ -42,7 +43,7 @@ export class InputrequiredComponent implements OnInit {
     
   }
   updateValue(){
-    this._parentResponse.push(this.param,this._value) 
+    this._parentResponse.push(this.param,this.inputValue) 
     this._parent.emit(this._parentResponse)
   }
 

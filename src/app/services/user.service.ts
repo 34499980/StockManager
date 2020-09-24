@@ -126,7 +126,11 @@ export class UserService {
       
     }
     saveUsuario(user: Usuario): Observable<any>{
-        return  this.http.post(environment.RestFullApi+'Usuario',user).pipe(map(res =>{return res},
+        let request =[{
+            user: user
+        }
+        ]
+        return  this.http.post(environment.RestFullApi+'Usuario',request).pipe(map(res =>{return res},
             error => {this.arquitecturaService.openDialog("Error!",error.message)}),
             catchError((err, caught)=> {
                this. handleError(err)

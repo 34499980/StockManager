@@ -1,22 +1,22 @@
 <div [ngSwitch]="this.type">
   <div *ngSwitchCase="'date'">
     <mat-form-field>
-      <input matInput  [matDatepicker]="picker1" placeholder="{{this.param}}" [formControl]="formControl">
+      <input matInput  [matDatepicker]="picker1" placeholder="{{this.placeHolder}}" (keyup)="updateValue()" [formControl]="formControl">
       <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
       <mat-datepicker #picker1></mat-datepicker>
     </mat-form-field>
   </div>
   <div *ngSwitchDefault>
     <mat-form-field class="example-full-width">
-      <mat-label>{{this.param}}</mat-label>
-      <input matInput type="{{this.type}}" #input [formControl]="formControl" (keyup)="updateValue()" [(ngModel)]="this._value" [errorStateMatcher]="matcher"  >
+      <mat-label>{{this.placeHolder}}</mat-label>
+      <input matInput type="{{this.type}}" #input [formControl]="formControl" (keyup)="updateValue()" [(ngModel)]="this.inputValue" [errorStateMatcher]="matcher"  >
       
       <mat-hint></mat-hint>
       <mat-error *ngIf="formControl.hasError('{{this.param}}') && !formControl.hasError('required')">
-        Por favor ingrese {{this.param}}
+        Por favor ingrese {{this.placeHolder}}
       </mat-error>
       <mat-error *ngIf="formControl.hasError('required')">
-        {{this.param}} es un campo <strong>obligatorio</strong>
+        {{this.placeHolder}} es un campo <strong>obligatorio</strong>
       </mat-error>
     </mat-form-field>
   </div>

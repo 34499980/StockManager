@@ -10,6 +10,7 @@ export class Usuario{
     codPostal: string
     idRule: number
     Rule: string
+    idSucursal: number
 
     constructor(){
         this.userName = ""
@@ -23,5 +24,6 @@ export class Usuario{
         this.codPostal = ""
         this.idRule = 0
         this.Rule = ""
+        this.idSucursal = 0
     }
 }
