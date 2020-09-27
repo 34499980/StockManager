@@ -1,4 +1,4 @@
-
+<form novalidate [formGroup]="formControl">
   <div class="center" style="width: 100%; height: 100%;">
     <div *ngIf="this.user != undefined && this._rules != undefined; else loading">
     <table style="width: 100%;background-color: white">
@@ -17,24 +17,24 @@
           <td>
             <mat-form-field  appearance="fill">
               <mat-label>Categoria</mat-label>
-              <mat-select [formControl]="selectFormControl" [(ngModel)]="this._selectedCategoria.description"   required (selectionChange)="changeCategoria($event.value)">                       
+              <mat-select formControlName="Categoria" [(ngModel)]="this._selectedCategoria.description"   required (selectionChange)="changeCategoria($event.value)">                       
                 <mat-option *ngFor="let r of this._rules" [value]="r.description" >
                   {{r.description}}
                 </mat-option>
               </mat-select>
-              <mat-error *ngIf="selectFormControl.hasError('required')">Please choose a rule</mat-error>
+              <mat-error *ngIf="formControl.get('Categoria').hasError('required')">Please choose a rule</mat-error>
             
             </mat-form-field>
           </td>
           <td>
             <mat-form-field  appearance="fill">
               <mat-label>Sucursal</mat-label>
-              <mat-select [formControl]="selectFormControl" [(ngModel)]="this._selectedSucursal.name"   required (selectionChange)="changeSucursal($event.value)">                       
+              <mat-select formControlName="Sucursal" [(ngModel)]="this._selectedSucursal.name"   required (selectionChange)="changeSucursal($event.value)">                       
                 <mat-option *ngFor="let r of this._sucursal" [value]="r.name" >
                   {{r.name}}
                 </mat-option>
               </mat-select>
-              <mat-error *ngIf="selectFormControl.hasError('required')">Please choose a rule</mat-error>
+              <mat-error *ngIf="formControl.get('Sucursal').hasError('required')">Please choose a rule</mat-error>
             
             </mat-form-field>
           </td>
@@ -72,4 +72,5 @@
     <mat-spinner class='center'></mat-spinner>
   </ng-template>
   </div>
+</form>
 

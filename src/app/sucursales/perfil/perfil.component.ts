@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { ArquitecturaService } from 'src/app/services/arquitectura.service';
 import { Usuario } from 'src/app/arquitectura/class/usuario';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertService } from 'src/app/services/alert.service';
 
 
@@ -23,7 +23,11 @@ _arquitecturaService: ArquitecturaService
 _columns: any
 _rules: any
 _sucursal: any
-selectFormControl = new FormControl('', Validators.required);
+formControl = new FormGroup({
+  Categoria : new FormControl('', Validators.required),
+  Sucursal : new FormControl('', Validators.required)
+})
+
 _selectedCategoria: any
 _selectedSucursal: any
 //static user: Usuario = new Usuario
@@ -37,6 +41,7 @@ _selectedSucursal: any
 
   ngOnInit(): void {
     this._rules = undefined
+    this._selectedSucursal = {name: 'loading...'}
     this._userService.getAllSucursal().subscribe(res => {this._sucursal = res})
     this._userService.getAllRules().subscribe(res=>{this._rules = res,
                                                   this._selectedCategoria = Object.assign({}, this._rules.find(x => x.description == "Vendedor"))
@@ -79,8 +84,7 @@ _selectedSucursal: any
    }
   }
   saveUsuario(){
-    if(this.user== undefined)
-   // this.user =  PerfilComponent.user
+    
     this._userService.saveUsuario(this.user).subscribe(res => {
                                                                 if(res == true){
                                                                   this.alertService.success("Usuario guardado!")
