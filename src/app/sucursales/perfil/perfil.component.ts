@@ -5,6 +5,7 @@ import { ArquitecturaService } from 'src/app/services/arquitectura.service';
 import { Usuario } from 'src/app/arquitectura/class/usuario';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertService } from 'src/app/services/alert.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 
 @Component({
@@ -33,7 +34,7 @@ _selectedSucursal: any
 //static user: Usuario = new Usuario
 
 
-  constructor(private alertService: AlertService,actiavateRoute: ActivatedRoute,userService: UserService,arquitecturaService: ArquitecturaService) {
+  constructor(private authenticacionService: AuthenticationService ,private alertService: AlertService,actiavateRoute: ActivatedRoute,userService: UserService,arquitecturaService: ArquitecturaService) {
     this._actiavateRoute = actiavateRoute
     this._userService = userService
     this._arquitecturaService = arquitecturaService
@@ -41,7 +42,10 @@ _selectedSucursal: any
 
   ngOnInit(): void {
     this._rules = undefined
+    this._sucursal = undefined
     this._selectedSucursal = {name: 'loading...'}
+    this._selectedCategoria = {description: 'loading...'}
+    this._arquitecturaService.getCamposPerfil().subscribe(res => {this._columns = res})
     this._userService.getAllSucursal().subscribe(res => {this._sucursal = res})
     this._userService.getAllRules().subscribe(res=>{this._rules = res,
                                                   this._selectedCategoria = Object.assign({}, this._rules.find(x => x.description == "Vendedor"))
@@ -55,10 +59,13 @@ _selectedSucursal: any
   }else{
     this.user = new Usuario
     this._image = "../../../../assets/userEmpty.jpg"
-  
+    let userAux = this.authenticacionService.getSession();
+    this._userService.getUsuariosByUserName(userAux).subscribe(res => {
+                                                       this._selectedSucursal= Object.assign({},this._sucursal.find(x => x.id == res.idSucursal))
+    })
   }
 
-   this._arquitecturaService.getCamposPerfil().subscribe(res => {this._columns = res})
+  
   }
   fillSelect(){
     this._selectedCategoria = Object.assign({},this._rules.find(x => x.id == this.user.idRule))

@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, Output,EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
-import { Usuario } from '../../class/usuario';
+import { ChangeDetectorRef } from '@angular/core';
+
 
 
 @Component({
@@ -26,28 +27,39 @@ export class InputrequiredComponent implements OnInit {
  _parentResponse: string[] = []
 
 
-  constructor() { }
+  constructor(private cdRef:ChangeDetectorRef) { }
   ngOnInit(): void {
     if(this.inputValue != null){
       this._value = this.inputValue
       if(this.type == 'date'){
-        this.formControl = new FormControl(this._value);
+        this.formControl = new FormControl(this.inputValue);
       }
+  }else{
+    this.inputValue = undefined
   }
 }
 
   ngOnChanges(): void {
    if(this.inputValue != null){
-     this._value = this.inputValue[this.param]
+     this._value = this.inputValue
    }
-    
+  
   }
+ 
   updateValue(){
     this._parentResponse.push(this.param,this.inputValue) 
     this._parent.emit(this._parentResponse)
   }
+  ngAfterViewChecked()
+{
+  if(this.type == 'date' && this.inputValue != undefined){
+  this._parentResponse.push(this.param,this.inputValue) 
+  this._parent.emit(this._parentResponse)
+  }
+}
 
 }
+
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     const isSubmitted = form && form.submitted;

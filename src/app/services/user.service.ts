@@ -130,7 +130,7 @@ export class UserService {
             user: user
         }
         ]
-        return  this.http.post(environment.RestFullApi+'Usuario',request).pipe(map(res =>{return res},
+        return  this.http.post(environment.RestFullApi+'Usuario',{user}).pipe(map(res =>{return res},
             error => {this.arquitecturaService.openDialog("Error!",error.message)}),
             catchError((err, caught)=> {
                this. handleError(err)

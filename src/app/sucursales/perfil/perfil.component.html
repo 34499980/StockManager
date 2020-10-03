@@ -1,6 +1,6 @@
 <form novalidate [formGroup]="formControl">
   <div class="center" style="width: 100%; height: 100%;">
-    <div *ngIf="this.user != undefined && this._rules != undefined; else loading">
+    <div *ngIf="this.user != undefined && this._rules != undefined && this._sucursal != undefined; else loading">
     <table style="width: 100%;background-color: white">
         <tr>
          <!-- <td class="bold">UserName: {{this._user.userName}}</td>-->
@@ -57,7 +57,7 @@
          <!--  <td class="bold">Direccion: </td>-->
          <td><app-inputrequired [param]="'address'" [placeHolder]="'Direccion'" [type]="'text'"  (_parent)="updateUsuario($event)" [(inputValue)]="this.user.address"></app-inputrequired></td>
           <!-- <td class="bold">CodPostal: </td>-->
-         <td><app-inputrequired [param]="'CodPostal'" [placeHolder]="'CodPostal'" [type]="'text'"  (_parent)="updateUsuario($event)" [(inputValue)]="this.user.codPostal"></app-inputrequired></td>
+         <td><app-inputrequired [param]="'codPostal'" [placeHolder]="'CodPostal'" [type]="'text'"  (_parent)="updateUsuario($event)" [(inputValue)]="this.user.codPostal"></app-inputrequired></td>
 
        </tr>
      
