@@ -1,7 +1,7 @@
 <div [ngSwitch]="this.type">
   <div *ngSwitchCase="'date'">
     <mat-form-field>
-      <input matInput  [matDatepicker]="picker1" placeholder="{{this.placeHolder}}" [(ngModel)]="this.inputValue" (ngModelChange)="updateValue($event)" [formControl]="formControl">
+      <input matInput  [matDatepicker]="picker1" placeholder="{{this.placeHolder}}" [(ngModel)]="this.inputValue" (ngModelChange)="updateValue()" [formControl]="formControl">
       <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
       <mat-datepicker #picker1></mat-datepicker>
     </mat-form-field>
