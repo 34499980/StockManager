@@ -56,15 +56,15 @@ formControl: FormGroup
     this._image = "../../../../assets/userEmpty.jpg"
     let userAux = this._authenticacionService.getSession();
     this._userService.getUsuariosByUserName(userAux).subscribe(res => {
-      this.formControl.controls['sucursal'].setValue(Object.assign({},this._sucursal.find(x => x.id == res.idSucursal)))
+      this.formControl.controls['sucursal'].setValue(this._sucursal.find(x => x.id == res.idSucursal))
     })
   }
 
   
   }
   fillSelect(){
-    this.formControl.controls['role'].setValue(Object.assign({},this._roles.find(x => x.id == this.user.idRule)))
-    this.formControl.controls['sucursal'].setValue(Object.assign({},this._sucursal.find(x => x.id == this.user.idSucursal)))
+    this.formControl.controls['role'].setValue(this._roles.find(x => x.id == this.user.idRule))
+    this.formControl.controls['sucursal'].setValue(this._sucursal.find(x => x.id == this.user.idSucursal))
   } 
  validateSpinner(){
   return this.user

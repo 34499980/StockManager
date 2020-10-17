@@ -39,7 +39,7 @@ export class InputrequiredComponent implements OnInit {
 }
  
   updateValue(){
-    this._parentResponse.push(this.param,this.inputValue) 
+    this._parentResponse.push(this.param,this.formControl.controls['input'].value) 
     this._parent.emit(this._parentResponse)
   }
   ngAfterViewChecked()
