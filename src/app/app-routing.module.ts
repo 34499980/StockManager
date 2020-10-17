@@ -12,6 +12,8 @@ import { PagoComponent } from './facturacion/pago/pago.component';
 import { DespachosComponent } from './stock/despachos/despachos.component';
 import { HomeComponent } from './sucursales/usuarios/home/home.component';
 import { PageLoginComponent } from './users/pagelogin/pagelogin.component';
+import { RolesResolver } from './resolvers/Roles.resolver';
+import { SucursalResolver } from './resolvers/sucursal.resolver';
 
 
 
@@ -30,11 +32,19 @@ const routes: Routes = [
   },  
   {
     path: 'Perfil',
-    component: PerfilComponent   
+    component: PerfilComponent,
+    resolve:{
+      roles: RolesResolver,
+      sucursal: SucursalResolver
+    }   
   },
   {
     path: 'Perfil/:userName',
-    component: PerfilComponent   
+    component: PerfilComponent,
+    resolve:{
+      roles: RolesResolver,
+      sucursal: SucursalResolver
+    }    
   }
   ,
   {
@@ -74,6 +84,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [RolesResolver,SucursalResolver]
 })
 export class AppRoutingModule { }

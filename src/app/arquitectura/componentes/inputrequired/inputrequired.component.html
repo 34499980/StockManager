@@ -1,23 +1,20 @@
-<div [ngSwitch]="this.type">
-  <div *ngSwitchCase="'date'">
-    <mat-form-field>
-      <input matInput  [matDatepicker]="picker1" placeholder="{{this.placeHolder}}" [(ngModel)]="this.inputValue" (ngModelChange)="updateValue()" [formControl]="formControl">
-      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-      <mat-datepicker #picker1></mat-datepicker>
-    </mat-form-field>
+<form [formGroup]="formControl">
+  <div [ngSwitch]="this.type">
+    <div *ngSwitchCase="'date'">
+      <mat-form-field>
+        <input matInput  [matDatepicker]="picker1" placeholder="{{this.placeHolder}}" [(value)]="this.inputValue" (ngModelChange)="updateValue()" formControlName="input">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div *ngSwitchDefault>
+      <mat-form-field class="example-full-width">
+        <mat-label>{{this.placeHolder}}</mat-label>
+        <input matInput type="{{this.type}}" #input formControlName="input" (keyup)="updateValue()" [(value)]="this.inputValue" [errorStateMatcher]="matcher">    
+        <mat-error>
+          {{this.placeHolder}} es un campo <strong>obligatorio</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
   </div>
-  <div *ngSwitchDefault>
-    <mat-form-field class="example-full-width">
-      <mat-label>{{this.placeHolder}}</mat-label>
-      <input matInput type="{{this.type}}" #input [formControl]="formControl" (keyup)="updateValue()" [(ngModel)]="this.inputValue" [errorStateMatcher]="matcher"  >
-      
-      <mat-hint></mat-hint>
-      <mat-error *ngIf="formControl.hasError('{{this.param}}') && !formControl.hasError('required')">
-        Por favor ingrese {{this.placeHolder}}
-      </mat-error>
-      <mat-error *ngIf="formControl.hasError('required')">
-        {{this.placeHolder}} es un campo <strong>obligatorio</strong>
-      </mat-error>
-    </mat-form-field>
-  </div>
-</div>
+</form>

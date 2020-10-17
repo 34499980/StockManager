@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, Output,EventEmitter, ViewChild, ElementRef } from '@angular/core';
-import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
 import { ChangeDetectorRef } from '@angular/core';
+import { pipe } from 'rxjs';
 
 
 
@@ -11,11 +12,7 @@ import { ChangeDetectorRef } from '@angular/core';
   styleUrls: ['./inputrequired.component.css']
 })
 export class InputrequiredComponent implements OnInit {
-  formControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
-  _value: any
+  formControl:FormGroup;  
   matcher = new MyErrorStateMatcher();
  @Input() placeHolder: string
  @Input() param: string
@@ -27,24 +24,19 @@ export class InputrequiredComponent implements OnInit {
  _parentResponse: string[] = []
 
 
-  constructor(private cdRef:ChangeDetectorRef) { }
+  constructor() { }
   ngOnInit(): void {
-    if(this.inputValue != null){
-      this._value = this.inputValue
-      if(this.type == 'date'){
-        this.formControl = new FormControl(this.inputValue);
-      }
-  }else{
-    this.inputValue = undefined
-  }
+    this.formControl = new FormBuilder().group({
+      input: [this.inputValue,Validators.required]
+    });
+    /*if(this.type != 'date'){    
+    this.formControl.controls['input'].valueChanges
+    .pipe()
+    .subscribe(data => {
+      this.formControl.controls["input"].setValue(this.inputValue)                                     
+    });
+  }  */
 }
-
-  ngOnChanges(): void {
-   if(this.inputValue != null){
-     this._value = this.inputValue
-   }
-  
-  }
  
   updateValue(){
     this._parentResponse.push(this.param,this.inputValue) 

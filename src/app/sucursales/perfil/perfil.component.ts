@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { ArquitecturaService } from 'src/app/services/arquitectura.service';
 import { Usuario } from 'src/app/arquitectura/class/usuario';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertService } from 'src/app/services/alert.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
@@ -18,67 +18,57 @@ export class PerfilComponent implements OnInit {
   @ViewChild('file') file :ElementRef
   _fileSelected: File = null
   user: Usuario = undefined
-_actiavateRoute: ActivatedRoute
-_userService: UserService
-_arquitecturaService: ArquitecturaService
 _columns: any
-_rules: any
+_roles: any
 _sucursal: any
-formControl = new FormGroup({
-  Categoria : new FormControl('', Validators.required),
-  Sucursal : new FormControl('', Validators.required)
-})
+formControl: FormGroup
 
-_selectedCategoria: any
-_selectedSucursal: any
 //static user: Usuario = new Usuario
 
 
-  constructor(private authenticacionService: AuthenticationService ,private alertService: AlertService,actiavateRoute: ActivatedRoute,userService: UserService,arquitecturaService: ArquitecturaService) {
-    this._actiavateRoute = actiavateRoute
-    this._userService = userService
-    this._arquitecturaService = arquitecturaService
+  constructor(private _authenticacionService: AuthenticationService,
+              private _alertService: AlertService,
+              private _actiavateRoute: ActivatedRoute,
+              private _userService: UserService,
+              private _arquitecturaService: ArquitecturaService) {
+  
    }
 
   ngOnInit(): void {
-    this._rules = undefined
-    this._sucursal = undefined
-    this._selectedSucursal = {name: 'loading...'}
-    this._selectedCategoria = {description: 'loading...'}
-    this._arquitecturaService.getCamposPerfil().subscribe(res => {this._columns = res})
-    this._userService.getAllSucursal().subscribe(res => {this._sucursal = res})
-    this._userService.getAllRules().subscribe(res=>{this._rules = res,
-                                                  this._selectedCategoria = Object.assign({}, this._rules.find(x => x.description == "Vendedor"))
-                                                })
+    this.formControl = new FormBuilder().group({
+      role : new FormControl('', Validators.required),
+      sucursal : new FormControl('', Validators.required)
+    })
+    this._roles = this._actiavateRoute.snapshot.data.roles as any;
+    this._sucursal = this._actiavateRoute.snapshot.data.sucursal as any;  
+    this.formControl.controls['role'].setValue(Object.assign({}, this._roles.find(x => x.description == "Vendedor")))
+   
+    this._arquitecturaService.getCamposPerfil().subscribe(res => {this._columns = res})   
+   
    let userIndex = this._actiavateRoute.snapshot.paramMap.get('userName')
    if(userIndex != null){
     this._userService.getUsuariosByUserName(userIndex).subscribe(res => {this.user = res as Usuario,
-                                                                        this.user.Rule = Object.assign({}, this._rules.find(x => x.id == this.user.idRule).description),
+                                                                        this.user.Rule = Object.assign({}, this._roles.find(x => x.id == this.user.idRule).description),
                                                                         this.fillSelect()
                                                                       })
   }else{
     this.user = new Usuario
     this._image = "../../../../assets/userEmpty.jpg"
-    let userAux = this.authenticacionService.getSession();
+    let userAux = this._authenticacionService.getSession();
     this._userService.getUsuariosByUserName(userAux).subscribe(res => {
-                                                       this._selectedSucursal= Object.assign({},this._sucursal.find(x => x.id == res.idSucursal))
+      this.formControl.controls['sucursal'].setValue(Object.assign({},this._sucursal.find(x => x.id == res.idSucursal)))
     })
   }
 
   
   }
   fillSelect(){
-    this._selectedCategoria = Object.assign({},this._rules.find(x => x.id == this.user.idRule))
-    this._selectedSucursal= Object.assign({},this._sucursal.find(x => x.id == this.user.idSucursal))
-  }
-  changeCategoria(rule){
-    this._selectedCategoria = Object.assign({}, this._rules.find( x => x.description == rule))
-    
-  }
-  changeSucursal(rule){
-    this._selectedSucursal = Object.assign({}, this._sucursal.find( x => x.name == name))
-    
-  }
+    this.formControl.controls['role'].setValue(Object.assign({},this._roles.find(x => x.id == this.user.idRule)))
+    this.formControl.controls['sucursal'].setValue(Object.assign({},this._sucursal.find(x => x.id == this.user.idSucursal)))
+  } 
+ validateSpinner(){
+  return this.user
+ }
   updateUsuario(value: any){
     if(value.isTrusted == undefined){
       let val = value.pop() 
@@ -94,9 +84,9 @@ _selectedSucursal: any
     
     this._userService.saveUsuario(this.user).subscribe(res => {
                                                                 if(res == true){
-                                                                  this.alertService.success("Usuario guardado!")
+                                                                  this._alertService.success("Usuario guardado!")
                                                                 }else{
-                                                                  this.alertService.success("Error al guardar usuario!")
+                                                                  this._alertService.success("Error al guardar usuario!")
                                                                 }
     });
   }
