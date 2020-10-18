@@ -81,7 +81,8 @@ formControl: FormGroup
    }
   }
   saveUsuario(){
-    
+    this.user.idRule =  this.formControl.controls['role'].value.id
+    this.user.idSucursal =  this.formControl.controls['sucursal'].value.id
     this._userService.saveUsuario(this.user).subscribe(res => {
                                                                 if(res == true){
                                                                   this._alertService.success("Usuario guardado!")
