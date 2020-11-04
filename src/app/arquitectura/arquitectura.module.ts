@@ -14,9 +14,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button';
 import { AppRoutingModule } from '../app-routing.module';
 import { PaneluserComponent } from './componentes/paneluser/paneluser.component';
-import {MatFormFieldModule} from '@angular/material/form-field'
+import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputrequiredComponent } from './componentes/inputrequired/inputrequired.component';
 import { DialogconfirmComponent } from './componentes/dialogconfirm/dialogconfirm.component';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -25,7 +25,7 @@ import { NgFallimgModule } from 'ng-fallimg';
 import { DialogMessageComponent } from './componentes/dialogMessage/dialogMessage.component';
 import { RouterModule } from '@angular/router';
 import {MatSelectModule} from '@angular/material/select';
-import {MatDatepickerModule } from '@angular/material/datepicker'
+import {MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
 
@@ -35,8 +35,15 @@ import { MatNativeDateModule } from '@angular/material/core';
 
 
 
+
 @NgModule({
-  declarations: [SidenavComponent,PaneluserComponent, InputrequiredComponent, DialogconfirmComponent, ModaldetailsComponent,DialogMessageComponent],
+  declarations: [
+    SidenavComponent,
+    PaneluserComponent,
+    InputrequiredComponent,
+    DialogconfirmComponent,
+    ModaldetailsComponent,
+    DialogMessageComponent],
   imports: [
     CommonModule,
     BrowserModule,
@@ -47,9 +54,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatSidenavModule,
     MatListModule,
     MatTreeModule,
-    MatIconModule,     
+    MatIconModule,
     NgbModule,
-    MatExpansionModule,    
+    MatExpansionModule,
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
@@ -57,12 +64,16 @@ import { MatNativeDateModule } from '@angular/material/core';
     ReactiveFormsModule,
     MatDialogModule,
     MatSelectModule,
-    MatDatepickerModule, 
+    MatDatepickerModule,
     MatNativeDateModule,
     RouterModule.forRoot([])
-    
-    
+
   ],
-  exports:[SidenavComponent,PaneluserComponent,InputrequiredComponent,DialogconfirmComponent,MatDialogModule,DialogMessageComponent]
+  exports: [SidenavComponent,
+    PaneluserComponent,
+    InputrequiredComponent,
+     DialogconfirmComponent,
+      MatDialogModule,
+    DialogMessageComponent]
 })
 export class ArquitecturaModule { }

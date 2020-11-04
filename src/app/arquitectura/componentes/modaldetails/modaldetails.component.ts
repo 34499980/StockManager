@@ -10,6 +10,7 @@ import { UserService } from 'src/app/services/user.service';
 import { FormControl, Validators } from '@angular/forms';
 import { Dispatch } from '../../class/Dispatch';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 export interface ModalData {
   _articul: Articulo
   bDsiable: boolean
@@ -77,8 +78,10 @@ export class ModaldetailsComponent implements OnInit {
    _fileNotSelected: any  
    _arquitecturaService: ArquitecturaService
    _userService: UserService
+   url: string;
+   cameraImage: SafeResourceUrl;
    @ViewChild('file') file :ElementRef
-  constructor(modalgRef: MatDialogRef<ModaldetailsComponent>,private authentication :AuthenticationService ,  stockService: StockService,@Inject(MAT_DIALOG_DATA) data: ModalData,arquitecturaService: ArquitecturaService,dispatchService: DispatchService,private userService: UserService) {
+  constructor(private sanitizer: DomSanitizer, modalgRef: MatDialogRef<ModaldetailsComponent>,private authentication :AuthenticationService ,  stockService: StockService,@Inject(MAT_DIALOG_DATA) data: ModalData,arquitecturaService: ArquitecturaService,dispatchService: DispatchService,private userService: UserService) {
     this._modalgRef = modalgRef
     this._stockService = stockService
     this._data = data
@@ -191,6 +194,9 @@ export class ModaldetailsComponent implements OnInit {
   OnFileSelected(event){   
     this.file.nativeElement.click()
     this._fileSelected = <File>event.target.files == undefined ? undefined : <File>event.target.files[0]
+    this.url = URL.createObjectURL(this._fileSelected);
+    this.cameraImage = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
+    console.log(this._fileSelected)
     if(this._fileSelected != undefined){
   
     }

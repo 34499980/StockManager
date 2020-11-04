@@ -1,5 +1,5 @@
 
-
+<div style="height: 100%;" fxLayout="column" fxLayoutAlign="space-between">
 <mat-sidenav-container class="sidenav-container" color="primary" *ngIf="isLogged$ | async as isLoggedIn">
   <mat-sidenav #drawer class="sidenav" fixedInViewport
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
@@ -43,7 +43,9 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span  *ngIf="isHandset$ | async">Menu</span>
-      <button mat-button    fxLayoutAlign="end start"  (click)="logout()" *ngIf="isLoggedIn">Logout</button>
+      <div fxLayout="row" fxLayoutAlign="end start" >    
+      <button mat-button (click)="logout()" *ngIf="isLoggedIn">Logout</button>
+    </div>
     </mat-toolbar>
    
     <router-outlet></router-outlet>
@@ -87,3 +89,4 @@
 
 </button>-->
 </form>
+</div>

@@ -8,15 +8,14 @@ import { ServicesModule } from './services/services.module';
 import { RulesModule } from './rules/rules.module';
 import { UsersModule } from './users/users.module';
 import { HomeComponent } from './sucursales/usuarios/home/home.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,    
-    
-    
+    HomeComponent,
   ],
   imports: [
     ArquitecturaModule,
@@ -26,11 +25,10 @@ import { HomeComponent } from './sucursales/usuarios/home/home.component';
     FacturacionModule,
     StockModule,
     ServicesModule,
-    UsersModule
-   
-    
-    
+    UsersModule,
+    FlexLayoutModule
   ],
+  exports:[FlexLayoutModule],
   providers: [],
   bootstrap: [AppComponent]
 })
