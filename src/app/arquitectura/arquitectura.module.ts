@@ -27,6 +27,7 @@ import { RouterModule } from '@angular/router';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 
@@ -66,6 +67,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    FlexLayoutModule,
     RouterModule.forRoot([])
 
   ],
