@@ -7,7 +7,6 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { AlertService } from 'src/app/services/alert.service';
 import { ArquitecturaService } from 'src/app/services/arquitectura.service';
 import { AppComponent } from 'src/app/app.component';
-import { UserLogin } from '../UserLogin';
 import { Observable } from 'rxjs';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { UserService } from 'src/app/services/user.service';
@@ -40,8 +39,7 @@ export class PageLoginComponent implements OnInit {
       private router: Router,
       private authenticationService: AuthenticationService,
       private alertService: AlertService,
-      arquitecturaService: ArquitecturaService,
-      private userLogin: UserLogin,     
+      arquitecturaService: ArquitecturaService,     
       private breakpointObserver: BreakpointObserver,
       private userService: UserService
      
@@ -63,8 +61,7 @@ export class PageLoginComponent implements OnInit {
   }
   login(){     
 
-    this.userLogin._userName = this.f.username.value
-    this.userLogin._password = this.f.password.value
+  
     this.loading = false
     this.router.navigate(['Home'])
   }

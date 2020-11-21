@@ -4,9 +4,9 @@ import { StockService } from 'src/app/services/stock.service';
 import { PDFService } from 'src/app/services/pdf.service';
 import { ArquitecturaService } from 'src/app/services/arquitectura.service';
 import { Router, NavigationExtras } from '@angular/router';
-import { DialogconfirmComponent } from 'src/app/arquitectura/componentes/dialogconfirm/dialogconfirm.component';
-import { MatDialog } from '@angular/material/dialog';
 import { FacturacionService } from 'src/app/services/facturacion.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogconfirmComponent } from 'src/app/arquitectura/componentes/dialogs/dialogconfirm/dialogconfirm.component';
 
 
 
@@ -16,7 +16,7 @@ import { FacturacionService } from 'src/app/services/facturacion.service';
   templateUrl: './ventas.component.html',
   styleUrls: ['./ventas.component.css']
 })
-export class VentasComponent implements OnInit {
+export class VentasComponent implements OnInit {  
   _articule: Articulo = new Articulo
   _searchCode: String
   _stockService: StockService

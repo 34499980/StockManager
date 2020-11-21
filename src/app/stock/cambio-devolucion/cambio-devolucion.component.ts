@@ -4,9 +4,9 @@ import { StockService } from 'src/app/services/stock.service';
 import { PDFService } from 'src/app/services/pdf.service';
 import { ArquitecturaService } from 'src/app/services/arquitectura.service';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogconfirmComponent } from 'src/app/arquitectura/componentes/dialogconfirm/dialogconfirm.component';
 import { Router, NavigationExtras } from '@angular/router';
 import { FacturacionService } from 'src/app/services/facturacion.service';
+import { DialogconfirmComponent } from 'src/app/arquitectura/componentes/dialogs/dialogconfirm/dialogconfirm.component';
 
 @Component({
   selector: 'app-cambio-devolucion',

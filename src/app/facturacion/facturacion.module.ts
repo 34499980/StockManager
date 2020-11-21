@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ArquitecturaModule } from '../arquitectura/arquitectura.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
 import { MatButtonModule } from '@angular/material/button';
@@ -13,6 +12,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import { PagoComponent } from './pago/pago.component';
 import { MatListModule } from '@angular/material/list';
 import { TruncatePipe } from './pipes/truncate.pipe';
+import { SharedModule } from '../arquitectura/shared/shared.module';
 
 
 
@@ -21,7 +21,7 @@ import { TruncatePipe } from './pipes/truncate.pipe';
   declarations: [VentasComponent, AnularComponent, PagoComponent,TruncatePipe],
   imports: [
     CommonModule,
-    ArquitecturaModule,
+    SharedModule,
     FormsModule,
     AppRoutingModule ,   
     ReactiveFormsModule,

@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { StockService } from 'src/app/services/stock.service';
 import { ArquitecturaService } from 'src/app/services/arquitectura.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ModaldetailsComponent } from 'src/app/arquitectura/componentes/modaldetails/modaldetails.component';
-import { Articulo } from 'src/app/arquitectura/class/Articulo';
 import { UserService } from 'src/app/services/user.service';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { Articulo } from 'src/app/arquitectura/class/Articulo';
+import { ModaldetailsComponent } from 'src/app/arquitectura/componentes/dialogs/modaldetails/modaldetails.component';
 
 @Component({
   selector: 'app-mercaderia',

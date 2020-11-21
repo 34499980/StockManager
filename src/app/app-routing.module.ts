@@ -11,9 +11,9 @@ import { CambioDevolucionComponent } from './stock/cambio-devolucion/cambio-devo
 import { PagoComponent } from './facturacion/pago/pago.component';
 import { DespachosComponent } from './stock/despachos/despachos.component';
 import { HomeComponent } from './sucursales/usuarios/home/home.component';
-import { PageLoginComponent } from './users/pagelogin/pagelogin.component';
 import { RolesResolver } from './resolvers/Roles.resolver';
 import { SucursalResolver } from './resolvers/sucursal.resolver';
+import { PageLoginComponent } from './arquitectura/componentes/pagelogin/pagelogin.component';
 
 
 

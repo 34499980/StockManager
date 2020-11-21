@@ -1,4 +1,4 @@
-<mat-dialog-content class="mat-typography">
+<div class="mat-typography">
   <div [ngSwitch]="this._data._screen">
     <div *ngSwitchCase="'articulo'">
       <table >
@@ -92,15 +92,16 @@
         <tbody >
           <tr><td></td></tr>
             <tr>
+              <form [formGroup]="dispatchControl" fxLayout="row wrap" fxLayoutAlign="start start" class="px-8 pt-8">
                <td style="padding-top: 10%" >    
                 <!--<select *ngFor="let s of this._sucursal">
                   <option>{{s.name}}</option>
                 </select>        -->    
-                   
+               
                     <mat-form-field appearance="fill">
                       <mat-label>Sucursal origen</mat-label>
-                      <mat-select [formControl]="selectFormControl"  (selectionChange)="changeSucursal($event.value,'origen')">                       
-                        <mat-option *ngFor="let s of this._sucursal" [value]="s" >
+                      <mat-select formControlName="origin"  >                       
+                        <mat-option *ngFor="let s of this.sucursalData" [value]="s.id" >
                           {{s.name}}
                         </mat-option>
                       </mat-select>
@@ -115,15 +116,17 @@
              
                 <mat-form-field appearance="fill">
                   <mat-label>Sucursal destino</mat-label>
-                  <mat-select [formControl]="selectFormControl" required (selectionChange)="changeSucursal($event.value,'destino')">                       
-                    <mat-option *ngFor="let s of this._sucursal" [value]="s" >
+                  <mat-select formControlName="destiny" required >                       
+                    <mat-option *ngFor="let s of this.sucursalData" [value]="s.id" >
                       {{s.name}}
                     </mat-option>
                   </mat-select>
                   <mat-error *ngIf="selectFormControl.hasError('required')">Please choose a sucursal</mat-error>
                 
                 </mat-form-field>
-                
+               </td>
+              </form>
+            </tr> 
                  
              
               
@@ -132,6 +135,7 @@
               
         </tbody>  
       </table>
+ 
     </div>
   
     <div *ngSwitchCase="'dispatchSelected'">
@@ -157,16 +161,9 @@
     </div>
     </div>
   </div>
-<div *ngIf="this._data._screen == 'articulo'; else next1">
- 
-</div>
-<ng-template #next1>
-
-
-</ng-template>
    
-</mat-dialog-content>
-<mat-dialog-actions align="center">
+</div>
+<div align="center">
   <div [ngSwitch]="this._data._screen">
     <div *ngSwitchCase="'articulo'">
       <button   mat-button color="primary" [style.visibility]="!this._bDsiable? 'visible': 'hidden'" (click)="close()">Cancel</button>
@@ -189,14 +186,7 @@
      </div>
     </div>
   </div>
-
-  <div *ngIf="this._data._screen == 'articulo'; else buttonNext1">
-   
-  </div>
-  <ng-template #buttonNext1>
-    
-</ng-template>
-</mat-dialog-actions>
+</div>
 
 
 <!-- Copyright 2019 Google LLC. All Rights Reserved.

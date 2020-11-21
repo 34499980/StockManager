@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogMessageComponent } from '../arquitectura/componentes/dialogMessage/dialogMessage.component';
-
+import { DialogMessageComponent } from '../arquitectura/componentes/dialogs/dialogMessage/dialogMessage.component';
 @Injectable({
   providedIn: 'root'
 })

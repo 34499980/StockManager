@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ArquitecturaService } from 'src/app/services/arquitectura.service';
 import { UserService } from 'src/app/services/user.service';
-import { DialogconfirmComponent } from 'src/app/arquitectura/componentes/dialogconfirm/dialogconfirm.component';
 import { MatDialog } from '@angular/material/dialog';
 import { FacturacionService } from 'src/app/services/facturacion.service';
+import { DialogconfirmComponent } from 'src/app/arquitectura/componentes/dialogs/dialogconfirm/dialogconfirm.component';
 
 @Component({
   selector: 'app-anular',

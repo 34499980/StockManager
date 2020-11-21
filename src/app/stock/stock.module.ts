@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MercaderiaComponent } from './mercaderia/mercaderia.component';
-import { ArquitecturaModule } from '../arquitectura/arquitectura.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,6 +10,7 @@ import { CambioDevolucionComponent } from './cambio-devolucion/cambio-devolucion
 import { DespachosComponent } from './despachos/despachos.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { SharedModule } from '../arquitectura/shared/shared.module';
 
 
 
@@ -19,7 +19,7 @@ import { MatSelectModule } from '@angular/material/select';
   declarations: [MercaderiaComponent,CambioDevolucionComponent, DespachosComponent],
   imports: [
     CommonModule,
-    ArquitecturaModule,
+    SharedModule,
     FormsModule,
     AppRoutingModule ,   
     ReactiveFormsModule,
