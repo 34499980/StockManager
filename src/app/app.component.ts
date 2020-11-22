@@ -8,13 +8,9 @@ import { AuthenticationService } from './services/authentication.service';
 })
 export class AppComponent {
   title = 'stockmanager';
- 
+
   constructor(){
- 
+
   }
- 
-  ngOnInit(){
- 
-  }
- 
+
 }

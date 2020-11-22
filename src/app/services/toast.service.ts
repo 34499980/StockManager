@@ -8,11 +8,11 @@ export class ToastService {
   constructor(private toast: ToastrService) { }
 
   success(message){
-    if(message != '')
+    if(message !== '')
     this.toast.success(message)
   }
   error(message){
-    if(message != '')
+    if(message !== '')
     this.toast.error(message)
   }
 }

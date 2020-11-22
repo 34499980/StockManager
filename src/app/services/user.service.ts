@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Usuario } from '../arquitectura/class/usuario';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Environment } from 'ag-grid-community';
 import { environment } from 'src/environments/environment';
 import { ArquitecturaService } from './arquitectura.service';
 import { map, catchError } from 'rxjs/operators';
+import { Usuario } from '../models/usuario';
 const headers = new HttpHeaders();
 headers.append('Access-Control-Allow-Headers', 'Content-Type');
-headers.append('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+headers.append('Access-Control-Allow-Methods', 'GET,POST,PUT,DEconstE,OPTIONS');
 headers.append('Access-Control-Allow-Origin', '*');
-let options = {headers: headers}
+// tslint:disable-next-line: object-literal-shorthand
+const options = {headers: headers}
 @Injectable({
   providedIn: 'root'
 })
@@ -19,127 +20,114 @@ export class UserService {
   constructor(private http: HttpClient, private arquitecturaService: ArquitecturaService) { }
   handleError(value){
     try{
-    let start = value.error.indexOf(':')+1
-    let end = value.error.indexOf(' at ') - start
-   
+    const start = value.error.indexOf(':')+1
+    const end = value.error.indexOf(' at ') - start
     }
     catch(ex){
-      this.arquitecturaService.openDialog("Error","Se genero un error interno. Si persiste, comuniquise con el administrador.")
+      this.arquitecturaService.openDialog('Error','Se genero un error interno. Si persiste, comuniquise con el administrador.')
     }
-    //return throwError(error);
+    // return throwError(error);
     }
-  
-    getScreensByRule(): Observable<any> {        
-    let screens  = [
+    getScreensByRule(): Observable<any> {
+    const screens  = [
        {
-           Titulo:"Administracion",                
+           Titulo:'Administracion',
            SubTitulo: [
                {
-                Titulo:"Usuarios"
+                Titulo:'Usuarios'
                },
                {
-                Titulo:"Perfil"
+                Titulo:'Perfil'
                },
                {
-                Titulo:"Anulaciones"
+                Titulo:'Anulaciones'
                }
-                           
            ]
        },
        {
-           Titulo:"Sucursales",                
+           Titulo:'Sucursales',
            SubTitulo: [
                {
-                Titulo:"Movimientos"
+                Titulo:'Movimientos'
                },
                {
-                Titulo:"Ventas"
+                Titulo:'Ventas'
                },
                {
-                Titulo:"Anular"
+                Titulo:'Anular'
                },
                {
-                Titulo:"Cambios/Devolución"
+                Titulo:'Cambios/Devolución'
                }
-                           
            ]
        },
        {
-           Titulo:"Mercaderia",                
+           Titulo:'Mercaderia',
            SubTitulo: [
                {
-                Titulo:"Stock"
+                Titulo:'Stock'
                },
                {
-                Titulo:"Despachos"
+                Titulo:'Despachos'
                }
-                           
            ]
        }
-       
    ]
    return of(screens);
-  
     }
-    getUsuarios(): Observable<any> {        
-      
+    getUsuarios(): Observable<any> {
        return  this.http.get(environment.RestFullApi+'Usuario').pipe(map(res =>{return res},
-                                                                error => {this.arquitecturaService.openDialog("Error!",error.message)}))
-   
+                                                                error => {this.arquitecturaService.openDialog('Error!',error.message)}))
    return of(null);
-  
     }
     getUsuariosByUserName(user: string): Observable<any> {
         return  this.http.get(environment.RestFullApi+'Usuario/'+user).pipe(map(res =>{return res},
-            error => {this.arquitecturaService.openDialog("Error!",error.message)}))
+            error => {this.arquitecturaService.openDialog('Error!',error.message)}))
 
             return of(null);
 
     }
-    getUsuariosById(userIndex: String): Observable<any> {  
-        let usuarios: any 
-        if(userIndex!= null){      
-        
-        usuarios = [
+    getUsuariosById(userIndex: string): Observable<any> {
+
+        if(userIndex!= null){
+       const usuarios = [
            {
-            Titulo:"Ariel Brenman",                
+            Titulo:'Ariel Brenman',
             Datos: [
                 {
-                 userName: "abrenman",
-                 Password: "asd",
-                 Nombre:"Ariel",
-                 Apellido:"Brenman",
-                 DNI: "34499980",
-                 FechaNacimiento:"16/05/1989",
-                 FechaIngreso:"20/03/2020",
-                 Email: "aribrenman@gmail.com",
-                 Direccion: "av scalabrini ortiz 2170 6D",
-                 CodPostal: "1425"
-                }                          
+                 userName: 'abrenman',
+                 Password: 'asd',
+                 Nombre:'Ariel',
+                 Apellido:'Brenman',
+                 DNI: '34499980',
+                 FechaNacimiento:'16/05/1989',
+                 FechaIngreso:'20/03/2020',
+                 Email: 'aribrenman@gmail.com',
+                 Direccion: 'av scalabrini ortiz 2170 6D',
+                 CodPostal: '1425'
+                }
             ]
            }
-           
        ]
     }
-        
-       return of(usuarios);
-      
+       return of(null);
     }
     saveUsuario(user: Usuario): Observable<any>{
-        let request =[{
+        const request =[{
+            // tslint:disable-next-line: object-literal-shorthand
             user: user
         }
         ]
         return  this.http.post(environment.RestFullApi+'Usuario',{user}).pipe(map(res =>{return res},
-            error => {this.arquitecturaService.openDialog("Error!",error.message)}),
+            error => {this.arquitecturaService.openDialog('Error!',error.message)}),
             catchError((err, caught)=> {
                this. handleError(err)
         return of(false);
 })
 )
     }
-    getMovimientosRows(fechaDesde?: Date, fechaHaasta?: Date, usuario?: String, sucursal?: String ): Observable<any>{
-        let rows = [
+    getMovimientosRows(fechaDesde?: Date, fechaHaasta?: Date, usuario?: string, sucursal?: string ): Observable<any>{
+        const rows = [
             {
                 ID:'01',
                 date: '02/04/2020',
@@ -169,8 +157,8 @@ export class UserService {
 
         return of(rows)
     }
-    getAnularRows(fechaDesde?: Date, fechaHaasta?: Date, usuario?: String, sucursal?: String, ID?: Number ): Observable<any>{
-        let rows = [
+    getAnularRows(fechaDesde?: Date, fechaHaasta?: Date, usuario?: string, sucursal?: string, ID?: number ): Observable<any>{
+        const rows = [
             {
                 ID:'01',
                 date: '02/04/2020',
@@ -183,7 +171,7 @@ export class UserService {
                 ID:'02',
                 date: '01/04/2020',
                 user: 'mpotap',
-                total: '10000',               
+                total: '10000',
                 remito: 'Remito1202004011618',
                 state: 'Finalizada'
             },
@@ -191,7 +179,7 @@ export class UserService {
                 ID:'03',
                 date: '02/04/2020',
                 user: 'abrenman',
-                total: '5000',               
+                total: '5000',
                 remito: 'Remito1202004011718',
                 state: 'Finalizada'
             }
@@ -200,13 +188,12 @@ export class UserService {
 
         return of(rows)
     }
-    
     validateAdminUser(usuario: string, password: string): boolean
     {
         return true;
     }
     getAnulacionesRows(fechaDesde?: Date,fechaHasta?: Date,sucursal?: string,usuario?: string, Id?: number): Observable<any>{
-        let Row = [
+        const Row = [
             {
                 ID:'01',
                 dateProcess: '02/04/2020',
@@ -220,29 +207,22 @@ export class UserService {
 
         return of(Row)
     }
-    getAllSucursal(): Observable<any> {        
-      
+    getAllSucursal(): Observable<any> {
         return  this.http.get(environment.RestFullApi+'Sucursal').pipe(map(res =>{return res},
-                                                                 error => {this.arquitecturaService.openDialog("Error!",error.message)}),
+                                                                 error => {this.arquitecturaService.openDialog('Error!',error.message)}),
                                                                  catchError((err, caught)=> {
                                                                     this. handleError(err)
              return of(false);
             })
             )
-       
     }
-    getAllRules(): Observable<any> {        
-      
-        return  this.http.get(environment.RestFullApi+'States'+"/rules").pipe(map(res =>{return res},
-                                                                 error => {this.arquitecturaService.openDialog("Error!",error.message)}),
+    getAllRules(): Observable<any> {
+        return  this.http.get(environment.RestFullApi+'States'+'/rules').pipe(map(res =>{return res},
+                                                                 error => {this.arquitecturaService.openDialog('Error!',error.message)}),
                                                                  catchError((err, caught)=> {
                                                                     this. handleError(err)
              return of(false);
             })
             )
-       
     }
-
-   
 }
-  
