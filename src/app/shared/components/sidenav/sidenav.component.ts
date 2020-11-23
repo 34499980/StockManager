@@ -15,6 +15,7 @@ import { UserService } from 'src/app/services/user.service';
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.css'],
+  providers:[AuthenticationService]
 })
 
 export class SidenavComponent implements OnInit {

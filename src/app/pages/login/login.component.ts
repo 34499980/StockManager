@@ -14,7 +14,6 @@ import { UserService } from 'src/app/services/user.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [AuthenticationService,UserService]
 })
 export class LoginComponent implements OnInit {
   _usuario: any
@@ -35,7 +34,6 @@ export class LoginComponent implements OnInit {
       private route: ActivatedRoute,
       private router: Router,
       private authenticationService: AuthenticationService,
-      private alertService: AlertService,
       private arquitecturaService: ArquitecturaService,
       private breakpointObserver: BreakpointObserver,
       private userService: UserService
