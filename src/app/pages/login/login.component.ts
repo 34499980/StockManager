@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
   returnUrl: string;
   isLoggedIn$: Observable<boolean>;
+  image: any;
 
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -41,6 +42,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.image = 'assets/userEmpty.jpg'
     this.isLoggedIn$ = this.authenticationService.isLogged;
       this.loginForm = this.formBuilder.group({
           username: ['', Validators.required],

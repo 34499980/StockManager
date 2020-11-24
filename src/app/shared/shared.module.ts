@@ -27,12 +27,16 @@ import { CommonModule } from '@angular/common';
 import { DialogMessageComponent } from './dialogs/dialogMessage/dialogMessage.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { InputrequiredComponent } from './components/inputrequired/inputrequired.component';
+import { AvatarModule } from 'ngx-avatar';
 
 const COMPONENTS = [
     SidenavComponent,
     InputrequiredComponent,
     DialogMessageComponent
 ];
+const MODULES = [
+  AvatarModule
+]
 @NgModule({
     imports: [
     CommonModule,
@@ -56,7 +60,8 @@ const COMPONENTS = [
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    ...MODULES
 
   ],
   exports: [
@@ -96,7 +101,8 @@ const COMPONENTS = [
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    ...COMPONENTS
+    ...COMPONENTS,
+    ...MODULES
   ],
    declarations: [
     ...COMPONENTS

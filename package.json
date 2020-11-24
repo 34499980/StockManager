@@ -29,6 +29,7 @@
     "jspdf": "^1.5.3",
     "jspdf-autotable": "^3.3.2",
     "ng-fallimg": "0.0.1",
+    "ngx-avatar": "^4.0.0",
     "ngx-toastr": "^13.0.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
