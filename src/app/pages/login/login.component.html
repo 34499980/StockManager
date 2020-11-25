@@ -1,6 +1,6 @@
-<div id="login" class="inner-scroll fullHeight">
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" fxLayout="row" fxLayoutAlign="center center" *ngIf="isLoggedIn$ | async as isLoggedIn">
-            <div class="card" >
+<div id="login" class="inner-scroll">
+        <form id="login-intro"[formGroup]="loginForm" (ngSubmit)="onSubmit()" fxLayout="row" fxLayoutAlign="center center" *ngIf="isLoggedIn$ | async as isLoggedIn">
+            <div class="card" fxLayoutAlign="center center" >
                 <div class ="container">                    
                     <ngx-avatar fxLayout="100%" fxLayoutAlign="center end" size="70" src="assets/userEmpty.jpg"></ngx-avatar>
                     <h2>Login</h2>

@@ -15,12 +15,12 @@
    <mat-accordion displayMode=""  >
     <mat-expansion-panel *ngFor="let item of this.screens">
       <mat-expansion-panel-header class="mat-row">
-        <span class="mat-cell">{{item.Titulo}}</span>
+        <span class="mat-cell">{{item.title}}</span>
       </mat-expansion-panel-header>
       
-        <div *ngFor="let i of item.SubTitulo">
-         
-            <a mat-button routerLink="../../../{{i.Titulo}}" style="width: 100%; text-align: left" id="btn{{i.Titulo}}">{{i.Titulo}}</a>
+        <div *ngFor="let i of item.children">   
+
+            <a mat-button routerLink="{i.title}}" style="width: 100%; text-align: left">{{i.title}}</a>
            
          
         </div>

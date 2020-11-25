@@ -45,7 +45,7 @@ export class SidenavComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     this.isLoggedIn$ = this.authenticationService.isLogged;
     this.isLogged$ = this.authenticationService.isLoggedIn;
-    this.userService.getScreensByRule().subscribe(data => {this.screens = data})
+    this.userService.getScreens().subscribe(data => {this.screens = data})
   }
   logout() {
 

@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { ArquitecturaService } from './arquitectura.service';
 import { map, catchError } from 'rxjs/operators';
 import { Usuario } from '../models/usuario';
+import { navigation } from '../shared/components/sidenav/navigation';
 const headers = new HttpHeaders();
 headers.append('Access-Control-Allow-Headers', 'Content-Type');
 headers.append('Access-Control-Allow-Methods', 'GET,POST,PUT,DEconstE,OPTIONS');
@@ -28,8 +29,9 @@ export class UserService {
     }
     // return throwError(error);
     }
-    getScreensByRule(): Observable<any> {
-    const screens  = [
+    getScreens(): Observable<any> {
+     const screen =  navigation
+   /* const screens  = [
        {
            Titulo:'Administracion',
            SubTitulo: [
@@ -72,8 +74,8 @@ export class UserService {
                }
            ]
        }
-   ]
-   return of(screens);
+   ]*/
+   return of(screen);
     }
     getUsuarios(): Observable<any> {
        return  this.http.get(environment.RestFullApi+'Usuario').pipe(map(res =>{return res},
