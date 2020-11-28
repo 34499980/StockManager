@@ -73,12 +73,11 @@ export class LoginComponent implements OnInit {
       this.authenticationService.login(this.f.username.value, this.f.password.value).
       subscribe(res =>
               {
-                if(res){
                   this.login()
-                }else{
-                  this.loading = false;
-                  this.arquitecturaService.openDialog('Error','Error en el usuario o contraseña!')
-                }
+              },
+              error => {
+                this.loading = false;
+                this.loginForm.reset();
               }
               )
       this.loading = true;

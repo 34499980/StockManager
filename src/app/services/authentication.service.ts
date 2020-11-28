@@ -42,27 +42,13 @@ export class AuthenticationService {
         localStorage.setItem('user', value.userName)
       return value
     }
-    handleError(value){
-      try{
-      const start = value.error.indexOf(':')+1
-      const end = value.error.indexOf(' at ') - start
-      this.ErrorMessage = value.error.substr(start,end)}
-      catch(ex){
-        this.arquitecturaService.openDialog('Error','Se genero un error interno. Si persiste, comuniquise con el administrador.')
-      }
-      // return throwError(error);
-      }
     login(username: string, pass: string) {
       const user = {
         userName: username,
         password: pass
       }
         return this.http.post(environment.RestFullApi+'Authentication', user,options)
-            .pipe( map(res => {return this.Autorization(user)}),
-            catchError((err, caught)=> {
-             this. handleError(err)
-             return of(false);
-            })
+            .pipe( map(res => {return this.Autorization(user)})
             )
     }
     logout() {
