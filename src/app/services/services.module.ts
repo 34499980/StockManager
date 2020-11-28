@@ -9,7 +9,6 @@ import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule,
     HttpClientModule,
     ToastrModule.forRoot({
       timeOut: 7000,

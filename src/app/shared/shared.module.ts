@@ -18,9 +18,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LayoutModule } from '@angular/cdk/layout';
-import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { CommonModule } from '@angular/common';
@@ -40,9 +38,6 @@ const MODULES = [
 @NgModule({
     imports: [
     CommonModule,
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
     LayoutModule,
     MatToolbarModule,
     MatSidenavModule,
@@ -66,7 +61,6 @@ const MODULES = [
   ],
   exports: [
     CommonModule,
-    BrowserModule,
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,

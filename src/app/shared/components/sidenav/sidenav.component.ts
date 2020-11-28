@@ -42,7 +42,7 @@ export class SidenavComponent implements OnInit {
   ngOnInit(){
       // get return url from route parameters or default to '/'
     // tslint:disable-next-line: no-string-literal
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+   // this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     this.isLoggedIn$ = this.authenticationService.isLogged;
     this.isLogged$ = this.authenticationService.isLoggedIn;
     this.userService.getScreens().subscribe(data => {this.screens = data})
