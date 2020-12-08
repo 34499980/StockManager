@@ -3,9 +3,9 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { BehaviorSubject, Observable, throwError, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { ArquitecturaService } from './arquitectura.service';
+import { ArquitecturaService } from '../../services/arquitectura.service';
 import { FindValueSubscriber } from 'rxjs/internal/operators/find';
-import { Usuario } from '../models/usuario';
+import { Usuario } from '../../models/usuario';
 
 
 const headers = new HttpHeaders();
@@ -16,7 +16,6 @@ headers.append('Access-Control-Allow-Origin', '*');
 const options = {headers: headers}
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-    private logged: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
     private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     private currentUserSubject: BehaviorSubject<Usuario>;
     public currentUser: Observable<Usuario>;
@@ -30,15 +29,11 @@ export class AuthenticationService {
     get isLoggedIn() {
         return this.loggedIn.asObservable();
       }
-      get isLogged() {
-        return this.logged.asObservable();
-      }
       getSession(): any{
        return localStorage.getItem('user');
       }
     Autorization(value){
         this.loggedIn.next(true)
-        this.logged.next(false)
         localStorage.setItem('user', value.userName)
       return value
     }
@@ -53,6 +48,5 @@ export class AuthenticationService {
     }
     logout() {
       this.loggedIn.next(false)
-        this.logged.next(true)
     }
 }

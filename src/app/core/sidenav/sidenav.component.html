@@ -1,0 +1,51 @@
+<mat-toolbar color="primary"  *ngIf="isLogged$ | async as isLoggedIn">
+  <button
+    type="button"
+    aria-label="Toggle sidenav"
+    mat-icon-button
+    (click)="drawer.toggle()"
+    *ngIf="isHandset$ | async">
+    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+  </button>
+  <span  *ngIf="isHandset$ | async">Menu</span>
+  <div fxLayout="row" fxLayoutAlign="end start" >    
+  <button mat-button (click)="logout()" *ngIf="isLoggedIn">Logout</button>
+</div>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container" color="primary" >
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false"
+      *ngIf="isLogged$ | async as isLoggedIn"
+     >
+     <mat-toolbar color="primary">Menu</mat-toolbar>
+   <mat-accordion displayMode=""  >
+    <mat-expansion-panel *ngFor="let item of this.screens">
+      <mat-expansion-panel-header class="mat-row">
+        <mat-panel-title class="mat-cell">{{item.title}}</mat-panel-title>
+      </mat-expansion-panel-header>
+      
+      <mat-nav-list *ngFor="let i of item.children">   
+
+            <a mat-list-item routerLink="{i?.title}}">{{i?.title}}</a>
+           
+         
+        </mat-nav-list>
+    
+    </mat-expansion-panel>
+  </mat-accordion>
+
+
+
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+   
+  <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+

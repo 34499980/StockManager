@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpErrorInterceptor } from './interceptors/error/errorInterceptor';
+import { CoreModule } from './core/core.module';
 
 
 
@@ -21,6 +22,7 @@ import { HttpErrorInterceptor } from './interceptors/error/errorInterceptor';
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
+    CoreModule
    // LoginModule,
   ],
   exports:[],

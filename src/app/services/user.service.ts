@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 import { ArquitecturaService } from './arquitectura.service';
 import { map, catchError } from 'rxjs/operators';
 import { Usuario } from '../models/usuario';
-import { navigation } from '../shared/components/sidenav/navigation';
+import { navigation } from '../core/sidenav/navigation';
 const headers = new HttpHeaders();
 headers.append('Access-Control-Allow-Headers', 'Content-Type');
 headers.append('Access-Control-Allow-Methods', 'GET,POST,PUT,DEconstE,OPTIONS');

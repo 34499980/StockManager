@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first, map, shareReplay } from 'rxjs/operators';
-import { AuthenticationService } from 'src/app/services/authentication.service';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { AlertService } from 'src/app/services/alert.service';
 import { ArquitecturaService } from 'src/app/services/arquitectura.service';
 import { AppComponent } from 'src/app/app.component';
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.image = 'assets/userEmpty.jpg'
-    this.isLoggedIn$ = this.authenticationService.isLogged;
+    this.isLoggedIn$ = this.authenticationService.isLoggedIn;
       this.loginForm = this.formBuilder.group({
           username: ['', Validators.required],
           password: ['', Validators.required]

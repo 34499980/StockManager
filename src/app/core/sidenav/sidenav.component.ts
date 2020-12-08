@@ -2,7 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { AuthenticationService } from 'src/app/services/authentication.service';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ArquitecturaService } from 'src/app/services/arquitectura.service';
@@ -20,7 +20,7 @@ import { UserService } from 'src/app/services/user.service';
 
 export class SidenavComponent implements OnInit {
   screens: any
-  isLoggedIn$: Observable<boolean>;
+ 
   isLogged$: Observable<boolean>;
   submitted = false;
   returnUrl: string;
@@ -43,7 +43,6 @@ export class SidenavComponent implements OnInit {
       // get return url from route parameters or default to '/'
     // tslint:disable-next-line: no-string-literal
    // this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-    this.isLoggedIn$ = this.authenticationService.isLogged;
     this.isLogged$ = this.authenticationService.isLoggedIn;
     this.userService.getScreens().subscribe(data => {this.screens = data})
   }

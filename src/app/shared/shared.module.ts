@@ -23,12 +23,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { CommonModule } from '@angular/common';
 import { DialogMessageComponent } from './dialogs/dialogMessage/dialogMessage.component';
-import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { InputrequiredComponent } from './components/inputrequired/inputrequired.component';
 import { AvatarModule } from 'ngx-avatar';
 
 const COMPONENTS = [
-    SidenavComponent,
     InputrequiredComponent,
     DialogMessageComponent
 ];

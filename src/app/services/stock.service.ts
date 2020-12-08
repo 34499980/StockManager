@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Articulo } from '../arquitectura/class/Articulo';
-import { AuthenticationService } from './authentication.service';
+import { AuthenticationService } from '../core/services/authentication.service';
 import { ArquitecturaService } from './arquitectura.service';
 import { map, catchError } from 'rxjs/operators';
 import { JsonPipe } from '@angular/common';
+import { Articulo } from '../models/Articulo';
 
 const headers = new HttpHeaders();
 headers.append('Access-Control-Allow-Headers', 'Content-Type');
@@ -51,7 +51,7 @@ saveStock(stock : Articulo){
     })
     )*/
   }
-   getStockByCode(code: String): Observable<any>{
+   getStockByCode(code: string): Observable<any>{
     return  this.http.get(environment.RestFullApi+'Stock/'+code).pipe(map(res =>{return res},
       error => {this.arquitecturaService.openDialog("Error!",error.message)}),
       catchError((err, caught)=> {
