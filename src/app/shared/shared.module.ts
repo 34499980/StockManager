@@ -25,10 +25,12 @@ import { CommonModule } from '@angular/common';
 import { DialogMessageComponent } from './dialogs/dialogMessage/dialogMessage.component';
 import { InputrequiredComponent } from './components/inputrequired/inputrequired.component';
 import { AvatarModule } from 'ngx-avatar';
+import { PaneluserComponent } from './components/paneluser/paneluser.component';
 
 const COMPONENTS = [
     InputrequiredComponent,
-    DialogMessageComponent
+    DialogMessageComponent,
+    PaneluserComponent
 ];
 const MODULES = [
   AvatarModule

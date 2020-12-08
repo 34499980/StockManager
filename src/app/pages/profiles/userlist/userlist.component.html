@@ -1,0 +1,17 @@
+
+<form  fxFLex="100" fxLayout="row" fxLayoutAlign="center center" >
+    <input  class="form-control form-control-sm " [formControl]="searchControl"  type="text" placeholder="Search" aria-label="Search" mdbInput>
+</form>
+    
+<br>
+<ul *ngFor="let user of this.userSearch">
+    <li>
+        <app-paneluser [user]="user" ></app-paneluser>
+    </li>        
+</ul>
+   
+
+       
+    
+                
+        

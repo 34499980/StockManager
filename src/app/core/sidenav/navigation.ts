@@ -16,7 +16,7 @@ export const navigation: Navigation[] = [
                 hidden   : false,
                 type     : 'item',
                 icon     : 'inbox',
-                url      : '/Usuarios',
+                url      : '/profile/all',
             },
             {
                 id       : PermissionType.Perfil.toString(),

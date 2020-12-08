@@ -18,6 +18,10 @@ const appRoutes: Routes = [
   {
     path: 'Home',
     loadChildren: () => import('../app/pages/home/home.module'). then(m => m.HomeModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('../app/pages/profiles/profile.module'). then(m => m.ProfileModule)
   }
 ];
 
