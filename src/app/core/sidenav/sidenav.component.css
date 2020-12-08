@@ -22,8 +22,21 @@
 .input{
   width: 60%;
 }
-
-
+.white{
+  color: white
+}
+mat-expansion-panel-header  {
+  background-color: #424242;
+  }
+mat-sidenav {
+  background-color:#424242;
+  }
+  mat-expansion-panel {
+    background-color: #757575;
+  }
+  a{
+   background-color: #757575;
+  }
 .heigth{
   height: 100%;
 }

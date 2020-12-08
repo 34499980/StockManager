@@ -23,12 +23,12 @@
    <mat-accordion displayMode=""  >
     <mat-expansion-panel flFlex="100" *ngFor="let item of this.screens">
       <mat-expansion-panel-header class="mat-row">
-        <mat-panel-title class="mat-cell"><strong>{{item.title}}</strong></mat-panel-title>
+        <mat-panel-title class="mat-cell white"><strong>{{item.title}}</strong></mat-panel-title>
       </mat-expansion-panel-header>
       
       <mat-nav-list *ngFor="let i of item.children">   
 
-            <a fxFlex="100" routerLink="{i?.title}}">{{i?.title}}</a>
+            <a fxFlex="100" class="white" routerLink="{i?.title}}">{{i?.title}}</a>
            
          
         </mat-nav-list>
@@ -41,9 +41,10 @@
 
   </mat-sidenav>
   <mat-sidenav-content>
-   
+    
   <router-outlet></router-outlet>
   </mat-sidenav-content>
+  
 </mat-sidenav-container>
 
 
