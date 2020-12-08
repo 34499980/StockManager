@@ -28,7 +28,7 @@
       
       <mat-nav-list *ngFor="let i of item.children">   
 
-            <a fxFlex="100" class="white"  [routerLink]="[i.url]" [routerLinkActive]="['active', 'accent']">{{i?.title}}</a>
+            <a fxFlex="100" class="white"  [routerLink]="i?.url">{{i?.title}}</a>
            
          
         </mat-nav-list>

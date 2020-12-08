@@ -1,15 +1,19 @@
+<div class="page-layout carded fullwidth" fxLayout="row wrap">
+  <div fxFlex="100%" fxLayout="row wrap">
+    <form fxFlex="60"  fxLayout="row"  >
+        
+        <input fxFlex="60" fxLayoutAlign="center center" class="form-control form-control-sm " [formControl]="searchControl"
+          type="text" placeholder="Search" aria-label="Search" mdbInput>
+    </form>
 
-<form  fxFLex="100" fxLayout="row" fxLayoutAlign="center center" >
-    <input  class="form-control form-control-sm " [formControl]="searchControl"  type="text" placeholder="Search" aria-label="Search" mdbInput>
-</form>
-    
-<br>
-<ul *ngFor="let user of this.userSearch">
-    <li>
-        <app-paneluser [user]="user" ></app-paneluser>
-    </li>        
-</ul>
-   
+    <br>
+    <ul fxFlex="70" fxLayout="row" fxLayoutAlign="start center"  *ngFor="let user of userSearch">
+        <li>
+            <app-paneluser [user]="user" ></app-paneluser>
+        </li>        
+    </ul>
+
+</div> 
 
        
     

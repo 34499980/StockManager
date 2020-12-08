@@ -22,7 +22,7 @@ export class UserListComponent implements OnInit {
 
   ngOnInit(): void {
    this.searchControl = new FormControl('');
-   this.usersData = this.actiavateRoute.snapshot.data.roles as Usuario[];
+   this.usersData = this.actiavateRoute.snapshot.data.userlist as Usuario[];
    this.userSearch = this.usersData;
    this.searchControl.valueChanges.subscribe(res =>
    this.userSearch = this.usersData.filter(x => x.userName.toLowerCase().indexOf(res) > -1)
