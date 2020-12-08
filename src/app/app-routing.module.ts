@@ -2,7 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
-import { RolesResolver } from './resolvers/Roles.resolver';
+import { RolesResolver } from './resolvers/roles.resolver';
 import { SucursalResolver } from './resolvers/sucursal.resolver';
 
 const appRoutes: Routes = [

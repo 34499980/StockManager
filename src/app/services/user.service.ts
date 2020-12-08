@@ -19,75 +19,26 @@ const options = {headers: headers}
 export class UserService {
 
   constructor(private http: HttpClient, private arquitecturaService: ArquitecturaService) { }
-  handleError(value){
-    try{
-    const start = value.error.indexOf(':')+1
-    const end = value.error.indexOf(' at ') - start
-    }
-    catch(ex){
-      this.arquitecturaService.openDialog('Error','Se genero un error interno. Si persiste, comuniquise con el administrador.')
-    }
-    // return throwError(error);
-    }
+
     getScreens(): Observable<any> {
      const screen =  navigation
-   /* const screens  = [
-       {
-           Titulo:'Administracion',
-           SubTitulo: [
-               {
-                Titulo:'Usuarios'
-               },
-               {
-                Titulo:'Perfil'
-               },
-               {
-                Titulo:'Anulaciones'
-               }
-           ]
-       },
-       {
-           Titulo:'Sucursales',
-           SubTitulo: [
-               {
-                Titulo:'Movimientos'
-               },
-               {
-                Titulo:'Ventas'
-               },
-               {
-                Titulo:'Anular'
-               },
-               {
-                Titulo:'Cambios/Devolución'
-               }
-           ]
-       },
-       {
-           Titulo:'Mercaderia',
-           SubTitulo: [
-               {
-                Titulo:'Stock'
-               },
-               {
-                Titulo:'Despachos'
-               }
-           ]
-       }
-   ]*/
    return of(screen);
     }
     getUsuarios(): Observable<any> {
-       return  this.http.get(environment.RestFullApi+'Usuario').pipe(map(res =>{return res},
-                                                                error => {this.arquitecturaService.openDialog('Error!',error.message)}))
-   return of(null);
+       return  this.http.get(environment.RestFullApi+'Usuario')
+       .pipe(
+           map(res => {
+               return res
+            })
+       );
     }
     getUsuariosByUserName(user: string): Observable<any> {
-        return  this.http.get(environment.RestFullApi+'Usuario/'+user).pipe(map(res =>{return res},
-            error => {this.arquitecturaService.openDialog('Error!',error.message)}))
-
-            return of(null);
-
+        return  this.http.get(environment.RestFullApi+'Usuario/'+user)
+        .pipe(
+            map(res => {
+            return res
+            })
+        );
     }
     getUsuariosById(userIndex: string): Observable<any> {
 
@@ -115,18 +66,12 @@ export class UserService {
        return of(null);
     }
     saveUsuario(user: Usuario): Observable<any>{
-        const request =[{
-            // tslint:disable-next-line: object-literal-shorthand
-            user: user
-        }
-        ]
-        return  this.http.post(environment.RestFullApi+'Usuario',{user}).pipe(map(res =>{return res},
-            error => {this.arquitecturaService.openDialog('Error!',error.message)}),
-            catchError((err, caught)=> {
-               this. handleError(err)
-        return of(false);
-})
-)
+        return  this.http.post(environment.RestFullApi+'Usuario', user)
+        .pipe(
+            map(res => {
+                return res
+            })
+        );
     }
     getMovimientosRows(fechaDesde?: Date, fechaHaasta?: Date, usuario?: string, sucursal?: string ): Observable<any>{
         const rows = [
@@ -210,21 +155,19 @@ export class UserService {
         return of(Row)
     }
     getAllSucursal(): Observable<any> {
-        return  this.http.get(environment.RestFullApi+'Sucursal').pipe(map(res =>{return res},
-                                                                 error => {this.arquitecturaService.openDialog('Error!',error.message)}),
-                                                                 catchError((err, caught)=> {
-                                                                    this. handleError(err)
-             return of(false);
+        return  this.http.get(environment.RestFullApi+'Sucursal')
+        .pipe(
+            map(res => {
+            return res
             })
-            )
+        );
     }
     getAllRules(): Observable<any> {
-        return  this.http.get(environment.RestFullApi+'States'+'/rules').pipe(map(res =>{return res},
-                                                                 error => {this.arquitecturaService.openDialog('Error!',error.message)}),
-                                                                 catchError((err, caught)=> {
-                                                                    this. handleError(err)
-             return of(false);
+        return  this.http.get(environment.RestFullApi+'States'+'/rules')
+        .pipe(
+            map(res => {
+            return res
             })
-            )
+        );
     }
 }

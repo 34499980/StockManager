@@ -27,7 +27,9 @@
 .heigth{
   height: 100%;
 }
-
+.pointer {
+	cursor: pointer;
+}
 @media screen and (max-width: 500px) {
   .input{
     width: 100% important!;

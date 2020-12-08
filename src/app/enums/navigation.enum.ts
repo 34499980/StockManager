@@ -9,4 +9,3 @@ export const enum PermissionType {
     Stock = 8,
     Despachos = 9
   }
-  

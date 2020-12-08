@@ -10,21 +10,14 @@ export class RolesResolver implements Resolve<any>
 {
     private apiEndPoint: string;
 
-    /**
-     * Constructor
-     *
-     * @param {HttpClient} _httpClient
-     * @param {TicketService} _auth
-     */
     constructor(
-        private _httpClient: HttpClient,
-        private _service: UserService,
+        private service: UserService,
     )
     {
     }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any>
-    {       
-        return this._service.getAllRules();
+    {
+        return this.service.getAllRules();
     }
 }
