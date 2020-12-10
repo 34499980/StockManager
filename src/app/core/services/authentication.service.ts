@@ -40,7 +40,7 @@ export class AuthenticationService {
       const user = {
         userName: username,
         password: pass
-      }
+      };
         return this.http.post(environment.RestFullApi+'Authentication', user,options)
             .pipe( map(res => {return this.Autorization(user)})
             )
