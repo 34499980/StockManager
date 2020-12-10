@@ -9,6 +9,6 @@ export interface Usuario{
     address: string
     codPostal: string
     idRule: number
-    Rule: string
+    role: string
     idSucursal: number
 }

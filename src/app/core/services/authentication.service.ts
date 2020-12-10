@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { BehaviorSubject, Observable, throwError, of } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map} from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ArquitecturaService } from '../../services/arquitectura.service';
-import { FindValueSubscriber } from 'rxjs/internal/operators/find';
 import { Usuario } from '../../models/usuario';
 
 
@@ -16,7 +15,7 @@ headers.append('Access-Control-Allow-Origin', '*');
 const options = {headers: headers}
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-    private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+    private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
     private currentUserSubject: BehaviorSubject<Usuario>;
     public currentUser: Observable<Usuario>;
     // tslint:disable-next-line: no-construct
