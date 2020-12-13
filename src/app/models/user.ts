@@ -1,14 +1,14 @@
-export interface Usuario{
+export interface User{
     userName: string
     password: string
     first_name: string
     last_name: string
-    dateAdmission: Date
-    dateborn: Date
+    admissionDate: Date
+    bornDate: Date
     email: string
     address: string
     codPostal: string
-    idRule: number
+    idRole: number
     role: string
     idSucursal: number
 }

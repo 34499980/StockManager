@@ -1,20 +1,17 @@
-<form [formGroup]="formControl">
+
   <div [ngSwitch]="this.type">
     <div *ngSwitchCase="'date'">
       <mat-form-field>
-        <input matInput  [matDatepicker]="picker1" placeholder="{{this.placeHolder}}" [(value)]="this.inputValue" (ngModelChange)="updateValue()" formControlName="input">
+        <input matInput  [matDatepicker]="picker1" placeholder="{{title}}" [formControl]="ngControl.control">
         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
         <mat-datepicker #picker1></mat-datepicker>
       </mat-form-field>
     </div>
     <div *ngSwitchDefault>
       <mat-form-field class="example-full-width">
-        <mat-label>{{this.placeHolder}}</mat-label>
-        <input matInput type="{{this.type}}" #input formControlName="input" (keyup)="updateValue()" [(value)]="this.inputValue" [errorStateMatcher]="matcher">    
-        <mat-error>
-          {{this.placeHolder}} es un campo <strong>obligatorio</strong>
-        </mat-error>
+        <mat-label>{{this.title}}</mat-label>
+        <input matInput type="{{this.type}}" [formControl]="ngControl.control" [errorStateMatcher]="matcher">    
+        
       </mat-form-field>
     </div>
   </div>
-</form>

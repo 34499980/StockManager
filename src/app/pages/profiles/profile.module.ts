@@ -4,6 +4,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { UserListComponent } from './userlist/userlist.component';
 import { UserListResolver } from 'src/app/resolvers/userlist.resolver';
+import { ProfileComponent } from './profil/profile.component';
+import { SucursalResolver } from 'src/app/resolvers/sucursal.resolver';
+import { RolesResolver } from 'src/app/resolvers/roles.resolver';
+import { UserResolver } from './profil/profile.resolver';
 const routes: Routes = [
   {
     path: 'all',
@@ -11,18 +15,27 @@ const routes: Routes = [
     resolve:{
       userlist: UserListResolver
     }
+  },
+  {
+    path: ':id',
+    component: ProfileComponent,
+    resolve:{
+      sucursal: SucursalResolver,
+      roles: RolesResolver,
+      profile: UserResolver
+    }
   }
 ]
 
 
 @NgModule({
-  declarations: [UserListComponent],
+  declarations: [UserListComponent, ProfileComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     SharedModule
   ],
-  providers: [UserListResolver],
-  exports:[UserListComponent]
+  providers: [UserListResolver, SucursalResolver, RolesResolver, UserResolver]
+
 })
 export class ProfileModule { }

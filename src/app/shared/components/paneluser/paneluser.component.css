@@ -16,3 +16,10 @@
     grid-column: 3;
     grid-row: 2 / 5;
   }
+  .four {
+    grid-column: 3;
+    grid-row: 3;
+  }
+  .pointer {
+    cursor: pointer;
+  }
