@@ -15,6 +15,7 @@ export class InputrequiredComponent implements OnInit, ControlValueAccessor {
   @Input() placeholder: string;
   @Input() disabled: boolean;
   @Input() title: string;
+  @Input() type: string;
 
   value = '';
   onChange = (x) => {};
