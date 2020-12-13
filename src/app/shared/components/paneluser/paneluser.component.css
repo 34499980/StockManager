@@ -1,3 +1,18 @@
-.bold{
-    font-weight: bold;
-}
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(50, auto);
+  }
+  .one {
+    grid-column: 1;
+    grid-row: 2 / 5;
+  }
+  .two {
+    grid-column: 2;
+    grid-row: 2 / 5;
+  }
+  .three{
+    grid-column: 3;
+    grid-row: 2 / 5;
+  }
