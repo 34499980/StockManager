@@ -1,9 +1,11 @@
   <div fxLayout="row wrap" fxFlex="100">
-    <input fxFlex="60" fxLayout="column" fxLayoutAlign="center center" class="ml-20 form-control form-control-sm " 
-    [formControl]="searchControl" 
-    type="text" placeholder="Search" aria-label="Search">
-   
-    <ul fxFlex="70" fxLayout="column"  *ngFor="let user of userSearch">
+    <div fxFlex="60" fxLayout="row" fxLayoutAlign="center center" class="center">
+      <mat-form-field fxFlex="1 1" appearance="outline" >
+          <mat-icon matPrefix>search</mat-icon>
+          <input matInput [formControl]="searchControl" placeholder="Search">
+      </mat-form-field>
+  </div>
+    <ul fxFlex="70" class="mb-8" fxLayout="column"  *ngFor="let user of userSearch">
       <li>
           <app-paneluser [user]="user" ></app-paneluser>
       </li>        

@@ -56,6 +56,7 @@ const MODULES = [
     MatDatepickerModule,
     MatNativeDateModule,
     FlexLayoutModule,
+    MatFormFieldModule,
     ...MODULES
 
   ],
@@ -95,6 +96,7 @@ const MODULES = [
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
+    MatFormFieldModule,
     ...COMPONENTS,
     ...MODULES
   ],
