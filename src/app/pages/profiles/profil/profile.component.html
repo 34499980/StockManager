@@ -1,71 +1,71 @@
-<form novalidate [formGroup]="userControl">
-  <div class="center" style="width: 100%; height: 100%;">   
-    <table style="width: 100%;background-color: white">
-        <tr>
-         <!-- <td class="bold">UserName: {{this._user.userName}}</td>-->
-          <td><app-inputrequired [title]="'userName'"  formControlName="userName"></app-inputrequired></td>
-          <!-- <td class="bold">Password: </td>-->
-          <td><app-inputrequired [title]="'Password'"  formControlName="password"></app-inputrequired></td>
-          <td rowspan="3"> 
-           <img width="25%" height="150px" [src]="this._image" (click)="OnFileSelected($event)" >
-           <!--<button mat-stroked-button style="width: 100%; height: 300px" (click)="OnFileSelected($event)" [disabled]="this._data.bDsiable">Image</button>-->
-           <input  type="file" #file (change)="OnFileSelected($event)" style="visibility: hidden" />
-           </td>
-        </tr>
-        <tr>
-          <td>
-            <mat-form-field  appearance="fill">
-              <mat-label>Role</mat-label>
-              <mat-select formControlName="role">                       
-                <mat-option *ngFor="let r of rolesData" [value]="r.id" >
-                  {{r.description}}
-                </mat-option>
-              </mat-select>           
-            
-            </mat-form-field>
-          </td>
-          <td>
-            <mat-form-field  appearance="fill">
-              <mat-label>Sucursal</mat-label>
-              <mat-select formControlName="sucursal" required>                       
-                <mat-option *ngFor="let r of sucursalData" [value]="r.id" >
-                  {{r.name}}
-                </mat-option>
-              </mat-select>
-              
-            
-            </mat-form-field>
-          </td>
-        </tr>
-        <tr>
-         <!-- <td class="bold">Nombre: </td>-->
-         <td><app-inputrequired [title]="'Nomber'"  formControlName="first_name"></app-inputrequired></td>
-          <!-- <td class="bold">Apellido: </td>-->
-          <td><app-inputrequired [title]="'Apellio'"  formControlName="last_name"></app-inputrequired></td>
-       </tr>
-       <tr>
-        <!--  <td class="bold">FechaNacimiento: </td>-->
-         <td><app-inputrequired [title]="'Fecha nacimiento'"  formControlName="bornDate"></app-inputrequired></td>
-          <!-- <td class="bold">FechaIngreso: </td>-->
-         <td><app-inputrequired  [title]="'Fecha ingreso'"  formControlName="admissionDate" [type]="'date'"></app-inputrequired></td>
-       </tr>
-       <tr>
-         <!--  <td class="bold">Email: </td>-->
-         <td><app-inputrequired [title]="'Email'"  formControlName="email" [type]="'text'"></app-inputrequired></td>
-         <!--  <td class="bold">Direccion: </td>-->
-         <td><app-inputrequired [title]="'Direccion'"  formControlName="address" [type]="'text'"></app-inputrequired></td>
-          <!-- <td class="bold">CodPostal: </td>-->
-         <td><app-inputrequired [title]="'Codigo postal'"  formControlName="codPostal" [type]="'text'"></app-inputrequired></td>
 
-       </tr>
-     
-       <tr>
-           <td colspan="3" style="width: 80%; text-align: center">
-            <button mat-raised-button color color="success" (click)="saveUsuario()">Guardar</button>
-           </td>
-       </tr>      
-   </table>  
- 
-  </div>
-</form>
+<form [formGroup]="userControl">
+  <div fxLayout="row" fxLayoutAlign="center center" >
+    <div class="wrapper" > 
+      <div class="one">      
+        <app-inputrequired [title]="'Nomber'"  formControlName="first_name"></app-inputrequired>
 
+        <mat-form-field>
+          <mat-label>Fecha nacimiento'</mat-label>
+          <input matInput  [matDatepicker]="picker2" placeholder="dd/mm/yyyy" formControlName="bornDate" readonly>
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+        <ng-container *ngIf="userControl.controls.bornDate.touched">
+          <mat-error>Debe ingresar un valor</mat-error>         
+          <ng-content></ng-content>
+      </ng-container>
+       
+        <app-inputrequired [title]="'Email'"  formControlName="email" [type]="'text'"></app-inputrequired>
+        <app-inputrequired [title]="'Codigo postal'"  formControlName="codPostal" [type]="'text'"></app-inputrequired>
+
+        <mat-form-field  appearance="fill">
+          <mat-label>Role</mat-label>
+          <mat-select formControlName="role">                       
+            <mat-option *ngFor="let r of rolesData" [value]="r.id" >
+              {{r.description}}
+            </mat-option>
+          </mat-select>  
+        </mat-form-field>
+      </div>
+      <div class="two">
+        <app-inputrequired [title]="'Password'"  formControlName="password"></app-inputrequired>
+        <app-inputrequired [title]="'Apellio'"  formControlName="last_name"></app-inputrequired>
+
+        <mat-form-field>
+          <mat-label>Fecha ingreso</mat-label>
+          <input matInput  [matDatepicker]="picker1" placeholder="dd/mm/yyyy" formControlName="admissionDate" readonly>
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+        <ng-container *ngIf="userControl.controls.admissionDate.touched">
+          <mat-error>Debe ingresar un valor</mat-error>         
+          <ng-content></ng-content>
+      </ng-container>
+
+       
+        <app-inputrequired [title]="'Direccion'"  formControlName="address" [type]="'text'"></app-inputrequired>
+        <mat-form-field  appearance="fill">
+          <mat-label>Sucursal</mat-label>
+          <mat-select formControlName="sucursal" required>                       
+            <mat-option *ngFor="let r of sucursalData" [value]="r.id" >
+              {{r.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      
+      </div>
+      <div class="three">
+       
+        <img width="25%" height="150px" [src]="image" (click)="OnFileSelected($event)" >
+        <!--<button mat-stroked-button style="width: 100%; height: 300px" (click)="OnFileSelected($event)" [disabled]="this._data.bDsiable">Image</button>-->
+        <input  type="file" #file (change)="OnFileSelected($event)" style="visibility: hidden" />
+        <app-inputrequired [title]="'userName'"  formControlName="userName"></app-inputrequired>
+      </div>
+     </div> 
+    </div>  
+    </form>
+ <button mat-button fxLayoutAlign="end end" color="accent"  [disabled]="userControl.pristine" (click)="saveUsuario()">Guardar</button>
+           
+             
+    

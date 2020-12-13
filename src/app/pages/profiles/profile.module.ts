@@ -24,6 +24,14 @@ const routes: Routes = [
       roles: RolesResolver,
       profile: UserResolver
     }
+  },
+  {
+    path: '',
+    component: ProfileComponent,
+    resolve:{
+      sucursal: SucursalResolver,
+      roles: RolesResolver
+    }
   }
 ]
 

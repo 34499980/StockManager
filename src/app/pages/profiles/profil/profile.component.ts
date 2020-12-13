@@ -16,10 +16,11 @@ export class ProfileComponent implements OnInit {
   userControl: FormGroup;
   user: User;
   rolesData: Item[];
-  sucursalData: Item[];
+  sucursalData: Sucursal[];
   fileSelected: File = null
   url: string;
   cameraImage: SafeResourceUrl;
+  image: string;
   @ViewChild('file') file :ElementRef
   constructor(private formBuild: FormBuilder,
               private sanitizer: DomSanitizer,
@@ -28,8 +29,9 @@ export class ProfileComponent implements OnInit {
               private toastService: ToastService) { }
 
   ngOnInit(): void {
+    this.image = '../../../../assets/userEmpty.jpg'
     this.rolesData = this.activateRoute.snapshot.data.roles as Item[];
-    this.sucursalData = this.activateRoute.snapshot.data.sucursal as Item[];
+    this.sucursalData = this.activateRoute.snapshot.data.sucursal as Sucursal[];
     this.user = this.activateRoute.snapshot.data.profile as User;
     this.userControl = this.formBuild.group({
       userName: [this.user?.userName || '', [Validators.required, Validators.maxLength(50)]],
@@ -47,7 +49,7 @@ export class ProfileComponent implements OnInit {
 
 }
 validateSpinner() {
-  return this.user
+  return this.user 
 }
 saveUsuario() {
   this.userService.saveUsuario(this.user).subscribe(() => this.toastService.success('Usuario guardado!'));

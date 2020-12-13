@@ -12,7 +12,7 @@
           <span fxFlex="100"><strong>Nombre: </strong>{{user.first_name}}</span>
           <span fxFlex="100"><strong>FechaNacimiento: </strong>{{user.bornDate | date:'dd/MM/yyyy'}}</span>
           <span fxFlex="100"><strong>Email: </strong>{{user.email}}</span>
-          <span fxFlex="100"><strong>CodPostal: </strong>{{user.codPostal}}</span>
+          <span fxFlex="100"><strong>CodPostal: </strong>{{user.postalCode}}</span>
           </div>
         </div>
         <div class="two">
@@ -21,7 +21,7 @@
             <span fxFlex="100"><strong>Apellido: </strong>{{user.last_name}}</span>  
             <span fxFlex="100"><strong>FechaIngreso: </strong>{{user.admissionDate | date:'dd/MM/yyyy'}}</span>
             <span fxFlex="100"><strong>Direccion: </strong>{{user.address}}</span>
-            <span fxFlex="100"><strong>Rol: </strong>{{user.role}}</span>
+            <span fxFlex="100"><strong>Rol: </strong>{{user.role.description}}</span>
         </div>
         </div>
         <div class="three">
