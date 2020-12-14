@@ -10,11 +10,6 @@ import { ToastrModule } from 'ngx-toastr';
   declarations: [],
   imports: [
     HttpClientModule,
-    ToastrModule.forRoot({
-      timeOut: 7000,
-      positionClass: 'toast-top-right',
-      preventDuplicates: true,
-    }),
   ],
   exports:[]
 })

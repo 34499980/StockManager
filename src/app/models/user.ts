@@ -1,14 +1,18 @@
-export interface Usuario{
+import { Item } from './item.model';
+
+export interface User{
     userName: string
     password: string
     first_name: string
     last_name: string
-    dateAdmission: Date
-    dateborn: Date
+    admissionDate: Date
+    bornDate: Date
     email: string
     address: string
-    codPostal: string
-    idRule: number
+    postalCode: string
+    idRole: number
     role: string
     idSucursal: number
+    Role: Item[];
 }
+

@@ -1,34 +1,42 @@
 <mat-accordion displayMode="" hideToggle="true" >
     <mat-expansion-panel >
+     
       <mat-expansion-panel-header  style="background-color: royalblue">
-        <span class="mat-cell" style="color: seashell">{{user.first_name +" "+user.last_name}}</span>
-      </mat-expansion-panel-header>
-      <div fxFlex="1 1" fxLayout="row wrap" class="mr-24">      
-         
-        <div fxFlex="100%" fxLayout="row wrap" fxLayoutAlign="flex-start center" class="mb-12">
+        <span class="mat-cell" style="color: seashell">{{user.first_name +" "+user.last_name}}</span>        
+      </mat-expansion-panel-header>    
+   
+      <div class="wrapper">
+        <div class="one">
+          <div fxFlex="100%" fxLayout="row wrap" fxLayoutAlign="flex-start center"  class="mb-12">     
           <span fxFlex="100"><strong>UserName: </strong>{{user.userName}}</span> 
           <span fxFlex="100"><strong>Nombre: </strong>{{user.first_name}}</span>
-          <span fxFlex="100"><strong>FechaNacimiento: </strong>{{user.dateborn  | date:'dd/MM/yyyy'}}</span>
+          <span fxFlex="100"><strong>FechaNacimiento: </strong>{{user.bornDate | date:'dd/MM/yyyy'}}</span>
           <span fxFlex="100"><strong>Email: </strong>{{user.email}}</span>
-          <span fxFlex="100"><strong>CodPostal: </strong>{{user.codPostal}}</span>
-       </div>
-      </div>
-      <div fxFlex="1 1" fxLayout="row wrap" class="mr-24">
-        <div fxFlex="100%" fxLayout="row wrap" fxLayoutAlign="flex-start center" class="mb-12">
-        <span fxFlex="100"><strong>Password: </strong>{{user.password}}</span>   
-        <span fxFlex="100"><strong>Apellido: </strong>{{user.last_name}}</span>  
-        <span fxFlex="100"><strong>FechaIngreso: </strong>{{user.dateAdmission | date:'dd/MM/yyyy'}}</span>
-        <span fxFlex="100"><strong>Direccion: </strong>{{user.address}}</span>
-        <span fxFlex="100"><strong>Rol: </strong>{{user.role}}</span>
-        </div> 
-      </div>
-      <div fxFlex="1 1 auto" fxLayout="row wrap">
-        <div fxFlex="100%" fxLayout="row wrap" fxLayoutAlign="flex-start center" class="mb-12">
-          <img width="50%" height="150px" [src]="this._image" (click)="OnFileSelected($event)" >
-          <!--<button mat-stroked-button style="width: 100%; height: 300px" (click)="OnFileSelected($event)" [disabled]="this._data.bDsiable">Image</button>-->
-          <input  type="file" #file (change)="OnFileSelected($event)" style="visibility: hidden" />
+          <span fxFlex="100"><strong>CodPostal: </strong>{{user.postalCode}}</span>
+          </div>
         </div>
-       
+        <div class="two">
+          <div fxFlex="100%" fxLayout="row wrap" fxLayoutAlign="flex-start center" class="mb-12">
+            <span fxFlex="100"><strong>Password: </strong>{{user.password}}</span>   
+            <span fxFlex="100"><strong>Apellido: </strong>{{user.last_name}}</span>  
+            <span fxFlex="100"><strong>FechaIngreso: </strong>{{user.admissionDate | date:'dd/MM/yyyy'}}</span>
+            <span fxFlex="100"><strong>Direccion: </strong>{{user.address}}</span>
+            <span fxFlex="100"><strong>Rol: </strong>{{user.role.description}}</span>
+        </div>
+        </div>
+        <div class="three">
+          <div fxFlex="100%" fxLayout="row wrap" fxLayoutAlign="center center" class="mb-12">   
+            <img width="50%" height="150px" [src]="this._image">
+          </div>
+        </div>
+      </div>
+      <div class="four">
+        <button mat-icon-button matTooltip="Editar">
+          <mat-icon class="pointer"   (click)="VerPerfil(user)" >create</mat-icon>
+      </button>
+       <button mat-icon-button  matTooltip="Eliminar">
+         <mat-icon class="pointer"   style="color:red" >delete</mat-icon>
+      </button>
       </div>
 
     </mat-expansion-panel>

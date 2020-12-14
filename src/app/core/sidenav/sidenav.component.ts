@@ -3,11 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { ArquitecturaService } from 'src/app/services/arquitectura.service';
-import { ToastService } from 'src/app/services/toast.service';
-import { Usuario } from 'src/app/models/usuario';
+import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
 
@@ -20,7 +16,6 @@ import { UserService } from 'src/app/services/user.service';
 
 export class SidenavComponent implements OnInit {
   screens: any
- 
   isLogged$: Observable<boolean>;
   submitted = false;
   returnUrl: string;
@@ -35,7 +30,6 @@ export class SidenavComponent implements OnInit {
 
   constructor(private breakpointObserver: BreakpointObserver,
               private authenticationService: AuthenticationService,
-              private route: ActivatedRoute,
               private userService: UserService ) {
   }
 

@@ -1,0 +1,71 @@
+
+<form [formGroup]="userControl">
+  <div fxLayout="row" fxLayoutAlign="center center" >
+    <div class="wrapper" > 
+      <div class="one">      
+        <app-inputrequired [title]="'Nomber'"  formControlName="first_name"></app-inputrequired>
+
+        <mat-form-field>
+          <mat-label>Fecha nacimiento'</mat-label>
+          <input matInput  [matDatepicker]="picker2" placeholder="dd/mm/yyyy" formControlName="bornDate" readonly>
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+        <ng-container *ngIf="userControl.controls.bornDate.touched">
+          <mat-error>Debe ingresar un valor</mat-error>         
+          <ng-content></ng-content>
+      </ng-container>
+       
+        <app-inputrequired [title]="'Email'"  formControlName="email" [type]="'text'"></app-inputrequired>
+        <app-inputrequired [title]="'Codigo postal'"  formControlName="codPostal" [type]="'text'"></app-inputrequired>
+
+        <mat-form-field  appearance="fill">
+          <mat-label>Role</mat-label>
+          <mat-select formControlName="role">                       
+            <mat-option *ngFor="let r of rolesData" [value]="r.id" >
+              {{r.description}}
+            </mat-option>
+          </mat-select>  
+        </mat-form-field>
+      </div>
+      <div class="two">
+        <app-inputrequired [title]="'Password'"  formControlName="password"></app-inputrequired>
+        <app-inputrequired [title]="'Apellio'"  formControlName="last_name"></app-inputrequired>
+
+        <mat-form-field>
+          <mat-label>Fecha ingreso</mat-label>
+          <input matInput  [matDatepicker]="picker1" placeholder="dd/mm/yyyy" formControlName="admissionDate" readonly>
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+        <ng-container *ngIf="userControl.controls.admissionDate.touched">
+          <mat-error>Debe ingresar un valor</mat-error>         
+          <ng-content></ng-content>
+      </ng-container>
+
+       
+        <app-inputrequired [title]="'Direccion'"  formControlName="address" [type]="'text'"></app-inputrequired>
+        <mat-form-field  appearance="fill">
+          <mat-label>Sucursal</mat-label>
+          <mat-select formControlName="sucursal" required>                       
+            <mat-option *ngFor="let r of sucursalData" [value]="r.id" >
+              {{r.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      
+      </div>
+      <div class="three">
+       
+        <img width="25%" height="150px" [src]="image" (click)="OnFileSelected($event)" >
+        <!--<button mat-stroked-button style="width: 100%; height: 300px" (click)="OnFileSelected($event)" [disabled]="this._data.bDsiable">Image</button>-->
+        <input  type="file" #file (change)="OnFileSelected($event)" style="visibility: hidden" />
+        <app-inputrequired [title]="'userName'"  formControlName="userName"></app-inputrequired>
+      </div>
+     </div> 
+    </div>  
+    </form>
+ <button mat-button fxLayoutAlign="end end" color="accent"  [disabled]="userControl.pristine" (click)="saveUsuario()">Guardar</button>
+           
+             
+    

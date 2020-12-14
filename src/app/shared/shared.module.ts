@@ -26,6 +26,8 @@ import { DialogMessageComponent } from './dialogs/dialogMessage/dialogMessage.co
 import { InputrequiredComponent } from './components/inputrequired/inputrequired.component';
 import { AvatarModule } from 'ngx-avatar';
 import { PaneluserComponent } from './components/paneluser/paneluser.component';
+import { DialogconfirmComponent } from './dialogs/dialogconfirm/dialogconfirm.component';
+import { ToastrModule } from 'ngx-toastr';
 
 const COMPONENTS = [
     InputrequiredComponent,
@@ -33,7 +35,7 @@ const COMPONENTS = [
     PaneluserComponent
 ];
 const MODULES = [
-  AvatarModule
+  AvatarModule,
 ]
 @NgModule({
     imports: [
@@ -56,6 +58,12 @@ const MODULES = [
     MatDatepickerModule,
     MatNativeDateModule,
     FlexLayoutModule,
+    MatFormFieldModule,
+    ToastrModule.forRoot({
+      timeOut: 7000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    }),
     ...MODULES
 
   ],
@@ -95,11 +103,14 @@ const MODULES = [
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
+    MatFormFieldModule,
+    ToastrModule,
     ...COMPONENTS,
     ...MODULES
   ],
    declarations: [
-    ...COMPONENTS
+    ...COMPONENTS,
+    DialogconfirmComponent
   ]
 })
 export class SharedModule { }

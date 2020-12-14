@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { Usuario } from 'src/app/models/usuario';
+import { AppRouting } from 'src/app/enums/AppRouting.enum';
+import { User } from 'src/app/models/user';
 import { ArquitecturaService } from 'src/app/services/arquitectura.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { ArquitecturaService } from 'src/app/services/arquitectura.service';
   styleUrls: ['./paneluser.component.css']
 })
 export class PaneluserComponent implements OnInit {
- @Input() user: Usuario
+ @Input() user: User
   _image: string
   _param: any
   @ViewChild('file') file :ElementRef
@@ -25,7 +26,7 @@ export class PaneluserComponent implements OnInit {
 
   }
   VerPerfil(user: any): void{
-    this._router.navigate(['Perfil',user.userName])
+    this._router.navigate([AppRouting.Profile, user.userName])
   }
   OnFileSelected(event){
     this.file.nativeElement.click()
@@ -34,6 +35,9 @@ export class PaneluserComponent implements OnInit {
     if(this._fileSelected !== undefined) {
 
     }
+
+  }
+  delete() {
 
   }
 

@@ -5,7 +5,7 @@ import { Environment } from 'ag-grid-community';
 import { environment } from 'src/environments/environment';
 import { ArquitecturaService } from './arquitectura.service';
 import { map, catchError } from 'rxjs/operators';
-import { Usuario } from '../models/usuario';
+import { User } from '../models/user';
 import { navigation } from '../core/sidenav/navigation';
 const headers = new HttpHeaders();
 headers.append('Access-Control-Allow-Headers', 'Content-Type');
@@ -65,7 +65,7 @@ export class UserService {
     }
        return of(null);
     }
-    saveUsuario(user: Usuario): Observable<any>{
+    saveUsuario(user: User): Observable<any>{
         return  this.http.post(environment.RestFullApi+'Usuario', user)
         .pipe(
             map(res => {
