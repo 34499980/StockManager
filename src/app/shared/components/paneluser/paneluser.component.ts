@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppRouting } from 'src/app/enums/AppRouting.enum';
-import { User } from 'src/app/models/user';
+import { User, UserGet } from 'src/app/models/user';
 import { ArquitecturaService } from 'src/app/services/arquitectura.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { ArquitecturaService } from 'src/app/services/arquitectura.service';
   styleUrls: ['./paneluser.component.css']
 })
 export class PaneluserComponent implements OnInit {
- @Input() user: User
+ @Input() user: UserGet;
   _image: string
   _param: any
   @ViewChild('file') file :ElementRef
