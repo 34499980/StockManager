@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Item } from 'src/app/models/item.model';
+import { Sucursal } from 'src/app/models/sucural.model';
 import { User } from 'src/app/models/user';
 import { ToastService } from 'src/app/services/toast.service';
 import { UserService } from 'src/app/services/user.service';
@@ -42,7 +43,7 @@ export class ProfileComponent implements OnInit {
       admissionDate: [this.user?.admissionDate || '', Validators.required],
       email: [this.user?.email || '', [Validators.required, Validators.maxLength(50)]],
       address: [this.user?.address || '', [Validators.required, Validators.maxLength(50)]],
-      codPostal: [this.user?.codPostal || '', [Validators.required, Validators.maxLength(50), Validators.pattern(/^[0-9]\d*$/)]],
+      postalCode: [this.user?.postalCode || '', [Validators.required, Validators.maxLength(50), Validators.pattern(/^[0-9]\d*$/)]],
       sucursal: [this.user?.idSucursal || '', Validators.required],
       role: [this.user?.idRole || '', [Validators.required, Validators.maxLength(50)]]
     });
