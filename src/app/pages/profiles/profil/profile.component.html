@@ -1,13 +1,16 @@
 
+<div class="header">
+  <div class="title mx-8">Perfil</div>
+</div>
 <form [formGroup]="userControl">
   
-    <div class="wrapper" >
-    
+    <div fxFlex="100" class="center card" >
+    <div  class="wrapper">
       <div class="one">      
-        <app-inputrequired [title]="'Nomber'"  formControlName="first_name"></app-inputrequired>
+        <app-inputrequired [title]="'Nombre'"  formControlName="first_name"></app-inputrequired>
 
-        <mat-form-field>
-          <mat-label>Fecha nacimiento'</mat-label>
+        <mat-form-field appearance="outline">
+          <mat-label>Fecha nacimiento</mat-label>
           <input matInput  [matDatepicker]="picker2" placeholder="dd/mm/yyyy" formControlName="bornDate" readonly>
           <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
           <mat-datepicker #picker2></mat-datepicker>
@@ -20,7 +23,7 @@
         <app-inputrequired [title]="'Email'"  formControlName="email" [type]="'text'"></app-inputrequired>
         <app-inputrequired [title]="'Codigo postal'"  formControlName="postalCode" [type]="'text'"></app-inputrequired>
 
-        <mat-form-field  appearance="fill">
+        <mat-form-field  appearance="outline">
           <mat-label>Role</mat-label>
           <mat-select formControlName="role">                       
             <mat-option *ngFor="let r of rolesData" [value]="r.id" >
@@ -30,10 +33,10 @@
         </mat-form-field>
       </div>
       <div class="two">
-        <app-inputrequired [title]="'Password'"  formControlName="password"></app-inputrequired>
+        
         <app-inputrequired [title]="'Apellio'"  formControlName="last_name"></app-inputrequired>
 
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-label>Fecha ingreso</mat-label>
           <input matInput  [matDatepicker]="picker1" placeholder="dd/mm/yyyy" formControlName="admissionDate" readonly>
           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
@@ -46,7 +49,7 @@
 
        
         <app-inputrequired [title]="'Direccion'"  formControlName="address" [type]="'text'"></app-inputrequired>
-        <mat-form-field  appearance="fill">
+        <mat-form-field  appearance="outline">
           <mat-label>Sucursal</mat-label>
           <mat-select formControlName="sucursal" required>                       
             <mat-option *ngFor="let r of sucursalData" [value]="r.id" >
@@ -57,18 +60,19 @@
       
       </div>
       <div class="three">
-       
-        <img width="25%" height="150px" [src]="image" (click)="OnFileSelected($event)" >
+        <app-inputrequired [title]="'userName'"  formControlName="userName"></app-inputrequired>
+        <app-inputrequired [title]="'Password'"  formControlName="password"></app-inputrequired>
+        <img width="50%" height="150px" [src]="image" (click)="OnFileSelected($event)" >
         <!--<button mat-stroked-button style="width: 100%; height: 300px" (click)="OnFileSelected($event)" [disabled]="this._data.bDsiable">Image</button>-->
         <input  type="file" #file (change)="OnFileSelected($event)" style="visibility: hidden" />
-        <app-inputrequired [title]="'userName'"  formControlName="userName"></app-inputrequired>
+        
       </div>
 
       <div class="four" >
         <button mat-raised-button color="accent"  [disabled]="userControl.pristine || userControl.controls.invalid" (click)="saveUsuario()">Guardar</button>
       </div> 
     </div> 
-   
+  </div>
     </form>
    
 

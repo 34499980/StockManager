@@ -6,8 +6,8 @@ export interface User{
     password: string
     first_name: string
     last_name: string
-    admissionDate: Date
-    bornDate: Date
+    dateAdmission: Date
+    dateBorn: Date
     email: string
     address: string
     postalCode: string
