@@ -9,20 +9,24 @@
     grid-auto-rows: minmax(100px, auto);
   }
   .one {
-    grid-column: 1 / 3;
-    grid-row: 1;
+    grid-column:2;
+    grid-row: 2;
   }
   .two { 
-    grid-column: 2 / 4;
-    grid-row: 1 / 3;
+    grid-column: 3;
+    grid-row: 2;
   }
   .three {
-    grid-column: 1;
-    grid-row: 2 / 5;
+    grid-column: 4;
+    grid-row: 2;
+  }
+  .four {
+    grid-column: 4;
+    grid-row: 3;
   }
 
   .card {
-    /* Add shadows to create the "card" effect */
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
+    transition: 0.3s;    
   }
+  

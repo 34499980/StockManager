@@ -1,7 +1,8 @@
 
 <form [formGroup]="userControl">
-  <div fxLayout="row" fxLayoutAlign="center center" >
-    <div class="wrapper" > 
+  
+    <div class="wrapper" >
+    
       <div class="one">      
         <app-inputrequired [title]="'Nomber'"  formControlName="first_name"></app-inputrequired>
 
@@ -62,10 +63,15 @@
         <input  type="file" #file (change)="OnFileSelected($event)" style="visibility: hidden" />
         <app-inputrequired [title]="'userName'"  formControlName="userName"></app-inputrequired>
       </div>
-     </div> 
-    </div>  
+
+      <div class="four" >
+        <button mat-raised-button color="accent"  [disabled]="userControl.pristine || userControl.controls.invalid" (click)="saveUsuario()">Guardar</button>
+      </div> 
+    </div> 
+   
     </form>
- <button mat-button fxLayoutAlign="end end" color="accent"  [disabled]="userControl.pristine" (click)="saveUsuario()">Guardar</button>
+   
+
            
              
     
