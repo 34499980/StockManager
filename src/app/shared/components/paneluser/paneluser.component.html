@@ -8,20 +8,20 @@
       <div class="wrapper">
         <div class="one">
           <div fxFlex="100%" fxLayout="row wrap" fxLayoutAlign="flex-start center"  class="mb-12">     
-          <span fxFlex="100"><strong>UserName: </strong>{{user.userName}}</span> 
-          <span fxFlex="100"><strong>Nombre: </strong>{{user.first_name}}</span>
-          <span fxFlex="100"><strong>FechaNacimiento: </strong>{{user.bornDate | date:'dd/MM/yyyy'}}</span>
-          <span fxFlex="100"><strong>Email: </strong>{{user.email}}</span>
-          <span fxFlex="100"><strong>CodPostal: </strong>{{user.postalCode}}</span>
+          <span fxFlex="100"  class="mb-4"><strong>UserName: </strong>{{user.userName}}</span> 
+          <span fxFlex="100" class="mb-4"><strong>Nombre: </strong>{{user.first_name}}</span>
+          <span fxFlex="100" class="mb-4"><strong>FechaNacimiento: </strong>{{user.dateBorn | date:'dd/MM/yyyy'}}</span>
+          <span fxFlex="100" class="mb-4"><strong>Email: </strong>{{user.email}}</span>
+          <span fxFlex="100" class="mb-4"><strong>CodPostal: </strong>{{user.postalCode}}</span>
           </div>
         </div>
         <div class="two">
           <div fxFlex="100%" fxLayout="row wrap" fxLayoutAlign="flex-start center" class="mb-12">
-            <span fxFlex="100"><strong>Password: </strong>{{user.password}}</span>   
-            <span fxFlex="100"><strong>Apellido: </strong>{{user.last_name}}</span>  
-            <span fxFlex="100"><strong>FechaIngreso: </strong>{{user.admissionDate | date:'dd/MM/yyyy'}}</span>
-            <span fxFlex="100"><strong>Direccion: </strong>{{user.address}}</span>
-            <span fxFlex="100"><strong>Rol: </strong>{{user.roleDescription}}</span>
+            <span fxFlex="100" class="mb-4"><strong>sucursal: </strong>{{user.sucursalName}}</span>   
+            <span fxFlex="100" class="mb-4"><strong>Apellido: </strong>{{user.last_name}}</span>  
+            <span fxFlex="100" class="mb-4"><strong>FechaIngreso: </strong>{{user.dateAdmission | date:'dd/MM/yyyy'}}</span>
+            <span fxFlex="100" class="mb-4"><strong>Direccion: </strong>{{user.address}}</span>
+            <span fxFlex="100" class="mb-4"><strong>Rol: </strong>{{user.roleDescription}}</span>
         </div>
         </div>
         <div class="three">

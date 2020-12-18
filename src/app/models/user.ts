@@ -18,5 +18,5 @@ export interface User{
 
 export interface UserGet extends User{
     roleDescription: string;
-    SucursalName: string;
+    sucursalName: string;
 }
