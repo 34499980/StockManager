@@ -1,20 +1,67 @@
-  <div fxLayout="row wrap" fxFlex="100">
-    <div fxFlex="60" fxLayout="row" fxLayoutAlign="center center" class="center">
-      <mat-form-field fxFlex="1 1" appearance="outline" >
-          <mat-icon matPrefix>search</mat-icon>
-          <input matInput [formControl]="searchControl" placeholder="Search">
-      </mat-form-field>
+<form [formGroup]="searchControl">
+  <mat-toolbar class="example-header" fxLayoutAlign="space-between">
+    <div fxFlex="20" fxLayoutAlign="start center">
+      <mat-form-field fxFlex="1 1" appearance="outline" floatLabel="always" class="search" >
+        <mat-icon matPrefix>search</mat-icon>
+        <input matInput  formControlName="name" placeholder="Buscar">
+    </mat-form-field>
+    </div>
+    <div fxFlex fxLayoutAlign="end center" >
+     <button mat-mini-fab color="primary" (click)="sidenav.toggle()" >
+      <mat-icon>filter_list</mat-icon>
+    </button>
   </div>
-    <ul fxFlex="70" class="mb-8" fxLayout="column"  *ngFor="let user of userSearch">
-      <li>
-          <app-paneluser [user]="user" ></app-paneluser>
-      </li>        
-    </ul>
-    
+	
+  </mat-toolbar>
 
-</div> 
+  <mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav mode="side" opened class="example-sidenav"
+                position="end"
+                 [fixedInViewport]="options.value.fixed" [fixedTopGap]="options.value.top"
+                 [fixedBottomGap]="options.value.bottom">
+    <div fxLayout="row wrap" class="p-12 pb-56 filtter">
+      <mat-label class="font-weight-400">UserName</mat-label>
+      <mat-form-field  appearance="outline" floatLabel="always" class="mx-12" fxFlex="1 1 90%"
+          color="accent">
+          <input matInput formControlName="name"
+              placeholder="UserName">
+      </mat-form-field> 
 
-       
-    
-                
-        
+      <mat-label class="font-weight-400">Sucursal</mat-label>
+      <mat-form-field appearance="outline" floatLabel="always" class="mx-12" fxFlex="1 1 90%"
+          color="accent">
+          <mat-select formControlName="sucursal" placeholder="Todos"> 
+            <option>Todos</option>                      
+            <mat-option *ngFor="let r of sucursalData" [value]="r.id" >
+              {{r.name}}
+            </mat-option>
+          </mat-select>  
+      </mat-form-field> 
+
+      <mat-label class="font-weight-400">Rol</mat-label>
+      <mat-form-field appearance="outline" floatLabel="always" class="mx-12" fxFlex="1 1 90%"
+          color="accent">
+          <mat-select formControlName="role" placeholder="Todos">      
+            <option>Todos</option>                          
+            <mat-option *ngFor="let r of rolesData" [value]="r.id" >
+              {{r.description}}
+            </mat-option>
+          </mat-select>  
+      </mat-form-field> 
+    </div>
+    </mat-sidenav>
+
+    <mat-sidenav-content [formGroup]="options">
+      <ul fxFlex="80" fxLayoutAlign="start center" fxLayout="column"  *ngFor="let user of userSearch">
+        <li>
+            <app-paneluser [user]="user" ></app-paneluser>
+        </li>        
+      </ul>
+     
+     
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+  <mat-toolbar class="example-footer">Footer</mat-toolbar>
+
+</form>

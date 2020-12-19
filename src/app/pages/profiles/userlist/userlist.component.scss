@@ -1,0 +1,78 @@
+:host{
+    height: 100vh;
+    display: block;
+    background-color: #fff8e1;  
+  }
+  .header{
+    background-color: lightgray;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    width: 100%;
+    height: 50px;
+    position: relative;
+  }
+  
+.example-header {
+  position: fixed;
+ 
+}
+  .title{
+    color:white;
+    font-weight:bold;
+    font-size: 30px;
+    padding-left: 5%;
+    padding-top: 2%;
+  }
+.search{
+  padding-left: 20%;
+}
+ul {
+    list-style-type: none;
+    padding-top:80px;
+    padding-left: 20%;
+    }
+
+.filtter{
+  padding-left: 20px;
+}      
+::ng-deep .mat-toolbar>.mat-form-field-flex > .mat-form-field-infix {
+  padding: 0.4em 0px !important;    
+ }
+::ng-deep .mat-form-field-flex > .mat-form-field-infix {
+     padding: 0.4em 0px !important;    
+    }
+.position{
+  display: inline-block;
+  
+ 
+}
+
+.example-container {
+  position: absolute;
+  top: 60px;
+  bottom: 60px;
+  left: 0;
+  right: 0;
+}
+
+.example-sidenav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  background-color: white;
+}
+
+.example-header {
+  position: fixed;
+  width: 90%;
+}
+
+.example-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+mat-sidenav-content{  
+  background-color: #fff8e1;  
+}
