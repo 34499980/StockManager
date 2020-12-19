@@ -9,7 +9,7 @@
       <div class="one">      
         <app-inputrequired [title]="'Nombre'"  formControlName="first_name"></app-inputrequired>
 
-        <mat-form-field appearance="outline">
+        <mat-form-field  class="datePicker" floatLabel="always"  appearance="outline">
           <mat-label>Fecha nacimiento</mat-label>
           <input matInput  [matDatepicker]="picker2" placeholder="dd/mm/yyyy" formControlName="dateBorn" readonly>
           <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
@@ -31,12 +31,16 @@
             </mat-option>
           </mat-select>  
         </mat-form-field>
+        <ng-container *ngIf="userControl.controls.role.touched">
+          <mat-error  *ngIf="userControl.controls.role.hasError('required')">Debe ingresar un valor</mat-error>         
+          <ng-content></ng-content>
+        </ng-container>
       </div>
       <div class="two">
         
         <app-inputrequired [title]="'Apellio'"  formControlName="last_name"></app-inputrequired>
 
-        <mat-form-field appearance="outline">
+        <mat-form-field class="datePicker" appearance="outline">
           <mat-label>Fecha ingreso</mat-label>
           <input matInput  [matDatepicker]="picker1" placeholder="dd/mm/yyyy" formControlName="dateAdmission" readonly>
           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
@@ -49,31 +53,32 @@
 
        
         <app-inputrequired [title]="'Direccion'"  formControlName="address" [type]="'text'"></app-inputrequired>
+
         <mat-form-field  appearance="outline">
           <mat-label>Sucursal</mat-label>
-          <mat-select formControlName="sucursal" required>                       
+          <mat-select formControlName="sucursal">                       
             <mat-option *ngFor="let r of sucursalData" [value]="r.id" >
               {{r.name}}
             </mat-option>
           </mat-select>
         </mat-form-field>
-      
+        <ng-container *ngIf="userControl.controls.sucursal.touched">
+          <mat-error  *ngIf="userControl.controls.sucursal.hasError('required')">Debe ingresar un valor</mat-error>         
+          <ng-content></ng-content>
+        </ng-container>
       </div>
       <div class="three">
         <app-inputrequired [title]="'userName'"  formControlName="userName"></app-inputrequired>
         <app-inputrequired [title]="'Password'"  formControlName="password"></app-inputrequired>
-        <img width="50%" height="60%" [src]="image" (click)="OnFileSelected($event)" >
+        <img width="220px" height="200px" [src]="this.fileSelected == undefined ? image :  this.cameraImage" (click)="OnFileSelected($event)" >
         <!--<button mat-stroked-button style="width: 100%; height: 300px" (click)="OnFileSelected($event)" [disabled]="this._data.bDsiable">Image</button>-->
         <input  type="file" #file (change)="OnFileSelected($event)" style="visibility: hidden" />
         
       </div>
-
-      <div class="four" >
-       
-      </div> 
+    
     </div> 
     <div fxFlex="20%"  fxLayout="row" fxLayoutAlign="end center" class="paddignButton">
-     <button mat-raised-button color="accent"   [disabled]="userControl.pristine || userControl.controls.invalid" (click)="saveUsuario()">Guardar</button>
+     <button mat-raised-button color="accent"   [disabled]="userControl.pristine || userControl.invalid" (click)="saveUsuario()">Guardar</button>
   </div>
   </div>
     </form>

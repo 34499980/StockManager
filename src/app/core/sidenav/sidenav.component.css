@@ -58,4 +58,7 @@ mat-sidenav {
   div{
     width: 100%;
   }
+  .mat-expansion-indicator, .mat-expansion-indicator:after {
+    color: white !important;
+  }
 }

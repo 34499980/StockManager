@@ -59,6 +59,7 @@ OnFileSelected(event){
   this.file.nativeElement.click()
   // tslint:disable-next-line: no-angle-bracket-type-assertion
   this.fileSelected = <File>event.target.files === undefined ? undefined : <File>event.target.files[0]
+  console.log(this.fileSelected)
   this.url = URL.createObjectURL(this.fileSelected);
   this.cameraImage = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
 }
