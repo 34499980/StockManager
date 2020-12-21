@@ -2,6 +2,7 @@ import { RolesResolver } from '../resolvers/roles.resolver';
 import { Item } from './item.model';
 
 export interface User{
+    id?: number;
     userName: string
     password: string
     first_name: string
@@ -10,13 +11,16 @@ export interface User{
     dateBorn: Date
     email: string
     address: string
-    postalCode: string
+    postalCode: number
     idRole: number;
     idSucursal: number
-    role: Item[];
+
+   
 }
 
-export interface UserGet extends User{
-    roleDescription: string;
-    sucursalName: string;
+export interface UserGet extends User{  
+    role: Item[];
+    roleDescription?: string;
+    sucursalName?: string;
 }
+

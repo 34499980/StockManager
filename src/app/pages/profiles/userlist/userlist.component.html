@@ -1,11 +1,19 @@
 <form [formGroup]="searchControl">
   <mat-toolbar class="example-header" fxLayoutAlign="space-between">
-    <div fxFlex="20" fxLayoutAlign="start center">
-      <mat-form-field fxFlex="1 1" appearance="outline" floatLabel="always" class="search" >
-        <mat-icon matPrefix>search</mat-icon>
-        <input matInput  formControlName="name" placeholder="Buscar">
-    </mat-form-field>
-    </div>
+    <div fxFlex="0 1 auto" fxLayout="row wrap">
+      <!--SEARCH BAR-->
+      <div fxFlex="1 1 100%" fxLayout="row">
+          <mat-form-field fxFlex="1 1" appearance="outline" floatLabel="always" class="">
+              <mat-icon matPrefix class="mr-8">search</mat-icon>
+              <input matInput formControlName="name" placeholder="Buscar" >
+          </mat-form-field>
+
+          <!-- <button fxFlex="0 1 auto" mat-icon-button aria-label="more actions">
+              <mat-icon class="info-icon">info</mat-icon>
+          </button> -->
+      </div>                    
+  </div>
+
     <div fxFlex fxLayoutAlign="end center" >
      <button mat-mini-fab color="primary" (click)="sidenav.toggle()" >
       <mat-icon>filter_list</mat-icon>
@@ -31,7 +39,7 @@
       <mat-form-field appearance="outline" floatLabel="always" class="mx-12" fxFlex="1 1 90%"
           color="accent">
           <mat-select formControlName="sucursal" placeholder="Todos"> 
-            <option>Todos</option>                      
+            <mat-option>Todos</mat-option>                      
             <mat-option *ngFor="let r of sucursalData" [value]="r.id" >
               {{r.name}}
             </mat-option>
@@ -42,7 +50,7 @@
       <mat-form-field appearance="outline" floatLabel="always" class="mx-12" fxFlex="1 1 90%"
           color="accent">
           <mat-select formControlName="role" placeholder="Todos">      
-            <option>Todos</option>                          
+            <mat-option>Todos</mat-option>                          
             <mat-option *ngFor="let r of rolesData" [value]="r.id" >
               {{r.description}}
             </mat-option>
@@ -51,12 +59,16 @@
     </div>
     </mat-sidenav>
 
-    <mat-sidenav-content [formGroup]="options">
-      <ul fxFlex="80" fxLayoutAlign="start center" fxLayout="column"  *ngFor="let user of userSearch">
+    <mat-sidenav-content [formGroup]="options" fxLayout="row wrap">
+      <mat-accordion hideToggle="true" >
+      <ul  *ngFor="let user of userSearch">
+        
         <li>
             <app-paneluser [user]="user" ></app-paneluser>
-        </li>        
+        </li> 
+      
       </ul>
+    </mat-accordion>      
      
      
     </mat-sidenav-content>

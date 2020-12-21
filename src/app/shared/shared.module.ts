@@ -61,7 +61,7 @@ const MODULES = [
     MatFormFieldModule,
     ToastrModule.forRoot({
       timeOut: 7000,
-      positionClass: 'toast-top-right',
+      positionClass: 'toast-bottom-center',
       preventDuplicates: true,
     }),
     ...MODULES

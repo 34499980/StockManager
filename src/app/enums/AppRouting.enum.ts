@@ -1,5 +1,6 @@
 export const enum  AppRouting {
     Login = 'Login',
     Home = 'Home',
-    Profile = 'Profile'
+    Profile = 'Profile',
+    UserList= 'Profile/all'
 }
