@@ -32,6 +32,7 @@ import { ToastrModule } from 'ngx-toastr';
 const COMPONENTS = [
     InputrequiredComponent,
     DialogMessageComponent,
+    DialogconfirmComponent,
     PaneluserComponent
 ];
 const MODULES = [

@@ -170,4 +170,12 @@ export class UserService {
             })
         );
     }
+    remove(id: number){
+        return  this.http.delete(environment.RestFullApi+'Usuario/'+id)
+        .pipe(
+            map(res => {
+            return res
+            })
+        );
+    }
 }

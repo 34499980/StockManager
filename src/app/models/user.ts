@@ -13,7 +13,8 @@ export interface User{
     address: string
     postalCode: number
     idRole: number;
-    idSucursal: number
+    idSucursal: number;
+    active: boolean;
 
    
 }

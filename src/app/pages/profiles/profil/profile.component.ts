@@ -47,7 +47,8 @@ export class ProfileComponent implements OnInit {
       address: [this.user?.address || '', [Validators.required, Validators.maxLength(50)]],
       postalCode: [this.user?.postalCode || '', [Validators.required, Validators.maxLength(50), Validators.pattern(/^[0-9]\d*$/)]],
       sucursal: [this.user?.idSucursal || '', Validators.required],
-      role: [this.user?.idRole || '', [Validators.required, Validators.maxLength(50)]]
+      role: [this.user?.idRole || '', [Validators.required, Validators.maxLength(50)]],
+      state:[this.user?.active || '']
     });
 
 }
@@ -67,7 +68,8 @@ saveUsuario() {
     email: this.userControl.controls.email.value,
     postalCode: parseInt(this.userControl.controls.postalCode.value, 10),
     idSucursal: parseInt(this.userControl.controls.sucursal.value, 10),
-    idRole: parseInt(this.userControl.controls.role.value, 10)
+    idRole: parseInt(this.userControl.controls.role.value, 10),
+    active: Boolean(this.userControl.controls.role.value)
     
 
   }

@@ -1,8 +1,12 @@
 import { Component, OnInit, Input, Output, ViewChild, ElementRef } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AppRouting } from 'src/app/enums/AppRouting.enum';
 import { User, UserGet } from 'src/app/models/user';
 import { ArquitecturaService } from 'src/app/services/arquitectura.service';
+import { ToastService } from 'src/app/services/toast.service';
+import { UserService } from 'src/app/services/user.service';
+import { DialogconfirmComponent } from '../../dialogs/dialogconfirm/dialogconfirm.component';
 
 @Component({
   selector: 'app-paneluser',
@@ -16,7 +20,11 @@ export class PaneluserComponent implements OnInit {
   @ViewChild('file') file :ElementRef
   _fileSelected: File = null
  _router: Router
-  constructor(router: Router,private arquitecturaService: ArquitecturaService) {
+  constructor(private router: Router,
+              private arquitecturaService: ArquitecturaService,
+              private dialog: MatDialog,
+              private userService: UserService,
+              private toastService: ToastService) {
     this._router = router
    }
 
@@ -37,8 +45,20 @@ export class PaneluserComponent implements OnInit {
     }
 
   }
-  delete() {
-
+  delete(user: any) {
+    const dialogRef = this.dialog.open(DialogconfirmComponent, {
+      disableClose: true,
+      data:{title:"Eliminar usuario", message:"El usuario no podra realizar ningun tipo de operación"}
+        });
+      
+       dialogRef.afterClosed().subscribe(result => {
+         if(result === true){
+          this.userService.remove(this.user.id).subscribe(() => 
+          {this.toastService.success("El usuario ha sido eliminado!"),
+          this.router.navigate([AppRouting.UserList])
+        });
+      }
+   });
   }
 
 
