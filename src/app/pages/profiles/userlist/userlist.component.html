@@ -39,7 +39,7 @@
       <mat-form-field appearance="outline" floatLabel="always" class="mx-12" fxFlex="1 1 90%"
           color="accent">
           <mat-select formControlName="sucursal" placeholder="Todos"> 
-            <mat-option>Todos</mat-option>                      
+            <mat-option [value]="''">Todos</mat-option>                      
             <mat-option *ngFor="let r of sucursalData" [value]="r.id" >
               {{r.name}}
             </mat-option>
@@ -50,7 +50,7 @@
       <mat-form-field appearance="outline" floatLabel="always" class="mx-12" fxFlex="1 1 90%"
           color="accent">
           <mat-select formControlName="role" placeholder="Todos">      
-            <mat-option>Todos</mat-option>                          
+            <mat-option [value]="''">Todos</mat-option>                          
             <mat-option *ngFor="let r of rolesData" [value]="r.id" >
               {{r.description}}
             </mat-option>

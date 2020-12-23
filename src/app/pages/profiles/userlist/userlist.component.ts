@@ -38,9 +38,9 @@ export class UserListComponent implements OnInit {
       top: 0
     });
    this.searchControl = this.formBuilder.group({
-     name:[null],
-     sucursal:[null],
-     role:[null]
+     name:[''],
+     sucursal:[''],
+     role:['']
    })
    this.onChange();
    this.usersData = this.activateRoute.snapshot.data.userlist as UserGet[];
@@ -49,10 +49,10 @@ export class UserListComponent implements OnInit {
   }
   onChange(){
     this.searchControl.valueChanges.subscribe(val =>{
-      this.userSearch = this.usersData.filter(x => (val.name !== ''? (x.userName.toLowerCase().indexOf(val.name) > -1) : null) &&
-                                                (val.sucursal  !== ''? x.idSucursal === val.sucursal: null) &&
-                                                (val.role  !== ''? x.idRole === val.role: null))
-    })
+      this.userSearch = this.usersData.filter(x => (val.name == '' || (x.userName.toLowerCase().indexOf(val.name) > -1)) &&
+                                                (val.sucursal  == '' || x.idSucursal === val.sucursal) &&
+                                                (val.role  == '' || x.idRole === val.role))
+    });
   }
   toggleFilterSideNav(){
     this.toggleIsFilterPanelOpen? false:true
