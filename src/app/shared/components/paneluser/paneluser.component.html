@@ -1,8 +1,8 @@
 
     <mat-expansion-panel  class="mat-elevation-z8">
      
-      <mat-expansion-panel-header  style="background-color: royalblue">
-        <span class="mat-cell" style="color: seashell">{{user.first_name +" "+user.last_name}}</span>        
+      <mat-expansion-panel-header [ngStyle]=" { 'background-color': user.active? 'royalblue': '#f5f5f5'}">
+        <span class="mat-cell"  [ngStyle]=" { 'color': user.active? 'seashell': '#bdbdbd'}">{{user.first_name +" "+user.last_name}}</span>      
       </mat-expansion-panel-header>    
    
       <div class="wrapper">
@@ -34,7 +34,7 @@
         <button mat-icon-button matTooltip="Editar">
           <mat-icon class="pointer"   (click)="VerPerfil(user)" >create</mat-icon>
       </button>
-       <button mat-icon-button  matTooltip="Eliminar">
+       <button mat-icon-button *ngIf="user.active"  matTooltip="Eliminar">
          <mat-icon class="pointer"   style="color:red" (click)="delete(user)" >delete</mat-icon>
       </button>
       </div>

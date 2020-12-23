@@ -38,21 +38,21 @@ export class UserListComponent implements OnInit {
       top: 0
     });
    this.searchControl = this.formBuilder.group({
-     name:[''],
-     sucursal:[''],
-     role:['']
+     name:[null],
+     sucursal:[null],
+     role:[null]
    })
+   this.onChange();
    this.usersData = this.activateRoute.snapshot.data.userlist as UserGet[];
    this.userSearch = this.usersData;
-   this.searchControl.controls.name.valueChanges.subscribe(res =>
-   this.userSearch = this.usersData.filter(x => x.userName.toLowerCase().indexOf(res) > -1)
-   )
-   this.searchControl.controls.role.valueChanges.subscribe(res =>
-    this.userSearch = this.usersData.filter(x => x.idRole == res)
-    )
-    this.searchControl.controls.sucursal.valueChanges.subscribe(res =>
-      this.userSearch = this.usersData.filter(x => x.idSucursal == res)
-      )
+  
+  }
+  onChange(){
+    this.searchControl.valueChanges.subscribe(val =>{
+      this.userSearch = this.usersData.filter(x => (val.name !== ''? (x.userName.toLowerCase().indexOf(val.name) > -1) : null) &&
+                                                (val.sucursal  !== ''? x.idSucursal === val.sucursal: null) &&
+                                                (val.role  !== ''? x.idRole === val.role: null))
+    })
   }
   toggleFilterSideNav(){
     this.toggleIsFilterPanelOpen? false:true

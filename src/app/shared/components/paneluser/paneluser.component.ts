@@ -55,7 +55,7 @@ export class PaneluserComponent implements OnInit {
          if(result === true){
           this.userService.remove(this.user.id).subscribe(() => 
           {this.toastService.success("El usuario ha sido eliminado!"),
-          this.router.navigate([AppRouting.UserList])
+          window.location.reload();
         });
       }
    });
