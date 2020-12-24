@@ -28,6 +28,7 @@ import { AvatarModule } from 'ngx-avatar';
 import { PaneluserComponent } from './components/paneluser/paneluser.component';
 import { DialogconfirmComponent } from './dialogs/dialogconfirm/dialogconfirm.component';
 import { ToastrModule } from 'ngx-toastr';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 const COMPONENTS = [
     InputrequiredComponent,
@@ -60,6 +61,7 @@ const MODULES = [
     MatNativeDateModule,
     FlexLayoutModule,
     MatFormFieldModule,
+    MatCheckboxModule,
     ToastrModule.forRoot({
       timeOut: 7000,
       positionClass: 'toast-bottom-center',
@@ -101,6 +103,7 @@ const MODULES = [
     MatRippleModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatCheckboxModule,
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,

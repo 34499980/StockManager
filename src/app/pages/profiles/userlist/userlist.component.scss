@@ -2,6 +2,7 @@
     height: 100vh;
     display: block;
     background-color: #fff8e1;  
+    
   }
   .header{
     background-color: lightgray;
@@ -42,6 +43,17 @@ ul {
     }
 mat-accordion{
   padding-top: 1%;
+}
+mat-sidenav-container{
+  height: 100%;
+  background: #d0d0d0;
+  .aply-filters-button{
+    padding: 12px;  
+    position: fixed;
+    bottom: 0;
+    right: 0; 
+    width: 200px; 
+}
 }
 .position{
   display: inline-block;

@@ -15,7 +15,7 @@
   </div>
 
     <div fxFlex fxLayoutAlign="end center" >
-     <button mat-mini-fab color="primary" (click)="sidenav.toggle()" >
+     <button mat-mini-fab color="primary" matTooltip="Filtros" matTooltipPosition="above" (click)="sidenav.toggle()" >
       <mat-icon>filter_list</mat-icon>
     </button>
   </div>
@@ -25,9 +25,9 @@
   <mat-sidenav-container class="example-container">
     <mat-sidenav #sidenav mode="side" class="example-sidenav"
                 position="end"
-                 [fixedInViewport]="options.value.fixed" [fixedTopGap]="options.value.top"
-                 [fixedBottomGap]="options.value.bottom">
-    <div fxLayout="row wrap" class="p-12 pb-56 filtter">
+               >
+    <div fxLayout="row wrap" class="p-12 pb-56 filtter">    
+
       <mat-label class="font-weight-400">UserName</mat-label>
       <mat-form-field  appearance="outline" floatLabel="always" class="mx-12" fxFlex="1 1 90%"
           color="accent">
@@ -56,12 +56,23 @@
             </mat-option>
           </mat-select>  
       </mat-form-field> 
+      <mat-checkbox formControlName="status" fxLayoutAlign="start center"
+      appearance="outline" floatLabel="always"
+      class="mb-12" fxFlex="100%" color="primary">Deshabilitado </mat-checkbox>
+      
+      <div fxLayout="row" class="aply-filters-button">
+        <button fxFlex="90%" fxLayoutAlign="center center"
+        matTooltip="Limpiar filtros" matTooltipPosition="above" mat-raised-button color="primary"
+        (click)="clear()">Limpiar
+          </button>
+      </div>
     </div>
+    
     </mat-sidenav>
 
     <mat-sidenav-content [formGroup]="options" fxLayout="row wrap">
       <mat-accordion hideToggle="true" >
-      <ul  *ngFor="let user of userSearch">
+      <ul  *ngFor="let user of usersData">
         
         <li>
             <app-paneluser [user]="user" ></app-paneluser>

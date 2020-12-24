@@ -2,7 +2,9 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { AppRouting } from 'src/app/enums/AppRouting.enum';
+import { RolesEnum } from 'src/app/enums/Roles.Enum';
 import { Item } from 'src/app/models/item.model';
 import { Sucursal } from 'src/app/models/sucural.model';
 import { User } from 'src/app/models/user';
@@ -29,7 +31,8 @@ export class ProfileComponent implements OnInit {
               private activateRoute: ActivatedRoute,
               private userService: UserService,
               private toastService: ToastService,
-              private router: Router) { }
+              private router: Router,
+              private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.image = '../../../../assets/userEmpty.jpg'
@@ -48,7 +51,7 @@ export class ProfileComponent implements OnInit {
       postalCode: [this.user?.postalCode || '', [Validators.required, Validators.maxLength(50), Validators.pattern(/^[0-9]\d*$/)]],
       sucursal: [this.user?.idSucursal || '', Validators.required],
       role: [this.user?.idRole || '', [Validators.required, Validators.maxLength(50)]],
-      state:[this.user?.active || '']
+      state:[this.user?.active || false]
     });
 
 }
@@ -85,6 +88,10 @@ OnFileSelected(event){
   console.log(this.fileSelected)
   this.url = URL.createObjectURL(this.fileSelected);
   this.cameraImage = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
+}
+//Show methods
+showPermissionAdmin(){
+  return parseInt(this.authenticationService.getCurrentRole()) === RolesEnum.Administrador && this.user;
 }
 
 }

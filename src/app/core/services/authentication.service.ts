@@ -31,9 +31,13 @@ export class AuthenticationService {
       getSession(): any{
        return localStorage.getItem('user');
       }
-    Autorization(value){
+      getCurrentRole(): any{
+        return localStorage.getItem('roleId');
+       }
+    Autorization(value: User){
         this.loggedIn.next(true)
         localStorage.setItem('user', value.userName)
+        localStorage.setItem('roleId', value.idRole.toString())
       return value
     }
     login(username: string, pass: string) {
@@ -42,7 +46,7 @@ export class AuthenticationService {
         password: pass
       };
         return this.http.post(environment.RestFullApi+'Authentication', user,options)
-            .pipe( map(res => {return this.Autorization(user)})
+            .pipe( map(res => {return this.Autorization(res as User)})
             )
     }
     logout() {

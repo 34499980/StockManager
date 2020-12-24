@@ -66,9 +66,9 @@
           <mat-error  *ngIf="userControl.controls.sucursal.hasError('required')">Debe ingresar un valor</mat-error>         
           <ng-content></ng-content>
         </ng-container>
-        <mat-form-field  appearance="outline">
+        <mat-form-field *ngIf="showPermissionAdmin()" appearance="outline">
           <mat-label>Estado</mat-label>
-          <mat-select formControlName="state">                       
+          <mat-select formControlName="state" [(value)]="userControl.controls.state">                       
             <mat-option [value]="true">Activado</mat-option>    
             <mat-option [value]="false">Desactivado</mat-option>   
           </mat-select>  

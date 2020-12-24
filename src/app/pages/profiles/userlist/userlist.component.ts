@@ -10,6 +10,9 @@ import { Sucursal } from 'src/app/models/sucural.model';
 import { Subject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { UserFilter } from 'src/app/models/UserFilter.model';
+import { ValueCache } from 'ag-grid-community';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { RolesEnum } from 'src/app/enums/Roles.Enum';
 
 
 @Component({
@@ -27,10 +30,11 @@ export class UserListComponent implements OnInit {
   _param: any
   userData$: Subject<UserGet[]> = new Subject();
   @ViewChild('sidenav') sideNavFilters: MatDrawer;
-  toggleIsFilterPanelOpen = false;
+  toggleIsFilterPanelOpen = true;
   constructor(private activateRoute: ActivatedRoute,
               private formBuilder: FormBuilder,
-              private userService: UserService) {
+              private userService: UserService,
+              private authenticationService: AuthenticationService) {
 
    }
 
@@ -50,17 +54,25 @@ export class UserListComponent implements OnInit {
    })
    this.getUsersFilter(); 
    this.loadData();  
-   this.searchControl.valueChanges.subscribe(() => this.loadData());
+   this.searchControl.valueChanges.subscribe(val => {
+     if(!val.name?? (val.name != '' && val.name.length > 3)){
+      this.loadData()
+     }else if(val.name === '' || val.name === null){
+      this.loadData()
+     }
+      
+   });
   }
   getUsersFilter(){
 
     this.userData$.pipe(
       switchMap(res => {
+        
         const userFilter : UserFilter = {
-          userName: this.searchControl.controls.name.value,
+          userName: this.searchControl.controls.name.value?? '',
           idRole: parseInt(this.searchControl.controls.role.value),
           idSucursal: parseInt(this.searchControl.controls.sucursal.value),
-          active: Boolean(this.searchControl.controls.status.value)
+          active: parseInt(this.authenticationService.getCurrentRole()) !== RolesEnum.Administrador? false: Boolean(this.searchControl.controls.status.value)
         };
         return this.userService.getUserFilter(userFilter);
       })
@@ -69,17 +81,17 @@ export class UserListComponent implements OnInit {
     });
    
   }
-  /*onChange(){
-    this.searchControl.valueChanges.subscribe(val =>{
-      this.userSearch = this.usersData.filter(x => (val.name == '' || (x.userName.toLowerCase().indexOf(val.name) > -1)) &&
-                                                (val.sucursal  == '' || x.idSucursal === val.sucursal) &&
-                                                (val.role  == '' || x.idRole === val.role))
-    });
-  }*/
+ clear(){
+   this.searchControl.reset();
+   this.loadData();
+ }
   loadData() {
     this.userData$.next();
 }
   toggleFilterSideNav(){
     this.toggleIsFilterPanelOpen? false:true
+  }
+  showAdministrativePermission(){
+    return parseInt(this.authenticationService.getCurrentRole()) === RolesEnum.Administrador;
   }
 }

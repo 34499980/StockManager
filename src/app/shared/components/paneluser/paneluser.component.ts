@@ -1,7 +1,9 @@
 import { Component, OnInit, Input, Output, ViewChild, ElementRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { AppRouting } from 'src/app/enums/AppRouting.enum';
+import { RolesEnum } from 'src/app/enums/Roles.Enum';
 import { User, UserGet } from 'src/app/models/user';
 import { ArquitecturaService } from 'src/app/services/arquitectura.service';
 import { ToastService } from 'src/app/services/toast.service';
@@ -24,7 +26,8 @@ export class PaneluserComponent implements OnInit {
               private arquitecturaService: ArquitecturaService,
               private dialog: MatDialog,
               private userService: UserService,
-              private toastService: ToastService) {
+              private toastService: ToastService
+             ) {
     this._router = router
    }
 
@@ -60,6 +63,7 @@ export class PaneluserComponent implements OnInit {
       }
    });
   }
+ 
 
 
 }
