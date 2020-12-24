@@ -7,6 +7,7 @@ import { ArquitecturaService } from './arquitectura.service';
 import { map, catchError } from 'rxjs/operators';
 import { User } from '../models/user';
 import { navigation } from '../core/sidenav/navigation';
+import { UserFilter } from '../models/UserFilter.model';
 const headers = new HttpHeaders();
 headers.append('Access-Control-Allow-Headers', 'Content-Type');
 headers.append('Access-Control-Allow-Methods', 'GET,POST,PUT,DEconstE,OPTIONS');
@@ -172,6 +173,14 @@ export class UserService {
     }
     remove(id: number){
         return  this.http.delete(environment.RestFullApi+'Usuario/'+id)
+        .pipe(
+            map(res => {
+            return res
+            })
+        );
+    }
+    getUserFilter(filter: UserFilter){
+        return  this.http.post(environment.RestFullApi+'Usuario/GetUserFilter',filter)
         .pipe(
             map(res => {
             return res

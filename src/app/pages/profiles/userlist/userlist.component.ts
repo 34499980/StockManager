@@ -7,6 +7,9 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDrawer, MatSidenav } from '@angular/material/sidenav';
 import { Item } from 'src/app/models/item.model';
 import { Sucursal } from 'src/app/models/sucural.model';
+import { Subject } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import { UserFilter } from 'src/app/models/UserFilter.model';
 
 
 @Component({
@@ -22,10 +25,12 @@ export class UserListComponent implements OnInit {
   sucursalData: Sucursal[];
   options: FormGroup;
   _param: any
+  userData$: Subject<UserGet[]> = new Subject();
   @ViewChild('sidenav') sideNavFilters: MatDrawer;
   toggleIsFilterPanelOpen = false;
   constructor(private activateRoute: ActivatedRoute,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private userService: UserService) {
 
    }
 
@@ -40,20 +45,40 @@ export class UserListComponent implements OnInit {
    this.searchControl = this.formBuilder.group({
      name:[''],
      sucursal:[''],
-     role:['']
+     role:[''],
+     status: [false]
    })
-   this.onChange();
-   this.usersData = this.activateRoute.snapshot.data.userlist as UserGet[];
-   this.userSearch = this.usersData;
-  
+   this.getUsersFilter(); 
+   this.loadData();  
+   this.searchControl.valueChanges.subscribe(() => this.loadData());
   }
-  onChange(){
+  getUsersFilter(){
+
+    this.userData$.pipe(
+      switchMap(res => {
+        const userFilter : UserFilter = {
+          userName: this.searchControl.controls.name.value,
+          idRole: parseInt(this.searchControl.controls.role.value),
+          idSucursal: parseInt(this.searchControl.controls.sucursal.value),
+          active: Boolean(this.searchControl.controls.status.value)
+        };
+        return this.userService.getUserFilter(userFilter);
+      })
+    ).subscribe(res =>{
+       this.usersData = res as UserGet[];
+    });
+   
+  }
+  /*onChange(){
     this.searchControl.valueChanges.subscribe(val =>{
       this.userSearch = this.usersData.filter(x => (val.name == '' || (x.userName.toLowerCase().indexOf(val.name) > -1)) &&
                                                 (val.sucursal  == '' || x.idSucursal === val.sucursal) &&
                                                 (val.role  == '' || x.idRole === val.role))
     });
-  }
+  }*/
+  loadData() {
+    this.userData$.next();
+}
   toggleFilterSideNav(){
     this.toggleIsFilterPanelOpen? false:true
   }

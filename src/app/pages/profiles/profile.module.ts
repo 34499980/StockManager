@@ -12,8 +12,7 @@ const routes: Routes = [
   {
     path: 'all',
     component: UserListComponent,
-    resolve:{
-      userlist: UserListResolver,
+    resolve:{     
       sucursal: SucursalResolver,
       roles: RolesResolver,
     }
