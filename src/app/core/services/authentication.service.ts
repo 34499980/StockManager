@@ -5,6 +5,8 @@ import { map} from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ArquitecturaService } from '../../services/arquitectura.service';
 import { User } from '../../models/user';
+import { Router } from '@angular/router';
+import { AppRouting } from 'src/app/enums/AppRouting.enum';
 
 
 const headers = new HttpHeaders();
@@ -21,7 +23,8 @@ export class AuthenticationService {
     // tslint:disable-next-line: no-construct
     public ErrorMessage = new String()
     constructor(private http: HttpClient,
-                private arquitecturaService: ArquitecturaService ) {
+                private arquitecturaService: ArquitecturaService,
+                private router: Router ) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
     }
@@ -50,6 +53,7 @@ export class AuthenticationService {
             )
     }
     logout() {
-      this.loggedIn.next(false)
+      this.loggedIn.next(false);
+      this.router.navigate([AppRouting.Login]);
     }
 }

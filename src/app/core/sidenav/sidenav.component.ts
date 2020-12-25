@@ -41,7 +41,7 @@ export class SidenavComponent implements OnInit {
     this.userService.getScreens().subscribe(data => {this.screens = data})
   }
   logout() {
-
+  this.authenticationService.logout();
   }
   public getScrrens(){
   //  this.user.getScreensByRule().subscribe(data => {this.screens = data})
