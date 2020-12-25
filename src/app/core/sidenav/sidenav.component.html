@@ -11,8 +11,14 @@
   <div fxFlex="100">    
     
   </div>
-     
-    <button mat-button  fxLayout="row"  fxLayoutAlign="end end" (click)="logout()" *ngIf="isLoggedIn">Logout</button>
+  <div fxLayout="100%" fxLayoutAlign="center end">
+    <div fxLayout="row"  fxLayoutAlign="end end">
+      <ngx-avatar  [matMenuTriggerFor]="menu"  size="30" src="assets/userEmpty.jpg"></ngx-avatar>
+      <mat-menu #menu="matMenu">
+        <button mat-button fxLayout="100%"  (click)="logout()" *ngIf="isLoggedIn">Logout</button>
+      </mat-menu>
+    </div>    
+    </div>
   
   </div>
  

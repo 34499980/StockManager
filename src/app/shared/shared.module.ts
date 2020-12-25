@@ -29,6 +29,7 @@ import { PaneluserComponent } from './components/paneluser/paneluser.component';
 import { DialogconfirmComponent } from './dialogs/dialogconfirm/dialogconfirm.component';
 import { ToastrModule } from 'ngx-toastr';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatMenuModule } from '@angular/material/menu';
 
 const COMPONENTS = [
     InputrequiredComponent,
@@ -61,6 +62,7 @@ const MODULES = [
     MatNativeDateModule,
     FlexLayoutModule,
     MatFormFieldModule,
+    MatMenuModule,
     MatCheckboxModule,
     ToastrModule.forRoot({
       timeOut: 7000,
@@ -108,6 +110,7 @@ const MODULES = [
     ReactiveFormsModule,
     FlexLayoutModule,
     MatFormFieldModule,
+    MatMenuModule,
     ToastrModule,
     ...COMPONENTS,
     ...MODULES
