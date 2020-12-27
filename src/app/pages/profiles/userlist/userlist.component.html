@@ -1,12 +1,12 @@
 <ng-container>
   <form [formGroup]="searchControl">
-    <mat-toolbar class="example-header" fxLayoutAlign="space-between">
+    <mat-toolbar class="header" fxLayoutAlign="space-between">
       <div fxFlex="0 1 auto" fxLayout="row wrap">
         <!--SEARCH BAR-->
         <div fxFlex="1 1 100%" fxLayout="row">
-            <mat-form-field fxFlex="1 1" appearance="outline" floatLabel="always" class="">
+            <mat-form-field fxFlex="1 1" appearance="outline" floatLabel="always" class="colorWhite">
                 <mat-icon matPrefix class="mr-8">search</mat-icon>
-                <input autocomplete="off" matInput formControlName="name" placeholder="Buscar" >
+                <input autocomplete="off" class="" matInput formControlName="name" placeholder="Buscar" >
             </mat-form-field>
   
             <!-- <button fxFlex="0 1 auto" mat-icon-button aria-label="more actions">
@@ -14,18 +14,27 @@
             </button> -->
         </div>                    
     </div>
-  
+    <div fxFlex fxLayoutAlign="end center" >
+     
+     
+   </div>
       <div fxFlex fxLayoutAlign="end center" >
-       <button mat-mini-fab color="primary" matTooltip="Filtros" matTooltipPosition="above" (click)="sidenav.toggle()" >
+        <button mat-mini-fab color="primary"  matTooltip="Agregar" matTooltipPosition="above" (click)="Add()" >
+          <mat-icon>add</mat-icon>
+        </button>
+        <div class="paddingButton">
+       <button mat-mini-fab color="primary"  matTooltip="Filtros" matTooltipPosition="above" (click)="sidenav.toggle()" >
         <mat-icon>filter_list</mat-icon>
       </button>
+    </div>
+      
     </div>
     
     </mat-toolbar>
     <mat-sidenav-container class="example-container">
       <mat-sidenav #sidenav mode="side" class="example-sidenav"
                   position="end"
-                 >
+                 fxFlex="1 1 auto">
       <div fxLayout="row wrap" class="p-12 pb-56 filtter">    
   
         <mat-label class="font-weight-400">UserName</mat-label>
@@ -77,7 +86,8 @@
           <li>
               <app-paneluser [user]="user" ></app-paneluser>
           </li> 
-        
+           
+         
         </ul>
       </mat-accordion>      
        

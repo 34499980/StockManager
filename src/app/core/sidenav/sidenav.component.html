@@ -15,7 +15,7 @@
     <div fxLayout="row"  fxLayoutAlign="end end">
       <ngx-avatar  [matMenuTriggerFor]="menu"  size="30" src="assets/userEmpty.jpg"></ngx-avatar>
       <mat-menu #menu="matMenu">
-        <button mat-button fxLayout="100%"  (click)="logout()" *ngIf="isLoggedIn">Logout</button>
+        <span  fxLayout="100%"  fxLayoutAlign="center center" class="pointer"  (click)="logout()" *ngIf="isLoggedIn">Logout</span>
       </mat-menu>
     </div>    
     </div>

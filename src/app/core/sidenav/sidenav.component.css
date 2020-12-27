@@ -26,6 +26,9 @@
     width: 35%;
     height: 35%;
 }
+.centerText{
+  text-align: center;
+}
 .input{
   width: 60%;
 }
