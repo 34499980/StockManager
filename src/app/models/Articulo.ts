@@ -1,5 +1,5 @@
 import { NumberFormatStyle } from '@angular/common'
-import { Stock_Sucursal } from './stock_sucursal.model'
+import { Stock_Office } from './stock_office.model'
 
 export class Articulo{
     id: number
@@ -14,6 +14,6 @@ export class Articulo{
     count: number
     description: string
     image: string
-    idsucursal: number
-    stock_Sucursal: Stock_Sucursal[] = []
+    idOffice: number
+    stock_Office: Stock_Office[] = []
 }

@@ -6,7 +6,7 @@ import { UserService } from 'src/app/services/user.service';
 
 
 @Injectable()
-export class SucursalResolver implements Resolve<any>
+export class OfficeResolver implements Resolve<any>
 {
     private apiEndPoint: string;
 
@@ -25,6 +25,6 @@ export class SucursalResolver implements Resolve<any>
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any>
     {       
-        return this._service.getAllSucursal();
+        return this._service.getAllOffice();
     }
 }

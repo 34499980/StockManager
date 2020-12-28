@@ -77,7 +77,7 @@ export class DispatchService {
         })
       )
   }
- GetAllDispatchBySucursal(): Observable<any>{
+ GetAllDispatchByOffice(): Observable<any>{
   const user = this.authentication.getSession()
    const request = {
     UserName : user

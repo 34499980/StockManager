@@ -13,7 +13,7 @@ export interface User{
     address: string
     postalCode: number
     idRole: number;
-    idSucursal: number;
+    idOffice: number;
     active: boolean;
 
    
@@ -22,6 +22,6 @@ export interface User{
 export interface UserGet extends User{  
     role: Item[];
     roleDescription?: string;
-    sucursalName?: string;
+    officeName?: string;
 }
 

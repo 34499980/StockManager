@@ -173,12 +173,12 @@ filter: true,
 dataKey: 'remito'
 },
 {
-headerName: 'Sucursal',
-header: 'Sucursal',
-field: 'sucursal',
+headerName: 'Office',
+header: 'Office',
+field: 'Office',
 sortable: true,
 filter: true,
-dataKey:'sucursal'
+dataKey:'office'
 },
 {
 headerName:'Fecha anulación',
@@ -241,12 +241,12 @@ filter: true,
 dataKey: 'remito'
 },
 {
-headerName: 'Sucursal',
-header: 'Sucursal',
-field: 'sucursal',
+headerName: 'Office',
+header: 'Office',
+field: 'office',
 sortable: true,
 filter: true,
-dataKey:'sucursal'
+dataKey:'office'
 }
   ]
   return of(columns)
@@ -292,12 +292,12 @@ dataKey: 'Model',
 width: 150
 },
 {
-headerName: 'Sucursal',
-header: 'Sucursal',
-field: 'sucursal',
+headerName: 'Office',
+header: 'Office',
+field: 'office',
 sortable: true,
 filter: true,
-dataKey:'Sucursal'
+dataKey:'Office'
 },
 {
 headerName: 'Cantidad',

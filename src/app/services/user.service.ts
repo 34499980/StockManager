@@ -26,7 +26,7 @@ export class UserService {
    return of(screen);
     }
     getUsuarios(): Observable<any> {
-       return  this.http.get(environment.RestFullApi+'Usuario')
+       return  this.http.get(environment.RestFullApi+'User')
        .pipe(
            map(res => {
                return res
@@ -34,7 +34,7 @@ export class UserService {
        );
     }
     getUsuariosByUserName(user: string): Observable<any> {
-        return  this.http.get(environment.RestFullApi+'Usuario/'+user)
+        return  this.http.get(environment.RestFullApi+'User/'+user)
         .pipe(
             map(res => {
             return res
@@ -67,21 +67,21 @@ export class UserService {
        return of(null);
     }
     saveUsuario(user: User): Observable<any>{
-        return  this.http.post(environment.RestFullApi+'Usuario', user)
+        return  this.http.post(environment.RestFullApi+'User', user)
         .pipe(
             map(res => {
                 return res
             })
         );
     }
-    getMovimientosRows(fechaDesde?: Date, fechaHaasta?: Date, usuario?: string, sucursal?: string ): Observable<any>{
+    getMovimientosRows(fechaDesde?: Date, fechaHaasta?: Date, usuario?: string, office?: string ): Observable<any>{
         const rows = [
             {
                 ID:'01',
                 date: '02/04/2020',
                 user: 'abrenman',
                 total: '20000',
-                sucursal: '1',
+                office: '1',
                 remito: 'Remito1202004021618'
             },
             {
@@ -89,7 +89,7 @@ export class UserService {
                 date: '01/04/2020',
                 user: 'mpotap',
                 total: '10000',
-                sucursal: '1',
+                office: '1',
                 remito: 'Remito1202004011618'
             },
             {
@@ -97,7 +97,7 @@ export class UserService {
                 date: '02/04/2020',
                 user: 'abrenman',
                 total: '5000',
-                sucursal: '1',
+                office: '1',
                 remito: 'Remito1202004011718'
             }
         ]
@@ -105,7 +105,7 @@ export class UserService {
 
         return of(rows)
     }
-    getAnularRows(fechaDesde?: Date, fechaHaasta?: Date, usuario?: string, sucursal?: string, ID?: number ): Observable<any>{
+    getAnularRows(fechaDesde?: Date, fechaHaasta?: Date, usuario?: string, office?: string, ID?: number ): Observable<any>{
         const rows = [
             {
                 ID:'01',
@@ -140,14 +140,14 @@ export class UserService {
     {
         return true;
     }
-    getAnulacionesRows(fechaDesde?: Date,fechaHasta?: Date,sucursal?: string,usuario?: string, Id?: number): Observable<any>{
+    getAnulacionesRows(fechaDesde?: Date,fechaHasta?: Date,office?: string,usuario?: string, Id?: number): Observable<any>{
         const Row = [
             {
                 ID:'01',
                 dateProcess: '02/04/2020',
                 user: 'abrenman',
                 total: '20000',
-                sucursal: '1',
+                office: '1',
                 remito: 'Remito1202004021618',
                 dateAnnultmen: '07/04/2020'
             }
@@ -155,8 +155,8 @@ export class UserService {
 
         return of(Row)
     }
-    getAllSucursal(): Observable<any> {
-        return  this.http.get(environment.RestFullApi+'Sucursal')
+    getAllOffice(): Observable<any> {
+        return  this.http.get(environment.RestFullApi+'Office')
         .pipe(
             map(res => {
             return res
@@ -172,7 +172,7 @@ export class UserService {
         );
     }
     remove(id: number){
-        return  this.http.delete(environment.RestFullApi+'Usuario/'+id)
+        return  this.http.delete(environment.RestFullApi+'User/'+id)
         .pipe(
             map(res => {
             return res
@@ -180,7 +180,7 @@ export class UserService {
         );
     }
     getUserFilter(filter: UserFilter){
-        return  this.http.post(environment.RestFullApi+'Usuario/GetUserFilter',filter)
+        return  this.http.post(environment.RestFullApi+'User/GetUserFilter',filter)
         .pipe(
             map(res => {
             return res

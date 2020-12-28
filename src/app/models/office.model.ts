@@ -1,4 +1,4 @@
-export interface Sucursal {
+export interface Office {
     id: number;
     name: string;
     address: string;

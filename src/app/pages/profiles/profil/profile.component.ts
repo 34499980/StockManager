@@ -6,7 +6,7 @@ import { AuthenticationService } from 'src/app/core/services/authentication.serv
 import { AppRouting } from 'src/app/enums/AppRouting.enum';
 import { RolesEnum } from 'src/app/enums/Roles.Enum';
 import { Item } from 'src/app/models/item.model';
-import { Sucursal } from 'src/app/models/sucural.model';
+import { Office } from 'src/app/models/office.model';
 import { User } from 'src/app/models/user';
 import { ToastService } from 'src/app/services/toast.service';
 import { UserService } from 'src/app/services/user.service';
@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
   userControl: FormGroup;
   user: User;
   rolesData: Item[];
-  sucursalData: Sucursal[];
+  officeData: Office[];
   fileSelected: File = null
   url: string;
   cameraImage: SafeResourceUrl;
@@ -37,7 +37,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.image = '../../../../assets/userEmpty.jpg'
     this.rolesData = this.activateRoute.snapshot.data.roles as Item[];
-    this.sucursalData = this.activateRoute.snapshot.data.sucursal as Sucursal[];
+    this.officeData = this.activateRoute.snapshot.data.office as Office[];
     this.user = this.activateRoute.snapshot.data.profile as User;
     this.userControl = this.formBuild.group({
       userName: [this.user?.userName || '', [Validators.required, Validators.maxLength(50)]],
@@ -49,7 +49,7 @@ export class ProfileComponent implements OnInit {
       email: [this.user?.email || '', [Validators.required, Validators.maxLength(50)]],
       address: [this.user?.address || '', [Validators.required, Validators.maxLength(50)]],
       postalCode: [this.user?.postalCode || '', [Validators.required, Validators.maxLength(50), Validators.pattern(/^[0-9]\d*$/)]],
-      sucursal: [this.user?.idSucursal || '', Validators.required],
+      office: [this.user?.idOffice || '', Validators.required],
       role: [this.user?.idRole || '', [Validators.required, Validators.maxLength(50)]],
       state:[this.user?.active || false]
     });
@@ -70,7 +70,7 @@ saveUsuario() {
     dateAdmission: this.userControl.controls.dateAdmission.value,
     email: this.userControl.controls.email.value,
     postalCode: parseInt(this.userControl.controls.postalCode.value, 10),
-    idSucursal: parseInt(this.userControl.controls.sucursal.value, 10),
+    idOffice: parseInt(this.userControl.controls.office.value, 10),
     idRole: parseInt(this.userControl.controls.role.value, 10),
     active: Boolean(this.userControl.controls.role.value)
     

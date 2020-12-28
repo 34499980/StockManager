@@ -55,15 +55,15 @@
         <app-inputrequired [title]="'Direccion'"  formControlName="address" [type]="'text'"></app-inputrequired>
 
         <mat-form-field  appearance="outline">
-          <mat-label>Sucursal</mat-label>
-          <mat-select formControlName="sucursal">                       
-            <mat-option *ngFor="let r of sucursalData" [value]="r.id" >
+          <mat-label>Office</mat-label>
+          <mat-select formControlName="office">                       
+            <mat-option *ngFor="let r of officeData" [value]="r.id" >
               {{r.name}}
             </mat-option>
           </mat-select>
         </mat-form-field>
-        <ng-container *ngIf="userControl.controls.sucursal.touched">
-          <mat-error  *ngIf="userControl.controls.sucursal.hasError('required')">Debe ingresar un valor</mat-error>         
+        <ng-container *ngIf="userControl.controls.office.touched">
+          <mat-error  *ngIf="userControl.controls.office.hasError('required')">Debe ingresar un valor</mat-error>         
           <ng-content></ng-content>
         </ng-container>
         <mat-form-field *ngIf="showPermissionAdmin()" appearance="outline">

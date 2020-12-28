@@ -44,12 +44,12 @@
                 placeholder="UserName">
         </mat-form-field> 
   
-        <mat-label class="font-weight-400">Sucursal</mat-label>
+        <mat-label class="font-weight-400">Office</mat-label>
         <mat-form-field appearance="outline" floatLabel="always" class="mx-12" fxFlex="1 1 90%"
             color="accent">
-            <mat-select formControlName="sucursal" placeholder="Todos"> 
+            <mat-select formControlName="office" placeholder="Todos"> 
               <mat-option [value]="''">Todos</mat-option>                      
-              <mat-option *ngFor="let r of sucursalData" [value]="r.id" >
+              <mat-option *ngFor="let r of officeData" [value]="r.id" >
                 {{r.name}}
               </mat-option>
             </mat-select>  

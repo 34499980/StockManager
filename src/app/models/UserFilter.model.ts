@@ -1,7 +1,7 @@
 export interface UserFilter{  
     userName: string    
     idRole: number;
-    idSucursal: number;
+    idOffice: number;
     active: boolean;
 
    

@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDrawer, MatSidenav } from '@angular/material/sidenav';
 import { Item } from 'src/app/models/item.model';
-import { Sucursal } from 'src/app/models/sucural.model';
+import { Office } from 'src/app/models/office.model';
 import { Subject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { UserFilter } from 'src/app/models/UserFilter.model';
@@ -26,7 +26,7 @@ export class UserListComponent implements OnInit {
   userSearch: UserGet[];
   searchControl: FormGroup;
   rolesData: Item[];
-  sucursalData: Sucursal[];
+  officeData: Office[];
   options: FormGroup;
   _param: any
   userData$: Subject<UserGet[]> = new Subject();
@@ -42,7 +42,7 @@ export class UserListComponent implements OnInit {
 
   ngOnInit(): void {
     this.rolesData = this.activateRoute.snapshot.data.roles as Item[];
-    this.sucursalData = this.activateRoute.snapshot.data.sucursal as Sucursal[];
+    this.officeData = this.activateRoute.snapshot.data.office as Office[];
     this.options = this.formBuilder.group({
       bottom: 0,
       fixed: false,
@@ -50,7 +50,7 @@ export class UserListComponent implements OnInit {
     });
    this.searchControl = this.formBuilder.group({
      name:[''],
-     sucursal:[''],
+     office:[''],
      role:[''],
      status: [false]
    })
@@ -76,7 +76,7 @@ export class UserListComponent implements OnInit {
         const userFilter : UserFilter = {
           userName: this.searchControl.controls.name.value?? '',
           idRole: parseInt(this.searchControl.controls.role.value),
-          idSucursal: parseInt(this.searchControl.controls.sucursal.value),
+          idOffice: parseInt(this.searchControl.controls.office.value),
           active: parseInt(this.authenticationService.getCurrentRole()) !== RolesEnum.Administrador? false: Boolean(this.searchControl.controls.status.value)
         };
         return this.userService.getUserFilter(userFilter);

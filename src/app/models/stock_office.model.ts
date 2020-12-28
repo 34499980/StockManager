@@ -1,6 +1,6 @@
-export interface Stock_Sucursal {
+export interface Stock_Office {
     id: number;
-    idSucursal: number;
+    idOffice: number;
     idStock: number;
     unity: number;
 }

@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppRouting } from './enums/AppRouting.enum';
 import { LoginComponent } from './pages/login/login.component';
 import { RolesResolver } from './resolvers/roles.resolver';
-import { SucursalResolver } from './resolvers/sucursal.resolver';
+import { OfficeResolver } from './resolvers/office.resolver';
 
 const appRoutes: Routes = [
   {

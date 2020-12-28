@@ -5,7 +5,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { UserListComponent } from './userlist/userlist.component';
 import { UserListResolver } from 'src/app/resolvers/userlist.resolver';
 import { ProfileComponent } from './profil/profile.component';
-import { SucursalResolver } from 'src/app/resolvers/sucursal.resolver';
+import { OfficeResolver } from 'src/app/resolvers/office.resolver';
 import { RolesResolver } from 'src/app/resolvers/roles.resolver';
 import { UserResolver } from './profil/profile.resolver';
 const routes: Routes = [
@@ -13,7 +13,7 @@ const routes: Routes = [
     path: 'all',
     component: UserListComponent,
     resolve:{     
-      sucursal: SucursalResolver,
+      office: OfficeResolver,
       roles: RolesResolver,
     }
   },
@@ -21,7 +21,7 @@ const routes: Routes = [
     path: ':id',
     component: ProfileComponent,
     resolve:{
-      sucursal: SucursalResolver,
+      office: OfficeResolver,
       roles: RolesResolver,
       profile: UserResolver
     }
@@ -30,7 +30,7 @@ const routes: Routes = [
     path: '',
     component: ProfileComponent,
     resolve:{
-      sucursal: SucursalResolver,
+      office: OfficeResolver,
       roles: RolesResolver
     }
   }
@@ -44,7 +44,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule
   ],
-  providers: [UserListResolver, SucursalResolver, RolesResolver, UserResolver]
+  providers: [UserListResolver, OfficeResolver, RolesResolver, UserResolver]
 
 })
 export class ProfileModule { }

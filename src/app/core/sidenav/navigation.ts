@@ -40,9 +40,9 @@ export const navigation: Navigation[] = [
         ]
     },
     {
-        id       : 'Sucursales',
-        title    : 'Sucursales',
-        translate: 'Sucursales',
+        id       : 'office',
+        title    : 'office',
+        translate: 'office',
         icon     : 'admin_panel_settings',
         type     : 'collapsable',
         children : [
