@@ -1,3 +1,6 @@
+:host{
+  height: 100vh;
+}
 .buttonPadding{
   padding-top: 5;
   padding-bottom: 5;
@@ -35,6 +38,9 @@
 .white{
   color: white
 }
+.paddin-left{
+  padding-left: 10%;
+}
 mat-expansion-panel-header  {
   background-color: #424242;
   }
@@ -45,32 +51,11 @@ mat-sidenav {
     background-color: #757575;
   }
   
-.heigth{
-  height: 100%;
-}
+
 .pointer {
 	cursor: pointer;
 }
-@media screen and (max-width: 500px) {
-  .input{
-    width: 100% important!;
-  }
-  .Center{  
-    position: absolute;
-    top: 20%;
-    left: 20%;
-    
-      width: 100%;
-      height: 100%;
-  }
-  div{
-    width: 100%;
-  }
-  .mat-expansion-indicator, .mat-expansion-indicator:after {
-    color: white !important;
-  }
-  ::ng-deep .mat-form-field-flex > .mat-form-field-infix {
-    padding: 0.4em 0px !important;
-    
-   }
+
+::ng-deep .mat-form-field-flex {
+  height: 35px !important;
 }

@@ -1,10 +1,10 @@
 <ng-container>
   <form [formGroup]="searchControl">
     <mat-toolbar class="header" fxLayoutAlign="space-between">
-      <div fxFlex="0 1 auto" fxLayout="row wrap">
+      <div fxFlex="100%" fxLayout="row">
         <!--SEARCH BAR-->
-        <div fxFlex="1 1 100%" fxLayout="row">
-            <mat-form-field fxFlex="1 1" appearance="outline" floatLabel="always" class="colorWhite">
+        <div fxFlex="100%" fxLayout="column" fxLayoutAlign="start center">
+            <mat-form-field   appearance="outline" floatLabel="always" class="colorWhite">
                 <mat-icon matPrefix class="mr-8">search</mat-icon>
                 <input autocomplete="off" class="" matInput formControlName="name" placeholder="{{'USERS.SEARCH' | translate}}" >
             </mat-form-field>
@@ -14,10 +14,7 @@
             </button> -->
         </div>                    
     </div>
-    <div fxFlex fxLayoutAlign="end center" >
-     
-     
-   </div>
+   
       <div fxFlex fxLayoutAlign="end center" >
         <button mat-mini-fab color="primary"  matTooltip="Agregar" matTooltipPosition="above" (click)="Add()" >
           <mat-icon>add</mat-icon>
@@ -34,7 +31,7 @@
     <mat-sidenav-container class="example-container">
       <mat-sidenav #sidenav mode="side" class="example-sidenav"
                   position="end"
-                 fxFlex="1 1 auto">
+                >
       <div fxLayout="row wrap" class="p-12 pb-56 filtter">    
   
         <mat-label class="font-weight-400">{{'USERS.USERNAME' | translate}}</mat-label>

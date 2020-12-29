@@ -7,24 +7,22 @@
     mat-icon-button   
     *ngIf="isHandset$ | async">
     <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-  </button> 
-  <div fxFlex="100">    
+  </button>  
+    <div fxFlex="80%"></div>
+      <div fxFlex="20%" fxLayoutAlign="end center">
+        <div>
+      <app-translation fxFlex="50%"></app-translation>
+    </div>
+      <div>
+        <ngx-avatar fxFlex="50%"  [matMenuTriggerFor]="menu"  size="40" src="assets/userEmpty.jpg"></ngx-avatar>
+        <mat-menu #menu="matMenu">
+          <span  fxLayout="100%"  fxLayoutAlign="center center" class="pointer"  (click)="logout()" *ngIf="isLoggedIn">
+            <mat-icon>exit_to_app</mat-icon>Logout</span>
+        </mat-menu>
+      </div>
+    </div>
+    </div> 
     
-  </div>
-  <div fxLayout="100%" fxLayoutAlign="center end">
-    <div fxLayout="row" fxLayout="20%"  fxLayoutAlign="end end">
-      <app-translation></app-translation>
-    </div>
-    <div fxLayout="row"  fxLayoutAlign="start end">      
-      <ngx-avatar  [matMenuTriggerFor]="menu"  size="40" src="assets/userEmpty.jpg"></ngx-avatar>
-      <mat-menu #menu="matMenu">
-        <span  fxLayout="100%"  fxLayoutAlign="center center" class="pointer"  (click)="logout()" *ngIf="isLoggedIn">
-          <mat-icon>exit_to_app</mat-icon>Logout</span>
-      </mat-menu>
-    </div>    
-    </div>
-  
-  </div>
  
   
 
