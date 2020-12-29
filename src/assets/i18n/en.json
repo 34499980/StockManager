@@ -24,11 +24,31 @@
         "DATEBORN": "Date born",
         "DATEADMISSION": "Date admission",
         "EMAIL": "Email",
+        "STATE": "State",
+        "PASSWORD": "Password",
         "ADDRESS": "Address",
         "POSTALCODE": "Postal code",
         "ROLE": "Role",
         "DISABLED": "Disabled",
         "CLEAN": "Clean",
         "ALL": "All"
+    },
+    "GENERALACTIONS":{
+        "ADD":"Add",
+        "EDIT": "Edit",
+        "DELETE": "Delete",
+        "ACCEPT": "Accept",
+        "CANCEL":"Cancel",
+        "SAVE": "Save"
+    },
+    "STATES-LIST":{
+        "ENABLED":"Enabled",
+        "DISABLED":"Disabled"
+    },
+    "ROLE-LIST":{
+        "Administrator":"Administrator",
+        "Manager": "Manager",
+        "Seller": "Seller",
+        "Buyer": "Buyer"
     }
 }

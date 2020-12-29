@@ -7,10 +7,10 @@
     <div fxFlex="100" class="center card" >
     <div  class="wrapper">
       <div class="one">      
-        <app-inputrequired [title]="'Nombre'"  formControlName="first_name"></app-inputrequired>
+        <app-inputrequired title="{{'USERS.NAME' | translate}}"  formControlName="first_name"></app-inputrequired>
 
         <mat-form-field  class="datePicker" floatLabel="always"  appearance="outline">
-          <mat-label>Fecha nacimiento</mat-label>
+          <mat-label>{{'USERS.DATEBORN' | translate}}</mat-label>
           <input matInput  [matDatepicker]="picker2" placeholder="dd/mm/yyyy" formControlName="dateBorn" readonly>
           <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
           <mat-datepicker #picker2></mat-datepicker>
@@ -20,14 +20,14 @@
           <ng-content></ng-content>
       </ng-container>
        
-        <app-inputrequired [title]="'Email'"  formControlName="email" [type]="'text'"></app-inputrequired>
-        <app-inputrequired [title]="'Codigo postal'"  formControlName="postalCode" [type]="'text'"></app-inputrequired>
+        <app-inputrequired title="{{'USERS.EMAIL' | translate}}"  formControlName="email" [type]="'text'"></app-inputrequired>
+        <app-inputrequired title="{{'USERS.POSTALCODE' | translate}}"  formControlName="postalCode" [type]="'text'"></app-inputrequired>
 
         <mat-form-field  appearance="outline">
-          <mat-label>Role</mat-label>
+          <mat-label>{{'USERS.ROLE' | translate}}</mat-label>
           <mat-select formControlName="role">                       
             <mat-option *ngFor="let r of rolesData" [value]="r.id" >
-              {{r.description}}
+              {{'ROLE-LIST.'+r.description | translate}} 
             </mat-option>
           </mat-select>  
         </mat-form-field>
@@ -38,10 +38,10 @@
       </div>
       <div class="two">
         
-        <app-inputrequired [title]="'Apellio'"  formControlName="last_name"></app-inputrequired>
+        <app-inputrequired title="{{'USERS.LASTNAME' | translate}}"  formControlName="last_name"></app-inputrequired>
 
         <mat-form-field class="datePicker" appearance="outline">
-          <mat-label>Fecha ingreso</mat-label>
+          <mat-label>{{'USERS.DATEADMISSION' | translate}}</mat-label>
           <input matInput  [matDatepicker]="picker1" placeholder="dd/mm/yyyy" formControlName="dateAdmission" readonly>
           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
           <mat-datepicker #picker1></mat-datepicker>
@@ -52,10 +52,10 @@
       </ng-container>
 
        
-        <app-inputrequired [title]="'Direccion'"  formControlName="address" [type]="'text'"></app-inputrequired>
+        <app-inputrequired title="{{'USERS.ADDRESS' | translate}}"  formControlName="address" [type]="'text'"></app-inputrequired>
 
         <mat-form-field  appearance="outline">
-          <mat-label>Office</mat-label>
+          <mat-label>{{'USERS.OFFICE' | translate}}</mat-label>
           <mat-select formControlName="office">                       
             <mat-option *ngFor="let r of officeData" [value]="r.id" >
               {{r.name}}
@@ -67,16 +67,16 @@
           <ng-content></ng-content>
         </ng-container>
         <mat-form-field *ngIf="showPermissionAdmin()" appearance="outline">
-          <mat-label>Estado</mat-label>
+          <mat-label>{{'USERS.STATE' | translate}}</mat-label>
           <mat-select formControlName="state" [(value)]="userControl.controls.state">                       
-            <mat-option [value]="true">Activado</mat-option>    
-            <mat-option [value]="false">Desactivado</mat-option>   
+            <mat-option [value]="true">{{'STATES-LIST.ENABLED' | translate}}</mat-option>    
+            <mat-option [value]="false">{{'STATES-LIST.DISABLED' | translate}}</mat-option>   
           </mat-select>  
         </mat-form-field>
       </div>
       <div class="three">
-        <app-inputrequired [title]="'userName'"  formControlName="userName"></app-inputrequired>
-        <app-inputrequired [title]="'Password'"  formControlName="password"></app-inputrequired>
+        <app-inputrequired title="{{'USERS.USERNAME' | translate}}"  formControlName="userName"></app-inputrequired>
+        <app-inputrequired title="{{'USERS.PASSWORD' | translate}}"  formControlName="password"></app-inputrequired>
         <img width="220px" height="200px" [src]="this.fileSelected == undefined ? image :  this.cameraImage" (click)="OnFileSelected($event)" >
         <!--<button mat-stroked-button style="width: 100%; height: 300px" (click)="OnFileSelected($event)" [disabled]="this._data.bDsiable">Image</button>-->
         <input  type="file" #file (change)="OnFileSelected($event)" style="visibility: hidden" />
@@ -85,7 +85,7 @@
     
     </div> 
     <div fxFlex="20%"  fxLayout="row" fxLayoutAlign="end center" class="paddignButton">
-     <button mat-raised-button color="accent"   [disabled]="userControl.pristine || userControl.invalid" (click)="saveUsuario()">Guardar</button>
+     <button mat-raised-button color="accent"   [disabled]="userControl.pristine || userControl.invalid" (click)="saveUsuario()">{{'GENERALACTIONS.SAVE' | translate}}</button>
   </div>
   </div>
     </form>

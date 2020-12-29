@@ -8,20 +8,20 @@
       <div class="wrapper">
         <div class="one">
           <div fxFlex="100%" fxLayout="row wrap" fxLayoutAlign="flex-start center"  class="mb-12">     
-          <span fxFlex="100"  class="mb-4"><strong>UserName: </strong>{{user.userName}}</span> 
-          <span fxFlex="100" class="mb-4"><strong>Nombre: </strong>{{user.first_name}}</span>
-          <span fxFlex="100" class="mb-4"><strong>FechaNacimiento: </strong>{{user.dateBorn | date:'dd/MM/yyyy'}}</span>
-          <span fxFlex="100" class="mb-4"><strong>Email: </strong>{{user.email}}</span>
-          <span fxFlex="100" class="mb-4"><strong>CodPostal: </strong>{{user.postalCode}}</span>
+          <span fxFlex="100"  class="mb-4"><strong>{{'USERS.USERNAME' | translate}}: </strong>{{user.userName}}</span> 
+          <span fxFlex="100" class="mb-4"><strong>{{'USERS.NAME' | translate}}: </strong>{{user.first_name}}</span>
+          <span fxFlex="100" class="mb-4"><strong>{{'USERS.DATEBORN' | translate}}: </strong>{{user.dateBorn | date:'dd/MM/yyyy'}}</span>
+          <span fxFlex="100" class="mb-4"><strong>{{'USERS.EMAIL' | translate}}: </strong>{{user.email}}</span>
+          <span fxFlex="100" class="mb-4"><strong>{{'USERS.POSTALCODE' | translate}}: </strong>{{user.postalCode}}</span>
           </div>
         </div>
         <div class="two">
           <div fxFlex="100%" fxLayout="row wrap" fxLayoutAlign="flex-start center" class="mb-12">
-            <span fxFlex="100" class="mb-4"><strong>office: </strong>{{user.officeName}}</span>   
-            <span fxFlex="100" class="mb-4"><strong>Apellido: </strong>{{user.last_name}}</span>  
-            <span fxFlex="100" class="mb-4"><strong>FechaIngreso: </strong>{{user.dateAdmission | date:'dd/MM/yyyy'}}</span>
-            <span fxFlex="100" class="mb-4"><strong>Direccion: </strong>{{user.address}}</span>
-            <span fxFlex="100" class="mb-4"><strong>Rol: </strong>{{user.roleDescription}}</span>
+            <span fxFlex="100" class="mb-4"><strong>{{'USERS.OFFICE' | translate}}: </strong>{{user.officeName}}</span>   
+            <span fxFlex="100" class="mb-4"><strong>{{'USERS.LASTNAME' | translate}}: </strong>{{user.last_name}}</span>  
+            <span fxFlex="100" class="mb-4"><strong>{{'USERS.DATEADMISSION' | translate}}: </strong>{{user.dateAdmission | date:'dd/MM/yyyy'}}</span>
+            <span fxFlex="100" class="mb-4"><strong>{{'USERS.ADDRESS' | translate}}: </strong>{{user.address}}</span>
+            <span fxFlex="100" class="mb-4"><strong>{{'USERS.ROLE' | translate}}: </strong>{{user.roleDescription}}</span>
         </div>
         </div>
         <div class="three">

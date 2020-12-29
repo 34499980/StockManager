@@ -26,13 +26,34 @@
         "DATEBORN": "Fecha nacimiento",
         "DATEADMISSION": "Fecha ingreso",
         "EMAIL": "Email",
+        "STATE": "Estado",
+        "PASSWORD": "Contraseña",
         "ADDRESS": "Direccion",
         "POSTALCODE": "Cod postal",
         "ROLE": "Rol",
         "DISABLED": "Deshabilitado",
         "CLEAN": "Limpiar",
         "ALL": "Todos"
+    },
+    "GENERALACTIONS":{
+        "ADD":"Agregar",
+        "EDIT": "Editar",
+        "DELETE": "Eliminar",
+        "ACCEPT": "Aceptar",
+        "CANCEL":"Cancelar",
+        "SAVE":"Guardar"
+    },
+    "STATES-LIST":{
+        "ENABLED":"Habilitado",
+        "DISABLED":"Deshabilitado"
+    },
+    "ROLE-LIST":{
+        "Administrator":"Administrador",
+        "Manager": "Gerente",
+        "Seller": "Vendedor",
+        "Buyer": "Comprador"
     }
+
     
 
 }
