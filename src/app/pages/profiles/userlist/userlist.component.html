@@ -4,7 +4,7 @@
       <div fxFlex="100%" fxLayout="row">
         <!--SEARCH BAR-->
         <div fxFlex="100%" fxLayout="column" fxLayoutAlign="start center">
-            <mat-form-field   appearance="outline" floatLabel="always" class="colorWhite">
+            <mat-form-field style="text-align: top"  appearance="outline" floatLabel="always" class="colorWhite">
                 <mat-icon matPrefix class="mr-8">search</mat-icon>
                 <input autocomplete="off" class="" matInput formControlName="name" placeholder="{{'USERS.SEARCH' | translate}}" >
             </mat-form-field>
@@ -58,7 +58,8 @@
             <mat-select formControlName="role" placeholder="Todos">      
               <mat-option [value]="''">{{'USERS.ALL' | translate}}</mat-option>                          
               <mat-option *ngFor="let r of rolesData" [value]="r.id" >
-                {{r.description}}
+                {{'ROLE-LIST.'+r.description | translate}}
+               
               </mat-option>
             </mat-select>  
         </mat-form-field> 

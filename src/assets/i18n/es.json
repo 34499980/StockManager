@@ -33,7 +33,12 @@
         "ROLE": "Rol",
         "DISABLED": "Deshabilitado",
         "CLEAN": "Limpiar",
-        "ALL": "Todos"
+        "ALL": "Todos",
+        "ACTIONS":{
+            "DELETE": "El usuario {{user}} fue eliminado",
+            "SAVE":"El usuario {{user}} fue creado",            
+            "UPDATE": "El usuario {{user}} fue actualizado"
+        }
     },
     "GENERALACTIONS":{
         "ADD":"Agregar",
@@ -52,6 +57,13 @@
         "Manager": "Gerente",
         "Seller": "Vendedor",
         "Buyer": "Comprador"
+    },
+    "DIALOGS":{
+        "DELETE-USER":{
+            "TITLE":"Eliminar usuario",
+            "MESSAGE":"Desea eliminar el usuario?"
+            
+        }
     }
 
     

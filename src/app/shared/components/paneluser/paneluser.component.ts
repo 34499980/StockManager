@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, ViewChild, ElementRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { AppRouting } from 'src/app/enums/AppRouting.enum';
 import { RolesEnum } from 'src/app/enums/Roles.Enum';
@@ -26,7 +27,8 @@ export class PaneluserComponent implements OnInit {
               private arquitecturaService: ArquitecturaService,
               private dialog: MatDialog,
               private userService: UserService,
-              private toastService: ToastService
+              private toastService: ToastService,
+              private translate: TranslateService,
              ) {
     this._router = router
    }
@@ -49,15 +51,18 @@ export class PaneluserComponent implements OnInit {
 
   }
   delete(user: any) {
-    const dialogRef = this.dialog.open(DialogconfirmComponent, {
-      disableClose: true,
-      data:{title:"Eliminar usuario", message:"El usuario no podra realizar ningun tipo de operación"}
+    const title = this.translate.instant('DIALOGS.DELETE-USER.TITLE')
+    const message = this.translate.instant('DIALOGS.DELETE-USER.MESSAGE')
+    const dialogRef = this.dialog.open(DialogconfirmComponent,
+       {
+      disableClose: true,     
+      data:{title: title, message: message}
         });
       
        dialogRef.afterClosed().subscribe(result => {
          if(result === true){
           this.userService.remove(this.user.id).subscribe(() => 
-          {this.toastService.success("El usuario ha sido eliminado!"),
+          {this.toastService.success(this.translate.instant('USERS.ACTIONS.DELETE' ,{user: user.userName})),
           window.location.reload();
         });
       }

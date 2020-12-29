@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { AppRouting } from 'src/app/enums/AppRouting.enum';
 import { RolesEnum } from 'src/app/enums/Roles.Enum';
@@ -32,7 +33,8 @@ export class ProfileComponent implements OnInit {
               private userService: UserService,
               private toastService: ToastService,
               private router: Router,
-              private authenticationService: AuthenticationService) { }
+              private authenticationService: AuthenticationService,
+              private translate: TranslateService,) { }
 
   ngOnInit(): void {
     this.image = '../../../../assets/userEmpty.jpg'
@@ -76,8 +78,8 @@ saveUsuario() {
     
 
   }
-  this.userService.saveUsuario(userPost).subscribe(() => {
-  this.toastService.success('Usuario guardado!'),
+  this.userService.saveUsuario(userPost).subscribe(() => {  
+  this.toastService.success(this.translate.instant( this.user?'USERS.ACTIONS.UPDATE': 'USERS.ACTIONS.SAVE',{user: this.userControl.controls.userName.value})),
   this.router.navigate([AppRouting.UserList])
   });
 }
@@ -91,7 +93,7 @@ OnFileSelected(event){
 }
 //Show methods
 showPermissionAdmin(){
-  return parseInt(this.authenticationService.getCurrentRole()) === RolesEnum.Administrador && this.user;
+  return parseInt(this.authenticationService.getCurrentRole()) === RolesEnum.Administrador && this.user && !this.user?.active;
 }
 
 }

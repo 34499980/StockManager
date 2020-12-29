@@ -40,7 +40,7 @@
         
         <app-inputrequired title="{{'USERS.LASTNAME' | translate}}"  formControlName="last_name"></app-inputrequired>
 
-        <mat-form-field class="datePicker" appearance="outline">
+        <mat-form-field class="datePicker" floatLabel="always"  appearance="outline">
           <mat-label>{{'USERS.DATEADMISSION' | translate}}</mat-label>
           <input matInput  [matDatepicker]="picker1" placeholder="dd/mm/yyyy" formControlName="dateAdmission" readonly>
           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>

@@ -57,7 +57,7 @@ export class UserListComponent implements OnInit {
    this.getUsersFilter(); 
    this.loadData();  
    this.searchControl.valueChanges.subscribe(val => {
-     if(!val.name?? (val.name != '' && val.name.length > 3)){
+     if((val.name != '' && val.name?.length > 3)){
       this.loadData()
      }else if(val.name === '' || val.name === null){
       this.loadData()
