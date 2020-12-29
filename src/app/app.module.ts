@@ -2,19 +2,23 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { LoginModule } from './pages/login/login.module';
 import { SharedModule } from './shared/shared.module';
-import {HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpErrorInterceptor } from './interceptors/error/errorInterceptor';
 import { CoreModule } from './core/core.module';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslationComponent } from './translation/translation.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    
   ],
   imports: [
     FormsModule,
@@ -22,7 +26,8 @@ import { CoreModule } from './core/core.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
-    CoreModule
+    CoreModule,
+   
    // LoginModule,
   ],
   exports:[],

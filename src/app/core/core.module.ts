@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AvatarModule } from 'ngx-avatar';
 import { SharedModule } from '../shared/shared.module';
+import { TranslationModule } from '../translation/translation.module';
 import { SidenavComponent } from './sidenav/sidenav.component';
 
 const COMPONENTS = [
@@ -11,7 +12,8 @@ const COMPONENTS = [
 @NgModule({
     imports: [
       RouterModule,
-      SharedModule
+      SharedModule,
+      TranslationModule
 
   ],
   exports: [

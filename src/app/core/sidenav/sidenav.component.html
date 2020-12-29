@@ -13,6 +13,7 @@
   </div>
   <div fxLayout="100%" fxLayoutAlign="center end">
     <div fxLayout="row"  fxLayoutAlign="end end">
+      <app-translation></app-translation>
       <ngx-avatar  [matMenuTriggerFor]="menu"  size="30" src="assets/userEmpty.jpg"></ngx-avatar>
       <mat-menu #menu="matMenu">
         <span  fxLayout="100%"  fxLayoutAlign="center center" class="pointer"  (click)="logout()" *ngIf="isLoggedIn">Logout</span>

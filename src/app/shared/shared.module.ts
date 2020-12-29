@@ -30,6 +30,10 @@ import { DialogconfirmComponent } from './dialogs/dialogconfirm/dialogconfirm.co
 import { ToastrModule } from 'ngx-toastr';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatMenuModule } from '@angular/material/menu';
+import { HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslationModule } from '../translation/translation.module';
 
 const COMPONENTS = [
     InputrequiredComponent,
@@ -39,6 +43,7 @@ const COMPONENTS = [
 ];
 const MODULES = [
   AvatarModule,
+  
 ]
 @NgModule({
     imports: [
@@ -63,7 +68,7 @@ const MODULES = [
     FlexLayoutModule,
     MatFormFieldModule,
     MatMenuModule,
-    MatCheckboxModule,
+    MatCheckboxModule, 
     ToastrModule.forRoot({
       timeOut: 7000,
       positionClass: 'toast-bottom-center',
