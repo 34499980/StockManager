@@ -1,19 +1,15 @@
 <ng-container>
   <form [formGroup]="searchControl">
     <mat-toolbar class="header" fxLayoutAlign="space-between">
-      <div fxFlex="100%" fxLayout="row">
+      
         <!--SEARCH BAR-->
-        <div fxFlex="100%" fxLayout="column" fxLayoutAlign="start center">
-            <mat-form-field style="text-align: top"  appearance="outline" floatLabel="always" class="colorWhite">
+        
+            <mat-form-field   appearance="outline" floatLabel="always">
                 <mat-icon matPrefix class="mr-8">search</mat-icon>
-                <input autocomplete="off" class="" matInput formControlName="name" placeholder="{{'USERS.SEARCH' | translate}}" >
-            </mat-form-field>
-  
-            <!-- <button fxFlex="0 1 auto" mat-icon-button aria-label="more actions">
-                <mat-icon class="info-icon">info</mat-icon>
-            </button> -->
-        </div>                    
-    </div>
+                <input autocomplete="off" matInput formControlName="name" placeholder="{{'USERS.SEARCH' | translate}}" >
+            </mat-form-field>  
+                     
+   
    
       <div fxFlex fxLayoutAlign="end center" >
         <button mat-mini-fab color="primary"  matTooltip="Agregar" matTooltipPosition="above" (click)="Add()" >
