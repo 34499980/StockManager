@@ -6,7 +6,7 @@
         <div fxFlex="1 1 100%" fxLayout="row">
             <mat-form-field fxFlex="1 1" appearance="outline" floatLabel="always" class="colorWhite">
                 <mat-icon matPrefix class="mr-8">search</mat-icon>
-                <input autocomplete="off" class="" matInput formControlName="name" placeholder="Buscar" >
+                <input autocomplete="off" class="" matInput formControlName="name" placeholder="{{'USERS.SEARCH' | translate}}" >
             </mat-form-field>
   
             <!-- <button fxFlex="0 1 auto" mat-icon-button aria-label="more actions">
@@ -37,29 +37,29 @@
                  fxFlex="1 1 auto">
       <div fxLayout="row wrap" class="p-12 pb-56 filtter">    
   
-        <mat-label class="font-weight-400">UserName</mat-label>
+        <mat-label class="font-weight-400">{{'USERS.USERNAME' | translate}}</mat-label>
         <mat-form-field  appearance="outline" floatLabel="always" class="mx-12" fxFlex="1 1 90%"
             color="accent">
             <input autocomplete="off" matInput formControlName="name"
-                placeholder="UserName">
+               >
         </mat-form-field> 
   
-        <mat-label class="font-weight-400">Office</mat-label>
+        <mat-label class="font-weight-400">{{'USERS.OFFICE' | translate}}</mat-label>
         <mat-form-field appearance="outline" floatLabel="always" class="mx-12" fxFlex="1 1 90%"
             color="accent">
             <mat-select formControlName="office" placeholder="Todos"> 
-              <mat-option [value]="''">Todos</mat-option>                      
+              <mat-option [value]="''">{{'USERS.ALL' | translate}}</mat-option>                      
               <mat-option *ngFor="let r of officeData" [value]="r.id" >
                 {{r.name}}
               </mat-option>
             </mat-select>  
         </mat-form-field> 
   
-        <mat-label class="font-weight-400">Rol</mat-label>
+        <mat-label class="font-weight-400">{{'USERS.ROLE' | translate}}</mat-label>
         <mat-form-field appearance="outline" floatLabel="always" class="mx-12" fxFlex="1 1 90%"
             color="accent">
             <mat-select formControlName="role" placeholder="Todos">      
-              <mat-option [value]="''">Todos</mat-option>                          
+              <mat-option [value]="''">{{'USERS.ALL' | translate}}</mat-option>                          
               <mat-option *ngFor="let r of rolesData" [value]="r.id" >
                 {{r.description}}
               </mat-option>
@@ -67,12 +67,12 @@
         </mat-form-field> 
         <mat-checkbox formControlName="status" fxLayoutAlign="start center"
         appearance="outline" floatLabel="always"
-        class="mb-12" fxFlex="100%" color="primary">Deshabilitado </mat-checkbox>
+        class="mb-12" fxFlex="100%" color="primary">{{'USERS.DISABLED' | translate}} </mat-checkbox>
         
         <div fxLayout="row" class="aply-filters-button">
           <button fxFlex="90%" fxLayoutAlign="center center"
           matTooltip="Limpiar filtros" matTooltipPosition="above" mat-raised-button color="primary"
-          (click)="clear()">Limpiar
+          (click)="clear()">{{'USERS.CLEAN' | translate}}
             </button>
         </div>
       </div>

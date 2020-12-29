@@ -1,5 +1,5 @@
-<mat-form-field  appearance="outline">    
-    <mat-select formControlName="formControl" [(value)]="formControl" (onChange)="cambiarLenguaje()">                       
+<mat-form-field  appearance="fill">    
+    <mat-select [formControl]="formControl" (selectionChange)="cambiarLenguaje()">                       
       <mat-option [value]="'es'" >es</mat-option>    
       <mat-option [value]="'en'">en</mat-option>   
     </mat-select>  

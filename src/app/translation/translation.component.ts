@@ -15,7 +15,8 @@ export class TranslationComponent implements OnInit {
     this.translate.setDefaultLang(this.activeLang);
   }
   ngOnInit() {
-    this.formControl = new FormControl('es')
+    this.formControl = new FormControl()
+    this.formControl.setValue('es')
   }
   public cambiarLenguaje() {
     this.activeLang = this.formControl.value;

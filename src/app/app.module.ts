@@ -11,9 +11,10 @@ import { HttpErrorInterceptor } from './interceptors/error/errorInterceptor';
 import { CoreModule } from './core/core.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { TranslationComponent } from './translation/translation.component';
 
-
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -27,6 +28,13 @@ import { TranslationComponent } from './translation/translation.component';
     AppRoutingModule,
     SharedModule,
     CoreModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
    
    // LoginModule,
   ],

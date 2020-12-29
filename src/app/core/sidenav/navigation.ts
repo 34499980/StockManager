@@ -4,15 +4,15 @@ import { Navigation } from 'src/app/models/navigation.model';
 export const navigation: Navigation[] = [
     {
         id       : 'Administracion',
-        title    : 'Administracion',
-        translate: 'NAV.TICKET.TITLE',
+        title    : 'ADMINISTRATION',
+        translate: 'NAV.ADMINISTRATION.TITLE',
         icon     : 'how_to_vote',
         type     : 'collapsable',
         children : [
             {
                 id       : PermissionType.Usuarios.toString(),
-                title    : 'Usuarios',
-                translate: 'Usuarios',
+                title    : 'USERS',
+                translate: 'NAV.ADMINISTRATION.SUBTITLES.USERS',
                 hidden   : false,
                 type     : 'item',
                 icon     : 'inbox',
@@ -20,8 +20,8 @@ export const navigation: Navigation[] = [
             },
             {
                 id       : PermissionType.Perfil.toString(),
-                title    : 'Perfil',
-                translate: 'Perfil',
+                title    : 'PROFILE',
+                translate: 'NAV.ADMINISTRATION.SUBTITLES.PROFILE',
                 hidden   : false,
                 type     : 'item',
                 icon     : 'how_to_vote',
@@ -30,8 +30,8 @@ export const navigation: Navigation[] = [
             ,
             {
                 id       : PermissionType.Anulaciones.toString(),
-                title    : 'Anulaciones',
-                translate: 'Anulaciones',
+                title    : 'ANNULMENT',
+                translate: 'NAV.ADMINISTRATION.SUBTITLES.ANNULMENT',
                 hidden   : false,
                 type     : 'item',
                 icon     : 'how_to_vote',
@@ -41,8 +41,8 @@ export const navigation: Navigation[] = [
     },
     {
         id       : 'office',
-        title    : 'office',
-        translate: 'office',
+        title    : 'OFFICE',
+        translate: 'NAV.OFFICE.TITLE',
         icon     : 'admin_panel_settings',
         type     : 'collapsable',
         children : [
@@ -86,8 +86,8 @@ export const navigation: Navigation[] = [
     },
     {
         id       : 'Mercaderia',
-        title    : 'Mercaderia',
-        translate: 'Mercaderia',
+        title    : 'STOCK',
+        translate: 'NAV.STOCK.TITLE',
         icon     : 'admin_panel_settings',
         type     : 'collapsable',
         children : [

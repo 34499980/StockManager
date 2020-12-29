@@ -13,16 +13,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
   declarations: [TranslationComponent],
   imports: [
     CommonModule,
-    SharedModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: (http: HttpClient) => {
-          return new TranslateHttpLoader(http);
-        },
-        deps: [ HttpClient ]
-      }
-    }),  
+    SharedModule
+    
     
   ],
   exports:[TranslationComponent],

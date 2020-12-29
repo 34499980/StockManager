@@ -1,0 +1,34 @@
+{
+    "NAV":{   
+        "ADMINISTRATION":{   
+        "TITLE":"Administration",
+        "SUBTITLES":{
+            "PROFILE": "Profile",
+            "USERS": "Users",
+            "ANNULMENT": "Annulment"        
+        }
+     },
+     "OFFICE":{
+         "TITLE":"Office"
+     }        ,
+     "STOCK":{
+         "TITLE":"Stock"
+     }   
+    },
+    "USERS":{
+        "SEARCH":"Search",
+        "USERNAME": "UserName",
+        "OFFICE": "Office",
+        "NAME": "First name",
+        "LASTNAME": "Last name",
+        "DATEBORN": "Date born",
+        "DATEADMISSION": "Date admission",
+        "EMAIL": "Email",
+        "ADDRESS": "Address",
+        "POSTALCODE": "Postal code",
+        "ROLE": "Role",
+        "DISABLED": "Disabled",
+        "CLEAN": "Clean",
+        "ALL": "All"
+    }
+}

@@ -1,0 +1,38 @@
+{
+    "NAV":{
+        "ADMINISTRATION":{
+        "TITLE":"Administración",
+        "SUBTITLES":{
+            "PROFILE": "Perfil",
+            "USERS": "Usuarios",
+            "ANNULMENT": "Anulación"
+        
+        }
+        },
+        "OFFICE":{
+            "TITLE":"Sucursal"
+        }        ,
+        "STOCK":{
+            "TITLE":"Mercaderia"
+        }       
+    
+    },    
+    "USERS":{
+        "SEARCH":"Buscar",
+        "USERNAME": "Usuario",
+        "OFFICE": "Sucursal",
+        "NAME": "Nombre",
+        "LASTNAME": "Apellido",
+        "DATEBORN": "Fecha nacimiento",
+        "DATEADMISSION": "Fecha ingreso",
+        "EMAIL": "Email",
+        "ADDRESS": "Direccion",
+        "POSTALCODE": "Cod postal",
+        "ROLE": "Rol",
+        "DISABLED": "Deshabilitado",
+        "CLEAN": "Limpiar",
+        "ALL": "Todos"
+    }
+    
+
+}

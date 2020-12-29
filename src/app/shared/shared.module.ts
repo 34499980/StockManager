@@ -42,8 +42,8 @@ const COMPONENTS = [
     PaneluserComponent
 ];
 const MODULES = [
-  AvatarModule,
-  
+  AvatarModule,  
+  TranslateModule
 ]
 @NgModule({
     imports: [

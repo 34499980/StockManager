@@ -12,11 +12,14 @@
     
   </div>
   <div fxLayout="100%" fxLayoutAlign="center end">
-    <div fxLayout="row"  fxLayoutAlign="end end">
+    <div fxLayout="row" fxLayout="20%"  fxLayoutAlign="end end">
       <app-translation></app-translation>
-      <ngx-avatar  [matMenuTriggerFor]="menu"  size="30" src="assets/userEmpty.jpg"></ngx-avatar>
+    </div>
+    <div fxLayout="row"  fxLayoutAlign="start end">      
+      <ngx-avatar  [matMenuTriggerFor]="menu"  size="40" src="assets/userEmpty.jpg"></ngx-avatar>
       <mat-menu #menu="matMenu">
-        <span  fxLayout="100%"  fxLayoutAlign="center center" class="pointer"  (click)="logout()" *ngIf="isLoggedIn">Logout</span>
+        <span  fxLayout="100%"  fxLayoutAlign="center center" class="pointer"  (click)="logout()" *ngIf="isLoggedIn">
+          <mat-icon>exit_to_app</mat-icon>Logout</span>
       </mat-menu>
     </div>    
     </div>
@@ -38,12 +41,12 @@
    <mat-accordion displayMode=""  >
     <mat-expansion-panel flFlex="100" *ngFor="let item of this.screens">
       <mat-expansion-panel-header class="specific-class">
-        <mat-panel-title class="mat-cell white"><strong>{{item.title}}</strong></mat-panel-title>
+        <mat-panel-title class="mat-cell white"><strong>{{'NAV.' + item.title + '.TITLE'| translate}}</strong></mat-panel-title>
       </mat-expansion-panel-header>
       
       <mat-nav-list *ngFor="let i of item.children">   
 
-            <a fxFlex="100" class="white"  [routerLink]="i?.url">{{i?.title}}</a>
+            <a fxFlex="100" *ngIf="i" class="white"  [routerLink]="i?.url">{{'NAV.' + item.title + '.SUBTITLES.' + i?.title | translate}}</a>
            
          
         </mat-nav-list>
