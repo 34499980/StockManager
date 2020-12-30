@@ -1,6 +1,6 @@
 
 <div class="header">
-  <div class="title" fxFlex  fxLayout="row" fxLayoutAlign="start start">Perfil</div>
+  <div class="title" fxFlex  fxLayout="row" fxLayoutAlign="start start">{{'NAV.ADMINISTRATION.SUBTITLES.PROFILE' | translate}}</div>
 </div>
 <form [formGroup]="userControl">
   
@@ -16,7 +16,7 @@
           <mat-datepicker #picker2></mat-datepicker>
         </mat-form-field>
         <ng-container *ngIf="userControl.controls.dateBorn.touched">
-          <mat-error *ngIf="userControl.controls.dateBorn.hasError('required')">Debe ingresar un valor</mat-error>         
+          <mat-error *ngIf="userControl.controls.dateBorn.hasError('required')">{{'ERROR-MESSAGE.REQUIRED' | translate}}</mat-error>         
           <ng-content></ng-content>
       </ng-container>
        
@@ -32,7 +32,7 @@
           </mat-select>  
         </mat-form-field>
         <ng-container *ngIf="userControl.controls.role.touched">
-          <mat-error  *ngIf="userControl.controls.role.hasError('required')">Debe ingresar un valor</mat-error>         
+          <mat-error  *ngIf="userControl.controls.role.hasError('required')">{{'ERROR-MESSAGE.REQUIRED' | translate}}</mat-error>         
           <ng-content></ng-content>
         </ng-container>
       </div>
@@ -47,7 +47,7 @@
           <mat-datepicker #picker1></mat-datepicker>
         </mat-form-field>
         <ng-container *ngIf="userControl.controls.dateAdmission.touched">
-          <mat-error  *ngIf="userControl.controls.dateAdmission.hasError('required')">Debe ingresar un valor</mat-error>         
+          <mat-error  *ngIf="userControl.controls.dateAdmission.hasError('required')">{{'ERROR-MESSAGE.REQUIRED' | translate}}</mat-error>         
           <ng-content></ng-content>
       </ng-container>
 
@@ -63,7 +63,7 @@
           </mat-select>
         </mat-form-field>
         <ng-container *ngIf="userControl.controls.office.touched">
-          <mat-error  *ngIf="userControl.controls.office.hasError('required')">Debe ingresar un valor</mat-error>         
+          <mat-error  *ngIf="userControl.controls.office.hasError('required')">{{'ERROR-MESSAGE.REQUIRED' | translate}}</mat-error>         
           <ng-content></ng-content>
         </ng-container>
         <mat-form-field *ngIf="showPermissionAdmin()" appearance="outline">

@@ -17,7 +17,7 @@ headers.append('Access-Control-Allow-Origin', '*');
 const options = {headers: headers}
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-    private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+    private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
     // tslint:disable-next-line: no-construct

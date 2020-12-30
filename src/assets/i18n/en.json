@@ -62,5 +62,11 @@
             "MESSAGE":"Do you want to delete the user?"
             
         }
+    },
+    "ERROR-MESSAGE":{
+        "REQUIRED":"Enter is required",
+        "MAXLENGTH" : "Over the income limit",
+        "INVALIDCHAR": "Invalid character"
     }
+
 }

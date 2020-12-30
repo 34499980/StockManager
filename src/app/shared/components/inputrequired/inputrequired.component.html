@@ -14,9 +14,9 @@
         <input matInput autocomplete="off" type="{{this.type}}" [formControl]="ngControl.control">            
       </mat-form-field>
       <ng-container *ngIf="ngControl.touched">
-        <mat-error *ngIf="ngControl.hasError('required')">Debe ingresar un valor</mat-error>
-        <mat-error *ngIf="ngControl.hasError('pattern')">No se permite alguno de los caracteres ingresados</mat-error>
-        <mat-error *ngIf="ngControl.hasError('maxlength')">Supera el limite de ingreso</mat-error>
+        <mat-error *ngIf="ngControl.hasError('required')">{{'ERROR-MESSAGE.REQUIRED' | translate}}</mat-error>
+        <mat-error *ngIf="ngControl.hasError('pattern')">{{'ERROR-MESSAGE.INVALIDCHAR' | translate}}</mat-error>
+        <mat-error *ngIf="ngControl.hasError('maxlength')">{{'ERROR-MESSAGE.MAXLENGTH' | translate}}</mat-error>
         <ng-content></ng-content>
     </ng-container>
     </div>
