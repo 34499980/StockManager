@@ -5,20 +5,18 @@
         "SUBTITLES":{
             "PROFILE": "Profile",
             "USERS": "Users",
-            "ANNULMENT": "Annulment"        
+            "ANNULMENT": "Annulment"  
+            }      
         },
         "OFFICE":{
             "TITLE":"Office",
             "SUBTITLES":{
                 "OFFICELIST": "Office list",
                 "ADDOFFICE": "Create office"
-            }
-        }
+            }        
      
-    },
-     "OFFICE":{
-         "TITLE":"Office"
-     }        ,
+   
+     },
      "STOCK":{
          "TITLE":"Stock"
      }   

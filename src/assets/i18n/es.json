@@ -12,8 +12,8 @@
         "OFFICE":{
             "TITLE":"Office",
             "SUBTITLES":{
-                "OFFICELIST": "Office list",
-                "ADDOFFICE": "Create office"
+                "OFFICELIST": "Sucursales",
+                "ADDOFFICE": "Crear sucursal"
             }
         },
         "STOCK":{

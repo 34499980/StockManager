@@ -40,7 +40,7 @@ export const navigation: Navigation[] = [
         ]
     },
     {
-        id       : 'office',
+        id       : 'OFFICE',
         title    : 'OFFICE',
         translate: 'NAV.OFFICE.TITLE',
         icon     : 'admin_panel_settings',
@@ -48,7 +48,7 @@ export const navigation: Navigation[] = [
         children : [
             {
                 id       : PermissionType.Office.toString(),
-                title    : 'addOffice',
+                title    : 'ADDOFFICE',
                 translate: 'NAV.OFFICE.SUBTITLES.ADDOFFICE',
                 hidden   : false,
                 type     : 'item',
@@ -57,12 +57,12 @@ export const navigation: Navigation[] = [
             },
             {
                 id       : PermissionType.OfficeList.toString(),
-                title    : 'OfficeList',
+                title    : 'OFFICELIST',
                 translate: 'NAV.OFFICE.SUBTITLES.OFFICELIST',
                 hidden   : false,
                 type     : 'item',
                 icon     : 'business_center',
-                url      : '/OfficeList/all',
+                url      : '/Office/all',
             },
             {
                 id       : PermissionType.Movimientos.toString(),
