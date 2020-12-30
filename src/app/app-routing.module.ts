@@ -5,6 +5,7 @@ import { AppRouting } from './enums/AppRouting.enum';
 import { LoginComponent } from './pages/login/login.component';
 import { RolesResolver } from './resolvers/roles.resolver';
 import { OfficeResolver } from './resolvers/office.resolver';
+import { AuthGuard } from './core/services/auth-guard.service';
 
 const appRoutes: Routes = [
   {
@@ -18,11 +19,18 @@ const appRoutes: Routes = [
   },
   {
     path: AppRouting.Home,
-    loadChildren: () => import('../app/pages/home/home.module'). then(m => m.HomeModule)
+    loadChildren: () => import('../app/pages/home/home.module'). then(m => m.HomeModule),
+    canActivate: [AuthGuard]
   },
   {
     path: AppRouting.Profile,
-    loadChildren: () => import('../app/pages/profiles/profile.module'). then(m => m.ProfileModule)
+    loadChildren: () => import('../app/pages/profiles/profile.module'). then(m => m.ProfileModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: AppRouting.Office,
+    loadChildren: () => import('../app/pages/office/profile.module'). then(m => m.OfficeModule),
+    canActivate: [AuthGuard]
   }
 ];
 

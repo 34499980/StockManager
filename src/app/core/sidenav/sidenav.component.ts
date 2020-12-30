@@ -24,7 +24,7 @@ export class SidenavComponent implements OnInit {
     .pipe(
       map(result => result.matches),
       shareReplay()
-    );
+    ); 
 
 
 

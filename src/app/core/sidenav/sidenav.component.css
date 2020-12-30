@@ -41,6 +41,7 @@
 .paddin-left{
   padding-left: 10%;
 }
+
 mat-expansion-panel-header  {
   background-color: #424242;
   }
@@ -50,7 +51,14 @@ mat-sidenav {
   mat-expansion-panel {
     background-color: #757575;
   }
-  
+  ::ng-deep .mat-form-field-hide-placeholder .mat-form-field-label-wrapper {
+    text-align: left;
+    top: -25px;
+ }
+ 
+  ::ng-deep .mat-form-field-should-float {
+    text-align: left;
+ }
 
 .pointer {
 	cursor: pointer;

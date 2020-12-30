@@ -7,5 +7,7 @@ export const enum PermissionType {
     Anular = 6,
     Devolucion = 7,
     Stock = 8,
-    Despachos = 9
+    Despachos = 9,
+    Office = 10,
+    OfficeList = 11
   }

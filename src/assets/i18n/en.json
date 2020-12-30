@@ -1,13 +1,21 @@
 {
     "NAV":{   
-        "ADMINISTRATION":{   
+        "ADMINISTRATION":{               
         "TITLE":"Administration",
         "SUBTITLES":{
             "PROFILE": "Profile",
             "USERS": "Users",
             "ANNULMENT": "Annulment"        
+        },
+        "OFFICE":{
+            "TITLE":"Office",
+            "SUBTITLES":{
+                "OFFICELIST": "Office list",
+                "ADDOFFICE": "Create office"
+            }
         }
-     },
+     
+    },
      "OFFICE":{
          "TITLE":"Office"
      }        ,

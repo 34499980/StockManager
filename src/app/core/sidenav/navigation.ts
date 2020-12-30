@@ -47,6 +47,24 @@ export const navigation: Navigation[] = [
         type     : 'collapsable',
         children : [
             {
+                id       : PermissionType.Office.toString(),
+                title    : 'addOffice',
+                translate: 'NAV.OFFICE.SUBTITLES.ADDOFFICE',
+                hidden   : false,
+                type     : 'item',
+                icon     : 'business_center',
+                url      : '/Office',
+            },
+            {
+                id       : PermissionType.OfficeList.toString(),
+                title    : 'OfficeList',
+                translate: 'NAV.OFFICE.SUBTITLES.OFFICELIST',
+                hidden   : false,
+                type     : 'item',
+                icon     : 'business_center',
+                url      : '/OfficeList/all',
+            },
+            {
                 id       : PermissionType.Movimientos.toString(),
                 title    : 'Movimientos',
                 translate: 'Movimientos',

@@ -7,11 +7,15 @@
             "USERS": "Usuarios",
             "ANNULMENT": "Anulación"
         
-        }
+            }
         },
         "OFFICE":{
-            "TITLE":"Sucursal"
-        }        ,
+            "TITLE":"Office",
+            "SUBTITLES":{
+                "OFFICELIST": "Office list",
+                "ADDOFFICE": "Create office"
+            }
+        },
         "STOCK":{
             "TITLE":"Mercaderia"
         }       
