@@ -26,9 +26,7 @@ export class UserListComponent implements OnInit {
   userSearch: UserGet[];
   searchControl: FormGroup;
   rolesData: Item[];
-  officeData: Office[];
-  options: FormGroup;
-  _param: any
+  officeData: Office[];   
   userData$: Subject<UserGet[]> = new Subject();
   @ViewChild('sidenav') sideNavFilters: MatDrawer;
   toggleIsFilterPanelOpen = true;
@@ -43,11 +41,7 @@ export class UserListComponent implements OnInit {
   ngOnInit(): void {
     this.rolesData = this.activateRoute.snapshot.data.roles as Item[];
     this.officeData = this.activateRoute.snapshot.data.office as Office[];
-    this.options = this.formBuilder.group({
-      bottom: 0,
-      fixed: false,
-      top: 0
-    });
+   
    this.searchControl = this.formBuilder.group({
      name:[''],
      office:[''],

@@ -1,1 +1,33 @@
-<p>office-detail works!</p>
+
+<div class="header">
+    <div class="title" fxFlex  fxLayout="row" fxLayoutAlign="start start">{{'NAV.OFFICE.SUBTITLES.ADDOFFICE' | translate}}</div>
+  </div>
+  <form [formGroup]="controlForm">
+    
+      <div fxFlex="100" class="center card" >
+      <div  class="wrapper">
+        <div class="one">      
+          <app-inputrequired title="{{'OFFICE.NAME' | translate}}"  formControlName="name"></app-inputrequired>  
+         
+         
+          <app-inputrequired title="{{'OFFICE.ADDRESS' | translate}}"  formControlName="address" [type]="'text'"></app-inputrequired>        
+  
+        </div>
+        <div class="two">
+          <div></div>
+          <app-inputrequired title="{{'OFFICE.POSTALCODE' | translate}}"  formControlName="postalCode"></app-inputrequired> 
+            
+        </div>
+      
+      </div> 
+      <div fxFlex="20%"  fxLayout="row" fxLayoutAlign="end center" class="paddignButton">
+       <button mat-raised-button color="accent"   [disabled]="controlForm.pristine || controlForm.invalid" (click)="saveOffice()">{{'GENERALACTIONS.SAVE' | translate}}</button>
+    </div>
+    </div>
+      </form>
+     
+  
+             
+               
+      
+  

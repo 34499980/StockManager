@@ -1,1 +1,146 @@
-<p>office-list works!</p>
+<ng-container>
+    <form [formGroup]="searchControl">
+      <mat-toolbar class="header" fxLayoutAlign="space-between">
+        
+          <!--SEARCH BAR-->
+          
+              <mat-form-field   appearance="outline" floatLabel="always">
+                  <mat-icon matPrefix class="mr-8">search</mat-icon>
+                  <input autocomplete="off" matInput formControlName="name" placeholder="{{'USERS.SEARCH' | translate}}" >
+              </mat-form-field>  
+                       
+     
+     
+        <div fxFlex fxLayoutAlign="end center" >
+          <button mat-mini-fab color="primary"  matTooltip="Agregar" matTooltipPosition="above" (click)="add()" >
+            <mat-icon>add</mat-icon>
+          </button>
+          <div class="paddingButton">
+         <button mat-mini-fab color="primary"  matTooltip="Filtros" matTooltipPosition="above" (click)="sidenav.toggle()" >
+          <mat-icon>filter_list</mat-icon>
+        </button>
+      </div>
+        
+      </div>
+      
+      </mat-toolbar>
+      <mat-sidenav-container class="example-container">
+        <mat-sidenav #sidenav mode="side" class="example-sidenav"
+                    position="end"
+                  >
+        <div fxLayout="row wrap" class="p-12 pb-56 filtter">    
+    
+          <mat-label class="font-weight-400">{{'OFFICE.NAME' | translate}}</mat-label>
+          <mat-form-field  appearance="outline" floatLabel="always" class="mx-12" fxFlex="1 1 90%"
+              color="accent">
+              <input autocomplete="off" matInput formControlName="name"
+                 >
+          </mat-form-field> 
+    
+          <mat-label class="font-weight-400">{{'OFFICE.ADDRESS' | translate}}</mat-label>
+          <mat-form-field  appearance="outline" floatLabel="always" class="mx-12" fxFlex="1 1 90%"
+              color="accent">
+              <input autocomplete="off" matInput formControlName="address"
+                 >
+          </mat-form-field> 
+    
+          <mat-label class="font-weight-400">{{'OFFICE.POSTALCODE' | translate}}</mat-label>
+          <mat-form-field  appearance="outline" floatLabel="always" class="mx-12" fxFlex="1 1 90%"
+              color="accent">
+              <input autocomplete="off" matInput formControlName="postalCode"
+                 >
+          </mat-form-field> 
+
+          <mat-checkbox formControlName="disabled" fxLayoutAlign="start center"
+          appearance="outline" floatLabel="always"
+          class="mb-12" fxFlex="100%" color="primary">{{'OFFICE.DISABLED' | translate}} </mat-checkbox>
+          
+          <div fxLayout="row" class="aply-filters-button">
+            <button fxFlex="90%" fxLayoutAlign="center center"
+            matTooltip="Limpiar filtros" matTooltipPosition="above" mat-raised-button color="primary"
+            (click)="clear()">{{'USERS.CLEAN' | translate}}
+              </button>
+          </div>
+        </div>
+        
+        </mat-sidenav>
+    
+        <mat-sidenav-content fxLayout="row wrap">
+          <!--TABLE-->
+          <mat-table #table [dataSource]="dataSource"          
+            class="center" >                           
+
+
+              <ng-container matColumnDef="NAME">
+                  <mat-header-cell *matHeaderCellDef>
+                      {{'OFFICE.NAME' | translate}}
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let office">
+                      <p class="text-truncate" >{{office.name}}</p>
+                  </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="ADDRESS">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                      {{'OFFICE.ADDRESS' | translate}}
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let office">
+                      <p class="text-truncate">{{office.address}}</p>
+                  </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="POSTALCODE">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                      {{'OFFICE.POSTALCODE' | translate}}
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let office">
+                      <p class="text-truncate">{{office.postalCode}}</p>
+                  </mat-cell>
+              </ng-container>
+              
+
+              <ng-container matColumnDef="STATUS">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                      {{'OFFICE.STATUS' | translate}}
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let office">
+                      <p class="text-truncate">{{'STATES-LIST.'+ office.active | translate}}</p>
+                  </mat-cell>
+              </ng-container>             
+
+              
+
+              <ng-container matColumnDef="ACTIONS">
+                  <mat-header-cell *matHeaderCellDef class="cell50-w"></mat-header-cell>
+                  <mat-cell *matCellDef="let office" fxLayout="row" fxLayoutAlign="flex-start center" class="cell50-w">
+                      <button mat-icon-button color="accent" fxFlex="0 1 auto"
+                          matTooltipPosition="above"
+                          (click)="editOffice(office.id)">
+                          <mat-icon class="mx-8" color="primary"  >create</mat-icon>
+                      </button>
+                      <button mat-icon-button color="accent" fxFlex="0 1 auto"
+                      matTooltipPosition="above"
+                      (click)="deleteOffice(office.id)">
+                      <mat-icon class="mx-8"  style="color:red" >delete</mat-icon>
+                  </button>
+                  </mat-cell>
+              </ng-container>
+
+              <mat-header-row *matHeaderRowDef="displayedColumns;"></mat-header-row>
+
+              <mat-row *matRowDef="let office; columns: displayedColumns;"
+                  [class.user-pointer]="false" matRipple>
+              </mat-row>
+
+          </mat-table>
+          <!--END TABLE-->
+         
+         
+        </mat-sidenav-content>
+      </mat-sidenav-container>
+    </form>
+  
+  
+  
+  </ng-container>
+  

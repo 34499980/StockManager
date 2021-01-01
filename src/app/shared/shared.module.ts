@@ -34,6 +34,7 @@ import { HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslationModule } from '../translation/translation.module';
+import { MatTableModule } from '@angular/material/table';
 
 const COMPONENTS = [
     InputrequiredComponent,
@@ -49,6 +50,7 @@ const MODULES = [
     imports: [
     CommonModule,
     LayoutModule,
+    MatTableModule,
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
@@ -79,6 +81,7 @@ const MODULES = [
   ],
   exports: [
     CommonModule,
+    MatTableModule,
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,

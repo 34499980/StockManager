@@ -28,6 +28,7 @@
     "@ngx-translate/http-loader": "^6.0.0",
     "ag-grid-angular": "^23.0.2",
     "ag-grid-community": "^23.0.2",
+    "angular-material-data-table": "^0.10.10",
     "jspdf": "^1.5.3",
     "jspdf-autotable": "^3.3.2",
     "ng-fallimg": "0.0.1",

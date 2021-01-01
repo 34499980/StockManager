@@ -44,6 +44,21 @@
             "UPDATE": "The user {{user}} was updated"
         }
     },
+    "OFFICE":{        
+        "NAME":"Name",
+        "ADDRESS": "Address",
+        "POSTALCODE": "Postal code",
+        "STATUS":"Status",  
+        "DISABLED": "Disabled",     
+        "SEARCH":"Search",        
+        "CLEAN": "Clean",
+        "ALL": "All",
+        "ACTIONS":{
+            "DELETE": "The office was deleted",
+            "SAVE":"The office was created",
+            "UPDATE": "The office was updated"
+        }
+    },
     "GENERALACTIONS":{
         "ADD":"Add",
         "EDIT": "Edit",
@@ -54,7 +69,9 @@
     },
     "STATES-LIST":{
         "ENABLED":"Enabled",
-        "DISABLED":"Disabled"
+        "DISABLED":"Disabled",
+        "true":"Enabled",
+        "false":"Disabled"
     },
     "ROLE-LIST":{
         "Administrator":"Administrator",
@@ -67,7 +84,13 @@
             "TITLE":"Delete user",
             "MESSAGE":"Do you want to delete the user?"
             
+        },
+        "DELETE-OFFICE":{
+            "TITLE":"Delete office",
+            "MESSAGE":"Do you want to delete the office?"
+            
         }
+        
     },
     "ERROR-MESSAGE":{
         "REQUIRED":"Enter is required",

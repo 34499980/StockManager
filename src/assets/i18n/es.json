@@ -44,6 +44,22 @@
             "UPDATE": "El usuario {{user}} fue actualizado"
         }
     },
+    "OFFICE":{        
+        "NAME":"Nombre",
+        "ADDRESS": "Dirección",
+        "POSTALCODE": "Codigo postal",
+        "STATUS":"Estado",  
+        "DISABLED": "Deshabilitado",     
+        "SEARCH":"Buscar",
+        "CLEAN": "Limpiar",
+        "ALL": "Todos",
+        "ACTIONS":{
+            "DELETE": "La sucursal fue eliminada",
+            "SAVE":"La sucursal fue creada",            
+            "UPDATE": "La sucursal fue actualizada"
+        }
+        
+    },
     "GENERALACTIONS":{
         "ADD":"Agregar",
         "EDIT": "Editar",
@@ -54,7 +70,9 @@
     },
     "STATES-LIST":{
         "ENABLED":"Habilitado",
-        "DISABLED":"Deshabilitado"
+        "DISABLED":"Deshabilitado",
+        "true":"Habilitado",
+        "false":"Deshabilitado"
     },
     "ROLE-LIST":{
         "Administrator":"Administrador",
@@ -66,6 +84,11 @@
         "DELETE-USER":{
             "TITLE":"Eliminar usuario",
             "MESSAGE":"Desea eliminar el usuario?"
+            
+        },
+        "DELETE-OFFICE":{
+            "TITLE":"Eliminar sucursal",
+            "MESSAGE":"Desea eliminar la sucursal?"
             
         }
     },

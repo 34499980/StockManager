@@ -4,11 +4,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { OfficeListComponent } from './office-list/office-list.component';
 import { OfficeDetailComponent } from './office-detail/office-detail.component';
+import { OfficeResolver } from 'src/app/resolvers/office.resolver';
 const routes: Routes = [
   {
     path: 'all',
     component: OfficeListComponent,
-    resolve:{     
+    resolve:{  
+    
      
     }
   },
@@ -16,7 +18,7 @@ const routes: Routes = [
     path: ':id',
     component: OfficeDetailComponent,
     resolve:{
-  
+      office: OfficeResolver   
     }
   }
 ]
@@ -29,7 +31,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule
   ],
-  providers: []
+  providers: [OfficeResolver]
 
 })
 export class OfficeModule { }
