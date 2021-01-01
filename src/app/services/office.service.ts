@@ -1,31 +1,71 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+import { Office } from '../models/office.model';
+import { OfficeFilter } from '../models/officeFilter.mode';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OfficeService {
 
-  constructor() { }
-  add(){
-
+  constructor(private http: HttpClient) { }
+  add(office :Office){
+    return  this.http.post(environment.RestFullApi+'office', office)
+    .pipe(
+        map(res => {
+            return res
+        })
+    );
   }
-  delete(){
-
+  delete(id: number){
+    return  this.http.delete(environment.RestFullApi+`office/${id}`)
+    .pipe(
+        map(res => {
+            return res
+        })
+    );
   }
-  update(){
-
+  update(office: Office){
+    return  this.http.put(environment.RestFullApi+'office', office)
+    .pipe(
+        map(res => {
+            return res
+        })
+    );
   }
-  getOfficeByFilter(){
-
+  getOfficeByFilter(filter: OfficeFilter){
+    return  this.http.post(environment.RestFullApi+'office/GetUOfficeFilter', filter)
+    .pipe(
+        map(res => {
+            return res
+        })
+    );
   }
-  getOfficeById(){
-
+  getOfficeById(id: number){
+    return  this.http.get(environment.RestFullApi+`office/${id}`)
+    .pipe(
+        map(res => {
+            return res
+        })
+    );
   }
   getAllOffices(){
-
+    return  this.http.get(environment.RestFullApi+`office`)
+    .pipe(
+        map(res => {
+            return res
+        })
+    );
   }
-  getOfficeByName(){
-    
+  getOfficeByName(name: string){
+    return  this.http.get(environment.RestFullApi+`office/${name}`)
+    .pipe(
+        map(res => {
+            return res
+        })
+    );
   }
 
 }
