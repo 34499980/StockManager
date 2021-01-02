@@ -6,7 +6,7 @@ import { OfficeService } from 'src/app/services/office.service';
 
 
 @Injectable()
-export class OfficeResolver implements Resolve<any>
+export class OfficeDetailService implements Resolve<any>
 {
 
     constructor(

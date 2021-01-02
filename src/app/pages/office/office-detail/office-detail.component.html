@@ -6,7 +6,7 @@
     
       <div fxFlex="100" class="center card" >
       <div  class="wrapper">
-        <div class="one">      
+        <div class="one paddingLeft">      
           <app-inputrequired title="{{'OFFICE.NAME' | translate}}"  formControlName="name"></app-inputrequired>  
          
          
@@ -16,6 +16,19 @@
         <div class="two">
           <div></div>
           <app-inputrequired title="{{'OFFICE.POSTALCODE' | translate}}"  formControlName="postalCode"></app-inputrequired> 
+          
+          <mat-form-field  appearance="outline">
+            <mat-label>{{'OFFICE.COUNTRY' | translate}}</mat-label>
+            <mat-select formControlName="country" [(value)]="controlForm.controls.country">                       
+              <mat-option *ngFor="let r of countriesData" [value]="r.id" >
+                {{r.description | translate}} 
+              </mat-option>
+            </mat-select>  
+          </mat-form-field>
+          <ng-container *ngIf="controlForm.controls.country.touched">
+            <mat-error  *ngIf="controlForm.controls.country.hasError('required')">{{'ERROR-MESSAGE.REQUIRED' | translate}}</mat-error>         
+            <ng-content></ng-content>
+          </ng-container>
             
         </div>
       

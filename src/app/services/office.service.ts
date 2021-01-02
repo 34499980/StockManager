@@ -44,7 +44,7 @@ export class OfficeService {
     );
   }
   getOfficeById(id: number){
-    return  this.http.get(environment.RestFullApi+`office/${id}`)
+    return  this.http.get(environment.RestFullApi+`office/GetOfficeById/${id}`)
     .pipe(
         map(res => {
             return res

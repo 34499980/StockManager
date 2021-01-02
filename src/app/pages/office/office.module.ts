@@ -6,6 +6,7 @@ import { OfficeListComponent } from './office-list/office-list.component';
 import { OfficeDetailComponent } from './office-detail/office-detail.component';
 import { OfficeResolver } from 'src/app/resolvers/office.resolver';
 import { CountriesResolver } from 'src/app/resolvers/countries.resolver';
+import { OfficeDetailService } from './office-detail/office-detail.resolver';
 const routes: Routes = [
   {
     path: 'all',
@@ -19,7 +20,14 @@ const routes: Routes = [
     path: ':id',
     component: OfficeDetailComponent,
     resolve:{
-      office: OfficeResolver,
+      office: OfficeDetailService,
+      countries: CountriesResolver  
+    }
+  },
+  {
+    path: '',
+    component: OfficeDetailComponent,
+    resolve:{      
       countries: CountriesResolver  
     }
   }
@@ -33,7 +41,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule
   ],
-  providers: [OfficeResolver, CountriesResolver]
+  providers: [OfficeDetailService, CountriesResolver]
 
 })
 export class OfficeModule { }
