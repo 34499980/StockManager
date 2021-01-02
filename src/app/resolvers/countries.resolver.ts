@@ -7,7 +7,7 @@ import { DataSourceService } from '../services/DataSource';
 
 
 @Injectable()
-export class RolesResolver implements Resolve<any>
+export class CountriesResolver implements Resolve<any>
 {
     private apiEndPoint: string;
 
@@ -19,6 +19,6 @@ export class RolesResolver implements Resolve<any>
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any>
     {
-        return this.service.getAllRoles();
+        return this.service.getAllCountries();
     }
 }

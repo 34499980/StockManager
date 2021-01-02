@@ -31,7 +31,7 @@ export class DispatchService {
     // return throwError(error);
     }
   GetDispatchStates(){
-    return  this.http.get(environment.RestFullApi+'States/'+'dispatch').pipe(map(res =>{return res},
+    return  this.http.get(environment.RestFullApi+'GetAllRoles/GetDispatchState').pipe(map(res =>{return res},
       error => {this.arquitecturaService.openDialog('Error!',error.message)}),
       catchError((err, caught)=> {
          this. handleError(err)

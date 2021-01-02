@@ -164,7 +164,7 @@ export class UserService {
         );
     }
     getAllRules(): Observable<any> {
-        return  this.http.get(environment.RestFullApi+'States'+'/rules')
+        return  this.http.get(environment.RestFullApi+'DataSource/GetAllRoles')
         .pipe(
             map(res => {
             return res
@@ -187,4 +187,5 @@ export class UserService {
             })
         );
     }
+   
 }

@@ -15,6 +15,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogconfirmComponent } from 'src/app/shared/dialogs/dialogconfirm/dialogconfirm.component';
 import { ToastService } from 'src/app/services/toast.service';
+import { Country } from 'src/app/models/country.model';
 
 @Component({
   selector: 'app-office-list',
@@ -23,12 +24,14 @@ import { ToastService } from 'src/app/services/toast.service';
 })
 export class OfficeListComponent implements OnInit {  
   searchControl: FormGroup;  
+  countriesData: Country[];
   officeData$: Subject<Office[]> = new Subject();
   dataSource = new MatTableDataSource([]);
   displayedColumns = [
     'NAME',
     'ADDRESS',
     'POSTALCODE',
+    'COUNTRY',
     'STATUS',
     'ACTIONS'
     
@@ -45,10 +48,12 @@ export class OfficeListComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
+    this.countriesData = this.activateRoute.snapshot.data.countries as Country[];
     this.searchControl = this.formBuilder.group({
       name: [''],
       address: [''],
       postalCode: [''],
+      country:[''],
       disabled: [false]
     })
     this.getOfficesFilter();
@@ -61,6 +66,7 @@ export class OfficeListComponent implements OnInit {
         
         const officeFilter : OfficeFilter = {
           name: this.searchControl.controls.name.value?? '',
+          idCountry: parseInt(this.searchControl.controls.country.value),
           active: parseInt(this.authenticationService.getCurrentRole()) !== RolesEnum.Administrador? false: Boolean(this.searchControl.controls.disabled.value)
         };
         return this.officeService.getOfficeByFilter(officeFilter);

@@ -12,7 +12,7 @@
             "TITLE":"Office",
             "SUBTITLES":{
                 "OFFICELIST": "Office list",
-                "ADDOFFICE": "Create office"
+                "ADDOFFICE": "Office"
             }        
      
    
@@ -31,6 +31,7 @@
         "DATEADMISSION": "Date admission",
         "EMAIL": "Email",
         "STATE": "State",
+        "COUNTRY": "Country",
         "PASSWORD": "Password",
         "ADDRESS": "Address",
         "POSTALCODE": "Postal code",
@@ -50,7 +51,8 @@
         "POSTALCODE": "Postal code",
         "STATUS":"Status",  
         "DISABLED": "Disabled",     
-        "SEARCH":"Search",        
+        "SEARCH":"Search", 
+        "COUNTRY": "Country",       
         "CLEAN": "Clean",
         "ALL": "All",
         "ACTIONS":{

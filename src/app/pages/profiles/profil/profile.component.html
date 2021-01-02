@@ -22,37 +22,8 @@
        
         <app-inputrequired title="{{'USERS.EMAIL' | translate}}"  formControlName="email" [type]="'text'"></app-inputrequired>
         <app-inputrequired title="{{'USERS.POSTALCODE' | translate}}"  formControlName="postalCode" [type]="'text'"></app-inputrequired>
-
-        <mat-form-field  appearance="outline">
-          <mat-label>{{'USERS.ROLE' | translate}}</mat-label>
-          <mat-select formControlName="role">                       
-            <mat-option *ngFor="let r of rolesData" [value]="r.id" >
-              {{'ROLE-LIST.'+r.description | translate}} 
-            </mat-option>
-          </mat-select>  
-        </mat-form-field>
-        <ng-container *ngIf="userControl.controls.role.touched">
-          <mat-error  *ngIf="userControl.controls.role.hasError('required')">{{'ERROR-MESSAGE.REQUIRED' | translate}}</mat-error>         
-          <ng-content></ng-content>
-        </ng-container>
-      </div>
-      <div class="two">
-        
-        <app-inputrequired title="{{'USERS.LASTNAME' | translate}}"  formControlName="last_name"></app-inputrequired>
-
-        <mat-form-field class="datePicker" floatLabel="always"  appearance="outline">
-          <mat-label>{{'USERS.DATEADMISSION' | translate}}</mat-label>
-          <input matInput  [matDatepicker]="picker1" placeholder="dd/mm/yyyy" formControlName="dateAdmission" readonly>
-          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-          <mat-datepicker #picker1></mat-datepicker>
-        </mat-form-field>
-        <ng-container *ngIf="userControl.controls.dateAdmission.touched">
-          <mat-error  *ngIf="userControl.controls.dateAdmission.hasError('required')">{{'ERROR-MESSAGE.REQUIRED' | translate}}</mat-error>         
-          <ng-content></ng-content>
-      </ng-container>
-
        
-        <app-inputrequired title="{{'USERS.ADDRESS' | translate}}"  formControlName="address" [type]="'text'"></app-inputrequired>
+       
 
         <mat-form-field  appearance="outline">
           <mat-label>{{'USERS.OFFICE' | translate}}</mat-label>
@@ -73,6 +44,51 @@
             <mat-option [value]="false">{{'STATES-LIST.DISABLED' | translate}}</mat-option>   
           </mat-select>  
         </mat-form-field>
+
+      </div>
+      <div class="two">
+        
+        <app-inputrequired title="{{'USERS.LASTNAME' | translate}}"  formControlName="last_name"></app-inputrequired>
+
+        <mat-form-field class="datePicker" floatLabel="always"  appearance="outline">
+          <mat-label>{{'USERS.DATEADMISSION' | translate}}</mat-label>
+          <input matInput  [matDatepicker]="picker1" placeholder="dd/mm/yyyy" formControlName="dateAdmission" readonly>
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+        <ng-container *ngIf="userControl.controls.dateAdmission.touched">
+          <mat-error  *ngIf="userControl.controls.dateAdmission.hasError('required')">{{'ERROR-MESSAGE.REQUIRED' | translate}}</mat-error>         
+          <ng-content></ng-content>
+      </ng-container>
+
+       
+        <app-inputrequired title="{{'USERS.ADDRESS' | translate}}"  formControlName="address" [type]="'text'"></app-inputrequired>
+        <mat-form-field  appearance="outline">
+          <mat-label>{{'USERS.ROLE' | translate}}</mat-label>
+          <mat-select formControlName="role">                       
+            <mat-option *ngFor="let r of rolesData" [value]="r.id" >
+              {{'ROLE-LIST.'+r.description | translate}} 
+            </mat-option>
+          </mat-select>  
+        </mat-form-field>
+        <ng-container *ngIf="userControl.controls.role.touched">
+          <mat-error  *ngIf="userControl.controls.role.hasError('required')">{{'ERROR-MESSAGE.REQUIRED' | translate}}</mat-error>         
+          <ng-content></ng-content>
+        </ng-container>
+        <mat-form-field  appearance="outline">
+          <mat-label>{{'USERS.COUNTRY' | translate}}</mat-label>
+          <mat-select formControlName="country" [(value)]="userControl.controls.country">                       
+            <mat-option *ngFor="let r of countriesData" [value]="r.id" >
+              {{r.description | translate}} 
+            </mat-option>
+          </mat-select>  
+        </mat-form-field>
+        <ng-container *ngIf="userControl.controls.role.touched">
+          <mat-error  *ngIf="userControl.controls.role.hasError('required')">{{'ERROR-MESSAGE.REQUIRED' | translate}}</mat-error>         
+          <ng-content></ng-content>
+        </ng-container>
+       
+        
       </div>
       <div class="three">
         <app-inputrequired title="{{'USERS.USERNAME' | translate}}"  formControlName="userName"></app-inputrequired>

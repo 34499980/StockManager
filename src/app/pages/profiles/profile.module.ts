@@ -8,6 +8,7 @@ import { ProfileComponent } from './profil/profile.component';
 import { OfficeResolver } from 'src/app/resolvers/office.resolver';
 import { RolesResolver } from 'src/app/resolvers/roles.resolver';
 import { UserResolver } from './profil/profile.resolver';
+import { CountriesResolver } from 'src/app/resolvers/countries.resolver';
 const routes: Routes = [
   {
     path: 'all',
@@ -15,6 +16,7 @@ const routes: Routes = [
     resolve:{     
       office: OfficeResolver,
       roles: RolesResolver,
+      countries: CountriesResolver
     }
   },
   {
@@ -23,7 +25,8 @@ const routes: Routes = [
     resolve:{
       office: OfficeResolver,
       roles: RolesResolver,
-      profile: UserResolver
+      profile: UserResolver,
+      countries: CountriesResolver
     }
   },
   {
@@ -31,20 +34,21 @@ const routes: Routes = [
     component: ProfileComponent,
     resolve:{
       office: OfficeResolver,
-      roles: RolesResolver
+      roles: RolesResolver,
+      countries: CountriesResolver
     }
   }
 ]
 
 
 @NgModule({
-  declarations: [UserListComponent, ProfileComponent],
+  declarations: [UserListComponent, ProfileComponent ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     SharedModule
   ],
-  providers: [UserListResolver, OfficeResolver, RolesResolver, UserResolver]
+  providers: [UserListResolver, OfficeResolver, RolesResolver, UserResolver, CountriesResolver]
 
 })
 export class ProfileModule { }

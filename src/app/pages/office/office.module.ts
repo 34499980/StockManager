@@ -5,12 +5,13 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { OfficeListComponent } from './office-list/office-list.component';
 import { OfficeDetailComponent } from './office-detail/office-detail.component';
 import { OfficeResolver } from 'src/app/resolvers/office.resolver';
+import { CountriesResolver } from 'src/app/resolvers/countries.resolver';
 const routes: Routes = [
   {
     path: 'all',
     component: OfficeListComponent,
     resolve:{  
-    
+      countries: CountriesResolver
      
     }
   },
@@ -18,7 +19,8 @@ const routes: Routes = [
     path: ':id',
     component: OfficeDetailComponent,
     resolve:{
-      office: OfficeResolver   
+      office: OfficeResolver,
+      countries: CountriesResolver  
     }
   }
 ]
@@ -31,7 +33,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule
   ],
-  providers: [OfficeResolver]
+  providers: [OfficeResolver, CountriesResolver]
 
 })
 export class OfficeModule { }

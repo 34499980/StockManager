@@ -29,7 +29,7 @@ const appRoutes: Routes = [
   },
   {
     path: AppRouting.Office,
-    loadChildren: () => import('../app/pages/office/profile.module'). then(m => m.OfficeModule),
+    loadChildren: () => import('./pages/office/office.module'). then(m => m.OfficeModule),
     canActivate: [AuthGuard]
   }
 ];

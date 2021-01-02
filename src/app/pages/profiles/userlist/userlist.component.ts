@@ -14,6 +14,7 @@ import { ValueCache } from 'ag-grid-community';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { RolesEnum } from 'src/app/enums/Roles.Enum';
 import { AppRouting } from 'src/app/enums/AppRouting.enum';
+import { Country } from 'src/app/models/country.model';
 
 
 @Component({
@@ -27,6 +28,7 @@ export class UserListComponent implements OnInit {
   searchControl: FormGroup;
   rolesData: Item[];
   officeData: Office[];   
+  countriesData: Country[]; 
   userData$: Subject<UserGet[]> = new Subject();
   @ViewChild('sidenav') sideNavFilters: MatDrawer;
   toggleIsFilterPanelOpen = true;
@@ -39,6 +41,7 @@ export class UserListComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.countriesData = this.activateRoute.snapshot.data.countries as Country[];
     this.rolesData = this.activateRoute.snapshot.data.roles as Item[];
     this.officeData = this.activateRoute.snapshot.data.office as Office[];
    
@@ -46,6 +49,7 @@ export class UserListComponent implements OnInit {
      name:[''],
      office:[''],
      role:[''],
+     country:[''],
      status: [false]
    })
    this.getUsersFilter(); 
@@ -71,6 +75,7 @@ export class UserListComponent implements OnInit {
           userName: this.searchControl.controls.name.value?? '',
           idRole: parseInt(this.searchControl.controls.role.value),
           idOffice: parseInt(this.searchControl.controls.office.value),
+          idCountry: parseInt(this.searchControl.controls.country.value),
           active: parseInt(this.authenticationService.getCurrentRole()) !== RolesEnum.Administrador? false: Boolean(this.searchControl.controls.status.value)
         };
         return this.userService.getUserFilter(userFilter);

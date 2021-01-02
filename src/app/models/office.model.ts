@@ -5,3 +5,7 @@ export interface Office {
     postalCode: number;
     active: boolean;
 }
+export interface OfficeGet extends Office{  
+    countryDescription?: string;
+}
+

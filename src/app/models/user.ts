@@ -14,7 +14,9 @@ export interface User{
     postalCode: number
     idRole: number;
     idOffice: number;
+    idCountry: number;
     active: boolean;
+
 
    
 }
@@ -23,5 +25,6 @@ export interface UserGet extends User{
     role: Item[];
     roleDescription?: string;
     officeName?: string;
+    countryDescription?: string;
 }
 

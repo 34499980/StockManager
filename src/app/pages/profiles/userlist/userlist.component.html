@@ -59,6 +59,20 @@
               </mat-option>
             </mat-select>  
         </mat-form-field> 
+
+        <mat-label class="font-weight-400">{{'USERS.COUNTRY' | translate}}</mat-label>
+        <mat-form-field appearance="outline" floatLabel="always" class="mx-12" fxFlex="1 1 90%"
+            color="accent">
+            <mat-select formControlName="country" placeholder="Todos">      
+              <mat-option [value]="''">{{'USERS.ALL' | translate}}</mat-option>                          
+              <mat-option *ngFor="let c of countriesData" [value]="c.id" >
+                {{c.description}}
+               
+              </mat-option>
+            </mat-select>  
+        </mat-form-field>
+
+
         <mat-checkbox formControlName="status" fxLayoutAlign="start center"
         appearance="outline" floatLabel="always"
         class="mb-12" fxFlex="100%" color="primary">{{'USERS.DISABLED' | translate}} </mat-checkbox>

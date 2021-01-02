@@ -50,6 +50,17 @@
               <input autocomplete="off" matInput formControlName="postalCode"
                  >
           </mat-form-field> 
+          <mat-label class="font-weight-400">{{'OFFICE.COUNTRY' | translate}}</mat-label>
+        <mat-form-field appearance="outline" floatLabel="always" class="mx-12" fxFlex="1 1 90%"
+            color="accent">
+            <mat-select formControlName="country" placeholder="Todos">      
+              <mat-option [value]="''">{{'OFFICE.ALL' | translate}}</mat-option>                          
+              <mat-option *ngFor="let c of countriesData" [value]="c.id" >
+                {{c.description}}
+               
+              </mat-option>
+            </mat-select>  
+        </mat-form-field>         
 
           <mat-checkbox formControlName="disabled" fxLayoutAlign="start center"
           appearance="outline" floatLabel="always"
@@ -97,6 +108,15 @@
                       <p class="text-truncate">{{office.postalCode}}</p>
                   </mat-cell>
               </ng-container>
+
+              <ng-container matColumnDef="COUNTRY">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    {{'OFFICE.COUNTRY' | translate}}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let office">
+                    <p class="text-truncate">{{office.countryDescription}}</p>
+                </mat-cell>
+            </ng-container>
               
 
               <ng-container matColumnDef="STATUS">
@@ -106,8 +126,9 @@
                   <mat-cell *matCellDef="let office">
                       <p class="text-truncate">{{'STATES-LIST.'+ office.active | translate}}</p>
                   </mat-cell>
-              </ng-container>             
+              </ng-container>           
 
+             
               
 
               <ng-container matColumnDef="ACTIONS">

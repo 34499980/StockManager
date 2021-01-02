@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { AppRouting } from 'src/app/enums/AppRouting.enum';
 import { RolesEnum } from 'src/app/enums/Roles.Enum';
+import { Country } from 'src/app/models/country.model';
 import { Item } from 'src/app/models/item.model';
 import { Office } from 'src/app/models/office.model';
 import { User } from 'src/app/models/user';
@@ -20,6 +21,7 @@ import { UserService } from 'src/app/services/user.service';
 export class ProfileComponent implements OnInit {
   userControl: FormGroup;
   user: User;
+  countriesData: Country[];
   rolesData: Item[];
   officeData: Office[];
   fileSelected: File = null
@@ -38,6 +40,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.image = '../../../../assets/userEmpty.jpg'
+    this.countriesData = this.activateRoute.snapshot.data.countries as Country[];
     this.rolesData = this.activateRoute.snapshot.data.roles as Item[];
     this.officeData = this.activateRoute.snapshot.data.office as Office[];
     this.user = this.activateRoute.snapshot.data.profile as User;
@@ -53,7 +56,8 @@ export class ProfileComponent implements OnInit {
       postalCode: [this.user?.postalCode || '', [Validators.required, Validators.maxLength(50), Validators.pattern(/^[0-9]\d*$/)]],
       office: [this.user?.idOffice || '', Validators.required],
       role: [this.user?.idRole || '', [Validators.required, Validators.maxLength(50)]],
-      state:[this.user?.active || false]
+      state:[this.user?.active || false],
+      country: [this.user?.idCountry || '', Validators.required],
     });
 
 }
@@ -74,6 +78,7 @@ saveUsuario() {
     postalCode: parseInt(this.userControl.controls.postalCode.value, 10),
     idOffice: parseInt(this.userControl.controls.office.value, 10),
     idRole: parseInt(this.userControl.controls.role.value, 10),
+    idCountry: parseInt(this.userControl.controls.country.value, 10),
     active: Boolean(this.userControl.controls.role.value)
     
 

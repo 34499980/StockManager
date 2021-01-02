@@ -1,5 +1,6 @@
 export interface OfficeFilter{  
-    name: string; 
+    name: string;     
+    idCountry: number;
     active: boolean;
 
    
