@@ -98,6 +98,9 @@
         "REQUIRED":"Enter is required",
         "MAXLENGTH" : "Over the income limit",
         "INVALIDCHAR": "Invalid character"
+    },
+     "ERRORS":{
+        "errOfficeAllReadyExist": "The office name is allready in use"
     }
 
 }

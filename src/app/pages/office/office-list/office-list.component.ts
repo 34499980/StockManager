@@ -58,6 +58,16 @@ export class OfficeListComponent implements OnInit {
     })
     this.getOfficesFilter();
     this.loadData();
+    this.searchControl.valueChanges.subscribe(val => {
+      if((val.name !== '' || val.name !== null  && val.name?.length > 3) ||
+        (val.postalCode !== '' && val.postalCode !== null && val.postalCode?.length === 4)){
+       this.loadData();
+        } else if ((val.name === '' || val.name === null) && (val.postalCode === '' || val.postalCode === null)){
+          this.loadData();
+        }
+      });
+     
+     
   }
   getOfficesFilter(){
 
@@ -67,6 +77,8 @@ export class OfficeListComponent implements OnInit {
         const officeFilter : OfficeFilter = {
           name: this.searchControl.controls.name.value?? '',
           idCountry: parseInt(this.searchControl.controls.country.value),
+          address: this.searchControl.controls.address.value,
+          postalCode: parseInt(this.searchControl.controls.postalCode.value,10),
           active: parseInt(this.authenticationService.getCurrentRole()) !== RolesEnum.Administrador? false: Boolean(this.searchControl.controls.disabled.value)
         };
         return this.officeService.getOfficeByFilter(officeFilter);
@@ -81,6 +93,7 @@ export class OfficeListComponent implements OnInit {
   }
   clear(){
     this.searchControl.reset();
+    this.searchControl.controls.address.setValue('');
     this.loadData();
   }
   add(){

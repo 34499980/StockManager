@@ -31,8 +31,9 @@ export class OfficeDetailComponent implements OnInit {
       name: [this.office?.name || '' , [Validators.required, Validators.maxLength(250)]],
       address: [this.office?.address || '' , [Validators.required, Validators.maxLength(250)]],
       postalCode: [this.office?.postalCode || '' , [Validators.required, Validators.maxLength(4)]],
-      status: [this.office?.active || ''],
-      country: [this.office?.idCountry || '' , Validators.required],
+      country: [this.office?.idCountry || '' , [Validators.required]],     
+      status: [this.office?.active || true]
+      
     })
   }
   saveOffice(){
@@ -44,8 +45,22 @@ export class OfficeDetailComponent implements OnInit {
       postalCode: parseInt(this.controlForm.controls.postalCode.value,10),
       active: Boolean(this.controlForm.controls.status.value)
     } 
+    if(!this.office){
+      this.add(office);
+    }else{
+      this.update(office);
+    }   
+  
+  }
+  add(office: Office){
     this.officeService.add(office).subscribe(() => {  
-      this.toastService.success(this.translate.instant( this.office?'OFFICE.ACTIONS.UPDATE': 'OFFICE.ACTIONS.SAVE')),
+      this.toastService.success(this.translate.instant( 'OFFICE.ACTIONS.SAVE')),
+      this.router.navigate([AppRouting.OfficeList])
+      });
+  }
+  update(office: Office){
+    this.officeService.update(office).subscribe(() => {  
+      this.toastService.success(this.translate.instant( 'OFFICE.ACTIONS.UPDATE')),
       this.router.navigate([AppRouting.OfficeList])
       });
   }
