@@ -51,6 +51,14 @@ export class OfficeService {
         })
     );
   }
+  getOfficesByCountry(id: number){
+    return  this.http.get(environment.RestFullApi+`office/GetOfficesByCountry/${id}`)
+    .pipe(
+        map(res => {
+            return res
+        })
+    );
+  }
   getAllOffices(){
     return  this.http.get(environment.RestFullApi+`office`)
     .pipe(

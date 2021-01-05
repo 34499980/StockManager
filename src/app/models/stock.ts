@@ -1,7 +1,7 @@
 import { NumberFormatStyle } from '@angular/common'
 import { Stock_Office } from './stock_office.model'
 
-export class Articulo{
+export interface Stock{
     id: number
     code: NumberFormatStyle
     qr: string
@@ -15,5 +15,8 @@ export class Articulo{
     description: string
     image: string
     idOffice: number
-    stock_Office: Stock_Office[] = []
+    stock_Office: Stock_Office[]
+}
+export interface StockGet extends Stock{
+    officeDescription: string;
 }

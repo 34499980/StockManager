@@ -31,6 +31,11 @@ const appRoutes: Routes = [
     path: AppRouting.Office,
     loadChildren: () => import('./pages/office/office.module'). then(m => m.OfficeModule),
     canActivate: [AuthGuard]
+  },
+  {
+    path: AppRouting.Stock,
+    loadChildren: () => import('./pages/Stock/stock.module'). then(m => m.StockModule)
+   
   }
 ];
 

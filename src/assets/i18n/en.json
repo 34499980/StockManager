@@ -18,7 +18,11 @@
    
      },
      "STOCK":{
-         "TITLE":"Stock"
+         "TITLE":"Action stock",
+          "SUBTITLES":{
+            "STOCKLIST": "Stock"
+          
+        }
      }   
     },
     "USERS":{
@@ -60,6 +64,23 @@
             "DELETE": "The office was deleted",
             "SAVE":"The office was created",
             "UPDATE": "The office was updated"
+        }
+    },   
+    "STOCK":{
+        "SEARCH":"Search",
+        "NAME": "Name",
+        "OFFICE": "Office",        
+        "CODE": "Code",
+        "BRAND": "Brand",
+        "MODEL": "Model",
+        "UNITY": "Unity",   
+        "COUNTRY": "Country",    
+        "CLEAN": "Clean",
+        "ALL": "All",
+        "ACTIONS":{
+            "DELETE": "The stock was deleted",
+            "SAVE":"The stock was created",
+            "UPDATE": "The stock was updated"
         }
     },
     "GENERALACTIONS":{

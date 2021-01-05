@@ -17,7 +17,11 @@
             }
         },
         "STOCK":{
-            "TITLE":"Mercaderia"
+            "TITLE":"Acciones con mercaderia",
+            "SUBTITLES":{
+                "STOCKLIST": "Mercaderia"
+              
+            }
         }       
     
     },    
@@ -62,6 +66,23 @@
             "UPDATE": "La sucursal fue actualizada"
         }
         
+    },    
+    "STOCK":{
+        "SEARCH":"Buscar",
+        "NAME": "Nombre",
+        "OFFICE": "Sucursal",        
+        "CODE": "Codigo",
+        "BRAND": "Marca",
+        "MODEL": "Modelo",
+        "UNITY": "Unidades", 
+        "COUNTRY": "Pais",      
+        "CLEAN": "Limpiar",
+        "ALL": "Todos",
+        "ACTIONS":{
+            "DELETE": "El usuario {{user}} fue eliminado",
+            "SAVE":"El usuario {{user}} fue creado",            
+            "UPDATE": "El usuario {{user}} fue actualizado"
+        }
     },
     "GENERALACTIONS":{
         "ADD":"Agregar",

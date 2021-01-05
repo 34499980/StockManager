@@ -1,0 +1,194 @@
+<ng-container>
+    <form [formGroup]="searchControl">
+      <mat-toolbar class="header" fxLayoutAlign="space-between">
+        
+          <!--SEARCH BAR-->
+          
+              <mat-form-field   appearance="outline" floatLabel="always">
+                  <mat-icon matPrefix class="mr-8">search</mat-icon>
+                  <input autocomplete="off" matInput formControlName="name" placeholder="{{'USERS.SEARCH' | translate}}" >
+              </mat-form-field>  
+                       
+     
+     
+        <div fxFlex fxLayoutAlign="end center" >
+          <button mat-mini-fab color="primary"  matTooltip="Agregar" matTooltipPosition="above" (click)="addStock()" >
+            <mat-icon>add</mat-icon>
+          </button>
+          <div class="paddingButton">
+         <button mat-mini-fab color="primary"  matTooltip="Filtros" matTooltipPosition="above" (click)="sidenav.toggle()" >
+          <mat-icon>filter_list</mat-icon>
+        </button>
+      </div>
+        
+      </div>
+      
+      </mat-toolbar>
+      <mat-sidenav-container class="example-container">
+        <mat-sidenav #sidenav mode="side" class="example-sidenav"
+                    position="end"
+                  >
+        <div fxLayout="row wrap" class="p-12 pb-56 filtter">    
+    
+          <mat-label class="font-weight-400">{{'STOCK.NAME' | translate}}</mat-label>
+          <mat-form-field  appearance="outline" floatLabel="always" class="mx-12" fxFlex="1 1 90%"
+              color="accent">
+              <input autocomplete="off" matInput formControlName="name"
+                 >
+          </mat-form-field> 
+
+          <mat-label class="font-weight-400">{{'STOCK.CODE' | translate}}</mat-label>
+          <mat-form-field  appearance="outline" floatLabel="always" class="mx-12" fxFlex="1 1 90%"
+              color="accent">
+              <input autocomplete="off" matInput formControlName="code"
+                 >
+          </mat-form-field> 
+    
+          <mat-label class="font-weight-400">{{'STOCK.BRAND' | translate}}</mat-label>
+          <mat-form-field  appearance="outline" floatLabel="always" class="mx-12" fxFlex="1 1 90%"
+              color="accent">
+              <input autocomplete="off" matInput formControlName="brand"
+                 >
+          </mat-form-field> 
+    
+          <mat-label class="font-weight-400">{{'STOCK.MODEL' | translate}}</mat-label>
+          <mat-form-field  appearance="outline" floatLabel="always" class="mx-12" fxFlex="1 1 90%"
+              color="accent">
+              <input autocomplete="off" matInput formControlName="model"
+                 >
+          </mat-form-field> 
+
+          <mat-label class="font-weight-400">{{'STOCK.COUNTRY' | translate}}</mat-label>
+        <mat-form-field appearance="outline" floatLabel="always" class="mx-12" fxFlex="1 1 90%"
+            color="accent">
+            <mat-select formControlName="idCountry" placeholder="Todos">      
+              <mat-option [value]="''">{{'STOCK.ALL' | translate}}</mat-option>                          
+              <mat-option *ngFor="let c of (officeData$|async)" [value]="c.id" >
+                {{c.description}}
+               
+              </mat-option>
+            </mat-select>  
+        </mat-form-field>    
+        
+        <mat-label class="font-weight-400">{{'STOCK.OFFICE' | translate}}</mat-label>
+        <mat-form-field appearance="outline" floatLabel="always" class="mx-12" fxFlex="1 1 90%"
+            color="accent">
+            <mat-select formControlName="idOffice" placeholder="Todos">      
+              <mat-option [value]="''">{{'STOCK.ALL' | translate}}</mat-option>                          
+              <mat-option *ngFor="let c of countriesData" [value]="c.id" >
+                {{c.description}}
+               
+              </mat-option>
+            </mat-select>  
+        </mat-form-field>        
+
+         
+          
+          <div fxLayout="row" class="aply-filters-button">
+            <button fxFlex="90%" fxLayoutAlign="center center"
+            matTooltip="Limpiar filtros" matTooltipPosition="above" mat-raised-button color="primary"
+            (click)="clear()">{{'USERS.CLEAN' | translate}}
+              </button>
+          </div>
+        </div>
+        
+        </mat-sidenav>
+    
+        <mat-sidenav-content fxLayout="row wrap">
+          <!--TABLE-->
+          <mat-table #table [dataSource]="dataSource"          
+            class="center" >                           
+
+
+              <ng-container matColumnDef="NAME">
+                  <mat-header-cell *matHeaderCellDef>
+                      {{'STOCK.NAME' | translate}}
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let stock">
+                      <p class="text-truncate" >{{stock.name}}</p>
+                  </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="CODE">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                      {{'STOCK.CODE' | translate}}
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let stock">
+                      <p class="text-truncate">{{stock.code}}</p>
+                  </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="BRAND">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                      {{'STOCK.BRAND' | translate}}
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let stock">
+                      <p class="text-truncate">{{stock.brand}}</p>
+                  </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="MODEL">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    {{'STOCK.MODEL' | translate}}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let stock">
+                    <p class="text-truncate">{{stock.model}}</p>
+                </mat-cell>
+            </ng-container>
+              
+
+              <ng-container matColumnDef="OFFICE">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                      {{'STOCK.OFFICE' | translate}}
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let stock">
+                      <p class="text-truncate">{{stock.officeDescription}}</p>
+                  </mat-cell>
+              </ng-container>  
+
+              <ng-container matColumnDef="UNITY">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    {{'STOCK.UNITY' | translate}}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let stock">
+                    <p class="text-truncate">{{stock.unity}}</p>
+                </mat-cell>
+            </ng-container>           
+
+             
+              
+
+              <ng-container matColumnDef="ACTIONS">
+                  <mat-header-cell *matHeaderCellDef class="cell50-w"></mat-header-cell>
+                  <mat-cell *matCellDef="let stock" fxLayout="row" fxLayoutAlign="flex-start center" class="cell50-w">
+                      <button mat-icon-button color="accent" fxFlex="0 1 auto"
+                          matTooltipPosition="above"
+                          (click)="editStock(stock.id)">
+                          <mat-icon class="mx-8" color="primary"  >create</mat-icon>
+                      </button>
+                      <button mat-icon-button color="accent" fxFlex="0 1 auto"
+                      matTooltipPosition="above"
+                      (click)="deleteStock(stock.id)">
+                      <mat-icon class="mx-8"  style="color:red" >delete</mat-icon>
+                  </button>
+                  </mat-cell>
+              </ng-container>
+
+              <mat-header-row *matHeaderRowDef="displayedColumns;"></mat-header-row>
+
+              <mat-row *matRowDef="let stock; columns: displayedColumns;"
+                  [class.user-pointer]="false" matRipple>
+              </mat-row>
+
+          </mat-table>
+          <!--END TABLE-->
+         
+         
+        </mat-sidenav-content>
+      </mat-sidenav-container>
+    </form>
+  
+  
+  
+  </ng-container>
+  

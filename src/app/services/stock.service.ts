@@ -6,7 +6,8 @@ import { AuthenticationService } from '../core/services/authentication.service';
 import { ArquitecturaService } from './arquitectura.service';
 import { map, catchError } from 'rxjs/operators';
 import { JsonPipe } from '@angular/common';
-import { Articulo } from '../models/Articulo';
+import { Stock } from '../models/stock';
+import { StockFilter } from '../models/stockFilter.mode';
 
 const headers = new HttpHeaders();
 headers.append('Access-Control-Allow-Headers', 'Content-Type');
@@ -33,7 +34,7 @@ export class StockService {
     }
     //return throwError(error);
     }
-saveStock(stock : Articulo){  
+saveStock(stock : Stock){  
    
   let user = this.authentication.getSession()
   let request = [{
@@ -50,6 +51,14 @@ saveStock(stock : Articulo){
     return of(false);
     })
     )*/
+  }
+  getStockByFilter(filter: StockFilter){
+    return  this.http.post(environment.RestFullApi+'Stock/GetStockFilter',filter)
+    .pipe(
+        map(res => {
+        return res
+        })
+    );
   }
    getStockByCode(code: string): Observable<any>{
     return  this.http.get(environment.RestFullApi+'Stock/'+code).pipe(map(res =>{return res},

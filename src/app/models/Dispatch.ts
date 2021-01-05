@@ -1,4 +1,4 @@
-import { Articulo } from './Articulo'
+import { Stock } from './stock'
 import { Dispatc_stock } from './dispatch_stock.model'
 import { Stock_Office } from './stock_office.model'
 
@@ -12,7 +12,7 @@ export interface Dispatch{
     idState: number
     idUser: number
     unity: string
-    stock: Articulo[]
+    stock: Stock[]
     // tslint:disable-next-line: variable-name
     stock_office: Stock_Office[]
     // tslint:disable-next-line: variable-name

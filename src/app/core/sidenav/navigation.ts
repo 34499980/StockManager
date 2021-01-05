@@ -103,7 +103,7 @@ export const navigation: Navigation[] = [
         ]
     },
     {
-        id       : 'Mercaderia',
+        id       : 'Stock',
         title    : 'STOCK',
         translate: 'NAV.STOCK.TITLE',
         icon     : 'admin_panel_settings',
@@ -111,8 +111,8 @@ export const navigation: Navigation[] = [
         children : [
             {
                 id       : PermissionType.Stock.toString(),
-                title    : 'Stock',
-                translate: 'Stock',
+                title    : 'StockList',
+                translate:  'NAV.STOCK.SUBTITLE.STOCKLIST',
                 hidden   : false,
                 type     : 'item',
                 icon     : 'business_center',
