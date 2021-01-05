@@ -11,7 +11,14 @@
          
          
           <app-inputrequired title="{{'OFFICE.ADDRESS' | translate}}"  formControlName="address" [type]="'text'"></app-inputrequired>        
-  
+          
+          <mat-form-field *ngIf="showPermissionAdmin()" appearance="outline">
+            <mat-label>{{'OFFICE.STATE' | translate}}</mat-label>
+            <mat-select formControlName="status"  [(value)]="controlForm.controls.status">                       
+              <mat-option [value]="true">{{'STATES-LIST.ENABLED' | translate}}</mat-option>    
+              <mat-option [value]="false">{{'STATES-LIST.DISABLED' | translate}}</mat-option>   
+            </mat-select>  
+          </mat-form-field>
         </div>
         <div class="two">
           <div></div>

@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { AppRouting } from 'src/app/enums/AppRouting.enum';
+import { RolesEnum } from 'src/app/enums/Roles.Enum';
 import { Country } from 'src/app/models/country.model';
 import { Office } from 'src/app/models/office.model';
 import { OfficeService } from 'src/app/services/office.service';
@@ -22,7 +24,8 @@ export class OfficeDetailComponent implements OnInit {
               private officeService: OfficeService,
               private toastService: ToastService,
               private router: Router,
-              private translate: TranslateService) { }
+              private translate: TranslateService,
+              private authenticationService: AuthenticationService,) { }
 
   ngOnInit(): void {
     this.office = this.activateRoute.snapshot.data.office as Office;
@@ -32,7 +35,7 @@ export class OfficeDetailComponent implements OnInit {
       address: [this.office?.address || '' , [Validators.required, Validators.maxLength(250)]],
       postalCode: [this.office?.postalCode || '' , [Validators.required, Validators.maxLength(4)]],
       country: [this.office?.idCountry || '' , [Validators.required]],     
-      status: [this.office?.active || true]
+      status: [this.office?.active || false]
       
     })
   }
@@ -43,7 +46,7 @@ export class OfficeDetailComponent implements OnInit {
       address: this.controlForm.controls.address.value,
       idCountry: parseInt(this.controlForm.controls.country.value,10),
       postalCode: parseInt(this.controlForm.controls.postalCode.value,10),
-      active: Boolean(this.controlForm.controls.status.value)
+      active: Boolean(this.controlForm.controls.status)
     } 
     if(!this.office){
       this.add(office);
@@ -63,6 +66,9 @@ export class OfficeDetailComponent implements OnInit {
       this.toastService.success(this.translate.instant( 'OFFICE.ACTIONS.UPDATE')),
       this.router.navigate([AppRouting.OfficeList])
       });
+  }
+  showPermissionAdmin(){
+    return parseInt(this.authenticationService.getCurrentRole()) === RolesEnum.Administrador && this.office && !this.office?.active;
   }
 
 }
