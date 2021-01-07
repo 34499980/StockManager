@@ -10,9 +10,9 @@
             }
         },
         "OFFICE":{
-            "TITLE":"Office",
+            "TITLE":"Sucursales",
             "SUBTITLES":{
-                "OFFICELIST": "Sucursales",
+                "OFFICELIST": "Listado de sucursales",
                 "ADDOFFICE": "Crear sucursal"
             }
         },

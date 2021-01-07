@@ -53,7 +53,7 @@ saveStock(stock : Stock){
     )*/
   }
   getStockByFilter(filter: StockFilter){
-    return  this.http.post(environment.RestFullApi+'Stock/GetStockFilter',filter)
+    return  this.http.post(environment.RestFullApi+'stock/GetStockFilter',filter)
     .pipe(
         map(res => {
         return res

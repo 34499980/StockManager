@@ -111,8 +111,8 @@ export const navigation: Navigation[] = [
         children : [
             {
                 id       : PermissionType.Stock.toString(),
-                title    : 'StockList',
-                translate:  'NAV.STOCK.SUBTITLE.STOCKLIST',
+                title    : 'STOCKLIST',
+                translate:  'NAV.STOCK.SUBTITLES.STOCKLIST',
                 hidden   : false,
                 type     : 'item',
                 icon     : 'business_center',

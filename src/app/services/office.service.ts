@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Office } from '../models/office.model';
@@ -51,8 +52,8 @@ export class OfficeService {
         })
     );
   }
-  getOfficesByCountry(id: number){
-    return  this.http.get(environment.RestFullApi+`office/GetOfficesByCountry/${id}`)
+  getOfficesByCountry(id: number): Observable<Office[]>{
+    return  this.http.get<Office[]>(environment.RestFullApi+`office/GetOfficesByCountry/${id}`)
     .pipe(
         map(res => {
             return res

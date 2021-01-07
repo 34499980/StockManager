@@ -22,7 +22,7 @@ import { StockService } from 'src/app/services/stock.service';
 export class StockListComponent implements OnInit {
   searchControl: FormGroup; 
   countriesData: Country[];
-  officeData$: Observable<Office>;
+  officeData$: Observable<Office[]>;
   officeData: Office[];
   stockData$: Subject<Stock[]> = new Subject();
   dataSource = new MatTableDataSource([]);
@@ -62,11 +62,11 @@ constructor(private activateRoute: ActivatedRoute,
        
       }),
       switchMap(val => {
-        return this.stockService.getStockByCode(val.idCountry);
+        return this.officeService.getOfficesByCountry(val);
       })
       );
     
-    this.getTicketFilter();
+    this.getStockFilter();
     this.loadData();
     this.searchControl.valueChanges.subscribe(val => {
       if((val.name !== '' || val.name !== null  && val.name?.length > 3) ||
@@ -78,7 +78,7 @@ constructor(private activateRoute: ActivatedRoute,
       });
      
   }
-  getTicketFilter(){
+  getStockFilter(){
     this.stockData$.pipe(
       switchMap(res => {
         
@@ -86,8 +86,8 @@ constructor(private activateRoute: ActivatedRoute,
           name: this.searchControl.controls.name.value,
           brand: this.searchControl.controls.brand.value,
           code: this.searchControl.controls.code.value,
-          idCountry: this.searchControl.controls.idCountry.value,
-          idOffice: this.searchControl.controls.idOffice.value,
+          idCountry: parseInt(this.searchControl.controls.idCountry.value,10),
+          idOffice:parseInt(this.searchControl.controls.idOffice.value,10),
           model: this.searchControl.controls.model.value,
         }
         return this.stockService.getStockByFilter(stockFilter);

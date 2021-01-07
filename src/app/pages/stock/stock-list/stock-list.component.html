@@ -63,7 +63,7 @@
             color="accent">
             <mat-select formControlName="idCountry" placeholder="Todos">      
               <mat-option [value]="''">{{'STOCK.ALL' | translate}}</mat-option>                          
-              <mat-option *ngFor="let c of (officeData$|async)" [value]="c.id" >
+              <mat-option *ngFor="let c of countriesData" [value]="c.id" >
                 {{c.description}}
                
               </mat-option>
@@ -75,8 +75,8 @@
             color="accent">
             <mat-select formControlName="idOffice" placeholder="Todos">      
               <mat-option [value]="''">{{'STOCK.ALL' | translate}}</mat-option>                          
-              <mat-option *ngFor="let c of countriesData" [value]="c.id" >
-                {{c.description}}
+              <mat-option *ngFor="let c of (officeData$|async)" [value]="c.id" >
+                {{c.name}}
                
               </mat-option>
             </mat-select>  
