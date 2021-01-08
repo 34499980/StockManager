@@ -1,0 +1,40 @@
+:host{
+    height:auto;
+    display: block;
+    overflow: hidden;
+  }
+  .header{
+    background-color: lightsteelblue;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    width: 100%;
+    height: 100px;
+  }
+  .title{
+    color:white;
+    font-weight:bold;
+    font-size: 30px;
+    padding-left: 5%;
+    padding-top: 2%;
+  }
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(50px, auto);   
+  }
+  .one {
+    grid-column:2;
+    grid-row: 2;
+  }
+  .two { 
+    grid-column: 3;
+    grid-row: 2;
+  }
+  .three {
+    grid-column: 4;
+    grid-row: 2;
+  }
+  .four {
+    grid-column: 4;
+    grid-row: 3;
+  }

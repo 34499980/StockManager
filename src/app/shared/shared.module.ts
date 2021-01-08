@@ -35,12 +35,14 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslationModule } from '../translation/translation.module';
 import { MatTableModule } from '@angular/material/table';
+import { ModalStockComponent } from './dialogs/modal-stock/modal-stock.component';
 
 const COMPONENTS = [
     InputrequiredComponent,
     DialogMessageComponent,
     DialogconfirmComponent,
-    PaneluserComponent
+    PaneluserComponent,
+    ModalStockComponent
 ];
 const MODULES = [
   AvatarModule,  
@@ -124,8 +126,7 @@ const MODULES = [
     ...MODULES
   ],
    declarations: [
-    ...COMPONENTS,
-    DialogconfirmComponent
+    ...COMPONENTS,  
   ]
 })
 export class SharedModule { }

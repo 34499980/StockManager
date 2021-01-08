@@ -13,6 +13,7 @@ import { Stock, StockGet } from 'src/app/models/stock';
 import { StockFilter } from 'src/app/models/stockFilter.mode';
 import { OfficeService } from 'src/app/services/office.service';
 import { StockService } from 'src/app/services/stock.service';
+import { ModalStockComponent } from 'src/app/shared/dialogs/modal-stock/modal-stock.component';
 
 @Component({
   selector: 'app-stock-list',
@@ -22,8 +23,7 @@ import { StockService } from 'src/app/services/stock.service';
 export class StockListComponent implements OnInit {
   searchControl: FormGroup; 
   countriesData: Country[];
-  officeData$: Observable<Office[]>;
-  officeData: Office[];
+  officeData$: Observable<Office[]>; 
   stockData$: Subject<Stock[]> = new Subject();
   dataSource = new MatTableDataSource([]);
   displayedColumns = [
@@ -62,7 +62,11 @@ constructor(private activateRoute: ActivatedRoute,
        
       }),
       switchMap(val => {
+        if(val != null && val != '') {
         return this.officeService.getOfficesByCountry(val);
+        }else{
+         return [];
+        }
       })
       );
     
@@ -106,7 +110,11 @@ constructor(private activateRoute: ActivatedRoute,
     this.loadData();
   }
   addStock(){
-
+    const title = this.translate.instant('STOCK.TITLE')
+    const dialogRef = this.dialog.open(ModalStockComponent,{
+      disableClose: true,
+      data: {title: title}
+    })
   }
   deleteStock(id: number){
 
