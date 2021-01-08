@@ -5,7 +5,7 @@ import { MatDrawer } from '@angular/material/sidenav';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
 import { Country } from 'src/app/models/country.model';
 import { Office } from 'src/app/models/office.model';
@@ -65,7 +65,7 @@ constructor(private activateRoute: ActivatedRoute,
         if(val != null && val != '') {
         return this.officeService.getOfficesByCountry(val);
         }else{
-         return [];
+         return of([]);
         }
       })
       );
@@ -109,18 +109,30 @@ constructor(private activateRoute: ActivatedRoute,
     this.searchControl.reset();
     this.loadData();
   }
-  addStock(){
-    const title = this.translate.instant('STOCK.TITLE')
+  addStock(){  
     const dialogRef = this.dialog.open(ModalStockComponent,{
-      disableClose: true,
-      data: {title: title}
+      disableClose: true,  
+      height: '460px',
+       width: '65%',
+       data: {countriesData: this.countriesData}      
     })
   }
   deleteStock(id: number){
 
   }
   editStock(id: number){
-
+    this.stockService.getStockById(id).subscribe(res => {
+      const dialogRef = this.dialog.open(ModalStockComponent,{
+        disableClose: true,  
+        height: '460px',
+         width: '65%',
+         data: {
+                countriesData: this.countriesData,
+                stock:  res as StockGet
+              }      
+      })
+    })
+ 
   }
 
 }

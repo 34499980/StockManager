@@ -6,7 +6,7 @@ import { AuthenticationService } from '../core/services/authentication.service';
 import { ArquitecturaService } from './arquitectura.service';
 import { map, catchError } from 'rxjs/operators';
 import { JsonPipe } from '@angular/common';
-import { Stock } from '../models/stock';
+import { Stock, StockGet, StockPost } from '../models/stock';
 import { StockFilter } from '../models/stockFilter.mode';
 
 const headers = new HttpHeaders();
@@ -22,72 +22,38 @@ export class StockService {
   http: HttpClient
   constructor(http: HttpClient,private authentication: AuthenticationService,private arquitecturaService: ArquitecturaService) {
     this.http = http
-   }
-   handleError(value){
-    try{
-    let start = value.error.indexOf(':')+1
-    let end = value.error.indexOf(' at ') - start
-    this.arquitecturaService.openDialog("Error", value.error.substr(start,end))
-    }
-    catch(ex){
-      this.arquitecturaService.openDialog("Error","Se genero un error interno. Si persiste, comuniquise con el administrador.")
-    }
-    //return throwError(error);
-    }
-saveStock(stock : Stock){  
-   
-  let user = this.authentication.getSession()
-  let request = [{
-    stock: stock,
-    user: user
-  }]
-  this.http.post(environment.RestFullApi+'Stock',{stock,user}).subscribe(res=> res,
-    error => {return error})
+   }  
+  saveStock(stock : StockPost): Observable<any>{ 
 
-  /*
-  return this.http.post<any>(environment.RestFullApi+'Stock',{stock,user,},options).pipe(map(res => {return res}),
-  catchError((err, caught)=>{
-    this.handleError(err)
-    return of(false);
+  return  this.http.post(environment.RestFullApi+'stock', stock).pipe(
+    map(res => {
+    return res
     })
-    )*/
+  );
   }
-  getStockByFilter(filter: StockFilter){
-    return  this.http.post(environment.RestFullApi+'stock/GetStockFilter',filter)
+  updaeStock(stock : StockPost): Observable<any>{  
+
+   return  this.http.put(environment.RestFullApi+'stock', stock).pipe(
+      map(res => {
+      return res
+      })
+    );
+    }
+  getStockByFilter(filter: StockFilter): Observable<StockGet[]>{
+    return  this.http.post<StockGet[]>(environment.RestFullApi+'stock/GetStockFilter',filter)
     .pipe(
         map(res => {
         return res
         })
     );
   }
-   getStockByCode(code: string): Observable<any>{
-    return  this.http.get(environment.RestFullApi+'Stock/'+code).pipe(map(res =>{return res},
-      error => {this.arquitecturaService.openDialog("Error!",error.message)}),
-      catchError((err, caught)=> {
-         this. handleError(err)
-      return of(false);
+  getStockById(id: number): Observable<Stock>{
+    return  this.http.get<Stock>(environment.RestFullApi+`stock/GetStockById/${id}`)
+    .pipe(
+        map(res => {
+        return res
         })
-      )
+    );
   }
-  getStock(code?: string, name?: string, brand?: string, model?: string, office?: number){
-    let query = " where "   
-    query += "idOffice:"+ office
-    code == undefined || code == ""? query :query +=  " ; code:"+ code 
-    name == undefined || name == ""? query :query +=  " ; name:"+ name 
-    brand == undefined || brand == ""? query :query +=  " ; brand:"+ brand 
-    model == undefined ||  model == ""? query:query +=  " ; model:"+ model 
-   
-   
 
-    return  this.http.get(environment.RestFullApi+'Stock/'+ query).pipe(map(res =>{return res},
-      error => {this.arquitecturaService.openDialog("Error!",error.message)}),
-      catchError((err, caught)=> {
-         this. handleError(err)
-      return of(false);
-        })
-      )
-  }
- 
-  
- 
 }

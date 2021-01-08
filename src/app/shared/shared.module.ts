@@ -51,6 +51,7 @@ const MODULES = [
 @NgModule({
     imports: [
     CommonModule,
+    MatFormFieldModule ,
     LayoutModule,
     MatTableModule,
     MatToolbarModule,
@@ -83,6 +84,7 @@ const MODULES = [
   ],
   exports: [
     CommonModule,
+    MatFormFieldModule ,
     MatTableModule,
     MatToolbarModule,
     MatSidenavModule,
