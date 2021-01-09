@@ -113,7 +113,7 @@ constructor(private activateRoute: ActivatedRoute,
     const dialogRef = this.dialog.open(ModalStockComponent,{
       disableClose: true,  
       height: '460px',
-       width: '65%',
+       width: '60%',
        data: {countriesData: this.countriesData}      
     })
   }

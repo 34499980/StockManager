@@ -36,14 +36,18 @@
                 </mat-form-field>        
             </div>
             <div class="three">
-                <div >
-                <img width="220px"  height="200px" [src]="this.fileSelected == undefined ? image :  this.cameraImage" (click)="OnFileSelected($event)" >
+                <div fxFlex="100%" >
+                <input  fxFlex="15%" type="file" style="width: 5px;" #file (change)="OnFileSelected($event)" style="visibility: hidden" />
+                <img fxFlex="70%" width="220px"  height="200px" [src]="this.fileSelected == undefined ? image :  this.cameraImage" (click)="OnFileSelected($event)" >
                 <!--<button mat-stroked-button style="width: 100%; height: 300px" (click)="OnFileSelected($event)" [disabled]="this._data.bDsiable">Image</button>-->
-                <input  type="file" #file (change)="OnFileSelected($event)" style="visibility: hidden" />
+                
+              
+               
+               
                 </div>
             </div>
             <div class="four">
-                <mat-form-field appearance="outline" fxFlex="100%" class="grow">
+                <mat-form-field appearance="outline" fxFlex="93%" class="grow">
                     <textarea matInput #textarea maxLength="maxLength" formControlName="description" rows="6"
                       autocomplete="off"></textarea>
                       <mat-hint align="end" class="mr-12">{{textarea.value.length}} / {{maxlength}}</mat-hint>
