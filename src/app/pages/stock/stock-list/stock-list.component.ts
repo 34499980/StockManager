@@ -115,7 +115,11 @@ constructor(private activateRoute: ActivatedRoute,
       height: '460px',
        width: '60%',
        data: {countriesData: this.countriesData}      
-    })
+    }).afterClosed().subscribe(res => {
+      if(res){
+        this.loadData();
+      }
+      });
   }
   deleteStock(id: number){
 
@@ -130,7 +134,11 @@ constructor(private activateRoute: ActivatedRoute,
                 countriesData: this.countriesData,
                 stock:  res as StockGet
               }      
-      })
+      }).afterClosed().subscribe(res => {
+        if(res){
+          this.loadData();
+        }
+        });
     })
  
   }

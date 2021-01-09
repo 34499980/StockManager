@@ -6,6 +6,7 @@ export interface Stock{
     id: number
     code: NumberFormatStyle
     qr?: string
+    idState: number;
     price?: number
     name: string
     brand: string

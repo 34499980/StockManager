@@ -109,6 +109,7 @@ export class ModalStockComponent implements OnInit {
       brand: this.stockForm.controls.brand.value,
       model: this.stockForm.controls.model.value,
       description: this.stockForm.controls.description.value,
+      idState: 1,  
       idOffice: parseInt(this.stockForm.controls.idOffice.value, 10),      
       file: this.base64textString[0] ,
       stock_Office: this.stock_office,
