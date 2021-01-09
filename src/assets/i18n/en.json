@@ -24,6 +24,10 @@
         }
      }   
     },
+    "MENU-USER":{
+        "LENGUAGE": "Lenguage",
+        "LOGOUT": "Logout"
+    },
     "USERS":{
         "SEARCH":"Search",
         "USERNAME": "UserName",

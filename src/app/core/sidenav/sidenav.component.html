@@ -11,13 +11,18 @@
     <div fxFlex="80%"></div>
       <div fxFlex="20%" fxLayoutAlign="end center">
         <div>
-      <app-translation fxFlex="50%"></app-translation>
+     
     </div>
       <div>
-        <ngx-avatar fxFlex="50%"  [matMenuTriggerFor]="menu"  size="40" src="assets/userEmpty.jpg"></ngx-avatar>
+        <ngx-avatar fxFlex="50%"  [matMenuTriggerFor]="menu" class="pointer"  size="40" src="assets/userEmpty.jpg"></ngx-avatar>
         <mat-menu #menu="matMenu">
-          <span  fxLayout="100%"  fxLayoutAlign="center center" class="pointer"  (click)="logout()" *ngIf="isLoggedIn">
-            <mat-icon>exit_to_app</mat-icon>Logout</span>
+          <span mat-menu-item fxLayout="100%"  fxLayoutAlign="center center" class="pointer" [matMenuTriggerFor]="lenguage"  *ngIf="isLoggedIn">
+            <mat-icon>translate</mat-icon>{{'MENU-USER.LENGUAGE' | translate }}</span>
+          <span mat-menu-item fxLayout="100%"  fxLayoutAlign="center center" class="pointer"  (click)="logout()" *ngIf="isLoggedIn">
+            <mat-icon>exit_to_app</mat-icon>{{'MENU-USER.LOGOUT' | translate }}</span>
+        </mat-menu>
+        <mat-menu fxLayout="100%" #lenguage="matMenu">
+          <app-translation fxFlex="100%"></app-translation>
         </mat-menu>
       </div>
     </div>

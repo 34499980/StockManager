@@ -1,6 +1,4 @@
-<mat-form-field  appearance="fill">    
-    <mat-select [formControl]="formControl" (selectionChange)="cambiarLenguaje()">                       
-      <mat-option [value]="'es'" >es</mat-option>    
-      <mat-option [value]="'en'">en</mat-option>   
-    </mat-select>  
-</mat-form-field>
+<div fxFlex="100%" fxLayout="row wrap">
+  <span class="pointer" fxLayoutAlign="center center" fxFlex="100%" fxLayout="column" (click)="cambiarLenguaje('es')">es</span>
+  <span class="pointer" fxLayoutAlign="center center" fxFlex="100%" fxLayout="column" (click)="cambiarLenguaje('en')">en</span>
+</div>

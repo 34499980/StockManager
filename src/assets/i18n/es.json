@@ -24,7 +24,11 @@
             }
         }       
     
-    },    
+    },  
+    "MENU-USER":{
+        "LENGUAGE": "Idioma",
+        "LOGOUT": "Cerrar sesión"
+    },  
     "USERS":{
         "SEARCH":"Buscar",
         "USERNAME": "Usuario",

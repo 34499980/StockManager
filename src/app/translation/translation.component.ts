@@ -18,8 +18,8 @@ export class TranslationComponent implements OnInit {
     this.formControl = new FormControl()
     this.formControl.setValue('es')
   }
-  public cambiarLenguaje() {
-    this.activeLang = this.formControl.value;
+  public cambiarLenguaje(value) {
+    this.activeLang = value;
     this.translate.use(this.activeLang);
   }
 }
