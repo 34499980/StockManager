@@ -52,8 +52,8 @@ export class OfficeListComponent implements OnInit {
     this.searchControl = this.formBuilder.group({
       name: [''],
       address: [''],
-      postalCode: [''],
-      country:[''],
+      postalCode: [null],
+      country:[null],
       disabled: [false]
     })
     this.getOfficesFilter();
@@ -76,9 +76,9 @@ export class OfficeListComponent implements OnInit {
         
         const officeFilter : OfficeFilter = {
           name: this.searchControl.controls.name.value?? '',
-          idCountry: parseInt(this.searchControl.controls.country.value),
+          idCountry: parseInt(this.searchControl.controls.country.value, 10),
           address: this.searchControl.controls.address.value,
-          postalCode: parseInt(this.searchControl.controls.postalCode.value,10),
+          postalCode: parseInt(this.searchControl.controls.postalCode.value, 10),
           active: parseInt(this.authenticationService.getCurrentRole()) !== RolesEnum.Administrador? false: Boolean(this.searchControl.controls.disabled.value)
         };
         return this.officeService.getOfficeByFilter(officeFilter);
@@ -88,6 +88,7 @@ export class OfficeListComponent implements OnInit {
     });
    
   }
+  
   loadData(){
     this.officeData$.next();
   }

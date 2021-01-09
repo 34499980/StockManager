@@ -37,7 +37,7 @@ export class OfficeService {
     );
   }
   getOfficeByFilter(filter: OfficeFilter){
-    return  this.http.post(environment.RestFullApi+'office/GetUOfficeFilter', filter)
+    return  this.http.post(environment.RestFullApi+'office/GetOfficeFilter', filter)
     .pipe(
         map(res => {
             return res

@@ -11,7 +11,7 @@ export interface Stock{
     brand: string
     model: string  
     description: string
-    file?: File
+    file?: any
     idOffice: number
     stock_Office?: Stock_Office[]
 }

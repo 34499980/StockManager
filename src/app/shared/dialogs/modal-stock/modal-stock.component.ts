@@ -27,6 +27,7 @@ export class ModalStockComponent implements OnInit {
   url: string;
   cameraImage: SafeResourceUrl;
   image: SafeUrl = '../assets/imageNotFound.png';
+  base64textString = [];
   @ViewChild('file') file :ElementRef
   constructor(private builder: FormBuilder,
               private sanitizer: DomSanitizer,
@@ -70,6 +71,12 @@ export class ModalStockComponent implements OnInit {
       this.fileSelected = <File>event.target.files === undefined ? undefined : <File>event.target.files[0]
       this.url = URL.createObjectURL(this.fileSelected);
       this.cameraImage = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
+
+      const blob = new Blob([this.fileSelected], {type: 'image'})
+      var reader = new FileReader();
+        
+      reader.onload = this._handleReaderLoaded.bind(this);
+      reader.readAsBinaryString(this.fileSelected);
   } 
   selectedOffice(idOffice: number){
    
@@ -88,10 +95,13 @@ export class ModalStockComponent implements OnInit {
 
     
   }
+  _handleReaderLoaded(e) {
+  this.base64textString = [];
+  this.base64textString.push('data:image/png;base64,' + btoa(e.target.result));
+          
+   }
   save() {   
-    const blob = new Blob([this.fileSelected], {type: 'image'})
-    let reader = new FileReader();
-    let source = reader.readAsBinaryString(blob);
+    
     const stockPost: StockPost = {
       id: this.stock? this.stock.id : 0,
       code: this.stockForm.controls.code.value,
@@ -100,7 +110,7 @@ export class ModalStockComponent implements OnInit {
       model: this.stockForm.controls.model.value,
       description: this.stockForm.controls.description.value,
       idOffice: parseInt(this.stockForm.controls.idOffice.value, 10),      
-      file: null,
+      file: this.base64textString[0] ,
       stock_Office: this.stock_office,
       idCountry: parseInt(this.stockForm.controls.idCountry.value, 10)
     }
