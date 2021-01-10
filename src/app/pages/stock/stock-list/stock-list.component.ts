@@ -13,6 +13,8 @@ import { Stock, StockGet } from 'src/app/models/stock';
 import { StockFilter } from 'src/app/models/stockFilter.mode';
 import { OfficeService } from 'src/app/services/office.service';
 import { StockService } from 'src/app/services/stock.service';
+import { ToastService } from 'src/app/services/toast.service';
+import { DialogconfirmComponent } from 'src/app/shared/dialogs/dialogconfirm/dialogconfirm.component';
 import { ModalStockComponent } from 'src/app/shared/dialogs/modal-stock/modal-stock.component';
 
 @Component({
@@ -44,7 +46,8 @@ constructor(private activateRoute: ActivatedRoute,
   private dialog: MatDialog,
   private translate: TranslateService,   
   private router: Router,
-  private officeService: OfficeService) { }
+  private officeService: OfficeService,
+  private toastService: ToastService) { }
 
   ngOnInit(): void {
     this.countriesData = this.activateRoute.snapshot.data.countries as Country[];
@@ -122,7 +125,22 @@ constructor(private activateRoute: ActivatedRoute,
       });
   }
   deleteStock(id: number){
-
+    const title = this.translate.instant('DIALOGS.DELETE-STOCK.TITLE')
+    const message = this.translate.instant('DIALOGS.DELETE-STOCK.MESSAGE')
+    const dialogRef = this.dialog.open(DialogconfirmComponent,
+       {
+      disableClose: true,     
+      data:{title: title, message: message}
+        });
+      
+       dialogRef.afterClosed().subscribe(res => {
+         if(res){
+          this.stockService.delete(id).subscribe(() => 
+          {this.toastService.success(this.translate.instant('STOCK.ACTIONS.DELETE')),
+         this.loadData();
+        });
+      }
+   });
   }
   editStock(id: number){
     this.stockService.getStockById(id).subscribe(res => {

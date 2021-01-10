@@ -55,5 +55,13 @@ export class StockService {
         })
     );
   }
+  delete(id: number){
+    return  this.http.delete(environment.RestFullApi+`stock/${id}`)
+    .pipe(
+        map(res => {
+        return res
+        })
+    );
+  }
 
 }

@@ -116,6 +116,11 @@
             "TITLE":"Delete office",
             "MESSAGE":"Do you want to delete the office?"
             
+        },
+        "DELETE-STOCK":{
+            "TITLE":"Delete stock",
+            "MESSAGE":"Do you want to delete the stock?"
+            
         }
         
     },

@@ -37,10 +37,18 @@ export class AuthenticationService {
       getCurrentRole(): any{
         return localStorage.getItem('roleId');
        }
+       getCurrentCountry(): any{
+        return localStorage.getItem('idCountry');
+       }
+       getCurrentOffice(): any{
+        return localStorage.getItem('idOffice');
+       }
     Autorization(value: User){
         this.loggedIn.next(true)
         localStorage.setItem('user', value.userName)
         localStorage.setItem('roleId', value.idRole.toString())
+        localStorage.setItem('idCountry', value.idCountry.toString())
+        localStorage.setItem('idOffice', value.idOffice.toString())
       return value
     }
     login(username: string, pass: string) {
