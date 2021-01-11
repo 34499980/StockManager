@@ -36,10 +36,12 @@ export class ModalStockComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) private data,
               public dialogRef: MatDialogRef<ModalStockComponent>) {
        this.countriesData = data.countriesData; 
-       this.stock = data.stock;        
+       this.stock = data.stock;
+       this.cameraImage = this.sanitizer.bypassSecurityTrustResourceUrl(this.stock.file);  
+         
                }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
     this.stockForm = this.builder.group({
       code: [this.stock?.code, [Validators.required, Validators.maxLength(10)]],
       name: [this.stock?.name, [Validators.required, Validators.maxLength(250)]],

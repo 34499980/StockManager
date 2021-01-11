@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, of, Subject } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { Country } from 'src/app/models/country.model';
 import { Office } from 'src/app/models/office.model';
 import { Stock, StockGet } from 'src/app/models/stock';
@@ -47,17 +48,18 @@ constructor(private activateRoute: ActivatedRoute,
   private translate: TranslateService,   
   private router: Router,
   private officeService: OfficeService,
-  private toastService: ToastService) { }
+  private toastService: ToastService,
+  private authentication: AuthenticationService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
     this.countriesData = this.activateRoute.snapshot.data.countries as Country[];
     this.searchControl = this.formBuilder.group({
       name: [''],
       code: [''],
       brand: [''],
       model:[''],
-      idOffice: [''],
-      idCountry: ['']
+      idOffice: [parseInt(this.authentication.getCurrentOffice(), 10)],
+      idCountry: [parseInt(this.authentication.getCurrentCountry(), 10)]
 
     })
      this.officeData$ = this.searchControl.controls.idCountry.valueChanges.pipe(
