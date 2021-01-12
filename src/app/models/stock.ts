@@ -13,8 +13,9 @@ export interface Stock{
     model: string  
     description: string
     file?: any
-    idOffice: number
+    idOffice: number;
     stock_Office?: Stock_Office[]
+    unity?: number;
 }
 export interface StockGet extends Stock{
     officeDescription: string;

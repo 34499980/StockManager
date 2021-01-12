@@ -50,7 +50,7 @@ export class ModalStockComponent implements OnInit {
       description: [this.stock?.description, [Validators.maxLength(1024)]],
       idOffice: [this.stock?.idOffice, [Validators.required]],
       idCountry: [this.stock?.idCountry, [Validators.required]],
-      unity: ['', [Validators.required]]
+      unity: [this.stock?.unity, [Validators.required]]
       
     })
     this.officeData$ = this.stockForm.controls.idCountry.valueChanges.pipe(

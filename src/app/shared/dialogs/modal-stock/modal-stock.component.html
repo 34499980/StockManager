@@ -1,14 +1,15 @@
+<h1>{{stock.code}}</h1>
 <form [formGroup]="stockForm">
     <div fxFlex="100%" fxLayout="row wrap">
         <div fxFlex="100%">
         <div class="wrapper">
             <div class="one">
-                <app-inputrequired title="{{'STOCK.CODE' | translate}}"  formControlName="code" [type]="'text'"></app-inputrequired>
+               
                 <app-inputrequired title="{{'STOCK.NAME' | translate}}"  formControlName="name" [type]="'text'"></app-inputrequired>
                 <app-inputrequired title="{{'STOCK.BRAND' | translate}}"  formControlName="brand" [type]="'text'"></app-inputrequired>
                 <mat-form-field appearance="outline" floatLabel="always" color="primary">
                     <mat-label>{{'STOCK.COUNTRY' | translate}}</mat-label>
-                    <mat-select formControlName="idCountry" > 
+                    <mat-select formControlName="idCountry" [(value)]="stock.idCountry"> 
                     <mat-option *ngFor="let c of countriesData" [value]="c.id" >
                         {{c.description}}
                     
@@ -27,7 +28,7 @@
                
                 <mat-form-field appearance="outline" floatLabel="always" color="primary">
                     <mat-label>{{'STOCK.OFFICE' | translate}}</mat-label>
-                    <mat-select formControlName="idOffice" (selectionChange)="selectedOffice($event.value)"> 
+                    <mat-select formControlName="idOffice" (selectionChange)="selectedOffice($event.value)" [(value)]="stock.idOffice"> 
                     <mat-option *ngFor="let c of (officeData$|async)" [value]="c.id" >
                         {{c.name}}
                     

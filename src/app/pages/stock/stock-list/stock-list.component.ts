@@ -103,6 +103,7 @@ constructor(private activateRoute: ActivatedRoute,
       })
     ).subscribe(res =>{
        this.dataSource.data = res as StockGet[]
+       this.dataSource.data.forEach(element => {element.unity = element.stock_Office.find(x => x.idOffice === element.idOffice).unity})
     });
     
 
