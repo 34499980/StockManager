@@ -147,9 +147,10 @@ constructor(private activateRoute: ActivatedRoute,
   }
   editStock(id: number){
     this.stockService.getStockById(id).subscribe(res => {
+      res.unity = res.stock_Office.find(x => x.idOffice == res.idOffice).unity
       const dialogRef = this.dialog.open(ModalStockComponent,{
         disableClose: true,  
-        height: '460px',
+        height: '480px',
          width: '65%',
          data: {
                 countriesData: this.countriesData,

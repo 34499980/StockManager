@@ -1,5 +1,6 @@
 import { NumberFormatStyle } from '@angular/common'
 import { SafeResourceUrl, SafeValue } from '@angular/platform-browser'
+import { Office } from './office.model'
 import { Stock_Office } from './stock_office.model'
 
 export interface Stock{
@@ -15,6 +16,7 @@ export interface Stock{
     file?: any
     idOffice: number;
     stock_Office?: Stock_Office[]
+    office?: Office;
     unity?: number;
 }
 export interface StockGet extends Stock{

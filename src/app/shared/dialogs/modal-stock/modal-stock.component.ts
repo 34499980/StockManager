@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 import { Observable, of } from 'rxjs';
-import { tap, switchMap } from 'rxjs/operators';
+import { tap, switchMap, distinctUntilChanged } from 'rxjs/operators';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { Country } from 'src/app/models/country.model';
 import { Office } from 'src/app/models/office.model';
 import { Stock, StockGet, StockPost } from 'src/app/models/stock';
@@ -34,26 +35,29 @@ export class ModalStockComponent implements OnInit {
               private officeService: OfficeService,
               private stockService:  StockService,           
               @Inject(MAT_DIALOG_DATA) private data,
-              public dialogRef: MatDialogRef<ModalStockComponent>) {
+              public dialogRef: MatDialogRef<ModalStockComponent>,
+              private authentication: AuthenticationService) {
        this.countriesData = data.countriesData; 
        this.stock = data.stock;
+       if(this.stock)
        this.cameraImage = this.sanitizer.bypassSecurityTrustResourceUrl(this.stock.file);  
          
                }
 
   ngOnInit(): void {    
     this.stockForm = this.builder.group({
-      code: [this.stock?.code, [Validators.required, Validators.maxLength(10)]],
-      name: [this.stock?.name, [Validators.required, Validators.maxLength(250)]],
-      brand: [this.stock?.brand, [Validators.required, Validators.maxLength(250)]],
-      model: [this.stock?.model, [Validators.required, Validators.maxLength(250)]],
-      description: [this.stock?.description, [Validators.maxLength(1024)]],
-      idOffice: [this.stock?.idOffice, [Validators.required]],
-      idCountry: [this.stock?.idCountry, [Validators.required]],
-      unity: [this.stock?.unity, [Validators.required]]
+      code: [this.stock?.code || '' , [Validators.required, Validators.maxLength(10)]],
+      name: [this.stock?.name || '' , [Validators.required, Validators.maxLength(250)]],
+      brand: [this.stock?.brand || '' , [Validators.required, Validators.maxLength(250)]],
+      model: [this.stock?.model || '' , [Validators.required, Validators.maxLength(250)]],
+      description: [this.stock?.description || '' , [Validators.maxLength(1024)]],
+      idOffice: [this.stock?.idOffice || this.authentication.getCurrentOffice() , [Validators.required]],
+      idCountry: [this.stock?.office.idCountry || this.authentication.getCurrentCountry() , [Validators.required]],
+      unity: [this.stock?.unity || 0,  [Validators.required]]
       
     })
     this.officeData$ = this.stockForm.controls.idCountry.valueChanges.pipe(
+      distinctUntilChanged(),
       tap(() => {
        
       }),
@@ -64,7 +68,7 @@ export class ModalStockComponent implements OnInit {
          return of([]);
         }
       })
-      );
+      );          
     
   }
   OnFileSelected(event){   
