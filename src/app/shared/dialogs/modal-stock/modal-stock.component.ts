@@ -71,18 +71,23 @@ export class ModalStockComponent implements OnInit {
       );          
     
   }
-  OnFileSelected(event){   
-      this.file.nativeElement.click()
+  OnFileSelected(event){ 
+    if (this.url){
+      URL.revokeObjectURL(this.url);
+    }  
       // tslint:disable-next-line: no-angle-bracket-type-assertion
       this.fileSelected = <File>event.target.files === undefined ? undefined : <File>event.target.files[0]
-      this.url = URL.createObjectURL(this.fileSelected);
-      this.cameraImage = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
-
-      const blob = new Blob([this.fileSelected], {type: 'image'})
-      var reader = new FileReader();
-        
-      reader.onload = this._handleReaderLoaded.bind(this);
-      reader.readAsBinaryString(this.fileSelected);
+      if (this.fileSelected) {
+        this.url = URL.createObjectURL(this.fileSelected);
+        this.cameraImage = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
+  
+        const blob = new Blob([this.fileSelected], {type: 'image'})
+        var reader = new FileReader();
+          
+        reader.onload = this._handleReaderLoaded.bind(this);
+        reader.readAsBinaryString(this.fileSelected);
+      }
+     
   } 
   selectedOffice(idOffice: number){
    

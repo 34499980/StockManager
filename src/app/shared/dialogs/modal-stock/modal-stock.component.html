@@ -39,7 +39,7 @@
             <div class="three">
                 <div fxFlex="100%" >
                 <input  fxFlex="15%" type="file" style="width: 5px;" #file (change)="OnFileSelected($event)" style="visibility: hidden" />
-                <img fxFlex="70%" width="220px"  height="200px" [src]="cameraImage == undefined ? image :  cameraImage" (click)="OnFileSelected($event)" >
+                <img fxFlex="70%" width="220px"  height="200px" [src]="cameraImage || image" (click)="file.click()" >
                 <!--<button mat-stroked-button style="width: 100%; height: 300px" (click)="OnFileSelected($event)" [disabled]="this._data.bDsiable">Image</button>-->
                 
               
