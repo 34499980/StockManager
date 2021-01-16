@@ -1,6 +1,6 @@
 export const enum RolesEnum {
-    Administrador = 1,
-    Generencial = 2,
-    Vendedor = 3,
-    Comprador = 4
+    Administrator = 1,
+    Manager = 2,
+    Seller = 3,
+    Buyer = 4
   }

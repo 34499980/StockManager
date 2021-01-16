@@ -5,6 +5,7 @@ import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browse
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { tap, switchMap, distinctUntilChanged, startWith } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { RolesEnum } from 'src/app/enums/Roles.Enum';
 import { Country } from 'src/app/models/country.model';
 import { Office } from 'src/app/models/office.model';
 import { Stock, StockGet, StockPost } from 'src/app/models/stock';
@@ -54,9 +55,9 @@ export class ModalStockComponent implements OnInit {
       brand: [this.stock?.brand || '' , [Validators.required, Validators.maxLength(250)]],
       model: [this.stock?.model || '' , [Validators.required, Validators.maxLength(250)]],
       description: [this.stock?.description || '' , [Validators.maxLength(1024)]],
-      idOffice: [this.stock?.idOffice || parseInt(this.authentication.getCurrentOffice(), 10)],
-      idCountry: [this.stock?.office.idCountry || parseInt(this.authentication.getCurrentCountry(), 10) ],
-      unity: [this.stock?.unity || 0,  [Validators.required]]
+      idOffice: [parseInt(this.authentication.getCurrentOffice(), 10)],
+      idCountry: [parseInt(this.authentication.getCurrentCountry(), 10) ],
+      unity: [this.InitialUnity() || 0,  [Validators.required]]
       
     })    
      this.stockForm.controls.idCountry.valueChanges.pipe(     
@@ -73,6 +74,14 @@ export class ModalStockComponent implements OnInit {
       startWith(this.officeData)
       ).subscribe(this.officeData$);          
     
+  }
+  InitialUnity() {
+  return this.stock_office.find(x => x.idOffice === parseInt(this.authentication.getCurrentOffice(), 10)).unity;
+  }
+  showPermission() {
+    return ((RolesEnum.Administrator === this.authentication.getCurrentRole()) ||
+           (RolesEnum.Manager === this.authentication.getCurrentRole() &&
+            this.stockForm.controls.idOffice.value === this.authentication.getCurrentOffice()))
   }
   OnFileSelected(event){ 
     if (this.url){

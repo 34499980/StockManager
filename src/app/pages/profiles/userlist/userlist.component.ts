@@ -76,7 +76,7 @@ export class UserListComponent implements OnInit {
           idRole: parseInt(this.searchControl.controls.role.value),
           idOffice: parseInt(this.searchControl.controls.office.value),
           idCountry: parseInt(this.searchControl.controls.country.value),
-          active: parseInt(this.authenticationService.getCurrentRole()) !== RolesEnum.Administrador? false: Boolean(this.searchControl.controls.status.value)
+          active: parseInt(this.authenticationService.getCurrentRole()) !== RolesEnum.Administrator? false: Boolean(this.searchControl.controls.status.value)
         };
         return this.userService.getUserFilter(userFilter);
       })
@@ -96,6 +96,6 @@ export class UserListComponent implements OnInit {
     this.toggleIsFilterPanelOpen? false:true
   }
   showAdministrativePermission(){
-    return parseInt(this.authenticationService.getCurrentRole()) === RolesEnum.Administrador;
+    return parseInt(this.authenticationService.getCurrentRole()) === RolesEnum.Administrator;
   }
 }

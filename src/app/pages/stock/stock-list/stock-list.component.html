@@ -165,7 +165,7 @@
                           (click)="editStock(stock_office.stock.id)">
                           <mat-icon class="mx-8" color="primary"  >create</mat-icon>
                       </button>
-                      <button mat-icon-button color="accent" fxFlex="0 1 auto"
+                      <button *ngIf="showPermission()" mat-icon-button color="accent" fxFlex="0 1 auto"
                       matTooltipPosition="above"
                       (click)="deleteStock(stock_office.stock.id)">
                       <mat-icon class="mx-8"  style="color:red" >delete</mat-icon>

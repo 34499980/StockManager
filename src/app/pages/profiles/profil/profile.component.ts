@@ -57,7 +57,7 @@ export class ProfileComponent implements OnInit {
       office: [this.user?.idOffice || '', Validators.required],
       role: [this.user?.idRole || '', [Validators.required, Validators.maxLength(50)]],
       state:[this.user?.active || false],
-      country: [this.user?.idCountry || '', Validators.required],
+      country: [this.user?.idCountry || parseInt(this.authenticationService.getCurrentCountry(), 10), Validators.required],
     });
 
 }
@@ -98,7 +98,7 @@ OnFileSelected(event){
 }
 //Show methods
 showPermissionAdmin(){
-  return parseInt(this.authenticationService.getCurrentRole()) === RolesEnum.Administrador && this.user && !this.user?.active;
+  return parseInt(this.authenticationService.getCurrentRole()) === RolesEnum.Administrator && this.user && !this.user?.active;
 }
 
 }

@@ -77,7 +77,7 @@
         </ng-container>
         <mat-form-field  appearance="outline">
           <mat-label>{{'USERS.COUNTRY' | translate}}</mat-label>
-          <mat-select formControlName="country" [(value)]="userControl.controls.country">                       
+          <mat-select formControlName="country" >                       
             <mat-option *ngFor="let r of countriesData" [value]="r.id" >
               {{r.description | translate}} 
             </mat-option>

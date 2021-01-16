@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { startWith, switchMap, tap } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { RolesEnum } from 'src/app/enums/Roles.Enum';
 import { Country } from 'src/app/models/country.model';
 import { Office } from 'src/app/models/office.model';
 import { Stock, StockGet } from 'src/app/models/stock';
@@ -172,6 +173,10 @@ constructor(private activateRoute: ActivatedRoute,
         });
     })
  
+  }
+  showPermission() {
+    return (RolesEnum.Administrator == this.authentication.getCurrentRole() ||
+            RolesEnum.Manager == this.authentication.getCurrentRole() )
   }
 
 }

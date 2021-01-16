@@ -68,7 +68,7 @@ export class OfficeDetailComponent implements OnInit {
       });
   }
   showPermissionAdmin(){
-    return parseInt(this.authenticationService.getCurrentRole()) === RolesEnum.Administrador && this.office && !this.office?.active;
+    return parseInt(this.authenticationService.getCurrentRole()) === RolesEnum.Administrator && this.office && !this.office?.active;
   }
 
 }

@@ -79,7 +79,7 @@ export class OfficeListComponent implements OnInit {
           idCountry: parseInt(this.searchControl.controls.country.value, 10),
           address: this.searchControl.controls.address.value,
           postalCode: parseInt(this.searchControl.controls.postalCode.value, 10),
-          active: parseInt(this.authenticationService.getCurrentRole()) !== RolesEnum.Administrador? false: Boolean(this.searchControl.controls.disabled.value)
+          active: parseInt(this.authenticationService.getCurrentRole()) !== RolesEnum.Administrator? false: Boolean(this.searchControl.controls.disabled.value)
         };
         return this.officeService.getOfficeByFilter(officeFilter);
       })
