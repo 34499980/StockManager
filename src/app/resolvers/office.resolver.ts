@@ -2,29 +2,23 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { UserService } from 'src/app/services/user.service';
+import { OfficeService } from '../services/office.service';
+import { AuthenticationService } from '../core/services/authentication.service';
 
 
 @Injectable()
 export class OfficeResolver implements Resolve<any>
 {
-    private apiEndPoint: string;
-
-    /**
-     * Constructor
-     *
-     * @param {HttpClient} _httpClient
-     * @param {TicketService} _auth
-     */
-    constructor(
-        private _httpClient: HttpClient,
-        private _service: UserService,
+  
+    constructor(       
+        private service: OfficeService,
+        private authentication: AuthenticationService
     )
     {
     }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any>
     {       
-        return this._service.getAllOffice();
+        return this.service.getOfficesByCountry(this.authentication.getCurrentCountry());
     }
 }

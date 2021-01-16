@@ -2,8 +2,8 @@ import { Component, ElementRef, Inject, Input, OnInit, SecurityContext, ViewChil
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
-import { Observable, of } from 'rxjs';
-import { tap, switchMap, distinctUntilChanged } from 'rxjs/operators';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { tap, switchMap, distinctUntilChanged, startWith } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { Country } from 'src/app/models/country.model';
 import { Office } from 'src/app/models/office.model';
@@ -19,7 +19,8 @@ import { StockService } from 'src/app/services/stock.service';
 })
 export class ModalStockComponent implements OnInit {
   stockForm: FormGroup;
-  officeData$: Observable<Office[]>; 
+  officeData$:  BehaviorSubject<Office[]> = new BehaviorSubject([]); 
+  officeData: Office[];
   countriesData: Country[];
   stock_office: Stock_Office[];
   maxlength: number = 1024;
@@ -39,25 +40,26 @@ export class ModalStockComponent implements OnInit {
               private authentication: AuthenticationService) {
        this.countriesData = data.countriesData; 
        this.stock = data.stock;
+       this.officeData = data.officeData;
        if(this.stock)
        this.cameraImage = this.sanitizer.bypassSecurityTrustResourceUrl(this.stock.file);  
          
                }
 
-  ngOnInit(): void {    
-    this.stockForm = this.builder.group({
-      code: [this.stock?.code || '' , [Validators.required, Validators.maxLength(10)]],
+  ngOnInit(): void {   
+    this.stock_office = this.stock?.stock_Office; 
+    this.stockForm = this.builder.group({      
+      code: [this.stock?.code || '' , [Validators.required, Validators.maxLength(250)]],
       name: [this.stock?.name || '' , [Validators.required, Validators.maxLength(250)]],
       brand: [this.stock?.brand || '' , [Validators.required, Validators.maxLength(250)]],
       model: [this.stock?.model || '' , [Validators.required, Validators.maxLength(250)]],
       description: [this.stock?.description || '' , [Validators.maxLength(1024)]],
-      idOffice: [this.stock?.idOffice || this.authentication.getCurrentOffice() , [Validators.required]],
-      idCountry: [this.stock?.office.idCountry || this.authentication.getCurrentCountry() , [Validators.required]],
+      idOffice: [this.stock?.idOffice || parseInt(this.authentication.getCurrentOffice(), 10)],
+      idCountry: [this.stock?.office.idCountry || parseInt(this.authentication.getCurrentCountry(), 10) ],
       unity: [this.stock?.unity || 0,  [Validators.required]]
       
-    })
-    this.officeData$ = this.stockForm.controls.idCountry.valueChanges.pipe(
-      distinctUntilChanged(),
+    })    
+     this.stockForm.controls.idCountry.valueChanges.pipe(     
       tap(() => {
        
       }),
@@ -67,8 +69,9 @@ export class ModalStockComponent implements OnInit {
         }else{
          return of([]);
         }
-      })
-      );          
+      }),
+      startWith(this.officeData)
+      ).subscribe(this.officeData$);          
     
   }
   OnFileSelected(event){ 
@@ -92,15 +95,9 @@ export class ModalStockComponent implements OnInit {
   selectedOffice(idOffice: number){
    
       let stock_Officelist = this.stock_office?.find(x => x.idOffice === idOffice)
-      if(!stock_Officelist){
-        const newStockOffice: Stock_Office = {
-          id: 0,
-          idOffice: idOffice,
-          idStock: 0,
-          unity: parseInt(this.stockForm.controls.unity.value, 10)
-        }
-        
-      this.stock_office = [...[], newStockOffice]
+      if(stock_Officelist){
+        this.stockForm.controls.unity.setValue(stock_Officelist.unity);
+        this.stockForm.controls.idOffice.setValue(stock_Officelist.idOffice)
       }
       
 
@@ -111,20 +108,33 @@ export class ModalStockComponent implements OnInit {
   this.base64textString.push('data:image/png;base64,' + btoa(e.target.result));
           
    }
-  save() {   
+  save() {  
+    let stock_Officelist = this.stock_office?.find(x => x.idOffice === this.stockForm.controls.idOffice.value)
+    if(!stock_Officelist){
+      const newStockOffice: Stock_Office = {
+        id: 0,
+        idOffice: parseInt(this.stockForm.controls.idOffice.value, 10),
+        idStock: this.stock? this.stock.id : 0,
+        unity: parseInt(this.stockForm.controls.unity.value, 10)
+      }
+      
+    this.stock_office = [...[], newStockOffice]
+    }
+     
     
     const stockPost: StockPost = {
       id: this.stock? this.stock.id : 0,
       code: this.stockForm.controls.code.value,
+      qr: this.stock? this.stock.qr : '0',
       name: this.stockForm.controls.name.value,
       brand: this.stockForm.controls.brand.value,
       model: this.stockForm.controls.model.value,
       description: this.stockForm.controls.description.value,
       idState: 1,  
       idOffice: parseInt(this.stockForm.controls.idOffice.value, 10),      
-      file: this.base64textString[0] ,
+      file: this.base64textString.length === 0? this.stock.file: this.base64textString[0] ,
       stock_Office: this.stock_office,
-      idCountry: parseInt(this.stockForm.controls.idCountry.value, 10)
+      idCountry: parseInt(this.stockForm.controls.idCountry.value, 10),
     }
     if(!this.stock){
       this.add(stockPost);

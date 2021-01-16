@@ -1,10 +1,9 @@
-<h1 *ngIf="stock">{{stock.code}}</h1>
 <form [formGroup]="stockForm">
     <div fxFlex="100%" fxLayout="row wrap">
         <div fxFlex="100%">
         <div class="wrapper">
             <div class="one">
-               
+                <app-inputrequired title="{{'STOCK.CODE' | translate}}"  formControlName="code" [type]="'text'"></app-inputrequired>
                 <app-inputrequired title="{{'STOCK.NAME' | translate}}"  formControlName="name" [type]="'text'"></app-inputrequired>
                 <app-inputrequired title="{{'STOCK.BRAND' | translate}}"  formControlName="brand" [type]="'text'"></app-inputrequired>
                 <mat-form-field appearance="outline" floatLabel="always" color="primary">
@@ -29,7 +28,7 @@
                 <mat-form-field appearance="outline" floatLabel="always" color="primary">
                     <mat-label>{{'STOCK.OFFICE' | translate}}</mat-label>
                     <mat-select formControlName="idOffice" (selectionChange)="selectedOffice($event.value)"> 
-                    <mat-option *ngFor="let c of (officeData$|async)" [value]="c.id" >
+                    <mat-option *ngFor="let c of (officeData$) | async" [value]="c.id" >
                         {{c.name}}
                     
                     </mat-option>

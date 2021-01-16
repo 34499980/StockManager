@@ -5,7 +5,7 @@ import { Stock_Office } from './stock_office.model'
 
 export interface Stock{
     id: number
-    code: NumberFormatStyle
+    code: string;
     qr?: string
     idState: number;
     price?: number

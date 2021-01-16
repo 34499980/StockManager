@@ -8,6 +8,7 @@ import { map, catchError } from 'rxjs/operators';
 import { JsonPipe } from '@angular/common';
 import { Stock, StockGet, StockPost } from '../models/stock';
 import { StockFilter } from '../models/stockFilter.mode';
+import { Stock_Office } from '../models/stock_office.model';
 
 const headers = new HttpHeaders();
 headers.append('Access-Control-Allow-Headers', 'Content-Type');
@@ -39,8 +40,8 @@ export class StockService {
       })
     );
     }
-  getStockByFilter(filter: StockFilter): Observable<StockGet[]>{
-    return  this.http.post<StockGet[]>(environment.RestFullApi+'stock/GetStockFilter',filter)
+  getStockByFilter(filter: StockFilter): Observable<Stock_Office[]>{
+    return  this.http.post<Stock_Office[]>(environment.RestFullApi+'stock/GetStockFilter',filter)
     .pipe(
         map(res => {
         return res

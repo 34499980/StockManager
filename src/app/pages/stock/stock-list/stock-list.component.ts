@@ -5,13 +5,14 @@ import { MatDrawer } from '@angular/material/sidenav';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { Observable, of, Subject } from 'rxjs';
-import { switchMap, tap } from 'rxjs/operators';
+import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
+import { startWith, switchMap, tap } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { Country } from 'src/app/models/country.model';
 import { Office } from 'src/app/models/office.model';
 import { Stock, StockGet } from 'src/app/models/stock';
 import { StockFilter } from 'src/app/models/stockFilter.mode';
+import { Stock_Office } from 'src/app/models/stock_office.model';
 import { OfficeService } from 'src/app/services/office.service';
 import { StockService } from 'src/app/services/stock.service';
 import { ToastService } from 'src/app/services/toast.service';
@@ -26,7 +27,8 @@ import { ModalStockComponent } from 'src/app/shared/dialogs/modal-stock/modal-st
 export class StockListComponent implements OnInit {
   searchControl: FormGroup; 
   countriesData: Country[];
-  officeData$: Observable<Office[]>; 
+  officeData$:  BehaviorSubject<Office[]> = new BehaviorSubject([]); 
+  officeData: Office[];
   stockData$: Subject<Stock[]> = new Subject();
   dataSource = new MatTableDataSource([]);
   displayedColumns = [
@@ -52,6 +54,7 @@ constructor(private activateRoute: ActivatedRoute,
   private authentication: AuthenticationService) { }
 
   ngOnInit(): void { 
+    this.officeData = this.activateRoute.snapshot.data.offices as Office[];
     this.countriesData = this.activateRoute.snapshot.data.countries as Country[];
     this.searchControl = this.formBuilder.group({
       name: [''],
@@ -62,7 +65,7 @@ constructor(private activateRoute: ActivatedRoute,
       idCountry: [parseInt(this.authentication.getCurrentCountry(), 10)]
 
     })
-     this.officeData$ = this.searchControl.controls.idCountry.valueChanges.pipe(
+      this.searchControl.controls.idCountry.valueChanges.pipe(
       tap(() => {
        
       }),
@@ -72,18 +75,19 @@ constructor(private activateRoute: ActivatedRoute,
         }else{
          return of([]);
         }
-      })
-      );
+      }),
+      startWith(this.officeData)
+      ).subscribe(this.officeData$);
     
     this.getStockFilter();
     this.loadData();
     this.searchControl.valueChanges.subscribe(val => {
-      if((val.name !== '' || val.name !== null  && val.name?.length > 3) ||
-        (val.postalCode !== '' && val.postalCode !== null && val.postalCode?.length === 4)){
+    //  if((val.name !== '' || val.name !== null  && val.name?.length > 3) ||
+      //  (val.postalCode !== '' && val.postalCode !== null && val.postalCode?.length === 4)){
        this.loadData();
-        } else if ((val.name === '' || val.name === null) && (val.postalCode === '' || val.postalCode === null)){
-          this.loadData();
-        }
+      //  } else if ((val.name === '' || val.name) && (val.postalCode === '' || val.postalCode)){
+     //     this.loadData();
+     //   }
       });
      
   }
@@ -102,8 +106,8 @@ constructor(private activateRoute: ActivatedRoute,
         return this.stockService.getStockByFilter(stockFilter);
       })
     ).subscribe(res =>{
-       this.dataSource.data = res as StockGet[]
-       this.dataSource.data.forEach(element => {element.unity = element.stock_Office.find(x => x.idOffice === element.idOffice).unity})
+       this.dataSource.data = res as Stock_Office[];
+      
     });
     
 
@@ -113,6 +117,8 @@ constructor(private activateRoute: ActivatedRoute,
   }
   clear(){
     this.searchControl.reset();
+    this.searchControl.controls.idCountry.setValue(parseInt(this.authentication.getCurrentCountry(), 10));
+    this.searchControl.controls.idOffice.setValue(parseInt(this.authentication.getCurrentOffice(), 10))
     this.loadData();
   }
   addStock(){  
@@ -120,7 +126,9 @@ constructor(private activateRoute: ActivatedRoute,
       disableClose: true,  
       height: '460px',
        width: '60%',
-       data: {countriesData: this.countriesData}      
+       data: {countriesData: this.countriesData,
+              officeData: this.officeData 
+            }      
     }).afterClosed().subscribe(res => {
       if(res){
         this.loadData();
@@ -154,7 +162,8 @@ constructor(private activateRoute: ActivatedRoute,
          width: '65%',
          data: {
                 countriesData: this.countriesData,
-                stock:  res as StockGet
+                stock:  res as StockGet,
+                officeData: this.officeData  
               }      
       }).afterClosed().subscribe(res => {
         if(res){
