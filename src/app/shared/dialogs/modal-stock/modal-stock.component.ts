@@ -76,12 +76,12 @@ export class ModalStockComponent implements OnInit {
     
   }
   InitialUnity() {
-  return this.stock_office.find(x => x.idOffice === parseInt(this.authentication.getCurrentOffice(), 10)).unity;
+  return this.stock_office?.find(x => x.idOffice === parseInt(this.authentication.getCurrentOffice(), 10)).unity;
   }
   showPermission() {
-    return ((RolesEnum.Administrator === this.authentication.getCurrentRole()) ||
-           (RolesEnum.Manager === this.authentication.getCurrentRole() &&
-            this.stockForm.controls.idOffice.value === this.authentication.getCurrentOffice()))
+    return ((RolesEnum.Administrator == this.authentication.getCurrentRole()) ||
+           (RolesEnum.Manager == this.authentication.getCurrentRole() &&
+            this.stockForm.controls.idOffice.value == this.authentication.getCurrentOffice()))
   }
   OnFileSelected(event){ 
     if (this.url){
@@ -128,6 +128,8 @@ export class ModalStockComponent implements OnInit {
       }
       
     this.stock_office = [...[], newStockOffice]
+    } else {
+      stock_Officelist.unity = parseInt(this.stockForm.controls.unity.value, 10)
     }
      
     

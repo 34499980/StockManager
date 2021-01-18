@@ -175,8 +175,7 @@ constructor(private activateRoute: ActivatedRoute,
  
   }
   showPermission() {
-    return (RolesEnum.Administrator == this.authentication.getCurrentRole() ||
-            RolesEnum.Manager == this.authentication.getCurrentRole() )
+    return (RolesEnum.Administrator == this.authentication.getCurrentRole())
   }
 
 }

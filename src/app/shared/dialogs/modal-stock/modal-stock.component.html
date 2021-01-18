@@ -3,9 +3,9 @@
         <div fxFlex="100%">
         <div class="wrapper">
             <div class="one">
-                <app-inputrequired title="{{'STOCK.CODE' | translate}}"  formControlName="code" [type]="'text'"></app-inputrequired>
-                <app-inputrequired title="{{'STOCK.NAME' | translate}}"  formControlName="name" [type]="'text'"></app-inputrequired>
-                <app-inputrequired title="{{'STOCK.BRAND' | translate}}"  formControlName="brand" [type]="'text'"></app-inputrequired>
+                <app-inputrequired [disabled]="showPermission()" title="{{'STOCK.CODE' | translate}}"  formControlName="code" [type]="'text'"></app-inputrequired>
+                <app-inputrequired [disabled]="showPermission()" title="{{'STOCK.NAME' | translate}}"  formControlName="name" [type]="'text'"></app-inputrequired>
+                <app-inputrequired [disabled]="showPermission()" title="{{'STOCK.BRAND' | translate}}"  formControlName="brand" [type]="'text'"></app-inputrequired>
                 <mat-form-field appearance="outline" floatLabel="always" color="primary">
                     <mat-label>{{'STOCK.COUNTRY' | translate}}</mat-label>
                     <mat-select formControlName="idCountry" [(value)]="stock?.office.idCountry"> 
@@ -23,7 +23,7 @@
                     <input matInput type="number"  formControlName="unity" min="0">  
                   </mat-form-field>  
                 
-                <app-inputrequired title="{{'STOCK.MODEL' | translate}}"  formControlName="model" [type]="'text'"></app-inputrequired>
+                <app-inputrequired [disabled]="showPermission()" title="{{'STOCK.MODEL' | translate}}"  formControlName="model" [type]="'text'"></app-inputrequired>
                
                 <mat-form-field appearance="outline" floatLabel="always" color="primary">
                     <mat-label>{{'STOCK.OFFICE' | translate}}</mat-label>
@@ -37,7 +37,7 @@
             </div>
             <div class="three">
                 <div fxFlex="100%" >
-                <input  fxFlex="15%" type="file" style="width: 5px;" #file (change)="OnFileSelected($event)" style="visibility: hidden" />
+                <input [disabled]="showPermission()"  fxFlex="15%" type="file" style="width: 5px;" #file (change)="OnFileSelected($event)" style="visibility: hidden" />
                 <img fxFlex="70%" width="220px"  height="200px" [src]="cameraImage || image" (click)="file.click()" >
                 <!--<button mat-stroked-button style="width: 100%; height: 300px" (click)="OnFileSelected($event)" [disabled]="this._data.bDsiable">Image</button>-->
                 
@@ -48,7 +48,7 @@
             </div>
             <div class="four">
                 <mat-form-field appearance="outline" fxFlex="93%" class="grow">
-                    <textarea matInput #textarea maxLength="maxLength" formControlName="description" rows="6"
+                    <textarea [disabled]="showPermission()" matInput #textarea maxLength="maxLength" formControlName="description" rows="6"
                       autocomplete="off"></textarea>
                       <mat-hint align="end" class="mr-12">{{textarea.value.length}} / {{maxlength}}</mat-hint>
                    
