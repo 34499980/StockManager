@@ -82,9 +82,9 @@ export class ModalStockComponent implements OnInit {
   return this.stock_office?.find(x => x.idOffice === parseInt(this.authentication.getCurrentOffice(), 10)).unity;
   }
   showPermission() {
-    return ((RolesEnum.Administrator == this.authentication.getCurrentRole()) ||
-           (RolesEnum.Manager == this.authentication.getCurrentRole() &&
-            this.stockForm.controls.idOffice.value == this.authentication.getCurrentOffice()))
+    return ((RolesEnum.Administrator !== parseInt(this.authentication.getCurrentRole(), 10)) &&
+           (RolesEnum.Manager !== parseInt(this.authentication.getCurrentRole(), 10) &&
+            this.officeForm.controls.idOffice.value !== parseInt(this.authentication.getCurrentOffice(), 10)))
   }
   OnFileSelected(event){ 
     if (this.url){
@@ -105,11 +105,16 @@ export class ModalStockComponent implements OnInit {
      
   } 
   selectedOffice(idOffice: number){
-   
+      this.stockForm.markAsPristine();
+      this.stockForm.controls.code.setValue(this.stock?.code);
+      this.stockForm.controls.name.setValue(this.stock?.name);
+      this.stockForm.controls.brand.setValue(this.stock?.brand);
+      this.stockForm.controls.model.setValue(this.stock?.model);
+      this.stockForm.controls.description.setValue(this.stock?.description);
       let stock_Officelist = this.stock_office?.find(x => x.idOffice === idOffice)
       if(stock_Officelist){
         this.stockForm.controls.unity.setValue(stock_Officelist.unity);
-        this.stockForm.controls.idOffice.setValue(stock_Officelist.idOffice)
+        this.officeForm.controls.idOffice.setValue(stock_Officelist.idOffice)
       }
       
 

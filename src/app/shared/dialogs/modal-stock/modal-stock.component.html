@@ -59,7 +59,7 @@
     </div>
         <div fxFlex="100%"  fxLayout="row" fxLayoutAlign="end end" class="paddignButton">
             <button mat-button mat-dialog-close >{{'GENERALACTIONS.CANCEL' | translate}}</button>
-            <button mat-raised-button color="accent" class="mx-12"   [disabled]="stockForm.pristine || stockForm.invalid"
+            <button mat-raised-button color="accent" class="mx-12"   [disabled]="stockForm.pristine || stockForm.invalid || showPermission()"
              (click)="save()">{{'GENERALACTIONS.SAVE' | translate}}</button>
         </div>
         
