@@ -8,7 +8,7 @@
                 <app-inputrequired [disabled]="showPermission()" title="{{'STOCK.BRAND' | translate}}"  formControlName="brand" [type]="'text'"></app-inputrequired>
                 <mat-form-field appearance="outline" floatLabel="always" color="primary">
                     <mat-label>{{'STOCK.COUNTRY' | translate}}</mat-label>
-                    <mat-select formControlName="idCountry" [(value)]="stock?.office.idCountry"> 
+                    <mat-select [formControl]="officeForm.controls.idCountry" [(value)]="stock?.office.idCountry"> 
                     <mat-option *ngFor="let c of countriesData" [value]="c.id" >
                         {{c.description}}
                     
@@ -27,7 +27,7 @@
                
                 <mat-form-field appearance="outline" floatLabel="always" color="primary">
                     <mat-label>{{'STOCK.OFFICE' | translate}}</mat-label>
-                    <mat-select formControlName="idOffice" (selectionChange)="selectedOffice($event.value)"> 
+                    <mat-select [formControl]="officeForm.controls.idOffice" (selectionChange)="selectedOffice($event.value)"> 
                     <mat-option *ngFor="let c of (officeData$) | async" [value]="c.id" >
                         {{c.name}}
                     
@@ -59,7 +59,7 @@
     </div>
         <div fxFlex="100%"  fxLayout="row" fxLayoutAlign="end end" class="paddignButton">
             <button mat-button mat-dialog-close >{{'GENERALACTIONS.CANCEL' | translate}}</button>
-            <button mat-raised-button color="accent" class="mx-12"   [disabled]="stockForm.pristine || stockForm.invalid || showPermission()"
+            <button mat-raised-button color="accent" class="mx-12"   [disabled]="stockForm.pristine || stockForm.invalid"
              (click)="save()">{{'GENERALACTIONS.SAVE' | translate}}</button>
         </div>
         

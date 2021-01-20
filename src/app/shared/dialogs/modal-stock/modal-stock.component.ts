@@ -20,6 +20,7 @@ import { StockService } from 'src/app/services/stock.service';
 })
 export class ModalStockComponent implements OnInit {
   stockForm: FormGroup;
+  officeForm: FormGroup;
   officeData$:  BehaviorSubject<Office[]> = new BehaviorSubject([]); 
   officeData: Office[];
   countriesData: Country[];
@@ -49,18 +50,20 @@ export class ModalStockComponent implements OnInit {
 
   ngOnInit(): void {   
     this.stock_office = this.stock?.stock_Office; 
+    this.officeForm = this.builder.group({
+      idOffice: [parseInt(this.authentication.getCurrentOffice(), 10)],
+      idCountry: [parseInt(this.authentication.getCurrentCountry(), 10) ]
+    })
     this.stockForm = this.builder.group({      
       code: [this.stock?.code || '' , [Validators.required, Validators.maxLength(250)]],
       name: [this.stock?.name || '' , [Validators.required, Validators.maxLength(250)]],
       brand: [this.stock?.brand || '' , [Validators.required, Validators.maxLength(250)]],
       model: [this.stock?.model || '' , [Validators.required, Validators.maxLength(250)]],
-      description: [this.stock?.description || '' , [Validators.maxLength(1024)]],
-      idOffice: [parseInt(this.authentication.getCurrentOffice(), 10)],
-      idCountry: [parseInt(this.authentication.getCurrentCountry(), 10) ],
+      description: [this.stock?.description || '' , [Validators.maxLength(1024)]],     
       unity: [this.InitialUnity() || 0,  [Validators.required]]
       
     })    
-     this.stockForm.controls.idCountry.valueChanges.pipe(     
+     this.officeForm.controls.idCountry.valueChanges.pipe(     
       tap(() => {
        
       }),
@@ -118,11 +121,11 @@ export class ModalStockComponent implements OnInit {
           
    }
   save() {  
-    let stock_Officelist = this.stock_office?.find(x => x.idOffice === this.stockForm.controls.idOffice.value)
+    let stock_Officelist = this.stock_office?.find(x => x.idOffice === this.officeForm.controls.idOffice.value)
     if(!stock_Officelist){
       const newStockOffice: Stock_Office = {
         id: 0,
-        idOffice: parseInt(this.stockForm.controls.idOffice.value, 10),
+        idOffice: parseInt(this.officeForm.controls.idOffice.value, 10),
         idStock: this.stock? this.stock.id : 0,
         unity: parseInt(this.stockForm.controls.unity.value, 10)
       }
@@ -142,10 +145,10 @@ export class ModalStockComponent implements OnInit {
       model: this.stockForm.controls.model.value,
       description: this.stockForm.controls.description.value,
       idState: 1,  
-      idOffice: parseInt(this.stockForm.controls.idOffice.value, 10),      
+      idOffice: parseInt(this.officeForm.controls.idOffice.value, 10),      
       file: this.base64textString.length === 0? this.stock.file: this.base64textString[0] ,
       stock_Office: this.stock_office,
-      idCountry: parseInt(this.stockForm.controls.idCountry.value, 10),
+      idCountry: parseInt(this.officeForm.controls.idCountry.value, 10),
     }
     if(!this.stock){
       this.add(stockPost);
