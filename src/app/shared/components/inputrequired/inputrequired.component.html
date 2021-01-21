@@ -11,7 +11,7 @@
     <div *ngSwitchDefault>
       <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>{{this.title}}</mat-label>
-        <input matInput autocomplete="off" type="{{this.type}}" [formControl]="ngControl.control">            
+        <input matInput   #input autocomplete="off" type="{{this.type}}" [formControl]="ngControl.control">            
       </mat-form-field>
       <ng-container *ngIf="ngControl.touched">
         <mat-error *ngIf="ngControl.hasError('required')">{{'ERROR-MESSAGE.REQUIRED' | translate}}</mat-error>

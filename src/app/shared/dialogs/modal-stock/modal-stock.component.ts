@@ -12,6 +12,7 @@ import { Stock, StockGet, StockPost } from 'src/app/models/stock';
 import { Stock_Office } from 'src/app/models/stock_office.model';
 import { OfficeService } from 'src/app/services/office.service';
 import { StockService } from 'src/app/services/stock.service';
+import { InputrequiredComponent } from '../../components/inputrequired/inputrequired.component';
 
 @Component({
   selector: 'app-modal-stock',
@@ -33,6 +34,10 @@ export class ModalStockComponent implements OnInit {
   image: SafeUrl = '../assets/imageNotFound.png';
   base64textString = [];
   @ViewChild('file') file :ElementRef
+  @ViewChild('code') code :InputrequiredComponent
+  @ViewChild('name') name :InputrequiredComponent
+  @ViewChild('brand') brand :InputrequiredComponent
+  @ViewChild('model') model :InputrequiredComponent
   constructor(private builder: FormBuilder,
               private sanitizer: DomSanitizer,
               private officeService: OfficeService,
@@ -112,6 +117,22 @@ export class ModalStockComponent implements OnInit {
       this.stockForm.controls.model.setValue(this.stock?.model);
       this.stockForm.controls.description.setValue(this.stock?.description);
       let stock_Officelist = this.stock_office?.find(x => x.idOffice === idOffice)
+      if (this.authentication.getCurrentOffice() == idOffice || this.authentication.getCurrentRole() == RolesEnum.Administrator) {
+        this.code.setDisabledState(false);
+        this.name.setDisabledState(false);
+        this.brand.setDisabledState(false);
+        this.model.setDisabledState(false); 
+        this.stockForm.controls.unity.enable();      
+        this.stockForm.controls.description.enable();      
+      } else {
+        this.code.setDisabledState(true);
+        this.name.setDisabledState(true);
+        this.brand.setDisabledState(true);
+        this.model.setDisabledState(true);  
+        this.stockForm.controls.unity.disable();   
+        this.stockForm.controls.description.disable();   
+      }
+     
       if(stock_Officelist){
         this.stockForm.controls.unity.setValue(stock_Officelist.unity);
         this.officeForm.controls.idOffice.setValue(stock_Officelist.idOffice)

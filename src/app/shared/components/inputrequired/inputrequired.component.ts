@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output,EventEmitter, ViewChild, ElementRef, Optional, Self } from '@angular/core';
+import { Component, OnInit, Input, Output,EventEmitter, ViewChild, ElementRef, Optional, Self, Renderer2 } from '@angular/core';
 import {ControlValueAccessor, FormBuilder, FormControl, FormGroup, FormGroupDirective, NgControl, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
 import { ChangeDetectorRef } from '@angular/core';
@@ -16,6 +16,7 @@ export class InputrequiredComponent implements OnInit, ControlValueAccessor {
   @Input() disabled: boolean;
   @Input() title: string;
   @Input() type: string;
+  @ViewChild('input') input: ElementRef;
 
   value = '';
   onChange = (x) => {};
@@ -23,7 +24,7 @@ export class InputrequiredComponent implements OnInit, ControlValueAccessor {
   constructor(@Self()
   @Optional()
   public ngControl: NgControl,
-  ) {
+  private renderer: Renderer2) {
 if (this.ngControl) {
 this.ngControl.valueAccessor = this;
 }
@@ -40,8 +41,9 @@ this.ngControl.valueAccessor = this;
   registerOnTouched(fn: () => {}): void {
     this.onTouched = fn;
   }
-  setDisabledState?(isDisabled: boolean): void {
+  public setDisabledState?(isDisabled: boolean): void {
     this.disabled = isDisabled;
+    this.renderer.setProperty(this.input.nativeElement, 'disabled', isDisabled);
   }
 }
 
