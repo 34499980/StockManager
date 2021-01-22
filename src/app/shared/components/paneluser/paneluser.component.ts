@@ -37,11 +37,11 @@ export class PaneluserComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    if(this.user) {
+      if(this.user)
       this.cameraImage = this.sanitizer.bypassSecurityTrustResourceUrl(this.user.file); 
-    } else {
-      this.image = '../../../../assets/userEmpty.jpg';
-    }
+ 
+      this.image = '../../../../assets/userEmpty.jpg'
+    
    
     
     this.arquitecturaService.getCamposPerfil().subscribe(res => {this._param = res})

@@ -91,12 +91,20 @@
         
       </div>
       <div class="three">
-        <app-inputrequired title="{{'USERS.USERNAME' | translate}}"  formControlName="userName"></app-inputrequired>
-        <app-inputrequired title="{{'USERS.PASSWORD' | translate}}"  formControlName="password"></app-inputrequired>
+        <div  fxFlex="100%" fxLayout="row wrap">
+        <div fxFlex="100%" >
+          <app-inputrequired title="{{'USERS.USERNAME' | translate}}"  formControlName="userName"></app-inputrequired>
+
+        </div>
+        <div fxFlex="100%">
+          <app-inputrequired title="{{'USERS.PASSWORD' | translate}}"  formControlName="password"></app-inputrequired>
+        </div>
+       
 
         <input  type="file" style="width: 5px;" #file (change)="OnFileSelected($event)" style="visibility: hidden" />
-         <img width="220px" height="200px" [src]="cameraImage || image" (click)="file.click()" >
+         <img  fxFlex="70%" [src]="cameraImage || image" (click)="file.click()" >
         
+        </div>
       </div>
     
     </div> 

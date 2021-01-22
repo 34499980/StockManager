@@ -27,7 +27,7 @@
         </div>
         <div class="three">
           <div fxFlex="100%" fxLayout="row wrap" fxLayoutAlign="center center" class="mb-12">   
-            <img width="50%" height="150px" [src]="cameraImage || image" >
+            <img fxFlex="100%"   [src]="cameraImage || image"  >
             <span fxFlex="100"  class="mb-4"><strong>{{'USERS.USERNAME' | translate}}: </strong>{{user.userName}}</span> 
           </div>
         </div>
