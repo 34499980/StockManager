@@ -14,6 +14,7 @@ export interface User{
     postalCode: number
     idRole: number;
     idOffice: number;
+    file?: any
     idCountry: number;
     active: boolean;
 

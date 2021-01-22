@@ -28,6 +28,7 @@ export class ProfileComponent implements OnInit {
   url: string;
   cameraImage: SafeResourceUrl;
   image: string;
+  base64textString = [];
   @ViewChild('file') file :ElementRef
   constructor(private formBuild: FormBuilder,
               private sanitizer: DomSanitizer,
@@ -36,7 +37,9 @@ export class ProfileComponent implements OnInit {
               private toastService: ToastService,
               private router: Router,
               private authenticationService: AuthenticationService,
-              private translate: TranslateService,) { }
+              private translate: TranslateService,) {
+                
+               }
 
   ngOnInit(): void {
     this.image = '../../../../assets/userEmpty.jpg'
@@ -44,6 +47,9 @@ export class ProfileComponent implements OnInit {
     this.rolesData = this.activateRoute.snapshot.data.roles as Item[];
     this.officeData = this.activateRoute.snapshot.data.office as Office[];
     this.user = this.activateRoute.snapshot.data.profile as User;
+    if(this.user)
+    this.cameraImage = this.sanitizer.bypassSecurityTrustResourceUrl(this.user.file); 
+
     this.userControl = this.formBuild.group({
       userName: [this.user?.userName || '', [Validators.required, Validators.maxLength(50)]],
       password: [this.user?.password || '', [Validators.required, Validators.maxLength(50)]],
@@ -79,7 +85,8 @@ saveUsuario() {
     idOffice: parseInt(this.userControl.controls.office.value, 10),
     idRole: parseInt(this.userControl.controls.role.value, 10),
     idCountry: parseInt(this.userControl.controls.country.value, 10),
-    active: Boolean(this.userControl.controls.role.value)
+    active: Boolean(this.userControl.controls.role.value),
+    file: this.base64textString.length === 0? this.user.file: this.base64textString[0] ,
     
 
   }
@@ -88,14 +95,29 @@ saveUsuario() {
   this.router.navigate([AppRouting.UserList])
   });
 }
-OnFileSelected(event){
-  this.file.nativeElement.click()
-  // tslint:disable-next-line: no-angle-bracket-type-assertion
-  this.fileSelected = <File>event.target.files === undefined ? undefined : <File>event.target.files[0]
-  console.log(this.fileSelected)
-  this.url = URL.createObjectURL(this.fileSelected);
-  this.cameraImage = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
-}
+_handleReaderLoaded(e) {
+  this.base64textString = [];
+  this.base64textString.push('data:image/png;base64,' + btoa(e.target.result));
+          
+   }
+OnFileSelected(event){ 
+  if (this.url){
+    URL.revokeObjectURL(this.url);
+  }  
+  this.userControl.markAsDirty();
+    // tslint:disable-next-line: no-angle-bracket-type-assertion
+    this.fileSelected = <File>event.target.files === undefined ? undefined : <File>event.target.files[0]
+    if (this.fileSelected) {
+      this.url = URL.createObjectURL(this.fileSelected);
+      this.cameraImage = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
+
+      const blob = new Blob([this.fileSelected], {type: 'image'})
+      var reader = new FileReader();
+        
+      reader.onload = this._handleReaderLoaded.bind(this);
+      reader.readAsBinaryString(this.fileSelected);
+    }
+  }
 //Show methods
 showPermissionAdmin(){
   return parseInt(this.authenticationService.getCurrentRole()) === RolesEnum.Administrator && this.user && !this.user?.active;

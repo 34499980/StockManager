@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, ViewChild, ElementRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
@@ -18,7 +19,8 @@ import { DialogconfirmComponent } from '../../dialogs/dialogconfirm/dialogconfir
 })
 export class PaneluserComponent implements OnInit {
  @Input() user: UserGet;
-  _image: string
+  image: string
+  cameraImage: SafeResourceUrl;
   _param: any
   @ViewChild('file') file :ElementRef
   _fileSelected: File = null
@@ -29,12 +31,19 @@ export class PaneluserComponent implements OnInit {
               private userService: UserService,
               private toastService: ToastService,
               private translate: TranslateService,
+              private sanitizer: DomSanitizer,
              ) {
     this._router = router
    }
 
   ngOnInit(): void {
-    this._image = '../../../../assets/userEmpty.jpg';
+    if(this.user) {
+      this.cameraImage = this.sanitizer.bypassSecurityTrustResourceUrl(this.user.file); 
+    } else {
+      this.image = '../../../../assets/userEmpty.jpg';
+    }
+   
+    
     this.arquitecturaService.getCamposPerfil().subscribe(res => {this._param = res})
 
   }

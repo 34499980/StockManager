@@ -95,6 +95,7 @@ export class ModalStockComponent implements OnInit {
     if (this.url){
       URL.revokeObjectURL(this.url);
     }  
+    this.stockForm.markAsDirty();
       // tslint:disable-next-line: no-angle-bracket-type-assertion
       this.fileSelected = <File>event.target.files === undefined ? undefined : <File>event.target.files[0]
       if (this.fileSelected) {
