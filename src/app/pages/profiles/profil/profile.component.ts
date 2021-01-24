@@ -42,12 +42,12 @@ export class ProfileComponent implements OnInit {
                }
 
   ngOnInit(): void {
-    this.image = '../../../../assets/userEmpty.jpg'
+    this.image = 'assets/userEmpty.jpg'
     this.countriesData = this.activateRoute.snapshot.data.countries as Country[];
     this.rolesData = this.activateRoute.snapshot.data.roles as Item[];
     this.officeData = this.activateRoute.snapshot.data.office as Office[];
     this.user = this.activateRoute.snapshot.data.profile as User;
-    if(this.user)
+    if(this.user && this.user?.file)
     this.cameraImage = this.sanitizer.bypassSecurityTrustResourceUrl(this.user.file); 
 
     this.userControl = this.formBuild.group({

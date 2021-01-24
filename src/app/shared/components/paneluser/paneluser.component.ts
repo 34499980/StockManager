@@ -37,10 +37,9 @@ export class PaneluserComponent implements OnInit {
    }
 
   ngOnInit(): void {
-      if(this.user)
-      this.cameraImage = this.sanitizer.bypassSecurityTrustResourceUrl(this.user.file); 
- 
-      this.image = '../../../../assets/userEmpty.jpg'
+      if(this.user && this.user?.file)
+      this.cameraImage = this.sanitizer.bypassSecurityTrustResourceUrl(this.user.file);      
+      this.image = 'assets/userEmpty.jpg'
     
    
     

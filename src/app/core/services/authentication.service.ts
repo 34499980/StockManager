@@ -7,6 +7,7 @@ import { ArquitecturaService } from '../../services/arquitectura.service';
 import { User } from '../../models/user';
 import { Router } from '@angular/router';
 import { AppRouting } from 'src/app/enums/AppRouting.enum';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 const headers = new HttpHeaders();
@@ -17,14 +18,15 @@ headers.append('Access-Control-Allow-Origin', '*');
 const options = {headers: headers}
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-    private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+    private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
     // tslint:disable-next-line: no-construct
     public ErrorMessage = new String()
     constructor(private http: HttpClient,
                 private arquitecturaService: ArquitecturaService,
-                private router: Router ) {
+                private router: Router,
+                private sanitizer: DomSanitizer ) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
     }
@@ -43,12 +45,18 @@ export class AuthenticationService {
        getCurrentOffice(): any{
         return localStorage.getItem('idOffice');
        }
+       getCurrentImage = () =>{       
+        
+         return localStorage.getItem('file');
+      
+       }
     Autorization(value: User){
         this.loggedIn.next(true)
         localStorage.setItem('user', value.userName)
         localStorage.setItem('roleId', value.idRole.toString())
         localStorage.setItem('idCountry', value.idCountry.toString())
         localStorage.setItem('idOffice', value.idOffice.toString())
+        localStorage.setItem('file', value.file.toString())
       return value
     }
     login(username: string, pass: string) {
@@ -63,5 +71,13 @@ export class AuthenticationService {
     logout() {
       this.loggedIn.next(false);
       this.router.navigate([AppRouting.Login]);
+    }
+    getImageByUser(name: string): Observable<string>{
+      return this.http.get<string>(environment.RestFullApi + 'Authentication/' + name)
+      .pipe(
+        map(
+          res => {return res}
+        )
+      )
     }
 }

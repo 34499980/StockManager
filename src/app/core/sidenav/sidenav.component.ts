@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,Input,OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
@@ -6,6 +6,7 @@ import { AuthenticationService } from 'src/app/core/services/authentication.serv
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { UserGet } from 'src/app/models/user';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 
 @Component({
@@ -20,28 +21,43 @@ export class SidenavComponent implements OnInit {
   isLogged$: Observable<boolean>;
   submitted = false;
   returnUrl: string;
-  user: UserGet;
+  cameraImage: SafeResourceUrl;
+  image: string;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
-      map(result => result.matches),
+      map(result => 
+        result.matches
+        ),
       shareReplay()
     ); 
 
 
 
   constructor(private breakpointObserver: BreakpointObserver,
-              private authenticationService: AuthenticationService,
-              private userService: UserService ) {
+              public authenticationService: AuthenticationService,
+              private userService: UserService,
+              private sanitizer: DomSanitizer ) {
   }
 
   ngOnInit(){
-      // get return url from route parameters or default to '/'
+    // TODO PROBA    
+   this.image = 'assets/userEmpty.jpg';
+    // get return url from route parameters or default to '/'
     // tslint:disable-next-line: no-string-literal
    // this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     this.isLogged$ = this.authenticationService.isLoggedIn;
     this.userService.getScreens().subscribe(data => {this.screens = data})
+
+    this.isLogged$.subscribe(res => 
+      {
+      if(res)
+      this.cameraImage = this.authenticationService.getCurrentImage(),
+      console.log(this.cameraImage)
+      
+    })
   }
+ 
   logout() {
   this.authenticationService.logout();
   }

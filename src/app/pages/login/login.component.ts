@@ -9,6 +9,8 @@ import { AppComponent } from 'src/app/app.component';
 import { Observable } from 'rxjs';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { UserService } from 'src/app/services/user.service';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { ImageFile } from 'src/app/models/image.model';
 
 @Component({
   selector: 'app-login',
@@ -23,6 +25,7 @@ export class LoginComponent implements OnInit {
   returnUrl: string;
   isLoggedIn$: Observable<boolean>;
   image: any;
+  cameraImage: SafeResourceUrl;
 
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -37,7 +40,8 @@ export class LoginComponent implements OnInit {
       private authenticationService: AuthenticationService,
       private arquitecturaService: ArquitecturaService,
       private breakpointObserver: BreakpointObserver,
-      private userService: UserService
+      private userService: UserService,
+        private sanitizer: DomSanitizer 
   ) {
   }
 
@@ -52,6 +56,12 @@ export class LoginComponent implements OnInit {
       // get return url from route parameters or default to '/'
       // tslint:disable-next-line: no-string-literal
       this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+  }
+  onFocusOutEvent(event){
+    this.authenticationService.getImageByUser(event.target.value).subscribe(res => {
+      const imageFile = res as unknown as ImageFile;
+      this.cameraImage = imageFile.image// this.sanitizer.bypassSecurityTrustResourceUrl(imageFile.image);
+    })
   }
   login(){
     this.loading = false
