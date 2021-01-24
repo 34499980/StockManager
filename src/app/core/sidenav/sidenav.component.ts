@@ -3,10 +3,11 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { UserGet } from 'src/app/models/user';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { AppRouting } from 'src/app/enums/AppRouting.enum';
 
 
 @Component({
@@ -37,7 +38,8 @@ export class SidenavComponent implements OnInit {
   constructor(private breakpointObserver: BreakpointObserver,
               public authenticationService: AuthenticationService,
               private userService: UserService,
-              private sanitizer: DomSanitizer ) {
+              private sanitizer: DomSanitizer,
+               private router: Router) {
   }
 
   ngOnInit(){
@@ -51,9 +53,12 @@ export class SidenavComponent implements OnInit {
 
     this.isLogged$.subscribe(res => 
       {
-      if(res)
-      this.cameraImage = this.authenticationService.getCurrentImage(),
-      console.log(this.cameraImage)
+      if(res) {
+         this.cameraImage = this.authenticationService.getCurrentImage()
+      } else {
+        this.router.navigate([AppRouting.Login])
+      }
+     
       
     })
   }

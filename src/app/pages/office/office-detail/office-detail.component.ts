@@ -34,7 +34,7 @@ export class OfficeDetailComponent implements OnInit {
       name: [this.office?.name || '' , [Validators.required, Validators.maxLength(250)]],
       address: [this.office?.address || '' , [Validators.required, Validators.maxLength(250)]],
       postalCode: [this.office?.postalCode || '' , [Validators.required, Validators.maxLength(4)]],
-      country: [this.office?.idCountry || '' , [Validators.required]],     
+      country: [this.office?.idCountry || parseInt(this.authenticationService.getCurrentCountry(), 10) , [Validators.required]],     
       status: [this.office?.active || false]
       
     })

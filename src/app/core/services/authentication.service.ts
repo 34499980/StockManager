@@ -14,6 +14,7 @@ const headers = new HttpHeaders();
 headers.append('Access-Control-Allow-Headers', 'Content-Type');
 headers.append('Access-Control-Allow-Methods', 'GET,POST,PUT,DEconstE,OPTIONS');
 headers.append('Access-Control-Allow-Origin', '*');
+
 // tslint:disable-next-line: object-literal-shorthand
 const options = {headers: headers}
 @Injectable({ providedIn: 'root' })
@@ -57,6 +58,7 @@ export class AuthenticationService {
         localStorage.setItem('idCountry', value.idCountry.toString())
         localStorage.setItem('idOffice', value.idOffice.toString())
         localStorage.setItem('file', value.file.toString())
+        this.setAuthorization(value);
       return value
     }
     login(username: string, pass: string) {
@@ -79,5 +81,10 @@ export class AuthenticationService {
           res => {return res}
         )
       )
+    }
+    setAuthorization(user: User) {
+      return this.http.post(environment.RestFullApi+'Authentication/SetAuthorization', user,options).subscribe();
+     
+      
     }
 }
