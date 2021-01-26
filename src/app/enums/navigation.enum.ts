@@ -1,13 +1,14 @@
 export const enum PermissionType {
-    Usuarios = 1,
-    Perfil = 2,
+    UserList = 10,
+    Profile = 11,
     Anulaciones = 3,
     Movimientos = 4,
     Ventas = 5,
     Anular = 6,
     Devolucion = 7,
-    Stock = 8,
-    Despachos = 9,
-    Office = 10,
-    OfficeList = 11
+    Stock = 20,
+    Dispatch = 30,
+    DispatchList = 31,
+    Office = 40,
+    OfficeList = 41
   }

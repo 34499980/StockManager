@@ -10,7 +10,7 @@ export const navigation: Navigation[] = [
         type     : 'collapsable',
         children : [
             {
-                id       : PermissionType.Usuarios.toString(),
+                id       : PermissionType.UserList.toString(),
                 title    : 'USERS',
                 translate: 'NAV.ADMINISTRATION.SUBTITLES.USERS',
                 hidden   : false,
@@ -19,7 +19,7 @@ export const navigation: Navigation[] = [
                 url      : '/Profile/all',
             },
             {
-                id       : PermissionType.Perfil.toString(),
+                id       : PermissionType.Profile.toString(),
                 title    : 'PROFILE',
                 translate: 'NAV.ADMINISTRATION.SUBTITLES.PROFILE',
                 hidden   : false,
@@ -119,13 +119,13 @@ export const navigation: Navigation[] = [
                 url      : '/Stock',
             },
             {
-                id       : PermissionType.Despachos.toString(),
-                title    : 'Despachos',
-                translate: 'Despachos',
+                id       : PermissionType.DispatchList.toString(),
+                title    : 'DISPATCHLIST',
+                translate: 'NAV.STOCK.SUBTITLES.DISPATCHLIST',
                 hidden   : false,
                 type     : 'item',
                 icon     : 'supervisor_account',
-                url      : '/Despachos',
+                url      : 'Dispatch/all',
             }
         ]
     },

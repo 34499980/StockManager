@@ -5,5 +5,8 @@ export const enum  AppRouting {
     UserList= 'Profile/all',
     Office = 'Office',
     OfficeList = 'Office/all',
-    Stock = 'Stock'
+    Stock = 'Stock',
+    DispatchList = 'Dispatch/all',
+    Dispatch = 'Dispatch'
+
 }

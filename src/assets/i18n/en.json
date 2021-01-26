@@ -20,9 +20,33 @@
      "STOCK":{
          "TITLE":"Action stock",
           "SUBTITLES":{
-            "STOCKLIST": "Stock"
+            "STOCKLIST": "Stock",
+            "DISPATCHLIST": "Dispatches"
         }
-     }   
+     } 
+     ,    
+    "DISPATCH":{        
+        "CODE":"Code",
+        "USERNAME":"UserName",
+        "ORIGIN": "Origin",
+        "DESTINY": "Destiny",
+        "USERORIGIN": "Disptcher", 
+        "USERDESTINY": "Received", 
+        "DISPATECHEDDATE":"Dispatched date",
+        "CREATEDDATE":"Fecha despachado",
+        "RECEIVEDDDATE":"Received date",
+        "STATUS":"State",  
+        "UNITY": "Unity",
+        "ALL": "All",
+        "FROM": "From",
+        "TO": "To",
+        "CLEAN": "Clean",
+        "ACTIONS":{           
+            "SAVE":"The dispatch was confirmed",            
+            "UPDATE": "The dispatch was updated"
+        }
+        
+    }  
     },
     "MENU-USER":{
         "LENGUAGE": "Lenguage",

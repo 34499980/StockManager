@@ -19,10 +19,12 @@
         "STOCK":{
             "TITLE":"Productos",
             "SUBTITLES":{
-                "STOCKLIST": "Listado"
+                "STOCKLIST": "Listado de productos",
+                "DISPATCHLIST": "Despachos"
               
             }
-        }       
+        }
+         
     
     },  
     "MENU-USER":{
@@ -68,6 +70,29 @@
             "DELETE": "La sucursal fue eliminada",
             "SAVE":"La sucursal fue creada",            
             "UPDATE": "La sucursal fue actualizada"
+        }
+        
+    },    
+    "DISPATCH":{        
+        "CODE":"Codigo",
+        "USERNAME":"Usuario",
+        "ORIGIN": "Origen",
+        "DESTINY": "Destino",
+        "USERORIGIN": "Despachante", 
+        "USERDESTINY": "Recibio",     
+        "STATE": "Estado",  
+        "CREATEDDATE":"Fecha despachado",
+        "DISPATECHEDDATE":"Fecha despachado",
+        "RECEIVEDDATE":"Fecha recibido",
+        "STATUS":"Estado",  
+        "UNITY": "Articulos",
+        "ALL": "Todos",
+        "FROM":"Desde",
+        "TO": "Hasta",
+        "CLEAN": "Limpiar",
+        "ACTIONS":{           
+            "SAVE":"El despacho fue confirmado",            
+            "UPDATE": "El despacho fue actualizada"
         }
         
     },    

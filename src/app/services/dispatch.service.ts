@@ -5,6 +5,8 @@ import { environment } from 'src/environments/environment';
 import { catchError, map } from 'rxjs/operators';
 import { ArquitecturaService } from './arquitectura.service';
 import { AuthenticationService } from '../core/services/authentication.service';
+import { DispatchFilter } from '../models/dispatchFilter.model';
+import { Dispatch } from '../models/dispatch';
 const headers = new HttpHeaders();
 headers.append('Access-Control-Allow-Headers', 'Content-Type');
 headers.append('Access-Control-Allow-Methods', 'GET,POST,PUT,DEconstE,OPTIONS');
@@ -19,76 +21,54 @@ export class DispatchService {
   constructor(private http: HttpClient,
               private arquitecturaService: ArquitecturaService,
               private authentication: AuthenticationService) { }
-  handleError(value){
-    try{
-    const start = value.error.indexOf(':')+1
-    const end = value.error.indexOf(' at ');
-    this.arquitecturaService.openDialog('Error', value.error.substr(start,end))
-    }
-    catch(ex){
-      this.arquitecturaService.openDialog('Error','Se genero un error interno. Si persiste, comuniquise con el administrador.')
-    }
-    // return throwError(error);
-    }
-  GetDispatchStates(){
-    return  this.http.get(environment.RestFullApi+'GetAllRoles/GetDispatchState').pipe(map(res =>{return res},
-      error => {this.arquitecturaService.openDialog('Error!',error.message)}),
-      catchError((err, caught)=> {
-         this. handleError(err)
-      return of(false);
+  
+  
+  GetAllOfficesByFilter(filter: DispatchFilter): Observable<Dispatch[]> {
+    return this.http.get<Dispatch[]>(environment.RestFullApi + 'dispatch')
+      .pipe(
+        map(res => {
+          return res;
         })
-      )
+      );
   }
-  CreateDispatch(origen: number, destino: number): Observable<any>{
-    const user= this.authentication.getSession();
-    const dispatch = {
-    origin: origen,
-    destiny: destino
-    };
-    return this.http.post<any>(environment.RestFullApi+'Dispatch',{dispatch,user}, options).pipe(map(res => {return res}),
-    catchError((err, caught)=>{
-      this.handleError(err)
-      return of(false);
-    })
-)
-  }
-
-  GetDispatchById(dispatch: string): Observable<any>{
-    const user = this.authentication.getSession();
-    const request = {
-      // tslint:disable-next-line: object-literal-shorthand
-      dispatch : dispatch
-    }
-    return  this.http.get(environment.RestFullApi+'Dispatch/'+ JSON.stringify(request)).pipe(map(res =>{return res},
-      error => {this.arquitecturaService.openDialog('Error!',error.message)}),
-      catchError((err, caught)=> {
-         this. handleError(err)
-      return of(false);
+  GetAllDispatchFilter(filter: DispatchFilter): Observable<Dispatch[]> {
+    return this.http.post<Dispatch[]>(environment.RestFullApi + 'dispatch/GetDispatchFilter', filter)
+      .pipe(
+        map(res => {
+          return res;
         })
-      )
+      );
   }
-  UpdateDispatch(dispatch){
-    const user = this.authentication.getSession()
-    return  this.http.put<any>(environment.RestFullApi+'Dispatch/'+dispatch.code,{dispatch,user}).pipe(map(res =>{return res},
-      error => {this.arquitecturaService.openDialog('Error!',error.message)}),
-      catchError((err, caught)=> {
-         this. handleError(err)
-      return of(false);
-        })
-      )
+  GetDispatchById(id: number) {
+    this.http.get(environment.RestFullApi + `dispatch/${id}`)
+    .pipe(
+      map(res => {
+        return res;
+      })
+    );
   }
- GetAllDispatchByOffice(): Observable<any>{
-  const user = this.authentication.getSession()
-   const request = {
-    UserName : user
-   }
-
-    return  this.http.get(environment.RestFullApi+'Dispatch/'+ JSON.stringify(request)).pipe(map(res =>{return res},
-      error => {this.arquitecturaService.openDialog('Error!',error.message)}),
-      catchError((err, caught)=> {
-         this. handleError(err)
-      return of(false);
-        })
-      )
+  add(dispatch: Dispatch) {
+    this.http.post(environment.RestFullApi + 'dispatch', dispatch)
+    .pipe(
+      map(res => {
+        return res;
+      })
+    );
+  }
+  update(dispatch: Dispatch) {
+    this.http.put(environment.RestFullApi + 'dispatch', dispatch)
+    .pipe(
+      map(res => {
+        return res;
+      })
+    );
+  }
+  delete(id: number){
+    this.http.delete(environment.RestFullApi + `dispatch/${id}`)
+    .pipe(
+      map(res => {
+        return res;
+      })
+    );
   }
 }

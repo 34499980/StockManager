@@ -19,3 +19,9 @@ export interface Dispatch{
     dispatch_stock: Dispatc_stock[];
     stateText: string
 }
+export interface DispatchGet extends Dispatch {
+    userOriginDescription: string;
+    userDestinyDescription: string;
+    officeOriginDesription: string;
+    officeDestinyDescription: string;
+}
