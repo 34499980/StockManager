@@ -1,6 +1,15 @@
 
 <div class="header">
-  <div class="title" fxFlex  fxLayout="row" fxLayoutAlign="start start">{{'NAV.ADMINISTRATION.SUBTITLES.PROFILE' | translate}}</div>
+  
+  <div class="title" fxFlex  fxLayout="row" fxLayoutAlign="start start">
+   
+    <span>
+      <button (click)="cancel()" mat-icon-button align="top" >
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      {{'NAV.ADMINISTRATION.SUBTITLES.PROFILE' | translate}}
+    </span>
+  </div>
 </div>
 <form [formGroup]="userControl">
   
@@ -101,7 +110,7 @@
         </div>
        
 
-        <input  type="file" style="width: 5px;" #file (change)="OnFileSelected($event)" style="visibility: hidden" />
+        <input [disabled]="!canEdit()" type="file" style="width: 5px;" #file (change)="OnFileSelected($event)" style="visibility: hidden" />
          <img  fxFlex="70%" [src]="cameraImage || image" (click)="file.click()" >
         
         </div>

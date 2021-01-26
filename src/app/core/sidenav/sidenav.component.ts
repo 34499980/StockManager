@@ -54,6 +54,7 @@ export class SidenavComponent implements OnInit {
     this.isLogged$.subscribe(res => 
       {
       if(res) {
+        if (this.authenticationService.getCurrentImage() != 'undefined')
          this.cameraImage = this.authenticationService.getCurrentImage()
       } else {
         this.router.navigate([AppRouting.Login])

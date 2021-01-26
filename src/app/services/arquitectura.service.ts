@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogMessageComponent } from '../shared/dialogs/dialogMessage/dialogMessage.component';
+import { DialogconfirmComponent } from '../shared/dialogs/dialogconfirm/dialogconfirm.component';
+import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -465,6 +467,17 @@ data : {_title: title, _text: text}
 
    }
  });
+}
+openDialogConfirm(title: string, message: string){
+  const dialogRef = this._dialog.open(DialogconfirmComponent, {
+  disableClose: true,
+  data : {title: title, message: message}
+  });
+
+ return dialogRef.afterClosed().pipe(
+   map(res => {return res}    
+   )
+  )
 }
 
 }

@@ -121,6 +121,10 @@
             "TITLE":"Delete stock",
             "MESSAGE":"Do you want to delete the stock?"
             
+        },
+        "CONFIRM-EXIT":{
+            "TITLE":"Warning",
+            "MESSAGE":"You will lose all changes"
         }
         
     },

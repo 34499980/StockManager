@@ -123,6 +123,10 @@
             "TITLE":"Eliminar producto",
             "MESSAGE":"Desea eliminar producto ?"
             
+        },
+        "CONFIRM-EXIT":{
+            "TITLE":"Advertencia",
+            "MESSAGE":"Se perderan todos los cambios"
         }
     },
     "ERROR-MESSAGE":{

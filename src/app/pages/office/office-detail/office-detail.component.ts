@@ -7,6 +7,7 @@ import { AppRouting } from 'src/app/enums/AppRouting.enum';
 import { RolesEnum } from 'src/app/enums/Roles.Enum';
 import { Country } from 'src/app/models/country.model';
 import { Office } from 'src/app/models/office.model';
+import { ArquitecturaService } from 'src/app/services/arquitectura.service';
 import { OfficeService } from 'src/app/services/office.service';
 import { ToastService } from 'src/app/services/toast.service';
 
@@ -25,7 +26,8 @@ export class OfficeDetailComponent implements OnInit {
               private toastService: ToastService,
               private router: Router,
               private translate: TranslateService,
-              private authenticationService: AuthenticationService,) { }
+              private authenticationService: AuthenticationService,
+              private arquitecture: ArquitecturaService) { }
 
   ngOnInit(): void {
     this.office = this.activateRoute.snapshot.data.office as Office;
@@ -70,5 +72,18 @@ export class OfficeDetailComponent implements OnInit {
   showPermissionAdmin(){
     return parseInt(this.authenticationService.getCurrentRole()) === RolesEnum.Administrator && this.office && !this.office?.active;
   }
+  cancel(){
+    if(!this.controlForm.pristine) {
+      const title = this.translate.instant("DIALOGS.CONFIRM-EXIT.TITLE")
+      const message = this.translate.instant("DIALOGS.CONFIRM-EXIT.MESSAGE")
+      this.arquitecture.openDialogConfirm(title,message).subscribe(res =>{
+        if(res){
+          this.router.navigate([AppRouting.OfficeList])
+        }
+      });  
+    } else {
+      this.router.navigate([AppRouting.OfficeList])
+    }
+    }
 
 }

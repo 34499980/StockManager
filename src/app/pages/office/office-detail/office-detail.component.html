@@ -1,6 +1,15 @@
 
 <div class="header">
-    <div class="title" fxFlex  fxLayout="row" fxLayoutAlign="start start">{{'NAV.OFFICE.SUBTITLES.ADDOFFICE' | translate}}</div>
+  <div class="title" fxFlex  fxLayout="row" fxLayoutAlign="start start">
+   
+    <span>
+      <button (click)="cancel()" mat-icon-button align="top" >
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      {{'NAV.OFFICE.SUBTITLES.ADDOFFICE'  | translate}}
+    </span>
+  </div>
+   
   </div>
   <form [formGroup]="controlForm">
     

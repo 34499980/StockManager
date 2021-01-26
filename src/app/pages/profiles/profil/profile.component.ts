@@ -10,6 +10,7 @@ import { Country } from 'src/app/models/country.model';
 import { Item } from 'src/app/models/item.model';
 import { Office } from 'src/app/models/office.model';
 import { User } from 'src/app/models/user';
+import { ArquitecturaService } from 'src/app/services/arquitectura.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -37,7 +38,8 @@ export class ProfileComponent implements OnInit {
               private toastService: ToastService,
               private router: Router,
               private authenticationService: AuthenticationService,
-              private translate: TranslateService,) {
+              private translate: TranslateService,
+              private arquitectue: ArquitecturaService,) {
                 
                }
 
@@ -122,5 +124,23 @@ OnFileSelected(event){
 showPermissionAdmin(){
   return parseInt(this.authenticationService.getCurrentRole()) === RolesEnum.Administrator && this.user && !this.user?.active;
 }
-
+canEdit(){
+  return parseInt(this.authenticationService.getCurrentRole()) === RolesEnum.Administrator ||
+         (parseInt(this.authenticationService.getCurrentRole()) === RolesEnum.Manager 
+         && this.user?.idOffice == parseInt(this.authenticationService.getCurrentOffice())) ||
+         this.authenticationService.getSession() === this.user?.userName && this.user && !this.user?.active;
+}
+cancel(){
+  if(!this.userControl.pristine) {
+    const title = this.translate.instant("DIALOGS.CONFIRM-EXIT.TITLE")
+    const message = this.translate.instant("DIALOGS.CONFIRM-EXIT.MESSAGE")
+    this.arquitectue.openDialogConfirm(title,message).subscribe(res =>{
+      if(res){
+        this.router.navigate([AppRouting.UserList])
+      }
+    });  
+  } else {
+    this.router.navigate([AppRouting.UserList])
+  }
+  }
 }

@@ -51,13 +51,15 @@ export class AuthenticationService {
          return localStorage.getItem('file');
       
        }
-    Autorization(value: User){
+    Autorization(value: User){ 
+           
         this.loggedIn.next(true)
         localStorage.setItem('user', value.userName)
         localStorage.setItem('roleId', value.idRole.toString())
         localStorage.setItem('idCountry', value.idCountry.toString())
         localStorage.setItem('idOffice', value.idOffice.toString())
-        localStorage.setItem('file', value.file.toString())
+        if(value.file)
+        localStorage.setItem('file', value.file)
         this.setAuthorization(value);
       return value
     }
@@ -70,7 +72,7 @@ export class AuthenticationService {
             .pipe( map(res => {return this.Autorization(res as User)})
             )
     }
-    logout() {
+    logout() {           
       this.loggedIn.next(false);
       this.router.navigate([AppRouting.Login]);
     }
