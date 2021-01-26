@@ -86,6 +86,7 @@
         "RECEIVEDDATE":"Fecha recibido",
         "STATUS":"Estado",  
         "UNITY": "Articulos",
+        "OFFICE": "Sucursal",
         "ALL": "Todos",
         "FROM":"Desde",
         "TO": "Hasta",
