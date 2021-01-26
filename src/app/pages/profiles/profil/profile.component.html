@@ -106,7 +106,7 @@
 
         </div>
         <div fxFlex="100%">
-          <app-inputrequired title="{{'USERS.PASSWORD' | translate}}"  formControlName="password"></app-inputrequired>
+          <app-inputrequired title="{{'USERS.PASSWORD' | translate}}" [type]="'password'" formControlName="password"></app-inputrequired>
         </div>
        
 
@@ -118,6 +118,7 @@
     
     </div> 
     <div fxFlex="20%"  fxLayout="row" fxLayoutAlign="end center" class="paddignButton">
+      <button mat-button mat-dialog-close (click)="cancel()" >{{'GENERALACTIONS.CANCEL' | translate}}</button>
      <button mat-raised-button color="accent"   [disabled]="userControl.pristine || userControl.invalid" (click)="saveUsuario()">{{'GENERALACTIONS.SAVE' | translate}}</button>
   </div>
   </div>

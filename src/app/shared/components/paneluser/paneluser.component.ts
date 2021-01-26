@@ -32,6 +32,7 @@ export class PaneluserComponent implements OnInit {
               private toastService: ToastService,
               private translate: TranslateService,
               private sanitizer: DomSanitizer,
+              private authentication: AuthenticationService
              ) {
     this._router = router
    }
@@ -75,6 +76,15 @@ export class PaneluserComponent implements OnInit {
         });
       }
    });
+  }
+  canEdit(){
+    return parseInt(this.authentication.getCurrentRole()) === RolesEnum.Administrator ||
+            (parseInt(this.authentication.getCurrentRole()) === RolesEnum.Manager && 
+            this.user.idRole !== RolesEnum.Administrator) ||
+           (parseInt(this.authentication.getCurrentRole()) === RolesEnum.Manager 
+           && this.user?.idOffice == parseInt(this.authentication.getCurrentOffice())) ||
+           this.user.userName === this.authentication.getSession()
+           
   }
  
 

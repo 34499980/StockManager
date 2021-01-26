@@ -98,4 +98,5 @@ export class UserListComponent implements OnInit {
   showAdministrativePermission(){
     return parseInt(this.authenticationService.getCurrentRole()) === RolesEnum.Administrator;
   }
+  
 }

@@ -124,14 +124,16 @@ export class ModalStockComponent implements OnInit {
         this.brand.setDisabledState(false);
         this.model.setDisabledState(false); 
         this.stockForm.controls.unity.enable();      
-        this.stockForm.controls.description.enable();      
+        this.stockForm.controls.description.enable();   
+        this.officeForm.controls.idCountry.enable();   
       } else {
         this.code.setDisabledState(true);
         this.name.setDisabledState(true);
         this.brand.setDisabledState(true);
         this.model.setDisabledState(true);  
         this.stockForm.controls.unity.disable();   
-        this.stockForm.controls.description.disable();   
+        this.stockForm.controls.description.disable();           
+        this.officeForm.controls.idCountry.disable();    
       }
      
       if(stock_Officelist){

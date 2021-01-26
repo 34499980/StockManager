@@ -50,6 +50,7 @@
       
       </div> 
       <div fxFlex="20%"  fxLayout="row" fxLayoutAlign="end center" class="paddignButton">
+        <button mat-button mat-dialog-close (click)="cancel()" >{{'GENERALACTIONS.CANCEL' | translate}}</button>
        <button mat-raised-button color="accent"   [disabled]="controlForm.pristine || controlForm.invalid" (click)="saveOffice()">{{'GENERALACTIONS.SAVE' | translate}}</button>
     </div>
     </div>

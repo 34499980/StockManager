@@ -12,7 +12,7 @@
      
      
         <div fxFlex fxLayoutAlign="end center" >
-          <button mat-mini-fab color="primary"  matTooltip="Agregar" matTooltipPosition="above" (click)="add()" >
+          <button *ngIf="canEdit()" mat-mini-fab color="primary"  matTooltip="Agregar" matTooltipPosition="above" (click)="add()" >
             <mat-icon>add</mat-icon>
           </button>
           <div class="paddingButton">

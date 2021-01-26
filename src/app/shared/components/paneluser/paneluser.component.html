@@ -33,11 +33,11 @@
         </div>
       </div>
       <div class="four">
-        <button mat-icon-button matTooltip="Editar">
+        <button *ngIf="canEdit()" mat-icon-button matTooltip="Editar">
           <mat-icon class="pointer"   (click)="VerPerfil(user)" >create</mat-icon>
       </button>
        <button mat-icon-button *ngIf="user.active"  matTooltip="Eliminar">
-         <mat-icon class="pointer"   style="color:red" (click)="delete(user)" >delete</mat-icon>
+         <mat-icon class="pointer" *ngIf="canEdit()"  style="color:red" (click)="delete(user)" >delete</mat-icon>
       </button>
       </div>
 
