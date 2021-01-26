@@ -121,6 +121,9 @@ export class OfficeListComponent implements OnInit {
       }
    });
   }
+  canEdit() {
+    return this.authenticationService.getCurrentRole() === RolesEnum.Administrator
+  }
   
 
 }
