@@ -36,6 +36,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslationModule } from '../translation/translation.module';
 import { MatTableModule } from '@angular/material/table';
 import { ModalStockComponent } from './dialogs/modal-stock/modal-stock.component';
+import {CdkStepperModule} from '@angular/cdk/stepper';
+import { NgStepperModule } from 'angular-ng-stepper';
 
 const COMPONENTS = [
     InputrequiredComponent,
@@ -46,7 +48,9 @@ const COMPONENTS = [
 ];
 const MODULES = [
   AvatarModule,  
-  TranslateModule
+  TranslateModule,
+  CdkStepperModule,
+  NgStepperModule
 ]
 @NgModule({
     imports: [

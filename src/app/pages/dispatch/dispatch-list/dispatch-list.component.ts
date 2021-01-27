@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { of, Subject } from 'rxjs';
 import { startWith, switchMap, tap } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { AppRouting } from 'src/app/enums/AppRouting.enum';
 import { Country } from 'src/app/models/country.model';
 import { Dispatch, DispatchGet } from 'src/app/models/dispatch';
 import { DispatchFilter } from 'src/app/models/dispatchFilter.model';
@@ -111,7 +112,7 @@ export class DispatchListComponent implements OnInit {
    
   }
   add() {
-
+    this.router.navigate([AppRouting.Dispatch])
   }
   edit(id: number) {
 

@@ -7,6 +7,9 @@ import { CountriesResolver } from 'src/app/resolvers/countries.resolver';
 import { DispatchListComponent } from './dispatch-list/dispatch-list.component';
 import { DispatchDetailComponent } from './dispatch-detail/dispatch-detail.component';
 import { DispatchResolver } from './dispatch-state.resolver';
+import { StepOneComponent } from './steps/step-one/step-one.component';
+import { StepTwoComponent } from './steps/step-two/step-two.component';
+import { StepThreeComponent } from './steps/step-three/step-three.component';
 const routes: Routes = [
   {
     path: 'all',
@@ -41,7 +44,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [DispatchDetailComponent, DispatchListComponent],
+  declarations: [DispatchDetailComponent, DispatchListComponent, StepOneComponent, StepTwoComponent, StepThreeComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
