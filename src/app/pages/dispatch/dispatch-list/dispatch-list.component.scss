@@ -9,7 +9,7 @@
     .center{
         position: fixed;
         top: 220px;
-        left: 30%;
+        left: 23%;
         margin-top: -100px;
         margin-left: -100px;
       }
@@ -44,17 +44,14 @@
   }
   mat-table {
       list-style-type: none;        
-      width: 60%;
+      width: 80%;
       }
   
   .filtter{
     padding-top: 2%;
     padding-left: 20px;
   }      
-  ::ng-deep .mat-toolbar>.mat-form-field-flex > .mat-form-field-infix {
-    padding: 0.4em 0px !important;    
-    
-   }
+
   ::ng-deep .mat-form-field-flex > .mat-form-field-infix {
        padding: 0.4em 0px !important;    
       }
@@ -64,13 +61,7 @@
   mat-sidenav-container{ 
     background: #d0d0d0;
     overflow: hidden;
-    .aply-filters-button{
-      padding: 12px;  
-      position: fixed;
-      bottom: 0;
-      right: 0; 
-      width: 200px; 
-  }
+   
   }
   .position{
     display: inline-block;
@@ -91,7 +82,7 @@
   .example-sidenav {
     display: flex;
     align-items: center;  
-    width: 200px;
+    width: 333px;
     background-color: white;
     overflow: hidden;
     height: 100%;

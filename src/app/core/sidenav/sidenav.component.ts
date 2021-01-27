@@ -57,7 +57,8 @@ export class SidenavComponent implements OnInit {
         if (this.authenticationService.getCurrentImage() != 'undefined')
          this.cameraImage = this.authenticationService.getCurrentImage()
       } else {
-        this.router.navigate([AppRouting.Login])
+        //Comentar para dev
+       // this.router.navigate([AppRouting.Login])
       }
      
       

@@ -69,7 +69,7 @@ export class DispatchListComponent implements OnInit {
       receivedDateTo: [''],     
       state: [''],
       destiny: [''],
-      country: ['']
+      country: [parseInt(this.authenticationService.getCurrentCountry(), 10)]
     })
     this.searchControl.controls.country.valueChanges.pipe(     
       tap(() => {
@@ -118,6 +118,7 @@ export class DispatchListComponent implements OnInit {
   }
   clear(){
     this.searchControl.reset();
+    this.searchControl.controls.country.setValue(parseInt(this.authenticationService.getCurrentCountry(), 10));
   }
 
 }

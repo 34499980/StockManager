@@ -22,153 +22,167 @@
         <mat-sidenav #sidenav mode="side" class="example-sidenav"
                     position="end"
                   >
-        <div fxLayout="row wrap" class="p-12 pb-56 filtter">    
-    
-          <mat-label class="font-weight-400">{{'DISPATCH.CODE' | translate}}</mat-label>
-          <mat-form-field  appearance="outline" floatLabel="always" class="mx-12" fxFlex="1 1 90%"
-              color="accent">
-              <input autocomplete="off" matInput formControlName="code"
-                 >
-          </mat-form-field> 
-    
-          <mat-label class="font-weight-400">{{'DISPATCH.USERNAME' | translate}}</mat-label>
-          <mat-form-field  appearance="outline" floatLabel="always" class="mx-12" fxFlex="1 1 90%"
-              color="accent">
-              <input autocomplete="off" matInput formControlName="name"
-                 >
-          </mat-form-field> 
-
-          <mat-label class="font-weight-400">{{'DISPATCH.STATUS' | translate}}</mat-label>
-          <mat-form-field appearance="outline" floatLabel="always" class="mx-12" fxFlex="1 1 90%"
-              color="accent">
-              <mat-select formControlName="state" placeholder="Todos">      
-                <mat-option [value]="''">{{'DISPATCH.ALL' | translate}}</mat-option>                          
-                <mat-option *ngFor="let c of statesData" [value]="c.id" >
-                  {{c.description}}
-                 
-                </mat-option>
-              </mat-select>  
-          </mat-form-field> 
+        <div fxFlex="100%" fxLayout="row wrap" class="p-12 pb-56 filtter">    
+          <div fxFlex="60%" fxLayout="column">
+            <mat-label class="font-weight-400">{{'DISPATCH.CODE' | translate}}</mat-label>
+            <mat-form-field  appearance="outline" floatLabel="always" class="mx-12" 
+                color="accent">
+                <input autocomplete="off" matInput formControlName="code"
+                  >
+            </mat-form-field> 
+          </div>
+          <div fxFlex="60%" fxLayout="column">
+            <mat-label class="font-weight-400">{{'DISPATCH.USERNAME' | translate}}</mat-label>
+            <mat-form-field  appearance="outline" floatLabel="always" class="mx-12" 
+                color="accent">
+                <input autocomplete="off" matInput formControlName="name"
+                  >
+            </mat-form-field> 
+          </div>
+          <div fxFlex="60%" fxLayout="column">
+            <mat-label>{{'DISPATCH.STATUS' | translate}}</mat-label>
+            <mat-form-field appearance="outline" floatLabel="always" class="mx-12" 
+                color="accent">
+                <mat-select formControlName="state" placeholder="Todos">      
+                  <mat-option [value]="''">{{'DISPATCH.ALL' | translate}}</mat-option>                          
+                  <mat-option *ngFor="let c of statesData" [value]="c.id" >
+                    {{c.description}}
+                  
+                  </mat-option>
+                </mat-select>  
+            </mat-form-field>
+          </div>
           <mat-divider></mat-divider>  
           <!--CREATED DATE-->   
-          <mat-label>{{'DISPATCH.CREATEDDATE' | translate}}</mat-label>
-        <br/>
-          <mat-label>{{'DISPATCH.FROM' | translate}}</mat-label>
-          <mat-form-field  class="datePicker" floatLabel="always"  appearance="outline">
-           
-            <input matInput  [matDatepicker]="picker1" placeholder="dd/mm/yyyy" formControlName="createdDateFrom" readonly>
-            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-            <mat-datepicker #picker1></mat-datepicker>
-          </mat-form-field>
-            <ng-container *ngIf="searchControl.controls.createdDateFrom.touched">
-            <mat-error *ngIf="searchControl.controls.createdDateFrom.hasError('required')">{{'ERROR-MESSAGE.REQUIRED' | translate}}</mat-error>         
-            <ng-content></ng-content>
-            </ng-container>
-
-            <mat-label>{{'DISPATCH.TO' | translate}}</mat-label>
-            <mat-form-field  class="datePicker" floatLabel="always"  appearance="outline">             
-                <input matInput  [matDatepicker]="picker2" placeholder="dd/mm/yyyy" formControlName="createdDateTo" readonly>
-                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                <mat-datepicker #picker2></mat-datepicker>
+          <div fxFlex="100%" fxLayout="row wrap">
+            <mat-label fxFlex="100%" fxLayout="column">{{'DISPATCH.CREATEDDATE' | translate}}</mat-label>
+            <div fxFlex="47%" fxLayout="column">
+              <mat-label>{{'DISPATCH.FROM' | translate}}</mat-label>
+              <mat-form-field  class="datePicker" floatLabel="always"  appearance="outline">
+            
+              <input matInput  [matDatepicker]="picker1" placeholder="dd/mm/yyyy" formControlName="createdDateFrom" readonly>
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
             </mat-form-field>
-            <ng-container *ngIf="searchControl.controls.createdDateTo.touched">
-                <mat-error *ngIf="searchControl.controls.createdDateTo.hasError('required')">{{'ERROR-MESSAGE.REQUIRED' | translate}}</mat-error>         
-                <ng-content></ng-content>
-            </ng-container>  
+              <ng-container *ngIf="searchControl.controls.createdDateFrom.touched">
+              <mat-error *ngIf="searchControl.controls.createdDateFrom.hasError('required')">{{'ERROR-MESSAGE.REQUIRED' | translate}}</mat-error>         
+              <ng-content></ng-content>
+              </ng-container>
+          </div>
+            <div fxFlex="47%" fxLayout="column" class="ml-12">
+                <mat-label>{{'DISPATCH.TO' | translate}}</mat-label>
+                <mat-form-field  class="datePicker" floatLabel="always"  appearance="outline">             
+                    <input matInput  [matDatepicker]="picker2" placeholder="dd/mm/yyyy" formControlName="createdDateTo" readonly>
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+                <ng-container *ngIf="searchControl.controls.createdDateTo.touched">
+                    <mat-error *ngIf="searchControl.controls.createdDateTo.hasError('required')">{{'ERROR-MESSAGE.REQUIRED' | translate}}</mat-error>         
+                    <ng-content></ng-content>
+                </ng-container>  
+            </div>
+          </div>
             <mat-divider></mat-divider> 
             <!--DISPATCHED DATE-->
-            <mat-label>{{'DISPATCH.DISPATECHEDDATE' | translate}}</mat-label>
-        <br/>
-            <mat-label>{{'DISPATCH.FROM' | translate}}</mat-label>
-            <mat-form-field  class="datePicker" floatLabel="always"  appearance="outline">
-               
-                <input matInput  [matDatepicker]="picker3" placeholder="dd/mm/yyyy" formControlName="dispatchedDateFrom" readonly>
-                <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
-                <mat-datepicker #picker3></mat-datepicker>
-              </mat-form-field>
-              <ng-container *ngIf="searchControl.controls.dispatchedDateFrom.touched">
-                <mat-error *ngIf="searchControl.controls.dispatchedDateFrom.hasError('required')">{{'ERROR-MESSAGE.REQUIRED' | translate}}</mat-error>         
-                <ng-content></ng-content>
-            </ng-container>
-
-            <mat-label>{{'DISPATCH.TO' | translate}}</mat-label>
-            <mat-form-field  class="datePicker" floatLabel="always"  appearance="outline">                
-                <input matInput  [matDatepicker]="picker4" placeholder="dd/mm/yyyy" formControlName="dispatchedDateTo" readonly>
-                <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
-                <mat-datepicker #picker4></mat-datepicker>
-              </mat-form-field>
-              <ng-container *ngIf="searchControl.controls.dispatchedDateTo.touched">
-                <mat-error *ngIf="searchControl.controls.dispatchedDateTo.hasError('required')">{{'ERROR-MESSAGE.REQUIRED' | translate}}</mat-error>         
-                <ng-content></ng-content>
-            </ng-container>
+            <div fxFlex="100%" fxLayout="row wrap">
+              <mat-label fxFlex="100%" fxLayout="column">{{'DISPATCH.DISPATECHEDDATE' | translate}}</mat-label>
+              <div fxFlex="47%" fxLayout="column">
+                <mat-label>{{'DISPATCH.FROM' | translate}}</mat-label>
+                <mat-form-field  class="datePicker" floatLabel="always"  appearance="outline">
+                  
+                    <input matInput  [matDatepicker]="picker3" placeholder="dd/mm/yyyy" formControlName="dispatchedDateFrom" readonly>
+                    <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                    <mat-datepicker #picker3></mat-datepicker>
+                  </mat-form-field>
+                  <ng-container *ngIf="searchControl.controls.dispatchedDateFrom.touched">
+                    <mat-error *ngIf="searchControl.controls.dispatchedDateFrom.hasError('required')">{{'ERROR-MESSAGE.REQUIRED' | translate}}</mat-error>         
+                    <ng-content></ng-content>
+                </ng-container>
+               </div>
+              <div fxFlex="47%" fxLayout="column" class="ml-12">
+                <mat-label>{{'DISPATCH.TO' | translate}}</mat-label>
+                <mat-form-field  class="datePicker" floatLabel="always"  appearance="outline">                
+                    <input matInput  [matDatepicker]="picker4" placeholder="dd/mm/yyyy" formControlName="dispatchedDateTo" readonly>
+                    <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                    <mat-datepicker #picker4></mat-datepicker>
+                  </mat-form-field>
+                  <ng-container *ngIf="searchControl.controls.dispatchedDateTo.touched">
+                    <mat-error *ngIf="searchControl.controls.dispatchedDateTo.hasError('required')">{{'ERROR-MESSAGE.REQUIRED' | translate}}</mat-error>         
+                    <ng-content></ng-content>
+                </ng-container>
+              </div>
+              </div>
             <mat-divider></mat-divider>
             <!--RECEIVED DATE-->
-            <mat-label>{{'DISPATCH.RECEIVEDDATE' | translate}}</mat-label>
-        <br/>
-            <mat-label>{{'DISPATCH.FROM' | translate}}</mat-label>
-            <mat-form-field  class="datePicker" floatLabel="always"  appearance="outline">
-             
-                <input matInput  [matDatepicker]="picker5" placeholder="dd/mm/yyyy" formControlName="receivedDateFrom" readonly>
-                <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
-                <mat-datepicker #picker5></mat-datepicker>
+            <div fxFlex="100%" fxLayout="row wrap">
+              <mat-label fxFlex="100%" fxLayout="column">{{'DISPATCH.RECEIVEDDATE' | translate}}</mat-label>
+              <div fxFlex="47%" fxLayout="column">
+                <mat-label>{{'DISPATCH.FROM' | translate}}</mat-label>
+                <mat-form-field  class="datePicker" floatLabel="always"  appearance="outline">
+                
+                    <input matInput  [matDatepicker]="picker5" placeholder="dd/mm/yyyy" formControlName="receivedDateFrom" readonly>
+                    <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+                    <mat-datepicker #picker5></mat-datepicker>
+                  </mat-form-field>
+                  <ng-container *ngIf="searchControl.controls.receivedDateFrom.touched">
+                    <mat-error *ngIf="searchControl.controls.receivedDateFrom.hasError('required')">{{'ERROR-MESSAGE.REQUIRED' | translate}}</mat-error>         
+                    <ng-content></ng-content>
+                </ng-container>
+              </div>
+              <div fxFlex="47%" fxLayout="column" class="ml-12">
+                <mat-label>{{'DISPATCH.TO' | translate}}</mat-label>
+                <mat-form-field  class="datePicker" floatLabel="always"  appearance="outline">
+                  
+                    <input matInput  [matDatepicker]="picker6" placeholder="dd/mm/yyyy" formControlName="receivedDateTo" readonly>
+                    <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
+                    <mat-datepicker #picker6></mat-datepicker>
+                  </mat-form-field>
+                  <ng-container *ngIf="searchControl.controls.receivedDateTo.touched">
+                    <mat-error *ngIf="searchControl.controls.receivedDateTo.hasError('required')">{{'ERROR-MESSAGE.REQUIRED' | translate}}</mat-error>         
+                    <ng-content></ng-content>
+                </ng-container>
+              </div>
+            </div>
+            <div fxFlex="60%" fxLayout="column">
+              <mat-label class="font-weight-400">{{'DISPATCH.OFFICE' | translate}}</mat-label>
+              <mat-form-field appearance="outline" floatLabel="always" class="mx-12" 
+                  color="accent">
+                  <mat-select formControlName="destiny" placeholder="Todos">      
+                    <mat-option [value]="''">{{'DISPATCH.ALL' | translate}}</mat-option>                          
+                    <mat-option *ngFor="let c of officeData" [value]="c.id" >
+                      {{c.name}}
+                    
+                    </mat-option>
+                  </mat-select>  
+              </mat-form-field>  
+            </div>       
+            <div fxFlex="60%" fxLayout="column">
+              <mat-label class="font-weight-400">{{'OFFICE.COUNTRY' | translate}}</mat-label>
+              <mat-form-field appearance="outline" floatLabel="always" class="mx-12" 
+                  color="accent">
+                  <mat-select formControlName="country" placeholder="Todos"> 
+                    <mat-option *ngFor="let c of countriesData" [value]="c.id" >
+                      {{c.description}}
+                    
+                    </mat-option>
+                  </mat-select>  
               </mat-form-field>
-              <ng-container *ngIf="searchControl.controls.receivedDateFrom.touched">
-                <mat-error *ngIf="searchControl.controls.receivedDateFrom.hasError('required')">{{'ERROR-MESSAGE.REQUIRED' | translate}}</mat-error>         
-                <ng-content></ng-content>
-            </ng-container>
-            <mat-label>{{'DISPATCH.TO' | translate}}</mat-label>
-            <mat-form-field  class="datePicker" floatLabel="always"  appearance="outline">
-              
-                <input matInput  [matDatepicker]="picker6" placeholder="dd/mm/yyyy" formControlName="receivedDateTo" readonly>
-                <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
-                <mat-datepicker #picker6></mat-datepicker>
-              </mat-form-field>
-              <ng-container *ngIf="searchControl.controls.receivedDateTo.touched">
-                <mat-error *ngIf="searchControl.controls.receivedDateTo.hasError('required')">{{'ERROR-MESSAGE.REQUIRED' | translate}}</mat-error>         
-                <ng-content></ng-content>
-            </ng-container>
-
-          <mat-label class="font-weight-400">{{'DISPATCH.OFFICE' | translate}}</mat-label>
-          <mat-form-field appearance="outline" floatLabel="always" class="mx-12" fxFlex="1 1 90%"
-              color="accent">
-              <mat-select formControlName="destiny" placeholder="Todos">      
-                <mat-option [value]="''">{{'DISPATCH.ALL' | translate}}</mat-option>                          
-                <mat-option *ngFor="let c of officeData" [value]="c.id" >
-                  {{c.description}}
-                 
-                </mat-option>
-              </mat-select>  
-          </mat-form-field>         
-    
-          <mat-label class="font-weight-400">{{'OFFICE.COUNTRY' | translate}}</mat-label>
-          <mat-form-field appearance="outline" floatLabel="always" class="mx-12" fxFlex="1 1 90%"
-              color="accent">
-              <mat-select formControlName="country" placeholder="Todos">      
-                <mat-option [value]="''">{{'DISPATCH.ALL' | translate}}</mat-option>                          
-                <mat-option *ngFor="let c of countriesData" [value]="c.id" >
-                  {{c.description}}
-                 
-                </mat-option>
-              </mat-select>  
-          </mat-form-field>   
+            </div>   
 
        
-
-         
-          
-          <div fxLayout="row" class="aply-filters-button">
             <button fxFlex="90%" fxLayoutAlign="center center"
             matTooltip="Limpiar filtros" matTooltipPosition="above" mat-raised-button color="primary"
             (click)="clear()">{{'DISPATCH.CLEAN' | translate}}
-              </button>
-          </div>
-        </div>
+             </button>
+         
+         
+        </div>         
         
         </mat-sidenav>
     
         <mat-sidenav-content fxLayout="row wrap">
           <!--TABLE-->
-          <mat-table #table fxFlex="90%" [dataSource]="dataSource"          
+          <mat-table #table  [dataSource]="dataSource"          
             class="center" >                           
 
 
