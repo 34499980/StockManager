@@ -175,7 +175,8 @@
         "INVALIDCHAR": "Invalid character"
     },
      "ERRORS":{
-        "errOfficeAllReadyExist": "The office name is allready in use"
+        "errOfficeAllReadyExist": "The office name is allready in use",
+        "errSameDestinationAndOrigin" : "It's the same office to origin and destination"
     }
 
 }

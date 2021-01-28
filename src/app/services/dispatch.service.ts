@@ -48,8 +48,8 @@ export class DispatchService {
       })
     );
   }
-  add(dispatch: DispatchCreate): Observable<string> {
-    return this.http.post<string>(environment.RestFullApi + 'dispatch', dispatch)
+  add(dispatch: DispatchCreate): Observable<Dispatch> {
+    return this.http.post<Dispatch>(environment.RestFullApi + 'dispatch', dispatch)
       .pipe(
         map(res => {
           return res;

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Dispatch } from 'src/app/models/dispatch';
 
 @Component({
   selector: 'app-step-two',
@@ -8,6 +9,7 @@ import { FormGroup } from '@angular/forms';
 })
 export class StepTwoComponent implements OnInit {
   public stepTwoForm: FormGroup;
+  @Input() dispatch: Dispatch;
   constructor() { }
 
   ngOnInit(): void {

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subject, of } from 'rxjs';
@@ -23,6 +23,7 @@ export class StepOneComponent implements OnInit {
   officesData$: Subject<Office[]> = new Subject();
   @Input() countriesData: Country[];
   @Input() officesData: Office[];
+  @Output() dispatch =  new EventEmitter<Dispatch>();
   
   constructor(private formBuilder: FormBuilder,
               private activateRoute: ActivatedRoute,
@@ -62,6 +63,6 @@ export class StepOneComponent implements OnInit {
       idDestiny: parseInt(this.stepOneForm.controls.office.value,10),
       idCountry:  parseInt(this.stepOneForm.controls.country.value,10)
     }
-    this.dispatchService.add(dispatch).subscribe(res => this.toastService.success(''))
+    this.dispatchService.add(dispatch).subscribe(res => this.dispatch.emit(res as Dispatch))
   }
 }

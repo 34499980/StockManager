@@ -62,16 +62,18 @@ export class DispatchListComponent implements OnInit {
     this.searchControl = this.formBuilder.group({
       code: [''],
       name: [''],
-      createdDateFrom: [''],
-      createdDateTo: [''],
-      dispatchedDateFrom: [''],
-      dispatchedDateTo: [''],
-      receivedDateFrom: [''],
-      receivedDateTo: [''],     
-      state: [''],
-      destiny: [''],
+      createdDateFrom: [null],
+      createdDateTo: [null],
+      dispatchedDateFrom: [null],
+      dispatchedDateTo: [null],
+      receivedDateFrom: [null],
+      receivedDateTo: [null],     
+      state: [null],
+      destiny: [null],
       country: [parseInt(this.authenticationService.getCurrentCountry(), 10)]
     })
+    this. getDispatchFilter();
+    this.loadData();
     this.searchControl.controls.country.valueChanges.pipe(     
       tap(() => {
        
@@ -94,7 +96,7 @@ export class DispatchListComponent implements OnInit {
         const filter : DispatchFilter = {
           code: this.searchControl.controls.code.value,
           userName: this.searchControl.controls.name.value,
-          createdDateFrom: this.searchControl.controls.CreatedDateFrom.value,
+          createdDateFrom: this.searchControl.controls.createdDateFrom.value,
           createdDateTo: this.searchControl.controls.createdDateTo.value,
           dispatchedDateFrom: this.searchControl.controls.dispatchedDateFrom.value,
           dispatchedDateTo: this.searchControl.controls.dispatchedDateTo.value,
@@ -110,6 +112,9 @@ export class DispatchListComponent implements OnInit {
        this.dataSource.data = res as DispatchGet[]
     });
    
+  }
+  loadData(){
+    this.dispatchData$.next();
   }
   add() {
     this.router.navigate([AppRouting.Dispatch])

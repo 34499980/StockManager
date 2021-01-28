@@ -177,7 +177,8 @@
         "INVALIDCHAR": "Caracter invalido"
     },
     "ERRORS":{
-        "errOfficeAllReadyExist": "El nombre de sucursal ya existe!"
+        "errOfficeAllReadyExist": "El nombre de sucursal ya existe!",
+        "errSameDestinationAndOrigin" : "El destino del despacho no puede ser el mismo que el de origen."
     }
 
     

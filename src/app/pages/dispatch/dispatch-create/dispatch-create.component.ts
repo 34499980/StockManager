@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppRouting } from 'src/app/enums/AppRouting.enum';
 import { Country } from 'src/app/models/country.model';
+import { Dispatch } from 'src/app/models/dispatch';
 import { Office } from 'src/app/models/office.model';
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-dispatch-create',
@@ -12,6 +14,8 @@ import { Office } from 'src/app/models/office.model';
 export class DispatchCreateComponent implements OnInit {
   officesData: Office[];
   countriesData: Country[];
+  dispatch: Dispatch;
+  @ViewChild('cdkStepper') cdkStepper: MatStepper
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute) { }
 
@@ -22,6 +26,9 @@ export class DispatchCreateComponent implements OnInit {
   cancel() {
     this.router.navigate([AppRouting.DispatchList])
   }
-  
+  getDispatch(dispatch: Dispatch) {
+    this.dispatch = dispatch;
+    this.cdkStepper.next();
+  }
 
 }
