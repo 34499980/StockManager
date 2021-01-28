@@ -21,7 +21,9 @@
          "TITLE":"Action stock",
           "SUBTITLES":{
             "STOCKLIST": "Stock",
-            "DISPATCHLIST": "Dispatches"
+            "DISPATCHLIST": "Dispatches",
+            "DISPATCHCREATE": "Create dispatch",
+            "DISPATCHDETAIL": "Dispatch detail"
         }
      } 
      ,    
@@ -42,9 +44,21 @@
         "FROM": "From",
         "TO": "To",
         "CLEAN": "Clean",
+        "COUNTRY": "Country",
         "ACTIONS":{           
             "SAVE":"The dispatch was confirmed",            
             "UPDATE": "The dispatch was updated"
+        },
+        "STEPS": {
+            "ONE":{
+                "TITLE":"Select destiny"
+            },
+            "TWO":{
+                "TITLE":"Select items"
+            },
+            "THREE":{
+                "TITLE":"Dispatched"
+            }
         }
         
     }  
@@ -117,7 +131,9 @@
         "DELETE": "Delete",
         "ACCEPT": "Accept",
         "CANCEL":"Cancel",
-        "SAVE": "Save"
+        "SAVE": "Save",
+        "NEXT": "Next",
+        "PREVIOUS": "Previous"
     },
     "STATES-LIST":{
         "ENABLED":"Enabled",

@@ -1,5 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { Subject, of } from 'rxjs';
+import { tap, switchMap, startWith } from 'rxjs/operators';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { Country } from 'src/app/models/country.model';
+import { Dispatch } from 'src/app/models/dispatch';
+import { DispatchCreate } from 'src/app/models/dispatch-create.model';
+import { Office } from 'src/app/models/office.model';
+import { DispatchService } from 'src/app/services/dispatch.service';
+import { OfficeService } from 'src/app/services/office.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-step-one',
@@ -8,16 +19,49 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class StepOneComponent implements OnInit {
   public stepOneForm: FormGroup;
-  constructor(private fb: FormBuilder) {
-    this.stepOneForm = this.fb.group({
-      office: this.fb.control('', Validators.required),
-      country: this.fb.control('', Validators.required)
-    });
+ 
+  officesData$: Subject<Office[]> = new Subject();
+  @Input() countriesData: Country[];
+  @Input() officesData: Office[];
+  
+  constructor(private formBuilder: FormBuilder,
+              private activateRoute: ActivatedRoute,
+              private officeService: OfficeService,
+              private dispatchService: DispatchService,
+              private authenticationService: AuthenticationService,
+              private toastService: ToastService) {
+
+    
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {  
+    this.stepOneForm = this.formBuilder.group({
+      office: ['', Validators.required],
+      country: [parseInt(this.authenticationService.getCurrentCountry(), 10), Validators.required]
+    });
+
+    this.stepOneForm.controls.country.valueChanges.pipe(     
+      tap(() => {
+       
+      }),
+      switchMap(val => {
+        if(val != null && val != '') {
+        return this.officeService.getOfficesByCountry(val);
+        }else{
+         return of([]);
+        }
+      }),
+      startWith(this.officesData)
+      ).subscribe(this.officesData$);  
+  
   }
 
   stepOneSubmit() {
+    const dispatch: DispatchCreate = {
+      idOrigin: parseInt(this.authenticationService.getCurrentOffice(), 10),
+      idDestiny: parseInt(this.stepOneForm.controls.office.value,10),
+      idCountry:  parseInt(this.stepOneForm.controls.country.value,10)
+    }
+    this.dispatchService.add(dispatch).subscribe(res => this.toastService.success(''))
   }
 }

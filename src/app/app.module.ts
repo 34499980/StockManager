@@ -11,8 +11,6 @@ import { HttpErrorInterceptor } from './interceptors/error/errorInterceptor';
 import { CoreModule } from './core/core.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { DispatchListComponent } from './pages/dispatch/dispatch-list/dispatch-list.component';
-import { DispatchDetailComponent } from './pages/dispatch/dispatch-detail/dispatch-detail.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);

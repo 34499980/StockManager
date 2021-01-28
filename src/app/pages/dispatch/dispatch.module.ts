@@ -5,7 +5,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { OfficeResolver } from 'src/app/resolvers/office.resolver';
 import { CountriesResolver } from 'src/app/resolvers/countries.resolver';
 import { DispatchListComponent } from './dispatch-list/dispatch-list.component';
-import { DispatchDetailComponent } from './dispatch-detail/dispatch-detail.component';
+import { DispatchCreateComponent } from './dispatch-create/dispatch-create.component';
 import { DispatchResolver } from './dispatch-state.resolver';
 import { StepOneComponent } from './steps/step-one/step-one.component';
 import { StepTwoComponent } from './steps/step-two/step-two.component';
@@ -23,18 +23,18 @@ const routes: Routes = [
   },
   {
     path: ':id',
-    component: DispatchDetailComponent,
+    component: DispatchCreateComponent,
     resolve:{
-      office: OfficeResolver,
+      offices: OfficeResolver,
       countries: CountriesResolver,
       states: DispatchResolver
     }
   },
   {
     path: '',
-    component: DispatchDetailComponent,
+    component: DispatchCreateComponent,
     resolve:{
-      office: OfficeResolver,
+      offices: OfficeResolver,
       countries: CountriesResolver,
       states: DispatchResolver  
     }
@@ -44,7 +44,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [DispatchDetailComponent, DispatchListComponent, StepOneComponent, StepTwoComponent, StepThreeComponent],
+  declarations: [DispatchCreateComponent, DispatchListComponent, StepOneComponent, StepTwoComponent, StepThreeComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

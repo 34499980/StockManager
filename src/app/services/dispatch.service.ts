@@ -7,6 +7,7 @@ import { ArquitecturaService } from './arquitectura.service';
 import { AuthenticationService } from '../core/services/authentication.service';
 import { DispatchFilter } from '../models/dispatchFilter.model';
 import { Dispatch } from '../models/dispatch';
+import { DispatchCreate } from '../models/dispatch-create.model';
 const headers = new HttpHeaders();
 headers.append('Access-Control-Allow-Headers', 'Content-Type');
 headers.append('Access-Control-Allow-Methods', 'GET,POST,PUT,DEconstE,OPTIONS');
@@ -47,13 +48,13 @@ export class DispatchService {
       })
     );
   }
-  add(dispatch: Dispatch) {
-    this.http.post(environment.RestFullApi + 'dispatch', dispatch)
-    .pipe(
-      map(res => {
-        return res;
-      })
-    );
+  add(dispatch: DispatchCreate): Observable<string> {
+    return this.http.post<string>(environment.RestFullApi + 'dispatch', dispatch)
+      .pipe(
+        map(res => {
+          return res;
+        })
+      );
   }
   update(dispatch: Dispatch) {
     this.http.put(environment.RestFullApi + 'dispatch', dispatch)

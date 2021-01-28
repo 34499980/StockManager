@@ -20,7 +20,9 @@
             "TITLE":"Productos",
             "SUBTITLES":{
                 "STOCKLIST": "Listado de productos",
-                "DISPATCHLIST": "Despachos"
+                "DISPATCHLIST": "Despachos",
+                "DISPATCHCREATE": "Crear despacho",
+                "DISPATCHDETAIL": "Detalles de despacho"
               
             }
         }
@@ -90,10 +92,22 @@
         "ALL": "Todos",
         "FROM":"Desde",
         "TO": "Hasta",
-        "CLEAN": "Limpiar",
+        "CLEAN": "Limpiar",        
+        "COUNTRY": "País",
         "ACTIONS":{           
             "SAVE":"El despacho fue confirmado",            
             "UPDATE": "El despacho fue actualizada"
+        },
+        "STEPS": {
+            "ONE":{
+                "TITLE":"Seleccionar destino"
+            },
+            "TWO":{
+                "TITLE":"Seleccionar articulos"
+            },
+            "THREE":{
+                "TITLE":"Despachado"
+            }
         }
         
     },    
@@ -120,7 +134,9 @@
         "DELETE": "Eliminar",
         "ACCEPT": "Aceptar",
         "CANCEL":"Cancelar",
-        "SAVE":"Guardar"
+        "SAVE":"Guardar",
+        "NEXT": "Siguiente",
+        "PREVIOUS": "Volver"
     },
     "STATES-LIST":{
         "ENABLED":"Habilitado",

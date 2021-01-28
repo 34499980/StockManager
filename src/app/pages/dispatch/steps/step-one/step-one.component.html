@@ -6,21 +6,37 @@
           #formRef="ngForm">
   
       <div class="input">
-        <label for="fname">First name <span>*</span></label>
-        <input type="text" id="fname" placeholder="Enter First Name" formControlName="firstName"/>
-        <span class="error" *ngIf="stepOneForm.controls['firstName'].hasError('required') && formRef.submitted">First Name is a required field
-        </span>
+        <mat-form-field  appearance="outline">
+          <mat-label>{{'DISPATCH.COUNTRY' | translate}}</mat-label>
+          <mat-select formControlName="country" >                       
+            <mat-option *ngFor="let r of countriesData" [value]="r.id" >
+              {{r.description | translate}} 
+            </mat-option>
+          </mat-select>  
+        </mat-form-field>
+        <ng-container *ngIf="stepOneForm.controls.country.touched">
+          <mat-error  *ngIf="stepOneForm.controls.country.hasError('required')">{{'ERROR-MESSAGE.REQUIRED' | translate}}</mat-error>         
+          <ng-content></ng-content>
+        </ng-container>
       </div>
   
       <div class="input">
-        <label for="lname">Last name <span>*</span></label>
-        <input type="text" id="lname" placeholder="Enter Last Name" formControlName="lastName"/>
-        <span class="error" *ngIf="stepOneForm.controls['lastName'].hasError('required') && formRef.submitted">Last Name is a required field
-        </span>
+        <mat-form-field  appearance="outline">
+          <mat-label>{{'DISPATCH.OFFICE' | translate}}</mat-label>
+          <mat-select formControlName="office" >                       
+            <mat-option *ngFor="let r of officesData" [value]="r.id" >
+              {{r.name | translate}} 
+            </mat-option>
+          </mat-select>  
+        </mat-form-field>
+        <ng-container *ngIf="stepOneForm.controls.office.touched">
+          <mat-error  *ngIf="stepOneForm.controls.office.hasError('required')">{{'ERROR-MESSAGE.REQUIRED' | translate}}</mat-error>         
+          <ng-content></ng-content>
+        </ng-container>
       </div>
   
       <div class="button">
-        <button class="button" cdkStepperNext>Next</button>
+        <button mat-raised-button color="accent"   [disabled]="stepOneForm.pristine || stepOneForm.invalid" cdkStepperNext>{{'GENERALACTIONS.NEXT' | translate}}</button>
       </div>
   
     </form>
