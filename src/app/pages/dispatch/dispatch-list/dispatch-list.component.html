@@ -45,16 +45,15 @@
                 color="accent">
                 <mat-select formControlName="state" placeholder="Todos">      
                   <mat-option [value]="''">{{'DISPATCH.ALL' | translate}}</mat-option>                          
-                  <mat-option *ngFor="let c of statesData" [value]="c.id" >
-                    {{c.description}}
-                  
+                  <mat-option *ngFor="let c of statesData" [value]="c.id" >                   
+                    {{'DISPATCH-STATUS-LIST.' + c.description | translate}}
                   </mat-option>
                 </mat-select>  
             </mat-form-field>
           </div>
           <mat-divider></mat-divider>  
           <!--CREATED DATE-->   
-          <div fxFlex="100%" fxLayout="row wrap">
+          <div fxFlex="100%" fxLayout="row wrap" fxLayoutAlign="space-around">
             <mat-label fxFlex="100%" fxLayout="column">{{'DISPATCH.CREATEDDATE' | translate}}</mat-label>
             <div fxFlex="47%" fxLayout="column">
               <mat-label>{{'DISPATCH.FROM' | translate}}</mat-label>
@@ -84,7 +83,7 @@
           </div>
             <mat-divider></mat-divider> 
             <!--DISPATCHED DATE-->
-            <div fxFlex="100%" fxLayout="row wrap">
+            <div fxFlex="100%" fxLayout="row wrap" fxLayoutAlign="space-around">
               <mat-label fxFlex="100%" fxLayout="column">{{'DISPATCH.DISPATECHEDDATE' | translate}}</mat-label>
               <div fxFlex="47%" fxLayout="column">
                 <mat-label>{{'DISPATCH.FROM' | translate}}</mat-label>
@@ -114,7 +113,7 @@
               </div>
             <mat-divider></mat-divider>
             <!--RECEIVED DATE-->
-            <div fxFlex="100%" fxLayout="row wrap">
+            <div fxFlex="100%" fxLayout="row wrap" fxLayoutAlign="space-around">
               <mat-label fxFlex="100%" fxLayout="column">{{'DISPATCH.RECEIVEDDATE' | translate}}</mat-label>
               <div fxFlex="47%" fxLayout="column">
                 <mat-label>{{'DISPATCH.FROM' | translate}}</mat-label>
@@ -195,6 +194,15 @@
                   </mat-cell>
               </ng-container>
 
+              <ng-container matColumnDef="CREATEDDATE">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    {{'DISPATCH.CREATEDDATE' | translate}}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let dispatch">
+                  <p class="text-truncate">{{dispatch.dateCreate | date: 'dd/MM/yyyy'}}</p>
+              </mat-cell>
+            </ng-container>       
+
               <ng-container matColumnDef="USERORIGIN">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>
                       {{'DISPATCH.USERORIGIN' | translate}}
@@ -223,21 +231,14 @@
             </ng-container>
               
 
-              <ng-container matColumnDef="CREATEDDATE">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>
-                      {{'DISPATCH.CREATEDDATE' | translate}}
-                  </mat-header-cell>
-                  <mat-cell *matCellDef="let dispatch">
-                    <p class="text-truncate">{{dispatch.dateCreate}}</p>
-                </mat-cell>
-              </ng-container>       
+             
               
               <ng-container matColumnDef="DISPATECHEDDATE">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>
                     {{'DISPATCH.DISPATECHEDDATE' | translate}}
                 </mat-header-cell>
                 <mat-cell *matCellDef="let dispatch">
-                  <p class="text-truncate">{{dispatch.dateDispatched}}</p>
+                  <p class="text-truncate">{{dispatch.dateDispatched | date: 'dd/MM/yyyy'}}</p>
               </mat-cell>
             </ng-container>  
 
@@ -255,7 +256,7 @@
                     {{'DISPATCH.RECEIVEDDATE' | translate}}
                 </mat-header-cell>
                 <mat-cell *matCellDef="let dispatch">
-                  <p class="text-truncate">{{dispatch.dateRecived}}</p>
+                  <p class="text-truncate">{{dispatch.dateRecived | date: 'dd/MM/yyyy'}}</p>
               </mat-cell>
             </ng-container>  
 
@@ -265,7 +266,7 @@
                     {{'DISPATCH.STATUS' | translate}}
                 </mat-header-cell>
                 <mat-cell *matCellDef="let dispatch">
-                  <p class="text-truncate">{{dispatch.idState}}</p>
+                  <p class="text-truncate">{{'DISPATCH-STATUS-LIST.' + dispatch.stateDescription | translate}}</p>
               </mat-cell>
             </ng-container>  
 

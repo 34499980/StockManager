@@ -33,14 +33,16 @@ export class DispatchListComponent implements OnInit {
   dataSource = new MatTableDataSource([]);
   displayedColumns = [
     'CODE',
+    'CREATEDDATE',  
     'ORIGIN',
     'DESTINY',
     'USERORIGIN',
-    'USERDESTINY',    
+    'USERDESTINY',     
     'DISPATECHEDDATE',
     'RECEIVEDDATE',
     'STATUS',
-    'UNITY'
+    'UNITY',
+    'ACTIONS'
     
 ];
   @ViewChild('sidenav') sideNavFilters: MatDrawer;
@@ -108,7 +110,7 @@ export class DispatchListComponent implements OnInit {
         };
         return this.dispatchService.GetAllDispatchFilter(filter);
       })
-    ).subscribe(res =>{
+    ).subscribe(res =>{     
        this.dataSource.data = res as DispatchGet[]
     });
    

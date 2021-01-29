@@ -83,7 +83,7 @@
         "USERORIGIN": "Despachante", 
         "USERDESTINY": "Recibio",     
         "STATE": "Estado",  
-        "CREATEDDATE":"Fecha despachado",
+        "CREATEDDATE":"Fecha creado",
         "DISPATECHEDDATE":"Fecha despachado",
         "RECEIVEDDATE":"Fecha recibido",
         "STATUS":"Estado",  
@@ -149,6 +149,14 @@
         "Manager": "Gerente",
         "Seller": "Vendedor",
         "Buyer": "Comprador"
+    },
+    
+    "DISPATCH-STATUS-LIST":{
+        "Created":"Creado",
+        "Dispatched": "Despachado",
+        "Received": "Recibido",
+        "Finalized": "Finalizado",
+        "Incomplete": "Incompleto" 
     },
     "DIALOGS":{
         "DELETE-USER":{

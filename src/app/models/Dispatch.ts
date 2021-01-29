@@ -24,4 +24,5 @@ export interface DispatchGet extends Dispatch {
     userDestinyDescription: string;
     officeOriginDesription: string;
     officeDestinyDescription: string;
+    stateDescription: string;
 }

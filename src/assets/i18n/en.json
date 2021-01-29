@@ -25,8 +25,8 @@
             "DISPATCHCREATE": "Create dispatch",
             "DISPATCHDETAIL": "Dispatch detail"
         }
-     } 
-     ,    
+    }
+    },    
     "DISPATCH":{        
         "CODE":"Code",
         "USERNAME":"UserName",
@@ -35,7 +35,7 @@
         "USERORIGIN": "Disptcher", 
         "USERDESTINY": "Received", 
         "DISPATECHEDDATE":"Dispatched date",
-        "CREATEDDATE":"Fecha despachado",
+        "CREATEDDATE":"Created date",
         "RECEIVEDDDATE":"Received date",
         "STATUS":"State",  
         "UNITY": "Unity",
@@ -61,8 +61,7 @@
             }
         }
         
-    }  
-    },
+    },      
     "MENU-USER":{
         "LENGUAGE": "Lenguage",
         "LOGOUT": "Logout"
@@ -146,6 +145,13 @@
         "Manager": "Manager",
         "Seller": "Seller",
         "Buyer": "Buyer"
+    },
+    "DISPATCH-STATUS-LIST":{
+        "Created":"Created",
+        "Dispatched": "Dispatched",
+        "Received": "Received",
+        "Finalized": "Finalized",
+        "Incomplete": "Incomplete"
     },
     "DIALOGS":{
         "DELETE-USER":{
