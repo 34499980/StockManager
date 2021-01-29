@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppRouting } from 'src/app/enums/AppRouting.enum';
 import { Country } from 'src/app/models/country.model';
@@ -15,6 +15,7 @@ export class DispatchCreateComponent implements OnInit {
   officesData: Office[];
   countriesData: Country[];
   dispatch: Dispatch;
+  @Output() uploadDispatch: EventEmitter<Dispatch> = new EventEmitter<Dispatch>();
   @ViewChild('cdkStepper') cdkStepper: MatStepper
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute) { }
@@ -26,9 +27,13 @@ export class DispatchCreateComponent implements OnInit {
   cancel() {
     this.router.navigate([AppRouting.DispatchList])
   }
-  getDispatch(dispatch: Dispatch) {
-    this.dispatch = dispatch;
+  next() {   
     this.cdkStepper.next();
+  }
+  setDispatch(dispatch: Dispatch) {
+    this.dispatch = dispatch;
+    this.uploadDispatch.emit(dispatch);
+    this.next();
   }
 
 }

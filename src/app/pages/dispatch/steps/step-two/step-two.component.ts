@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Dispatch } from 'src/app/models/dispatch';
 
@@ -10,9 +10,15 @@ import { Dispatch } from 'src/app/models/dispatch';
 export class StepTwoComponent implements OnInit {
   public stepTwoForm: FormGroup;
   @Input() dispatch: Dispatch;
+  @Input() private uploadDispatch: EventEmitter<Dispatch>;
   constructor() { }
 
   ngOnInit(): void {
+    if (this.uploadDispatch) {
+      this.uploadDispatch.subscribe(data => {
+        this.dispatch = data
+      });
+    }
   }
 
 }

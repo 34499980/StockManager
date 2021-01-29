@@ -18,7 +18,7 @@
           <div class="step-title"> {{'DISPATCH.STEPS.ONE.TITLE'  | translate}}<span class="required">*</span></div>
         </ng-template>
         <app-step-one #stepOne [officesData]="officesData" [countriesData]="countriesData" 
-        (dispatch)="getDispatch($event)"
+        (dispatch)="setDispatch($event)"
         ></app-step-one>
       </cdk-step>
   
@@ -27,7 +27,7 @@
           <div class="step-bullet">2</div>
           <div class="step-title">{{'DISPATCH.STEPS.TWO.TITLE'  | translate}}<span class="required">*</span></div>
         </ng-template>
-        <app-step-two #stepTwo [dispatch]="dispatch"></app-step-two>
+        <app-step-two #stepTwo [uploadDispatch]="uploadDispatch"></app-step-two>
       </cdk-step>
   
       <cdk-step [stepControl]="stepThree.stepThreeForm" [optional]="false">
