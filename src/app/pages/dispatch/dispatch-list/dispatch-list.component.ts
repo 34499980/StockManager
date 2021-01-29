@@ -37,8 +37,8 @@ export class DispatchListComponent implements OnInit {
     'ORIGIN',
     'DESTINY',
     'USERORIGIN',
-    'USERDESTINY',     
     'DISPATECHEDDATE',
+    'USERDESTINY', 
     'RECEIVEDDATE',
     'STATUS',
     'UNITY',
@@ -73,22 +73,20 @@ export class DispatchListComponent implements OnInit {
       state: [null],
       destiny: [null],
       country: [parseInt(this.authenticationService.getCurrentCountry(), 10)]
-    })
+    })    
+    
+
     this. getDispatchFilter();
     this.loadData();
-    this.searchControl.controls.country.valueChanges.pipe(     
-      tap(() => {
-       
-      }),
-      switchMap(val => {
-        if(val != null && val != '') {
-        return this.officeService.getOfficesByCountry(val);
-        }else{
-         return of([]);
+
+    this.searchControl.valueChanges.subscribe(val => {
+      if((val.name !== '' || val.name !== null  && val.name?.length >= 3) ||
+        (val.code !== '' && val.code !== null && val.code?.length >= 3)){
+       this.loadData();
+        } else if ((val.code === '' || val.code === null) && (val.name === '' || val.name === null)){
+          this.loadData();
         }
-      }),
-      startWith(this.officeData)
-      ).subscribe(this.officeData$);  
+      });
   }
   getDispatchFilter(){
 

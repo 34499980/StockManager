@@ -36,7 +36,7 @@
         "USERDESTINY": "Received", 
         "DISPATECHEDDATE":"Dispatched date",
         "CREATEDDATE":"Created date",
-        "RECEIVEDDDATE":"Received date",
+        "RECEIVEDDATE":"Received date",
         "STATUS":"State",  
         "UNITY": "Unity",
         "OFFICE": "Office",

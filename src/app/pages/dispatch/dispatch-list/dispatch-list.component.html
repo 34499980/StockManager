@@ -220,6 +220,15 @@
                       <p class="text-truncate">{{dispatch.officeOriginDescription}}</p>
                   </mat-cell>
               </ng-container>
+              
+              <ng-container matColumnDef="DISPATECHEDDATE">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    {{'DISPATCH.DISPATECHEDDATE' | translate}}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let dispatch">
+                  <p class="text-truncate">{{dispatch.dateDispatched | date: 'dd/MM/yyyy'}}</p>
+              </mat-cell>
+            </ng-container>  
 
               <ng-container matColumnDef="DESTINY">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>
@@ -230,17 +239,7 @@
                 </mat-cell>
             </ng-container>
               
-
              
-              
-              <ng-container matColumnDef="DISPATECHEDDATE">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>
-                    {{'DISPATCH.DISPATECHEDDATE' | translate}}
-                </mat-header-cell>
-                <mat-cell *matCellDef="let dispatch">
-                  <p class="text-truncate">{{dispatch.dateDispatched | date: 'dd/MM/yyyy'}}</p>
-              </mat-cell>
-            </ng-container>  
 
             <ng-container matColumnDef="USERDESTINY">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>
