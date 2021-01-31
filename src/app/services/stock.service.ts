@@ -56,6 +56,14 @@ export class StockService {
         })
     );
   }
+  getStockByCode(code: string): Observable<any>{
+    return  this.http.get<any>(environment.RestFullApi+`stock/GetStockByCode/${code}`)
+    .pipe(
+        map(res => {
+        return res
+        })
+    );
+  }
   delete(id: number){
     return  this.http.delete(environment.RestFullApi+`stock/${id}`)
     .pipe(

@@ -6,10 +6,15 @@
     display: block;
       
     }
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      transition: 0.3s; 
+      width: 70%;   
+    }
     .center{
         position: fixed;
-        top: 220px;
-        left: 23%;
+        top: 240px;
+        left: 30%;
         margin-top: -100px;
         margin-left: -100px;
       }
@@ -99,4 +104,3 @@
   mat-sidenav-content{  
     background-color: #fff8e1;  
   }
-  

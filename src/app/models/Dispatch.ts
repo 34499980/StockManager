@@ -1,8 +1,9 @@
 import { Stock } from './stock'
-import { Dispatc_stock } from './dispatch_stock.model'
+import { Dispatch_stock } from './dispatch_stock.model'
 import { Stock_Office } from './stock_office.model'
 
 export interface Dispatch{
+    id: number;
     code: string
     origin: number
     destiny: number

@@ -24,7 +24,7 @@ export class StepOneComponent implements OnInit {
   @Input() countriesData: Country[];
   @Input() officesData: Office[];
   @Output() dispatch =  new EventEmitter<Dispatch>();
-  
+  disabledButton: boolean
   constructor(private formBuilder: FormBuilder,
               private activateRoute: ActivatedRoute,
               private officeService: OfficeService,
@@ -36,6 +36,7 @@ export class StepOneComponent implements OnInit {
   }
 
   ngOnInit(): void {  
+    this.disabledButton = false;
     this.stepOneForm = this.formBuilder.group({
       office: ['', Validators.required],
       country: [parseInt(this.authenticationService.getCurrentCountry(), 10), Validators.required]
@@ -63,6 +64,11 @@ export class StepOneComponent implements OnInit {
       idDestiny: parseInt(this.stepOneForm.controls.office.value,10),
       idCountry:  parseInt(this.stepOneForm.controls.country.value,10)
     }
-    this.dispatchService.add(dispatch).subscribe(res => this.dispatch.emit(res as Dispatch))
+    this.dispatchService.add(dispatch).subscribe(res => {
+      this.dispatch.emit(res as Dispatch);
+      this.disabledButton = true;
+    //  this.stepOneForm.controls.office.disable();
+    //  this.stepOneForm.controls.country.disable();
+    });
   }
 }
