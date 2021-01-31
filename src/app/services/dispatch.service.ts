@@ -40,8 +40,8 @@ export class DispatchService {
         })
       );
   }
-  GetDispatchById(id: number) {
-    this.http.get(environment.RestFullApi + `dispatch/${id}`)
+  GetDispatchById(id: number): Observable<Dispatch> {
+    return this.http.get<Dispatch>(environment.RestFullApi + `dispatch/${id}`)
     .pipe(
       map(res => {
         return res;
@@ -56,13 +56,13 @@ export class DispatchService {
         })
       );
   }
-  update(dispatch: Dispatch) {
-    this.http.put(environment.RestFullApi + 'dispatch', dispatch)
-    .pipe(
-      map(res => {
-        return res;
-      })
-    );
+  update(dispatch: Dispatch): Observable<any> {
+    return this.http.put<any>(environment.RestFullApi + 'dispatch', dispatch)
+      .pipe(
+        map(res => {
+          return res;
+        })
+      );
   }
   delete(id: number){
     this.http.delete(environment.RestFullApi + `dispatch/${id}`)

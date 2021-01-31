@@ -120,6 +120,7 @@ export class DispatchListComponent implements OnInit {
     this.router.navigate([AppRouting.Dispatch])
   }
   edit(id: number) {
+    this.router.navigate([AppRouting.Dispatch, id]);
 
   }
   clear(){

@@ -3,22 +3,23 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
-import { DataSourceService } from 'src/app/services/DataSource';
+import { DispatchService } from 'src/app/services/dispatch.service';
 
 
 @Injectable()
-export class DispatchStateResolver implements Resolve<any>
+export class DispatchResolver implements Resolve<any>
 {
     private apiEndPoint: string;
 
     constructor(
-        private service: DataSourceService,
+        private service: DispatchService,
     )
     {
     }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any>
-    {      
-       return this.service.getDispatchStates();
+    {
+        const id: number = route.params.id;
+        return this.service.GetDispatchById(id);
     }
 }

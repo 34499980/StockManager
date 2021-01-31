@@ -6,10 +6,11 @@ import { OfficeResolver } from 'src/app/resolvers/office.resolver';
 import { CountriesResolver } from 'src/app/resolvers/countries.resolver';
 import { DispatchListComponent } from './dispatch-list/dispatch-list.component';
 import { DispatchCreateComponent } from './dispatch-create/dispatch-create.component';
-import { DispatchResolver } from './dispatch-state.resolver';
+import {  DispatchStateResolver } from './dispatch-state.resolver';
 import { StepOneComponent } from './steps/step-one/step-one.component';
 import { StepTwoComponent } from './steps/step-two/step-two.component';
 import { StepThreeComponent } from './steps/step-three/step-three.component';
+import { DispatchResolver } from './dispatch-list/dispatch.resolver';
 const routes: Routes = [
   {
     path: 'all',
@@ -17,7 +18,7 @@ const routes: Routes = [
     resolve:{  
       countries: CountriesResolver,
       office: OfficeResolver,
-      states: DispatchResolver
+      states: DispatchStateResolver
      
     }
   },
@@ -27,7 +28,8 @@ const routes: Routes = [
     resolve:{
       offices: OfficeResolver,
       countries: CountriesResolver,
-      states: DispatchResolver
+      states: DispatchStateResolver,
+      dispatch: DispatchResolver
     }
   },
   {
@@ -36,7 +38,7 @@ const routes: Routes = [
     resolve:{
       offices: OfficeResolver,
       countries: CountriesResolver,
-      states: DispatchResolver  
+      states: DispatchStateResolver  
     }
   }
   
@@ -50,7 +52,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule
   ],
-  providers: [OfficeResolver, CountriesResolver, DispatchResolver]
+  providers: [OfficeResolver, CountriesResolver, DispatchStateResolver, DispatchResolver]
 
 })
 export class DispatchModule { }

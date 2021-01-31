@@ -1,14 +1,27 @@
 <form [formGroup]="stepTwoForm">
-
-<mat-form-field class="example-full-width" appearance="outline">
-    <mat-label>{{'DISPATCH.CODE' | translate}}</mat-label>
-    <input matInput formControlName="code"  #input autocomplete="off">            
-  </mat-form-field>
-  <ng-container *ngIf="stepTwoForm.controls.code.touched">       
-    <mat-error *ngIf="stepTwoForm.controls.code.hasError('maxlength')">{{'ERROR-MESSAGE.MAXLENGTH' | translate}}</mat-error>
-    <mat-error *ngIf="stepTwoForm.controls.code.hasError('pattern')">{{'ERROR-MESSAGE.INVALIDCHAR' | translate}}</mat-error>
-    <ng-content></ng-content>
-</ng-container>
+<div fxFlex="100%" fxLayout="row" fxLayoutAlign="space-between"> 
+  <div>
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>{{'DISPATCH.CODE' | translate}}</mat-label>
+        <input matInput formControlName="code"  #input autocomplete="off">            
+      </mat-form-field>
+      <ng-container *ngIf="stepTwoForm.controls.code.touched">       
+        <mat-error *ngIf="stepTwoForm.controls.code.hasError('maxlength')">{{'ERROR-MESSAGE.MAXLENGTH' | translate}}</mat-error>
+        <mat-error *ngIf="stepTwoForm.controls.code.hasError('pattern')">{{'ERROR-MESSAGE.INVALIDCHAR' | translate}}</mat-error>
+        <ng-content></ng-content>
+    </ng-container>
+  </div>
+  <div>
+    <button  
+  matTooltipPosition="above" mat-raised-button color="primary"
+  (click)="update()">{{'GENERALACTIONS.SAVE' | translate}}
+    </button>
+    <button class="ml-12" 
+  matTooltipPosition="above" mat-raised-button color="primary"
+  (click)="confirm()">{{'GENERALACTIONS.CONFIRM' | translate}}
+    </button>
+  </div>
+</div>
 </form>
 <mat-table #table  [dataSource]="dataSource"          
             class="center" >                           

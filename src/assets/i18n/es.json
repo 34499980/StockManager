@@ -136,7 +136,8 @@
         "CANCEL":"Cancelar",
         "SAVE":"Guardar",
         "NEXT": "Siguiente",
-        "PREVIOUS": "Volver"
+        "PREVIOUS": "Volver",
+        "CONFIRM": "Confirmar"
     },
     "STATES-LIST":{
         "ENABLED":"Habilitado",

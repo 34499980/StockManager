@@ -132,7 +132,8 @@
         "CANCEL":"Cancel",
         "SAVE": "Save",
         "NEXT": "Next",
-        "PREVIOUS": "Previous"
+        "PREVIOUS": "Previous",
+        "CONFIRM": "Confirm"
     },
     "STATES-LIST":{
         "ENABLED":"Enabled",
