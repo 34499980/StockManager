@@ -17,7 +17,7 @@ export interface Dispatch{
     // tslint:disable-next-line: variable-name
     stock_office: Stock_Office[]
     // tslint:disable-next-line: variable-name
-    dispatch_stock: Dispatc_stock[];
+    dispatch_stock: Dispatch_stock[];
     stateText: string
 }
 export interface DispatchGet extends Dispatch {

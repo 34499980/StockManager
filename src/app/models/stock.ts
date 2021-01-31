@@ -18,7 +18,7 @@ export interface Stock{
     stock_Office?: Stock_Office[]
     office?: Office;
     unity?: number;
-    count: number;
+    count?: number;
 }
 export interface StockGet extends Stock{
     officeDescription: string;
