@@ -184,7 +184,8 @@
      "ERRORS":{
         "errOfficeAllReadyExist": "The office name is allready in use",
         "errSameDestinationAndOrigin" : "It's the same office to origin and destination",
-        "errStockNotFound": "Stock not found"
+        "errStockNotFound": "Stock not found",
+        "errStockHasChange": "Stock has change"
     }
 
 }

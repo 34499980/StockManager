@@ -12,7 +12,7 @@
          
         </div>
     <div class="center card">
-      <ng-stepper #cdkStepper [linear]="true">
+      <ng-stepper #cdkStepper [linear]="true" editable="false">
         <cdk-step [stepControl]="stepOne.stepOneForm" [optional]="false">
           <ng-template cdkStepLabel>
             <div class="step-bullet">1</div>
@@ -20,6 +20,7 @@
           </ng-template>
           <app-step-one #stepOne [officesData]="officesData" [countriesData]="countriesData" 
           (dispatch)="setDispatch($event)"
+          [uploadDispatch]="uploadDispatch"
           ></app-step-one>
         </cdk-step>
     

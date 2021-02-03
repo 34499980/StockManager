@@ -9,6 +9,7 @@ import { of, Subject } from 'rxjs';
 import { startWith, switchMap, tap } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { AppRouting } from 'src/app/enums/AppRouting.enum';
+import { DispatchState } from 'src/app/enums/dispatch-state.enum';
 import { Country } from 'src/app/models/country.model';
 import { Dispatch, DispatchGet } from 'src/app/models/dispatch';
 import { DispatchFilter } from 'src/app/models/dispatchFilter.model';
@@ -113,6 +114,9 @@ export class DispatchListComponent implements OnInit {
     });
    
   }
+  dispatchState(dispatch: Dispatch){
+    return dispatch.idState === DispatchState.Created;
+  }
   loadData(){
     this.dispatchData$.next();
   }
@@ -121,6 +125,9 @@ export class DispatchListComponent implements OnInit {
   }
   edit(id: number) {
     this.router.navigate([AppRouting.Dispatch, id]);
+
+  }
+  showDispatch(id: number) {
 
   }
   clear(){

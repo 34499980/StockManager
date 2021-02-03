@@ -285,11 +285,16 @@
               <ng-container matColumnDef="ACTIONS">
                   <mat-header-cell *matHeaderCellDef class="cell50-w"></mat-header-cell>
                   <mat-cell *matCellDef="let dispatch" fxLayout="row" fxLayoutAlign="flex-start center" class="cell50-w">
-                      <button  mat-icon-button color="accent" fxFlex="0 1 auto"
+                      <button *ngIf="dispatchState(dispatch)"  mat-icon-button color="accent" fxFlex="0 1 auto"
                           matTooltipPosition="above"
                           (click)="edit(dispatch.id)">
                           <mat-icon class="mx-8" color="primary"  >create</mat-icon>
-                      </button>                    
+                      </button>           
+                      <button *ngIf="!dispatchState(dispatch)"  mat-icon-button color="accent" fxFlex="0 1 auto"
+                      matTooltipPosition="above"
+                      (click)="showDispatch(dispatch.id)">
+                      <mat-icon class="mx-8" color="primary"  >visibility</mat-icon>
+                  </button>                             
                
                   </mat-cell>
               </ng-container>

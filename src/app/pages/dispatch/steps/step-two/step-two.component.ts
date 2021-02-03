@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { AppRouting } from 'src/app/enums/AppRouting.enum';
+import { DispatchState } from 'src/app/enums/dispatch-state.enum';
 import { Dispatch } from 'src/app/models/dispatch';
 import { Dispatch_stock } from 'src/app/models/dispatch_stock.model';
 import { Stock } from 'src/app/models/stock';
@@ -49,6 +50,7 @@ export class StepTwoComponent implements OnInit {
     if (this.uploadDispatch) {
       this.uploadDispatch.subscribe(data => {
         this.dispatch = data
+        this.dataSource.data = [...this.dispatch.stock];  
       });
     }
     this.stepTwoForm.valueChanges.subscribe(val => {
@@ -111,6 +113,7 @@ export class StepTwoComponent implements OnInit {
     });
   }
   confirm(){
+    this.dispatch.idState = DispatchState.Dispatched;
     this.dispatchConfirm.emit(this.dispatch);
   }
   

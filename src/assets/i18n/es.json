@@ -188,7 +188,8 @@
     "ERRORS":{
         "errOfficeAllReadyExist": "El nombre de sucursal ya existe!",
         "errSameDestinationAndOrigin" : "El destino del despacho no puede ser el mismo que el de origen.",
-        "errStockNotFound": "No se encontro el producto"
+        "errStockNotFound": "No se encontro el producto",
+        "errStockHasChange": "El stock fue modificado"
     }
 
     
