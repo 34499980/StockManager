@@ -11,6 +11,7 @@ import { StepOneComponent } from './steps/step-one/step-one.component';
 import { StepTwoComponent } from './steps/step-two/step-two.component';
 import { StepThreeComponent } from './steps/step-three/step-three.component';
 import { DispatchResolver } from './dispatch-list/dispatch.resolver';
+import { DispatchViewReciveComponent } from './dispatch-view-recive/dispatch-view-recive.component';
 const routes: Routes = [
   {
     path: 'all',
@@ -23,8 +24,18 @@ const routes: Routes = [
     }
   },
   {
-    path: ':id',
+    path: 'create/:id',
     component: DispatchCreateComponent,
+    resolve:{
+      offices: OfficeResolver,
+      countries: CountriesResolver,
+      states: DispatchStateResolver,
+      dispatch: DispatchResolver
+    }
+  },  
+  {
+    path: 'recive/:id',
+    component: DispatchViewReciveComponent,
     resolve:{
       offices: OfficeResolver,
       countries: CountriesResolver,
@@ -46,7 +57,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [DispatchCreateComponent, DispatchListComponent, StepOneComponent, StepTwoComponent, StepThreeComponent],
+  declarations: [DispatchCreateComponent, DispatchListComponent, StepOneComponent, StepTwoComponent, StepThreeComponent, DispatchViewReciveComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

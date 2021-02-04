@@ -121,14 +121,14 @@ export class DispatchListComponent implements OnInit {
     this.dispatchData$.next();
   }
   add() {
-    this.router.navigate([AppRouting.Dispatch])
+    this.router.navigate([AppRouting.DispatchCreate])
   }
   edit(id: number) {
-    this.router.navigate([AppRouting.Dispatch, id]);
+    this.router.navigate([AppRouting.DispatchCreate, id]);
 
   }
   showDispatch(id: number) {
-
+    this.router.navigate([AppRouting.DispatchRecive, id]);
   }
   clear(){
     this.searchControl.reset();

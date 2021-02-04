@@ -6,7 +6,9 @@ export const enum  AppRouting {
     Office = 'Office',
     OfficeList = 'Office/all',
     Stock = 'Stock',
+    Dispatch = 'Dispatch',
     DispatchList = 'Dispatch/all',
-    Dispatch = 'Dispatch'
+    DispatchCreate = 'Dispatch/create',
+    DispatchRecive = 'Dispatch/recive'
 
 }

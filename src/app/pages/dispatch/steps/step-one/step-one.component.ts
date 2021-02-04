@@ -40,7 +40,8 @@ export class StepOneComponent implements OnInit {
     if (this.uploadDispatch) {
       this.uploadDispatch.subscribe(data => {
         this.dispatch = data;
-        this.stepOneForm.controls.office.setValue(this.dispatch?.idDestiny); 
+        const dispatchTemp: Dispatch = this.dispatch as unknown as Dispatch
+        this.stepOneForm.controls.office.setValue(dispatchTemp?.idDestiny); 
         this.disabledButton = true;    
       });
     }
