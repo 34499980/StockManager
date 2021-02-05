@@ -93,10 +93,12 @@
         "FROM":"Desde",
         "TO": "Hasta",
         "CLEAN": "Limpiar",        
-        "COUNTRY": "País",
+        "COUNTRY": "País",        
+        "RECIVE": "Recibir",
         "ACTIONS":{           
             "SAVE":"El despacho fue confirmado",            
-            "UPDATE": "El despacho fue actualizada"
+            "UPDATE": "El despacho fue actualizada",
+            "NOTFOUND": "El producto no se encuentra en el despacho"
         },
         "STEPS": {
             "ONE":{
@@ -189,7 +191,9 @@
         "errOfficeAllReadyExist": "El nombre de sucursal ya existe!",
         "errSameDestinationAndOrigin" : "El destino del despacho no puede ser el mismo que el de origen.",
         "errStockNotFound": "No se encontro el producto",
-        "errStockHasChange": "El stock fue modificado"
+        "errStockHasChange": "El stock fue modificado",
+        "errProductWithoutStock": "Producto sin stock",
+        "errCheckDsipatchItems": "Verifica los articulos del despacho"
     }
 
     

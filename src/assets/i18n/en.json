@@ -45,9 +45,11 @@
         "TO": "To",
         "CLEAN": "Clean",
         "COUNTRY": "Country",
+        "RECIVE": "Recive",
         "ACTIONS":{           
             "SAVE":"The dispatch was confirmed",            
-            "UPDATE": "The dispatch was updated"
+            "UPDATE": "The dispatch was updated",
+            "NOTFOUND": "This item doesn't found in this dispatch"
         },
         "STEPS": {
             "ONE":{
@@ -185,7 +187,9 @@
         "errOfficeAllReadyExist": "The office name is allready in use",
         "errSameDestinationAndOrigin" : "It's the same office to origin and destination",
         "errStockNotFound": "Stock not found",
-        "errStockHasChange": "Stock has change"
+        "errStockHasChange": "Stock has change",
+        "errProductWithoutStock": "Product without stock",
+        "errCheckDsipatchItems": "Check the dispatch items"
     }
 
 }

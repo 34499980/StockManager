@@ -44,7 +44,7 @@ const routes: Routes = [
     }
   },
   {
-    path: '',
+    path: 'create',
     component: DispatchCreateComponent,
     resolve:{
       offices: OfficeResolver,

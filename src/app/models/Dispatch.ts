@@ -9,7 +9,7 @@ export interface Dispatch{
     idDestiny: number
     dateCreate: string
     dateDispatched: string
-    dateRecived: string
+    dateReceived: string
     idState: number
     idUser: number
     unity: string

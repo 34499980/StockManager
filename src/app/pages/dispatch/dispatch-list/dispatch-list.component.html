@@ -255,7 +255,7 @@
                     {{'DISPATCH.RECEIVEDDATE' | translate}}
                 </mat-header-cell>
                 <mat-cell *matCellDef="let dispatch">
-                  <p class="text-truncate">{{dispatch.dateRecived | date: 'dd/MM/yyyy'}}</p>
+                  <p class="text-truncate">{{dispatch.dateReceived | date: 'dd/MM/yyyy'}}</p>
               </mat-cell>
             </ng-container>  
 
@@ -290,11 +290,15 @@
                           (click)="edit(dispatch.id)">
                           <mat-icon class="mx-8" color="primary"  >create</mat-icon>
                       </button>           
-                      <button *ngIf="!dispatchState(dispatch)"  mat-icon-button color="accent" fxFlex="0 1 auto"
+                      <button *ngIf="!dispatchState(dispatch) && !dispatchRecivedState(dispatch)"  mat-icon-button color="accent" fxFlex="0 1 auto"
                       matTooltipPosition="above"
                       (click)="showDispatch(dispatch.id)">
                       <mat-icon class="mx-8" color="primary"  >visibility</mat-icon>
-                  </button>                             
+                  </button>    
+                  <button  *ngIf="dispatchRecivedState(dispatch)" 
+                  matTooltipPosition="above" mat-raised-button color="warn"
+                  (click)="recive(dispatch)">{{'DISPATCH.RECIVE' | translate}}
+                    </button>                         
                
                   </mat-cell>
               </ng-container>

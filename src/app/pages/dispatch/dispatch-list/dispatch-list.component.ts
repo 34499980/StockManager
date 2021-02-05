@@ -115,7 +115,12 @@ export class DispatchListComponent implements OnInit {
    
   }
   dispatchState(dispatch: Dispatch){
-    return dispatch.idState === DispatchState.Created;
+    return dispatch.idState === DispatchState.Created &&
+     dispatch.idOrigin === parseInt(this.authenticationService.getCurrentOffice(), 10);
+  }
+  dispatchRecivedState(dispatch: Dispatch){
+    return dispatch.idState === DispatchState.Dispatched &&
+    dispatch.idDestiny === parseInt(this.authenticationService.getCurrentOffice(), 10);
   }
   loadData(){
     this.dispatchData$.next();
@@ -129,6 +134,13 @@ export class DispatchListComponent implements OnInit {
   }
   showDispatch(id: number) {
     this.router.navigate([AppRouting.DispatchRecive, id]);
+  }
+  recive(dispatch: Dispatch){
+    dispatch.idState = DispatchState.Received;
+    this.dispatchService.update(dispatch).subscribe(() => {
+            this.toastService.success(this.translate.instant('DISPATCH.ACTIONS.UPDATE'));
+            this.loadData(); 
+    });
   }
   clear(){
     this.searchControl.reset();
