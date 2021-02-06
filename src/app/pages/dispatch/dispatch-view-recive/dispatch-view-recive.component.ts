@@ -22,6 +22,7 @@ export class DispatchViewReciveComponent implements OnInit {
   dataSource = new MatTableDataSource([]);
   checkOk = 'assets/ok_check.png';
   checkNotOk = 'assets/notok_check.png'
+  showButton: Boolean;
   displayedColumns = [
     'CODE',
     'NAME',  
@@ -40,8 +41,10 @@ export class DispatchViewReciveComponent implements OnInit {
               private translate: TranslateService,
               private dispatchService: DispatchService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
     this.dispatch = this.activatedRoute.snapshot.data.dispatch as Dispatch;
+    this.showButton = (this.dispatch.idDestiny === parseInt(this.authentication.getCurrentOffice(), 10) &&
+    this.dispatch.idState != DispatchState.Finalized && this.dispatch.idState != DispatchState.Incomplete)
     this.dataSource.data = [...this.dispatch.stock];  
     this.formControl = this.builder.group({
       code: ['']
@@ -73,10 +76,11 @@ export class DispatchViewReciveComponent implements OnInit {
   }
   confirm(){
     this.dispatch.idState = DispatchState.Finalized;
-    this.dispatchService.update(this.dispatch).subscribe(() => 
+    this.dispatchService.update(this.dispatch).subscribe(res => 
     {
       this.toastService.success(this.translate.instant('DISPATCH.ACTIONS.UPDATE'));
       this.router.navigate([AppRouting.DispatchList]);
+      this.showButton = false;
     });
   }
   update(){

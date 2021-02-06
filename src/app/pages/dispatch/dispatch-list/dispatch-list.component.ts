@@ -115,8 +115,9 @@ export class DispatchListComponent implements OnInit {
    
   }
   dispatchState(dispatch: Dispatch){
-    return dispatch.idState === DispatchState.Created &&
-     dispatch.idOrigin === parseInt(this.authenticationService.getCurrentOffice(), 10);
+    return (dispatch.idState === DispatchState.Created &&
+     dispatch.idOrigin === parseInt(this.authenticationService.getCurrentOffice(), 10)) ||
+     (dispatch.idState === DispatchState.Received && dispatch.idDestiny === parseInt(this.authenticationService.getCurrentOffice(), 10))
   }
   dispatchRecivedState(dispatch: Dispatch){
     return dispatch.idState === DispatchState.Dispatched &&
@@ -128,8 +129,14 @@ export class DispatchListComponent implements OnInit {
   add() {
     this.router.navigate([AppRouting.DispatchCreate])
   }
-  edit(id: number) {
-    this.router.navigate([AppRouting.DispatchCreate, id]);
+  edit(dispatch: Dispatch) {
+    if(dispatch.idOrigin === parseInt(this.authenticationService.getCurrentOffice(), 10)
+        && dispatch.idState === DispatchState.Created) {
+      this.router.navigate([AppRouting.DispatchCreate, dispatch.id]);
+    } else {
+      this.router.navigate([AppRouting.DispatchRecive, dispatch.id]);
+    }
+   
 
   }
   showDispatch(id: number) {

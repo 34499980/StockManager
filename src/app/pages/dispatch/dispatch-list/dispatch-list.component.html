@@ -287,12 +287,12 @@
                   <mat-cell *matCellDef="let dispatch" fxLayout="row" fxLayoutAlign="flex-start center" class="cell50-w">
                       <button *ngIf="dispatchState(dispatch)"  mat-icon-button color="accent" fxFlex="0 1 auto"
                           matTooltipPosition="above"
-                          (click)="edit(dispatch.id)">
+                          (click)="edit(dispatch)">
                           <mat-icon class="mx-8" color="primary"  >create</mat-icon>
                       </button>           
                       <button *ngIf="!dispatchState(dispatch) && !dispatchRecivedState(dispatch)"  mat-icon-button color="accent" fxFlex="0 1 auto"
                       matTooltipPosition="above"
-                      (click)="showDispatch(dispatch.id)">
+                      (click)="edit(dispatch)">
                       <mat-icon class="mx-8" color="primary"  >visibility</mat-icon>
                   </button>    
                   <button  *ngIf="dispatchRecivedState(dispatch)" 
