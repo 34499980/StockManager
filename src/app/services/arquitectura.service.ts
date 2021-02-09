@@ -4,6 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogMessageComponent } from '../shared/dialogs/dialogMessage/dialogMessage.component';
 import { DialogconfirmComponent } from '../shared/dialogs/dialogconfirm/dialogconfirm.component';
 import { map } from 'rxjs/operators';
+import { Dispatch } from '../models/dispatch';
+import { ModalDispatchComponent } from '../shared/dialogs/modal-dispatch/modal-dispatch.component';
 @Injectable({
   providedIn: 'root'
 })
@@ -472,6 +474,17 @@ openDialogConfirm(title: string, message: string){
   const dialogRef = this._dialog.open(DialogconfirmComponent, {
   disableClose: true,
   data : {title: title, message: message}
+  });
+
+ return dialogRef.afterClosed().pipe(
+   map(res => {return res}    
+   )
+  )
+}
+openDialogDispatch(dispatch: Dispatch){
+  const dialogRef = this._dialog.open(ModalDispatchComponent, {
+  disableClose: true,
+  data : {dispatch: dispatch}
   });
 
  return dialogRef.afterClosed().pipe(

@@ -8,6 +8,7 @@ import { AppRouting } from 'src/app/enums/AppRouting.enum';
 import { DispatchState } from 'src/app/enums/dispatch-state.enum';
 import { Dispatch } from 'src/app/models/dispatch';
 import { Stock } from 'src/app/models/stock';
+import { ArquitecturaService } from 'src/app/services/arquitectura.service';
 import { DispatchService } from 'src/app/services/dispatch.service';
 import { ToastService } from 'src/app/services/toast.service';
 
@@ -39,7 +40,8 @@ export class DispatchViewReciveComponent implements OnInit {
               private builder: FormBuilder,
               private toastService: ToastService,
               private translate: TranslateService,
-              private dispatchService: DispatchService) { }
+              private dispatchService: DispatchService,
+              private arquitectura: ArquitecturaService) { }
 
   ngOnInit(): void {    
     this.dispatch = this.activatedRoute.snapshot.data.dispatch as Dispatch;
@@ -55,6 +57,16 @@ export class DispatchViewReciveComponent implements OnInit {
         this.formControl.reset();
       }
     })
+  }
+  help() {
+    this.arquitectura.openDialogDispatch(this.dispatch).subscribe(res => {
+      if (res) {
+        this.dispatch = res;
+        this.dispatchService.updateStock(this.dispatch).subscribe(() =>   
+        this.dataSource.data = [...this.dispatch.stock]
+        );
+      }
+    });
   }
   validateState(){
     return this.dispatch.idDestiny === parseInt(this.authentication.getCurrentOffice(), 10) &&

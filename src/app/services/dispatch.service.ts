@@ -64,6 +64,14 @@ export class DispatchService {
         })
       );
   }
+  updateStock(dispatch: Dispatch): Observable<any> {
+    return this.http.post<any>(environment.RestFullApi + 'dispatch/FixStock', dispatch)
+      .pipe(
+        map(res => {
+          return res;
+        })
+      );
+  }
   delete(id: number){
     this.http.delete(environment.RestFullApi + `dispatch/${id}`)
     .pipe(

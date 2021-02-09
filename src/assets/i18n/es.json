@@ -139,7 +139,8 @@
         "SAVE":"Guardar",
         "NEXT": "Siguiente",
         "PREVIOUS": "Volver",
-        "CONFIRM": "Confirmar"
+        "CONFIRM": "Confirmar",
+        "HELP": "Ayuda"
     },
     "STATES-LIST":{
         "ENABLED":"Habilitado",

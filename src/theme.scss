@@ -2,7 +2,7 @@
 @include mat-core();
 
 $my-primary: mat-palette($mat-blue, 700);
-$my-accent: mat-palette($mat-light-green, 800);
+$my-accent: mat-palette($mat-yellow, 500);
 
 $my-theme: mat-light-theme($my-primary, $my-accent);
 
