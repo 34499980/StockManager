@@ -38,6 +38,7 @@ import { MatTableModule } from '@angular/material/table';
 import { ModalStockComponent } from './dialogs/modal-stock/modal-stock.component';
 import {CdkStepperModule} from '@angular/cdk/stepper';
 import { NgStepperModule } from 'angular-ng-stepper';
+import { ModalDispatchComponent } from './dialogs/modal-dispatch/modal-dispatch.component';
 
 const COMPONENTS = [
     InputrequiredComponent,
@@ -132,7 +133,8 @@ const MODULES = [
     ...MODULES
   ],
    declarations: [
-    ...COMPONENTS,  
+    ...COMPONENTS,
+    ModalDispatchComponent,  
   ]
 })
 export class SharedModule { }

@@ -12,8 +12,19 @@
          
      </div>
     <div  class="center card">
-      <div fxFlex="100%"  fxLayout="row wrap" fxLayoutAlign="space-between">     
-        <div fxFlex="20%"  fxLayout="column" class="paddingForm">
+      <div fxFlex="20%" fxLayout="column" fxLayoutAlign="end end">
+        <button
+        matTooltipPosition="above" mat-raised-button color="accent"
+        (click)="help()"
+        >
+        <mat-icon>warning</mat-icon>
+        {{'GENERALACTIONS.HELP' | translate}}
+          </button>  
+      </div>  
+      <div fxFlex="100%"  fxLayout="row wrap" fxLayoutAlign="space-between"> 
+       
+        
+        <div fxFlex="20%"  >
           <form [formGroup]="formControl">
             <mat-form-field appearance="outline"  *ngIf="validateState()">
                 <mat-label>{{'DISPATCH.CODE' | translate}}</mat-label>
@@ -26,15 +37,15 @@
             </ng-container>
           </form>
         </div>
-        <div *ngIf="validateState() || showButton">
-          <button  
+        <div  *ngIf="validateState() || showButton" >
+          <button 
           matTooltipPosition="above" mat-raised-button color="primary"
           (click)="update()">{{'GENERALACTIONS.SAVE' | translate}}
-            </button>
-            <button class="ml-12" 
+           </button>
+           <button  
           matTooltipPosition="above" mat-raised-button color="primary"
           (click)="confirm()">{{'GENERALACTIONS.CONFIRM' | translate}}
-            </button>
+           </button>
         </div>
         <div fxFlex="100%"  fxLayout="column">
           <mat-table #table  [dataSource]="dataSource"          
