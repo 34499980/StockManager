@@ -8,6 +8,7 @@ import { User } from '../../models/user';
 import { Router } from '@angular/router';
 import { AppRouting } from 'src/app/enums/AppRouting.enum';
 import { DomSanitizer } from '@angular/platform-browser';
+import { UserValidate } from 'src/app/models/userValidate.model';
 
 
 const headers = new HttpHeaders();
@@ -86,6 +87,16 @@ export class AuthenticationService {
     }
     setAuthorization(user: User) {
       return this.http.post(environment.RestFullApi+'Authentication/SetAuthorization', user,options).subscribe();
+     
+      
+    }
+    validate(user: UserValidate) {
+      return this.http.post(environment.RestFullApi+'Authentication/Validate', user,options)
+      .pipe(
+        map(res =>{
+          return res
+        })
+      );
      
       
     }

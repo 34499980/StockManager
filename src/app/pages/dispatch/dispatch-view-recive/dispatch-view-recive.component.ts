@@ -59,14 +59,19 @@ export class DispatchViewReciveComponent implements OnInit {
     })
   }
   help() {
-    this.arquitectura.openDialogDispatch(this.dispatch).subscribe(res => {
-      if (res) {
-        this.dispatch = res;
-        this.dispatchService.updateStock(this.dispatch).subscribe(() =>   
-        this.dataSource.data = [...this.dispatch.stock]
-        );
+    this.arquitectura.openDialogValidate().subscribe(res => {
+      if(res){
+        this.arquitectura.openDialogDispatch(this.dispatch).subscribe(res => {
+          if (res) {
+            this.dispatch = res;
+            this.dispatchService.updateStock(this.dispatch).subscribe(() =>   
+            this.dataSource.data = [...this.dispatch.stock]
+            );
+          }
+        });
       }
     });
+   
   }
   validateState(){
     return this.dispatch.idDestiny === parseInt(this.authentication.getCurrentOffice(), 10) &&

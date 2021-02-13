@@ -2,6 +2,7 @@ import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Dispatch } from 'src/app/models/dispatch';
+import { DispatchService } from 'src/app/services/dispatch.service';
 
 @Component({
   selector: 'app-modal-dispatch',
@@ -21,6 +22,7 @@ export class ModalDispatchComponent implements OnInit {
     
   ]
   constructor(@Inject(MAT_DIALOG_DATA) private data,
+              private dispatchService: DispatchService,
               public dialogRef: MatDialogRef<ModalDispatchComponent>) {
     this.dispatch = data.dispatch
    }
@@ -29,7 +31,10 @@ export class ModalDispatchComponent implements OnInit {
     this.dataSource.data = [...this.dispatch.stock];  
   }
   save() {
-    this.dialogRef.close(this.dispatch);
+    this.dispatchService.updateStock(this.dispatch).subscribe(() => 
+    this.dialogRef.close(this.dispatch)
+    );
+  
   }
   removeStock(code: string){
    const stock = this.dispatch.stock.find(x => x.code === code);

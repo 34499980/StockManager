@@ -39,13 +39,16 @@ import { ModalStockComponent } from './dialogs/modal-stock/modal-stock.component
 import {CdkStepperModule} from '@angular/cdk/stepper';
 import { NgStepperModule } from 'angular-ng-stepper';
 import { ModalDispatchComponent } from './dialogs/modal-dispatch/modal-dispatch.component';
+import { DialogValidateComponent } from './dialogs/dialogValidate/dialogValidate.component';
 
 const COMPONENTS = [
     InputrequiredComponent,
     DialogMessageComponent,
     DialogconfirmComponent,
+    DialogValidateComponent,
     PaneluserComponent,
-    ModalStockComponent
+    ModalStockComponent,
+    ModalDispatchComponent
 ];
 const MODULES = [
   AvatarModule,  
@@ -134,7 +137,7 @@ const MODULES = [
   ],
    declarations: [
     ...COMPONENTS,
-    ModalDispatchComponent,  
+    
   ]
 })
 export class SharedModule { }

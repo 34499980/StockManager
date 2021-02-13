@@ -6,6 +6,7 @@ import { DialogconfirmComponent } from '../shared/dialogs/dialogconfirm/dialogco
 import { map } from 'rxjs/operators';
 import { Dispatch } from '../models/dispatch';
 import { ModalDispatchComponent } from '../shared/dialogs/modal-dispatch/modal-dispatch.component';
+import { DialogValidateComponent } from '../shared/dialogs/dialogValidate/dialogValidate.component';
 @Injectable({
   providedIn: 'root'
 })
@@ -485,6 +486,19 @@ openDialogDispatch(dispatch: Dispatch){
   const dialogRef = this._dialog.open(ModalDispatchComponent, {
   disableClose: true,
   data : {dispatch: dispatch}
+  });
+
+ return dialogRef.afterClosed().pipe(
+   map(res => {return res}    
+   )
+  )
+}
+openDialogValidate(){
+  const dialogRef = this._dialog.open(DialogValidateComponent, {
+    width: "300px",
+    height: "350px",
+    disableClose: true,
+    data : {}
   });
 
  return dialogRef.afterClosed().pipe(
