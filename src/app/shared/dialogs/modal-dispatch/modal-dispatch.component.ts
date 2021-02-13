@@ -16,8 +16,8 @@ export class ModalDispatchComponent implements OnInit {
     'NAME',  
     'MODEL',
     'BRAND',
-    'UNITY',   
-    'ACTIONS',
+    'UNITY',  
+  
     
   ]
   constructor(@Inject(MAT_DIALOG_DATA) private data,
@@ -30,6 +30,28 @@ export class ModalDispatchComponent implements OnInit {
   }
   save() {
     this.dialogRef.close(this.dispatch);
+  }
+  removeStock(code: string){
+   const stock = this.dispatch.stock.find(x => x.code === code);
+   if(stock.unity > 0) {
+    stock.unity--;
+    const dispatch_stock =  this.dispatch.dispatch_stock.find(x => x.idStock === stock.id);
+    dispatch_stock.unity = stock.unity;
+    if(dispatch_stock.unityRead > stock.unity){
+      dispatch_stock.unityRead = stock.unity;
+    }
+  
+   }
+  }
+  addStock(code: string){
+    const stock = this.dispatch.stock.find(x => x.code === code);
+     stock.unity++;
+     const dispatch_stock =  this.dispatch.dispatch_stock.find(x => x.idStock === stock.id);
+     dispatch_stock.unity = stock.unity;     
+     dispatch_stock.unityRead = stock.unity;
+     
+   
+    
   }
 
 }
