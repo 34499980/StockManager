@@ -1,4 +1,4 @@
-<ng-container>
+<div  class="full-height">
   <form [formGroup]="searchControl">
     <mat-toolbar class="header" fxLayoutAlign="space-between">
       
@@ -28,54 +28,58 @@
       <mat-sidenav #sidenav mode="side" class="example-sidenav"
                   position="end"
                 >
-      <div fxLayout="row wrap" class="p-12 pb-56 filtter">    
+      <div fxFlex="100%" fxLayout="row wrap" fxLayoutAlign="center start">    
   
-        <mat-label class="font-weight-400">{{'USERS.USERNAME' | translate}}</mat-label>
-        <mat-form-field  appearance="outline" floatLabel="always" class="mx-12" fxFlex="1 1 90%"
-            color="accent">
-            <input autocomplete="off" matInput formControlName="name"
-               >
-        </mat-form-field> 
-  
-        <mat-label class="font-weight-400">{{'USERS.OFFICE' | translate}}</mat-label>
-        <mat-form-field appearance="outline" floatLabel="always" class="mx-12" fxFlex="1 1 90%"
-            color="accent">
-            <mat-select formControlName="office" placeholder="Todos"> 
-              <mat-option [value]="''">{{'USERS.ALL' | translate}}</mat-option>                      
-              <mat-option *ngFor="let r of officeData" [value]="r.id" >
-                {{r.name}}
-              </mat-option>
-            </mat-select>  
-        </mat-form-field> 
-  
-        <mat-label class="font-weight-400">{{'USERS.ROLE' | translate}}</mat-label>
-        <mat-form-field appearance="outline" floatLabel="always" class="mx-12" fxFlex="1 1 90%"
-            color="accent">
-            <mat-select formControlName="role" placeholder="Todos">      
-              <mat-option [value]="''">{{'USERS.ALL' | translate}}</mat-option>                          
-              <mat-option *ngFor="let r of rolesData" [value]="r.id" >
-                {{'ROLE-LIST.'+r.description | translate}}
-               
-              </mat-option>
-            </mat-select>  
-        </mat-form-field> 
+        <div fxFlex="90%" fxLayout="column">
+          <mat-label fxFlex="100%">{{'USERS.USERNAME' | translate}}</mat-label>
+          <mat-form-field fxFlex="100%"  appearance="outline" floatLabel="always"
+              color="primary">
+              <input autocomplete="off" matInput formControlName="name">
+          </mat-form-field> 
+        </div>
+        
+        <div fxFlex="90%" fxLayout="column">
+          <mat-label fxFlex="100%">{{'USERS.OFFICE' | translate}}</mat-label>
+          <mat-form-field appearance="outline" floatLabel="always"
+              color="primary">
+              <mat-select formControlName="office" placeholder="Todos"> 
+                <mat-option [value]="''">{{'USERS.ALL' | translate}}</mat-option>                      
+                <mat-option *ngFor="let r of officeData" [value]="r.id" >
+                  {{r.name}}
+                </mat-option>
+              </mat-select>  
+          </mat-form-field> 
+        </div>
+        <div fxFlex="90%" fxLayout="column">
+          <mat-label fxFlex="100%">{{'USERS.ROLE' | translate}}</mat-label>
+          <mat-form-field appearance="outline" floatLabel="always" 
+              color="primary">
+              <mat-select formControlName="role" placeholder="Todos">      
+                <mat-option [value]="''">{{'USERS.ALL' | translate}}</mat-option>                          
+                <mat-option *ngFor="let r of rolesData" [value]="r.id" >
+                  {{'ROLE-LIST.'+r.description | translate}}
+                
+                </mat-option>
+              </mat-select>  
+          </mat-form-field> 
+        </div>
+        <div fxFlex="90%" fxLayout="column">
+          <mat-label fxFlex="100%">{{'USERS.COUNTRY' | translate}}</mat-label>
+          <mat-form-field appearance="outline" floatLabel="always" 
+              color="primary">
+              <mat-select formControlName="country" placeholder="Todos">      
+                <mat-option [value]="''">{{'USERS.ALL' | translate}}</mat-option>                          
+                <mat-option *ngFor="let c of countriesData" [value]="c.id" >
+                  {{c.description}}
+                
+                </mat-option>
+              </mat-select>  
+          </mat-form-field>
+        </div>
 
-        <mat-label class="font-weight-400">{{'USERS.COUNTRY' | translate}}</mat-label>
-        <mat-form-field appearance="outline" floatLabel="always" class="mx-12" fxFlex="1 1 90%"
-            color="accent">
-            <mat-select formControlName="country" placeholder="Todos">      
-              <mat-option [value]="''">{{'USERS.ALL' | translate}}</mat-option>                          
-              <mat-option *ngFor="let c of countriesData" [value]="c.id" >
-                {{c.description}}
-               
-              </mat-option>
-            </mat-select>  
-        </mat-form-field>
-
-
-        <mat-checkbox formControlName="status" fxLayoutAlign="start center"
+        <mat-checkbox formControlName="status" 
         appearance="outline" floatLabel="always"
-        class="mb-12" fxFlex="100%" color="primary">{{'USERS.DISABLED' | translate}} </mat-checkbox>
+        class="ml-12" fxFlex="100%" color="primary">{{'USERS.DISABLED' | translate}} </mat-checkbox>
         
         <div fxLayout="row" class="aply-filters-button">
           <button fxFlex="90%" fxLayoutAlign="center center"
@@ -106,4 +110,4 @@
 
 
 
-</ng-container>
+</div>
