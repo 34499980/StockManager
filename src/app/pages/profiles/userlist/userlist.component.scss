@@ -23,9 +23,21 @@
     padding-left: 5%;
     padding-top: 2%;
   }
-.search{
-  padding-left: 20%;
-}
+  .searchWrapper {
+   border-radius: 28px;
+    background: white;
+    height: 40px;
+    margin-left: 16px;
+    margin-top: 8px;
+    width: 20%;
+
+
+    .search{
+      width: 100%;    
+      line-height: 30px;
+     
+    }
+  }
 .paddingButton{
   padding-left: 2%;
 }

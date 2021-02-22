@@ -25,6 +25,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }*/
 .mx-12{
     margin: 12px;
 }
+.mx-14{
+    margin: 14px;
+}
+.mx-16{
+    margin: 16px;
+}
 
 .ml-2{
     margin-left: 2px;
@@ -44,6 +50,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }*/
 .ml-12{
     margin-left: 12px;
 }
+.ml-14{
+    margin-left: 14px;
+}
+.ml-16{
+    margin-left: 16px;
+}
+
+
 
 
 .mr-2{
@@ -64,6 +78,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }*/
 .mr-12{
     margin-right: 12px;
 }
+.mr-14{
+    margin-right: 14px;
+}
+.mr-16{
+    margin-right: 16px;
+}
 
 .mt-2{
     margin-top: 2px;
@@ -82,6 +102,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }*/
 }
 .mt-12{
     margin-top: 12px;
+}
+.mt-14{
+    margin-top: 14px;
+}
+.mt-16{
+    margin-top: 16px;
 }
 
 
@@ -103,6 +129,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }*/
 .mb-12{
     margin-bottom: 12px;
 }
+.mb-14{
+    margin-bottom: 14px;
+}
+
+.mb-16{
+    margin-bottom: 16px;
+}
+
 
 /*PADDING*/
 

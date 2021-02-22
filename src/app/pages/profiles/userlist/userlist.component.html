@@ -1,13 +1,16 @@
 <div  class="full-height">
   <form [formGroup]="searchControl">
-    <mat-toolbar class="header" fxLayoutAlign="space-between">
+    <div class="header" fxLayoutAlign="space-between">
       
-        <!--SEARCH BAR-->
-        
-            <mat-form-field   appearance="outline" floatLabel="always">
-                <mat-icon matPrefix class="mr-8">search</mat-icon>
-                <input autocomplete="off" matInput formControlName="name" placeholder="{{'USERS.SEARCH' | translate}}" >
-            </mat-form-field>  
+        <!--SEARCH BAR-->     
+
+        <div class="searchWrapper" fxLayout="row wrap">
+          <div class="search ml-16 mt-6" fxLayout="row"  appearance="outline" floatLabel="always">  
+            <mat-icon>search</mat-icon>       
+            <input class="search ml-16 mt-6"  autocomplete="off" matInput formControlName="name" placeholder="{{'USERS.SEARCH' | translate}}" >
+          </div>  
+        </div>
+           
                      
    
    
@@ -23,7 +26,7 @@
       
     </div>
     
-    </mat-toolbar>
+  </div>
     <mat-sidenav-container class="example-container">
       <mat-sidenav #sidenav mode="side" class="example-sidenav"
                   position="end"
