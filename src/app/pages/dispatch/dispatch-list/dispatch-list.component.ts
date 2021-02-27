@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDrawer } from '@angular/material/sidenav';
@@ -46,6 +46,7 @@ export class DispatchListComponent implements OnInit {
     'ACTIONS'
     
 ];
+  @ViewChild('table') table: ElementRef ;
   @ViewChild('sidenav') sideNavFilters: MatDrawer;
   toggleIsFilterPanelOpen = true;
   constructor(private activateRoute: ActivatedRoute,
@@ -110,7 +111,8 @@ export class DispatchListComponent implements OnInit {
         return this.dispatchService.GetAllDispatchFilter(filter);
       })
     ).subscribe(res =>{     
-       this.dataSource.data = res as DispatchGet[]
+       this.dataSource.data = res as DispatchGet[];
+       this.table.nativeElement.scrollIntoView();
     });
    
   }

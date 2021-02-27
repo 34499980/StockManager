@@ -40,6 +40,7 @@ import {CdkStepperModule} from '@angular/cdk/stepper';
 import { NgStepperModule } from 'angular-ng-stepper';
 import { ModalDispatchComponent } from './dialogs/modal-dispatch/modal-dispatch.component';
 import { DialogValidateComponent } from './dialogs/dialogValidate/dialogValidate.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const COMPONENTS = [
     InputrequiredComponent,
@@ -54,7 +55,8 @@ const MODULES = [
   AvatarModule,  
   TranslateModule,
   CdkStepperModule,
-  NgStepperModule
+  NgStepperModule,
+  
 ]
 @NgModule({
     imports: [
@@ -82,6 +84,7 @@ const MODULES = [
     MatFormFieldModule,
     MatMenuModule,
     MatCheckboxModule, 
+    MatTooltipModule,
     ToastrModule.forRoot({
       timeOut: 7000,
       positionClass: 'toast-bottom-center',
@@ -132,6 +135,7 @@ const MODULES = [
     MatFormFieldModule,
     MatMenuModule,
     ToastrModule,
+    MatTooltipModule,
     ...COMPONENTS,
     ...MODULES
   ],

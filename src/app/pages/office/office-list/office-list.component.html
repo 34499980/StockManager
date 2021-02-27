@@ -104,10 +104,10 @@
               </ng-container>
 
               <ng-container matColumnDef="POSTALCODE">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header >
                       {{'OFFICE.POSTALCODE' | translate}}
                   </mat-header-cell>
-                  <mat-cell *matCellDef="let office">
+                  <mat-cell *matCellDef="let office" >
                       <p class="text-truncate">{{office.postalCode}}</p>
                   </mat-cell>
               </ng-container>
@@ -138,12 +138,12 @@
                   <mat-header-cell *matHeaderCellDef class="cell50-w"></mat-header-cell>
                   <mat-cell *matCellDef="let office" fxLayout="row" fxLayoutAlign="flex-start center" class="cell50-w">
                       <button *ngIf="canEdit()" mat-icon-button color="accent" fxFlex="0 1 auto"
-                          matTooltipPosition="above"
+                      matTooltip= "{{'GENERALACTIONS.ADD' | translate}}"
                           (click)="editOffice(office.id)">
                           <mat-icon class="mx-8" color="primary"  >create</mat-icon>
                       </button>
                       <button *ngIf="canEdit()" mat-icon-button color="accent" fxFlex="0 1 auto"
-                      matTooltipPosition="above"
+                      matTooltip= "{{'GENERALACTIONS.DELETE' | translate}}"
                       (click)="deleteOffice(office.id)">
                       <mat-icon class="mx-8"  style="color:red" >delete</mat-icon>
                   </button>

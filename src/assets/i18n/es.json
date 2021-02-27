@@ -140,7 +140,8 @@
         "NEXT": "Siguiente",
         "PREVIOUS": "Volver",
         "CONFIRM": "Confirmar",
-        "HELP": "Ayuda"
+        "HELP": "Ayuda",
+        "VIEW": "Ver"
     },
     "STATES-LIST":{
         "ENABLED":"Habilitado",

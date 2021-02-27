@@ -156,7 +156,7 @@
                 <mat-header-cell *matHeaderCellDef mat-sort-header>
                     {{'STOCK.UNITY' | translate}}
                 </mat-header-cell>
-                <mat-cell *matCellDef="let stock_office">
+                <mat-cell *matCellDef="let stock_office" fxLayoutAlign="center center">
                     <p class="text-truncate">{{stock_office.unity}}</p>
                 </mat-cell>
             </ng-container>           
@@ -168,12 +168,13 @@
                   <mat-header-cell *matHeaderCellDef class="cell50-w"></mat-header-cell>
                   <mat-cell *matCellDef="let stock_office" fxLayout="row" fxLayoutAlign="flex-start center" class="cell50-w">
                       <button mat-icon-button color="primary" fxFlex="0 1 auto"
-                          matTooltipPosition="above"
+                       
+                          matTooltip= "{{'GENERALACTIONS.ADD' | translate}}"
                           (click)="editStock(stock_office.stock.id)">
                           <mat-icon class="mx-8" color="primary"  >create</mat-icon>
                       </button>
                       <button *ngIf="showPermission()" mat-icon-button color="primary" fxFlex="0 1 auto"
-                      matTooltipPosition="above"
+                      matTooltip= "{{'GENERALACTIONS.DELETE' | translate}}"
                       (click)="deleteStock(stock_office.stock.id)">
                       <mat-icon class="mx-8"  style="color:red" >delete</mat-icon>
                   </button>

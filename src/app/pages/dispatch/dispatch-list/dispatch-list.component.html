@@ -179,62 +179,62 @@
         
         </mat-sidenav>
     
-        <mat-sidenav-content fxLayout="row wrap">
+        <mat-sidenav-content fxLayout="row wrap" fxLayoutAlign="center start">
           <!--TABLE-->
           <mat-table #table  [dataSource]="dataSource"          
-            class="center px-6" >                           
+            class="" >                           
 
 
               <ng-container matColumnDef="CODE">
                   <mat-header-cell *matHeaderCellDef>
                       {{'DISPATCH.CODE' | translate}}
                   </mat-header-cell>
-                  <mat-cell *matCellDef="let dispatch">
+                  <mat-cell matTooltip="{{dispatch.code}}" *matCellDef="let dispatch" fxLayoutAlign="center center">
                       <p class="text-truncate" >{{dispatch.code}}</p>
                   </mat-cell>
               </ng-container>
 
               <ng-container matColumnDef="CREATEDDATE">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                <mat-header-cell *matHeaderCellDef mat-sort-header fxLayoutAlign="center center">
                     {{'DISPATCH.CREATEDDATE' | translate}}
                 </mat-header-cell>
-                <mat-cell *matCellDef="let dispatch">
+                <mat-cell *matCellDef="let dispatch" fxLayoutAlign="center center">
                   <p class="text-truncate">{{dispatch.dateCreate | date: 'dd/MM/yyyy'}}</p>
               </mat-cell>
             </ng-container>       
 
               <ng-container matColumnDef="USERORIGIN">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header fxLayoutAlign="center center">
                       {{'DISPATCH.USERORIGIN' | translate}}
                   </mat-header-cell>
-                  <mat-cell *matCellDef="let dispatch">
+                  <mat-cell *matCellDef="let dispatch" fxLayoutAlign="center center">
                       <p class="text-truncate">{{dispatch.userOriginDescription}}</p>
                   </mat-cell>
               </ng-container>
 
               <ng-container matColumnDef="ORIGIN">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header fxLayoutAlign="center center">
                       {{'DISPATCH.ORIGIN' | translate}}
                   </mat-header-cell>
-                  <mat-cell *matCellDef="let dispatch">
+                  <mat-cell matTooltip="{{dispatch.officeOriginDescription}}" *matCellDef="let dispatch" fxLayoutAlign="center center">
                       <p class="text-truncate">{{dispatch.officeOriginDescription}}</p>
                   </mat-cell>
               </ng-container>
               
               <ng-container matColumnDef="DISPATECHEDDATE">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                <mat-header-cell *matHeaderCellDef mat-sort-header fxLayoutAlign="center center">
                     {{'DISPATCH.DISPATECHEDDATE' | translate}}
                 </mat-header-cell>
-                <mat-cell *matCellDef="let dispatch">
+                <mat-cell *matCellDef="let dispatch" fxLayoutAlign="center center">
                   <p class="text-truncate">{{dispatch.dateDispatched | date: 'dd/MM/yyyy'}}</p>
               </mat-cell>
             </ng-container>  
 
               <ng-container matColumnDef="DESTINY">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                <mat-header-cell *matHeaderCellDef mat-sort-header fxLayoutAlign="center center">
                     {{'DISPATCH.DESTINY' | translate}}
                 </mat-header-cell>
-                <mat-cell *matCellDef="let dispatch">
+                <mat-cell matTooltip="{{dispatch.officeDestinyDescription}}" *matCellDef="let dispatch" fxLayoutAlign="center center">
                     <p class="text-truncate">{{dispatch.officeDestinyDescription}}</p>
                 </mat-cell>
             </ng-container>
@@ -242,38 +242,38 @@
              
 
             <ng-container matColumnDef="USERDESTINY">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                <mat-header-cell *matHeaderCellDef mat-sort-header fxLayoutAlign="center center">
                     {{'DISPATCH.USERDESTINY' | translate}}
                 </mat-header-cell>
-                <mat-cell *matCellDef="let dispatch">
+                <mat-cell *matCellDef="let dispatch" fxLayoutAlign="center center">
                   <p class="text-truncate">{{dispatch.userDestinyDescription}}</p>
               </mat-cell>
             </ng-container>  
 
             <ng-container matColumnDef="RECEIVEDDATE">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                <mat-header-cell *matHeaderCellDef mat-sort-header fxLayoutAlign="center center">
                     {{'DISPATCH.RECEIVEDDATE' | translate}}
                 </mat-header-cell>
-                <mat-cell *matCellDef="let dispatch">
+                <mat-cell *matCellDef="let dispatch" fxLayoutAlign="center center">
                   <p class="text-truncate">{{dispatch.dateReceived | date: 'dd/MM/yyyy'}}</p>
               </mat-cell>
             </ng-container>  
 
 
             <ng-container matColumnDef="STATUS">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                <mat-header-cell *matHeaderCellDef mat-sort-header fxLayoutAlign="center center">
                     {{'DISPATCH.STATUS' | translate}}
                 </mat-header-cell>
-                <mat-cell *matCellDef="let dispatch">
+                <mat-cell *matCellDef="let dispatch" fxLayoutAlign="center center">
                   <p class="text-truncate">{{'DISPATCH-STATUS-LIST.' + dispatch.stateDescription | translate}}</p>
               </mat-cell>
             </ng-container>  
 
             <ng-container matColumnDef="UNITY">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                <mat-header-cell *matHeaderCellDef mat-sort-header fxLayoutAlign="center center">
                     {{'DISPATCH.UNITY' | translate}}
                 </mat-header-cell>
-                <mat-cell *matCellDef="let dispatch">
+                <mat-cell *matCellDef="let dispatch" fxLayoutAlign="center center">
                   <p class="text-truncate">{{dispatch.unity}}</p>
               </mat-cell>
             </ng-container>  
@@ -283,20 +283,23 @@
               
 
               <ng-container matColumnDef="ACTIONS">
-                  <mat-header-cell *matHeaderCellDef class="cell50-w"></mat-header-cell>
-                  <mat-cell *matCellDef="let dispatch" fxLayout="row" fxLayoutAlign="flex-start center" class="cell50-w">
-                      <button *ngIf="dispatchState(dispatch)"  mat-icon-button color="primary" fxFlex="0 1 auto"
-                          matTooltipPosition="above"
+                  <mat-header-cell *matHeaderCellDef  class="cell50-w"></mat-header-cell>
+                  <mat-cell *matCellDef="let dispatch" fxLayoutAlign="center center" fxLayout="row" fxLayoutAlign="flex-start center">
+                      <button *ngIf="dispatchState(dispatch)" fxLayoutAlign="center center"  mat-icon-button color="primary" fxFlex="0 1 auto"
+                        
+                          matTooltip="{{'GENERALACTIONS.ADD' | translate}}"
                           (click)="edit(dispatch)">
-                          <mat-icon class="mx-8" color="primary"  >create</mat-icon>
+                          <mat-icon  color="primary"  >create</mat-icon>
                       </button>           
-                      <button *ngIf="!dispatchState(dispatch) && !dispatchRecivedState(dispatch)"  mat-icon-button color="primary" fxFlex="0 1 auto"
-                      matTooltipPosition="above"
+                      <button *ngIf="!dispatchState(dispatch) && !dispatchRecivedState(dispatch)" fxLayoutAlign="center center"  mat-icon-button color="primary" fxFlex="0 1 auto"
+                     
+                      matTooltip= "{{'GENERALACTIONS.VIEW' | translate}}"
                       (click)="edit(dispatch)">
-                      <mat-icon class="mx-8" color="primary"  >visibility</mat-icon>
+                      <mat-icon  color="primary"  >visibility</mat-icon>
                   </button>    
-                  <button  *ngIf="dispatchRecivedState(dispatch)" 
-                  matTooltipPosition="above" mat-raised-button color="warn"
+                  <button  *ngIf="dispatchRecivedState(dispatch)" fxLayoutAlign="center center" 
+                  mat-raised-button color="warn"
+                  matTooltip="{{'DISPATCH.RECIVE' | translate}}"
                   (click)="recive(dispatch)">{{'DISPATCH.RECIVE' | translate}}
                     </button>                         
                
