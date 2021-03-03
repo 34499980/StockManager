@@ -496,7 +496,7 @@ openDialogDispatch(dispatch: Dispatch){
 openDialogValidate(){
   const dialogRef = this._dialog.open(DialogValidateComponent, {
     width: "300px",
-    height: "350px",
+    height: "auto",
     disableClose: true,
     data : {}
   });

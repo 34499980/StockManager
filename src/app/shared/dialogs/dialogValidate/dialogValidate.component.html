@@ -1,4 +1,4 @@
-<div fxFlex="100%" fxLayout="row wrap" >
+<div fxFlex="100%" fxLayout="row wrap" fxLayoutAlign="space-between">
   <form [formGroup]="formControl" fxFlex="100%" fxLayout="row" fxLayoutAlign="center center">
     <div fxFlex fxLayout="row wrap" fxLayoutAlign="center center"> 
       <app-inputrequired fxFlex="100%" fxLayout="row" title="{{'USERS.USERNAME' | translate}}"  formControlName="userName"></app-inputrequired>  
@@ -8,13 +8,14 @@
   
   </form>
 
-  <div fxFlex="100%" fxLayout="row" fxLayoutAlign="center end">
-    <button mat-raised-button mat-dialog-close>
+  <div fxFlex="100%" fxLayout="row" fxLayoutAlign="space-around">
+    
+    <button class="mx-8" mat-raised-button mat-dialog-close>
       <span class="mx-8">
         Cancelar
       </span>
     </button>
-    <button mat-raised-button color="primary" class="ml-8" (click)="onConfirm()">
+    <button  class="mx-8"mat-raised-button color="primary" (click)="onConfirm()">
       <span class="mx-8">
         Aceptar
       </span>
