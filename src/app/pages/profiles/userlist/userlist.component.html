@@ -96,7 +96,7 @@
   
       <mat-sidenav-content fxLayout="row wrap">
         <mat-accordion hideToggle="true" >
-        <ul  *ngFor="let user of usersData">
+        <ul class="scroll" *ngFor="let user of usersData">
           
           <li>
               <app-paneluser [user]="user" ></app-paneluser>

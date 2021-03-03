@@ -31,7 +31,9 @@
     margin-top: 8px;
     width: 20%;
 
-
+    ul:hover {
+      overflow-y: scroll;
+    }
     .search{
       width: 100%;    
       line-height: 30px;

@@ -14,7 +14,9 @@
       top:0;
       
     }
- 
+    mat-table:hover {
+      overflow-y: scroll;
+    }
    ng-container{
     overflow: hidden;  
    }
