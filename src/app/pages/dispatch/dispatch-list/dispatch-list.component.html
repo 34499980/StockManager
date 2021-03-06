@@ -52,11 +52,12 @@
             </mat-form-field>
           </div>
           <mat-divider></mat-divider>  
+          <br>
           <!--CREATED DATE-->   
-          <div fxFlex="100%" fxLayout="row wrap" fxLayoutAlign="space-around">
-            <mat-label fxFlex="100%" fxLayout="column" class="ml-6">{{'DISPATCH.CREATEDDATE' | translate}}</mat-label>
+          <div  fxFlex="90%" fxLayout="row wrap" fxLayoutAlign="space-around">
+            <!--<mat-label fxFlex="100%" fxLayout="column" class="ml-6">{{'DISPATCH.CREATEDDATE' | translate}}</mat-label>-->
             <div fxFlex="47%" fxLayout="column" >
-              <mat-label>{{'DISPATCH.FROM' | translate}}</mat-label>
+              <mat-label>{{'DISPATCH.CREATED' | translate}} {{'DISPATCH.FROM' | translate}}</mat-label>
               <mat-form-field  class="datePicker" floatLabel="always"  appearance="outline">
             
               <input matInput  [matDatepicker]="picker1" placeholder="dd/mm/yyyy" formControlName="createdDateFrom" readonly>
@@ -69,7 +70,7 @@
               </ng-container>
           </div>
             <div fxFlex="46%" fxLayout="column" >
-                <mat-label>{{'DISPATCH.TO' | translate}}</mat-label>
+                <mat-label>{{'DISPATCH.CREATED' | translate}} {{'DISPATCH.TO' | translate}}</mat-label>
                 <mat-form-field  class="datePicker" floatLabel="always"  appearance="outline">             
                     <input matInput  [matDatepicker]="picker2" placeholder="dd/mm/yyyy" formControlName="createdDateTo" readonly>
                     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
@@ -81,9 +82,9 @@
                 </ng-container>  
             </div>
           </div>
-            <mat-divider></mat-divider> 
+          
             <!--DISPATCHED DATE-->
-            <div fxFlex="100%" fxLayout="row wrap" fxLayoutAlign="space-around">
+           <!-- <div fxFlex="100%" fxLayout="row wrap" fxLayoutAlign="space-around">
               <mat-label fxFlex="100%" fxLayout="column" class="ml-6">{{'DISPATCH.DISPATECHEDDATE' | translate}}</mat-label>
              
               <div fxFlex="47%" fxLayout="column">
@@ -111,15 +112,14 @@
                     <ng-content></ng-content>
                 </ng-container>
               </div>
-              </div>
+              </div>-->
          
             <!--RECEIVED DATE-->
-            <div fxFlex="100%" fxLayout="row wrap" fxLayoutAlign="space-around">
-              <mat-divider></mat-divider>
-              <mat-label fxFlex="100%" fxLayout="column" class="ml-6">{{'DISPATCH.RECEIVEDDATE' | translate}}</mat-label>
+            <div fxFlex="90%" fxLayout="row wrap" fxLayoutAlign="space-around">              
+              <!--<mat-label fxFlex="100%" fxLayout="column" class="ml-6">{{'DISPATCH.RECEIVEDDATE' | translate}}</mat-label>-->
               
               <div fxFlex="47%" fxLayout="column">
-                <mat-label>{{'DISPATCH.FROM' | translate}}</mat-label>
+                <mat-label>{{'DISPATCH.RECIVED' | translate}} {{'DISPATCH.FROM' | translate}}</mat-label>
                 <mat-form-field  class="datePicker" floatLabel="always"  appearance="outline">
                 
                     <input matInput  [matDatepicker]="picker5" placeholder="dd/mm/yyyy" formControlName="receivedDateFrom" readonly>
@@ -132,7 +132,7 @@
                 </ng-container>
               </div>
               <div fxFlex="46%" fxLayout="column" >
-                <mat-label>{{'DISPATCH.TO' | translate}}</mat-label>
+                <mat-label>{{'DISPATCH.RECIVED' | translate}} {{'DISPATCH.TO' | translate}}</mat-label>
                 <mat-form-field  class="datePicker" floatLabel="always"  appearance="outline">
                   
                     <input matInput  [matDatepicker]="picker6" placeholder="dd/mm/yyyy" formControlName="receivedDateTo" readonly>
@@ -145,6 +145,20 @@
                 </ng-container>
               </div>
             </div>
+            <mat-divider></mat-divider> 
+            <br>
+            <div fxFlex="90%" fxLayout="column">
+              <mat-label fxFlex="100%">{{'OFFICE.COUNTRY' | translate}}</mat-label>
+              <mat-form-field appearance="outline" floatLabel="always"  
+                  color="primary">
+                  <mat-select formControlName="country" placeholder="Todos"> 
+                    <mat-option *ngFor="let c of countriesData" [value]="c.id" >
+                      {{c.description}}
+                    
+                    </mat-option>
+                  </mat-select>  
+              </mat-form-field>
+            </div>   
             <div fxFlex="90%" fxLayout="column">
               <mat-label fxFlex="100%">{{'DISPATCH.OFFICE' | translate}}</mat-label>
               <mat-form-field appearance="outline" floatLabel="always" 
@@ -158,18 +172,7 @@
                   </mat-select>  
               </mat-form-field>  
             </div>       
-            <div fxFlex="90%" fxLayout="column">
-              <mat-label fxFlex="100%">{{'OFFICE.COUNTRY' | translate}}</mat-label>
-              <mat-form-field appearance="outline" floatLabel="always"  
-                  color="primary">
-                  <mat-select formControlName="country" placeholder="Todos"> 
-                    <mat-option *ngFor="let c of countriesData" [value]="c.id" >
-                      {{c.description}}
-                    
-                    </mat-option>
-                  </mat-select>  
-              </mat-form-field>
-            </div>   
+       
 
        
             <button fxFlex="90%" fxLayoutAlign="center center"

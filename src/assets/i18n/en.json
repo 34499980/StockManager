@@ -46,6 +46,8 @@
         "CLEAN": "Clean",
         "COUNTRY": "Country",
         "RECIVE": "Recive",
+        "RECIVED": "Recived",
+        "CREATED": "Created",
         "ACTIONS":{           
             "SAVE":"The dispatch was confirmed",            
             "UPDATE": "The dispatch was updated",

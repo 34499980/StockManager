@@ -94,7 +94,9 @@
         "TO": "Hasta",
         "CLEAN": "Limpiar",        
         "COUNTRY": "País",        
-        "RECIVE": "Recibir",
+        "RECIVE": "Recibir",        
+        "RECIVED": "Recibido",
+        "CREATED": "Creado",
         "ACTIONS":{           
             "SAVE":"El despacho fue confirmado",            
             "UPDATE": "El despacho fue actualizada",
