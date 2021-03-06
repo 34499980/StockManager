@@ -88,7 +88,7 @@ saveUsuario() {
     idRole: parseInt(this.userControl.controls.role.value, 10),
     idCountry: parseInt(this.userControl.controls.country.value, 10),
     active: Boolean(this.userControl.controls.role.value),
-    file: this.base64textString.length === 0? this.user.file: this.base64textString[0] ,
+    file: this.base64textString.length === 0? this.user?.file: this.base64textString[0] ,
     
 
   }

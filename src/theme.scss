@@ -3,7 +3,8 @@
 
 $my-primary: mat-palette($mat-blue, 700);
 $my-accent: mat-palette($mat-yellow, 500);
+$my-success: mat-palette($mat-green, 700);
 
-$my-theme: mat-light-theme($my-primary, $my-accent);
+$my-theme: mat-light-theme($my-primary, $my-accent, $my-success);
 
 @include angular-material-theme($my-theme);
