@@ -14,7 +14,7 @@
     <div  class="center card">
       <div class="mx-12" fxFlex="20%" fxLayout="column" fxLayoutAlign="end end">
         <button
-        matTooltipPosition="above" mat-raised-button color="accent"
+        matTooltipPosition="above" mat-raised-button color="primary"
         (click)="help()"
         >
         <mat-icon>warning</mat-icon>
@@ -98,13 +98,13 @@
                 fxLayout="row" fxLayoutAlign="flex-start center"
                 class="cell50-w">
                   
-                    <button *ngIf="canEdit() && stock.count > 0 && validateState()"  mat-icon-button color="accent" fxFlex="0 1 auto"
+                    <button *ngIf="canEdit() && stock.count > 0 && validateState()"  mat-icon-button color="primary" fxFlex="0 1 auto"
                     matTooltipPosition="above" (click)="removeStock(stock.code)"
                   >
                     <mat-icon class="mx-8" color="primary"  >remove</mat-icon>
                 </button>
                 <span *ngIf="canEdit()">{{stock.count}}</span>                     
-                <button *ngIf="canEdit()  && stock.count > 0 && validateState()" mat-icon-button color="accent" fxFlex="0 1 auto"
+                <button *ngIf="canEdit()  && stock.count > 0 && validateState()" mat-icon-button color="primary" fxFlex="0 1 auto"
                 matTooltipPosition="above" (click)="addStock(stock.code)"
               >
                 <mat-icon class="mx-8" color="primary"  >add</mat-icon>

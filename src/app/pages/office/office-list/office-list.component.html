@@ -137,12 +137,12 @@
               <ng-container matColumnDef="ACTIONS">
                   <mat-header-cell *matHeaderCellDef class="cell50-w"></mat-header-cell>
                   <mat-cell *matCellDef="let office" fxLayout="row" fxLayoutAlign="flex-start center" class="cell50-w">
-                      <button *ngIf="canEdit()" mat-icon-button color="accent" fxFlex="0 1 auto"
+                      <button *ngIf="canEdit()" mat-icon-button color="primary" fxFlex="0 1 auto"
                       matTooltip= "{{'GENERALACTIONS.ADD' | translate}}"
                           (click)="editOffice(office.id)">
                           <mat-icon class="mx-8" color="primary"  >create</mat-icon>
                       </button>
-                      <button *ngIf="canEdit()" mat-icon-button color="accent" fxFlex="0 1 auto"
+                      <button *ngIf="canEdit()" mat-icon-button color="primary" fxFlex="0 1 auto"
                       matTooltip= "{{'GENERALACTIONS.DELETE' | translate}}"
                       (click)="deleteOffice(office.id)">
                       <mat-icon class="mx-8"  style="color:red" >delete</mat-icon>

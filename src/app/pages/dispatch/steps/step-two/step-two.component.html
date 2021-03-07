@@ -77,13 +77,13 @@
                   <mat-header-cell *matHeaderCellDef class="cell50-w"></mat-header-cell>
                   <mat-cell *matCellDef="let stock" fxLayout="row" fxLayoutAlign="flex-start center" class="cell50-w">
                      
-                      <button  mat-icon-button color="accent" fxFlex="0 1 auto"
+                      <button  mat-icon-button color="primary" fxFlex="0 1 auto"
                       matTooltipPosition="above"
                       (click)="removeStock(stock.code)">
                       <mat-icon class="mx-8" color="primary"  >remove</mat-icon>
                   </button>
                   <span>{{stock.count}}</span>                     
-                  <button  mat-icon-button color="accent" fxFlex="0 1 auto"
+                  <button  mat-icon-button color="primary" fxFlex="0 1 auto"
                   matTooltipPosition="above"
                   (click)="addStock(stock.code)">
                   <mat-icon class="mx-8" color="primary"  >add</mat-icon>
