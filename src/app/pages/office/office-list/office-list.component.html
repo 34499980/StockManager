@@ -30,7 +30,8 @@
       <mat-sidenav-container class="example-container">
         <mat-sidenav #sidenav mode="side" class="example-sidenav"
                     position="end" >
-          <div fxFlex="100%" fxLayout="row wrap" fxLayoutAlign="center start"> 
+         <div class="scroll" fxFlex="100%" fxLayout="column" fxLayoutAlign="space-between center"> 
+          <div fxFlex="90%" fxLayout="row wrap" fxLayoutAlign="center">
             <div fxFlex="90%" fxLayout="column">
               <mat-label fxFlex="100%">{{'OFFICE.NAME' | translate}}</mat-label>
               <mat-form-field fxFlex="100%" appearance="outline" floatLabel="always"
@@ -68,8 +69,10 @@
           <mat-checkbox class="ml-12" formControlName="disabled" fxLayoutAlign="start center"
           appearance="outline" floatLabel="always"
           fxFlex="100%" color="primary">{{'OFFICE.DISABLED' | translate}} </mat-checkbox>
+           </div>   
+           
           
-          <div fxLayout="row" class="aply-filters-button">
+           <div fxFlex="100%" fxLayout="row" fxLayoutAlign="end end" class="mb-16 aply-filters-button">
             <button fxFlex="90%" fxLayoutAlign="center center"
             matTooltip="Limpiar filtros" matTooltipPosition="above" mat-raised-button color="primary"
             (click)="clear()">{{'USERS.CLEAN' | translate}}

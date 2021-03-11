@@ -46,6 +46,21 @@
     padding-top: 2%;
     padding-left: 20px;
   }      
+  .searchWrapper {
+    border-radius: 28px;
+     background: white;
+     height: 40px;
+     margin-left: 16px;
+     margin-top: 8px;
+     width: 20%;
+ 
+ 
+     .search{
+       width: 100%;    
+       line-height: 30px;
+      
+     }
+   }
 
   ::ng-deep .mat-form-field-flex > .mat-form-field-infix {
        padding: 0.4em 0px !important;    
@@ -56,6 +71,10 @@
   mat-sidenav-container{ 
     background: #d0d0d0;
     overflow: hidden;
+    .aply-filters-button{   
+      width: 90%; 
+      height: 50%;
+  }
    
   }
   .position{
@@ -75,12 +94,12 @@
   }
   
   .example-sidenav {
-    display: flex;
+    display: flex;   
     align-items: center;  
     width: 333px;
     background-color: white;
-    overflow: hidden;
-    height: 100%;
+    overflow: auto;
+    height: 90%;
   }
   
   .example-header {
@@ -96,4 +115,14 @@
   }
   mat-sidenav-content{  
     background-color: #fff8e1;  
+  }
+  @media screen and (min-width: 1600px) {
+    .example-sidenav {
+      display: flex;     
+      align-items: center;  
+      width: 333;
+      background-color: white;
+      overflow: hidden;
+      height: 95%;
+    }
   }

@@ -71,13 +71,10 @@
   mat-sidenav-container{ 
     background: #d0d0d0;
     overflow: hidden;
-    .aply-filters-button{
-      padding: 12px;  
-      position: fixed;
-      bottom: 0;
-      right: 0; 
-      width: 200px; 
-  }
+    .aply-filters-button{   
+      width: 90%; 
+      height: 50%;
+    }
   }
   .position{
     display: inline-block;
@@ -101,7 +98,7 @@
     width: 200px;
     background-color: white;
     overflow: hidden;
-    height: 100%;
+    height: 90%;
   }
   
   .example-header {
@@ -118,4 +115,13 @@
   mat-sidenav-content{  
     background-color: #fff8e1;  
   }
-  
+  @media screen and (min-width: 1600px) {
+    .example-sidenav {
+      display: flex;
+      align-items: center;  
+      width: 210px;
+      background-color: white;
+      overflow: hidden;
+      height: 95%;
+    }
+  }
