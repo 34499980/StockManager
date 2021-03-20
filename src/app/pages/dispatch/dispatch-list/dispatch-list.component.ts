@@ -32,6 +32,7 @@ export class DispatchListComponent implements OnInit {
   dispatchData$: Subject<Dispatch[]> = new Subject();
   officeData$: Subject<Office[]> = new Subject();
   dataSource = new MatTableDataSource([]);
+  loading: boolean = true;
   displayedColumns = [
     'CODE',
     'CREATEDDATE',  
@@ -91,7 +92,7 @@ export class DispatchListComponent implements OnInit {
       });
   }
   getDispatchFilter(){
-
+    this.loading = true;
     this.dispatchData$.pipe(
       switchMap(() => {
         
@@ -112,6 +113,7 @@ export class DispatchListComponent implements OnInit {
       })
     ).subscribe(res =>{     
        this.dataSource.data = res as DispatchGet[];
+       this.loading = false;
     //   this.table.nativeElement.scrollIntoView();
     });
    
