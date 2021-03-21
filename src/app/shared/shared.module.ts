@@ -76,6 +76,7 @@ const MODULES = [
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
+    MatProgressSpinnerModule,
     MatDialogModule,
     MatSelectModule,
     MatDatepickerModule,
