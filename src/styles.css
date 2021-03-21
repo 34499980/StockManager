@@ -256,3 +256,8 @@ body {
     overflow-y:hidden;
     
 }
+mat-spinner{
+    position: flex;
+    margin-left: 50%;
+    margin-right: 50%;
+}

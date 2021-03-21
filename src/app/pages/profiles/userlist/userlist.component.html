@@ -96,7 +96,7 @@
       </mat-sidenav>
   
       <mat-sidenav-content fxLayout="row wrap">
-        <mat-accordion hideToggle="true" >
+        <mat-accordion *ngIf="!loading" hideToggle="true" >
         <ul class="scroll" *ngFor="let user of usersData">
           
           <li>
@@ -106,7 +106,9 @@
          
         </ul>
       </mat-accordion>      
-       
+      <div *ngIf="loading" fxFlex fxLayout="column" fxLayoutAlign="center center" style="height:100%">
+        <mat-spinner diameter="50" strokeWidth="5"></mat-spinner>
+      </div>
        
       </mat-sidenav-content>
     </mat-sidenav-container>

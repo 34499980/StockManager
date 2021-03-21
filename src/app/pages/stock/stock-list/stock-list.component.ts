@@ -32,6 +32,7 @@ export class StockListComponent implements OnInit {
   officeData: Office[];
   stockData$: Subject<Stock[]> = new Subject();
   dataSource = new MatTableDataSource([]);
+  loading: boolean = true;
   displayedColumns = [
     'CODE',
     'NAME',
@@ -93,6 +94,7 @@ constructor(private activateRoute: ActivatedRoute,
      
   }
   getStockFilter(){
+    this.loading = true;
     this.stockData$.pipe(
       switchMap(res => {
         
@@ -108,6 +110,7 @@ constructor(private activateRoute: ActivatedRoute,
       })
     ).subscribe(res =>{
        this.dataSource.data = res as Stock_Office[];
+       this.loading = false;
       
     });
     

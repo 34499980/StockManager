@@ -27,6 +27,7 @@ export class OfficeListComponent implements OnInit {
   countriesData: Country[];
   officeData$: Subject<Office[]> = new Subject();
   dataSource = new MatTableDataSource([]);
+  loading : boolean = true;
   displayedColumns = [
     'NAME',
     'ADDRESS',
@@ -70,7 +71,7 @@ export class OfficeListComponent implements OnInit {
      
   }
   getOfficesFilter(){
-
+    this.loading = true;
     this.officeData$.pipe(
       switchMap(res => {
         
@@ -85,6 +86,7 @@ export class OfficeListComponent implements OnInit {
       })
     ).subscribe(res =>{
        this.dataSource.data = res as Office[]
+       this.loading = false;
     });
    
   }

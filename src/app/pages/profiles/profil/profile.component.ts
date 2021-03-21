@@ -29,6 +29,7 @@ export class ProfileComponent implements OnInit {
   url: string;
   cameraImage: SafeResourceUrl;
   image: string;
+  loading: boolean = false;
   base64textString = [];
   @ViewChild('file') file :ElementRef
   constructor(private formBuild: FormBuilder,
@@ -73,6 +74,7 @@ validateSpinner() {
   return this.user 
 }
 saveUsuario() {
+  this.loading = true;
   const userPost: User ={
     id: this.user? this.user.id: 0,
     address: this.userControl.controls.address.value,
@@ -93,6 +95,7 @@ saveUsuario() {
 
   }
   this.userService.saveUsuario(userPost).subscribe(() => {  
+  this.loading = false;
   this.toastService.success(this.translate.instant( this.user?'USERS.ACTIONS.UPDATE': 'USERS.ACTIONS.SAVE',{user: this.userControl.controls.userName.value})),
   this.router.navigate([AppRouting.UserList])
   });

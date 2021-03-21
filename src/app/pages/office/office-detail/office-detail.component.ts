@@ -20,6 +20,7 @@ export class OfficeDetailComponent implements OnInit {
  office: Office;
  countriesData: Country[];
  controlForm: FormGroup;
+ loading: boolean = false;
   constructor(private activateRoute: ActivatedRoute,
               private builder: FormBuilder,
               private officeService: OfficeService,
@@ -58,14 +59,18 @@ export class OfficeDetailComponent implements OnInit {
   
   }
   add(office: Office){
+    this.loading = true;
     this.officeService.add(office).subscribe(() => {  
       this.toastService.success(this.translate.instant( 'OFFICE.ACTIONS.SAVE')),
+      this.loading = false;
       this.router.navigate([AppRouting.OfficeList])
       });
   }
   update(office: Office){
+    this.loading = true;
     this.officeService.update(office).subscribe(() => {  
       this.toastService.success(this.translate.instant( 'OFFICE.ACTIONS.UPDATE')),
+      this.loading = false;
       this.router.navigate([AppRouting.OfficeList])
       });
   }

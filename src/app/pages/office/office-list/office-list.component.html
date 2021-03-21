@@ -84,7 +84,7 @@
     
         <mat-sidenav-content fxLayout="row wrap">
           <!--TABLE-->
-          <mat-table #table [dataSource]="dataSource"          
+          <mat-table *ngIf="!loading" #table [dataSource]="dataSource"          
             class="center scroll" >                           
 
 
@@ -161,7 +161,9 @@
 
           </mat-table>
           <!--END TABLE-->
-         
+          <div *ngIf="loading" fxFlex fxLayout="column" fxLayoutAlign="center center" style="height:100%">
+            <mat-spinner diameter="50" strokeWidth="5"></mat-spinner>
+          </div>
          
         </mat-sidenav-content>
       </mat-sidenav-container>

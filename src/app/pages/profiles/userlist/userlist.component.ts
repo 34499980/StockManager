@@ -29,6 +29,7 @@ export class UserListComponent implements OnInit {
   rolesData: Item[];
   officeData: Office[];   
   countriesData: Country[]; 
+  loading: boolean = true;
   userData$: Subject<UserGet[]> = new Subject();
   @ViewChild('sidenav') sideNavFilters: MatDrawer;
   toggleIsFilterPanelOpen = true;
@@ -67,7 +68,7 @@ export class UserListComponent implements OnInit {
     this.router.navigate([AppRouting.Profile])
   }
   getUsersFilter(){
-
+    this.loading = true;
     this.userData$.pipe(
       switchMap(res => {
         
@@ -82,6 +83,7 @@ export class UserListComponent implements OnInit {
       })
     ).subscribe(res =>{
        this.usersData = res as UserGet[];
+       this.loading = false;
     });
    
   }

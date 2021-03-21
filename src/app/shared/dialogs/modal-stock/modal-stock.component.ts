@@ -31,6 +31,7 @@ export class ModalStockComponent implements OnInit {
   fileSelected: File = null
   url: string;
   cameraImage: SafeResourceUrl;
+  loading: boolean = false;
   image: SafeUrl = '../assets/imageNotFound.png';
   base64textString = [];
   @ViewChild('file') file :ElementRef
@@ -188,13 +189,17 @@ export class ModalStockComponent implements OnInit {
    
   }
   add(stockPost: StockPost){
+    this.loading = true;
     this.stockService.saveStock(stockPost).subscribe(() => {
       this.dialogRef.close(true);
+      this.loading = false;
     })
   }
   update(stockPost: StockPost){
+    this.loading = true;
     this.stockService.updaeStock(stockPost).subscribe(() => {
       this.dialogRef.close(true);
+      this.loading = false;
     })
   }
 
