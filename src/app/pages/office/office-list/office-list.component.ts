@@ -54,7 +54,7 @@ export class OfficeListComponent implements OnInit {
       name: [''],
       address: [''],
       postalCode: [null],
-      country:[null],
+      country:[parseInt(this.authenticationService.getCurrentCountry(), 10)],
       disabled: [false]
     })
     this.getOfficesFilter();

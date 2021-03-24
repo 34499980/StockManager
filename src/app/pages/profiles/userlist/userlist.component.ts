@@ -48,9 +48,9 @@ export class UserListComponent implements OnInit {
    
    this.searchControl = this.formBuilder.group({
      name:[''],
-     office:[''],
+     office:[parseInt(this.authenticationService.getCurrentOffice(),10 )],
      role:[''],
-     country:[''],
+     country:[parseInt(this.authenticationService.getCurrentCountry(), 10)],
      status: [false]
    })
    this.getUsersFilter(); 
