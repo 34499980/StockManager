@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -61,7 +61,7 @@ export class ProfileComponent implements OnInit {
       dateBorn: [this.user?.dateBorn || '', Validators.required],
       dateAdmission: [this.user?.dateAdmission || '', Validators.required],
       email: [this.user?.email || '', [Validators.required, Validators.maxLength(50)]],
-      address: [this.user?.address || '', [Validators.required, Validators.maxLength(50)]],
+      address: [this.user?.address || '', [Validators.required, Validators.maxLength(50), this.EmailValidator]],
       postalCode: [this.user?.postalCode || '', [Validators.required, Validators.maxLength(50), Validators.pattern(/^[0-9]\d*$/)]],
       office: [this.user?.idOffice || '', Validators.required],
       role: [this.user?.idRole || '', [Validators.required, Validators.maxLength(50)]],
@@ -73,6 +73,12 @@ export class ProfileComponent implements OnInit {
 validateSpinner() {
   return this.user 
 }
+EmailValidator(control: FormControl){
+  const isEmail  = control.value.indexOf('@') && control.value.indexOf('.com') && (control.value || '').trim().length === 0 
+  const isValid = ! isEmail;
+  return isValid ? null : {'email': true};
+}
+
 saveUsuario() {
   this.loading = true;
   const userPost: User ={

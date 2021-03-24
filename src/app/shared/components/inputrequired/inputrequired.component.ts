@@ -41,6 +41,9 @@ this.ngControl.valueAccessor = this;
   registerOnTouched(fn: () => {}): void {
     this.onTouched = fn;
   }
+  ValidateEmail(value: any){
+    return !(value.indexOf('@') > -1 && value.indexOf('.com') > -1);
+  }
   public setDisabledState?(isDisabled: boolean): void {
     this.disabled = isDisabled;
     this.renderer.setProperty(this.input.nativeElement, 'disabled', isDisabled);
