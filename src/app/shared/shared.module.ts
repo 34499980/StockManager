@@ -41,6 +41,7 @@ import { NgStepperModule } from 'angular-ng-stepper';
 import { ModalDispatchComponent } from './dialogs/modal-dispatch/modal-dispatch.component';
 import { DialogValidateComponent } from './dialogs/dialogValidate/dialogValidate.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { DirectivesModule } from '../directives/directives.module';
 
 const COMPONENTS = [
     InputrequiredComponent,
@@ -56,6 +57,7 @@ const MODULES = [
   TranslateModule,
   CdkStepperModule,
   NgStepperModule,
+  DirectivesModule
   
 ]
 @NgModule({
