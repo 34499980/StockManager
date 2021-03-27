@@ -17,6 +17,7 @@ export interface User{
     file?: any
     idCountry: number;
     active: boolean;
+    token?: string;
 
 
    

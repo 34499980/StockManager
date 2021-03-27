@@ -29,38 +29,39 @@ export class AuthenticationService {
                 private arquitecturaService: ArquitecturaService,
                 private router: Router,
                 private sanitizer: DomSanitizer ) {
-        this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+        this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(sessionStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
     }
     get isLoggedIn() {
         return this.loggedIn.asObservable();
       }     
       getSession(): any{
-       return localStorage.getItem('user');
+       return sessionStorage.getItem('user');
       }
       getCurrentRole(): any{
-        return localStorage.getItem('roleId');
+        return sessionStorage.getItem('roleId');
        }
        getCurrentCountry(): any{
-        return localStorage.getItem('idCountry');
+        return sessionStorage.getItem('idCountry');
        }
        getCurrentOffice(): any{
-        return localStorage.getItem('idOffice');
+        return sessionStorage.getItem('idOffice');
        }
        getCurrentImage = () =>{       
         
-         return localStorage.getItem('file');
+         return sessionStorage.getItem('file');
       
        }
     Autorization(value: User){ 
            
         this.loggedIn.next(true)
-        localStorage.setItem('user', value.userName)
-        localStorage.setItem('roleId', value.idRole.toString())
-        localStorage.setItem('idCountry', value.idCountry.toString())
-        localStorage.setItem('idOffice', value.idOffice.toString())
+        sessionStorage.setItem('user', value.userName)
+        sessionStorage.setItem('roleId', value.idRole.toString())
+        sessionStorage.setItem('idCountry', value.idCountry.toString())
+        sessionStorage.setItem('idOffice', value.idOffice.toString())
+        sessionStorage.setItem('token', value.token.toString())
         if(value.file)
-        localStorage.setItem('file', value.file)
+        sessionStorage.setItem('file', value.file)
         this.setAuthorization(value);
       return value
     }
