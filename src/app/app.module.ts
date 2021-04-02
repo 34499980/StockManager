@@ -11,6 +11,7 @@ import { HttpErrorInterceptor } from './interceptors/error/errorInterceptor';
 import { CoreModule } from './core/core.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TokenInterceptor } from './core/services/token-interceptor.services';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -44,6 +45,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     provide: HTTP_INTERCEPTORS,
     useClass: HttpErrorInterceptor,
     multi: true
+    },{
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
     }
   ],
   bootstrap: [AppComponent]

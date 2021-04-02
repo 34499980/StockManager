@@ -47,6 +47,9 @@ export class AuthenticationService {
        getCurrentOffice(): any{
         return sessionStorage.getItem('idOffice');
        }
+       getCurrentToken(): any{
+        return sessionStorage.getItem('token');
+       }
        getCurrentImage = () =>{       
         
          return sessionStorage.getItem('file');
