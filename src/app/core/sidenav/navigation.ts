@@ -3,7 +3,7 @@ import { Navigation } from 'src/app/models/navigation.model';
 
 export const navigation: Navigation[] = [
     {
-        id       : 'Administracion',
+        id       : PermissionType.Administration.toString(),
         title    : 'ADMINISTRATION',
         translate: 'NAV.ADMINISTRATION.TITLE',
         icon     : 'how_to_vote',
@@ -29,7 +29,7 @@ export const navigation: Navigation[] = [
             },
             ,
             {
-                id       : PermissionType.Anulaciones.toString(),
+                id       : PermissionType.Annulment.toString(),
                 title    : 'ANNULMENT',
                 translate: 'NAV.ADMINISTRATION.SUBTITLES.ANNULMENT',
                 hidden   : false,
@@ -40,7 +40,7 @@ export const navigation: Navigation[] = [
         ]
     },
     {
-        id       : 'OFFICE',
+        id       : PermissionType.Offices.toString(),
         title    : 'OFFICE',
         translate: 'NAV.OFFICE.TITLE',
         icon     : 'admin_panel_settings',
@@ -65,7 +65,7 @@ export const navigation: Navigation[] = [
                 url      : '/Office/all',
             },
             {
-                id       : PermissionType.Movimientos.toString(),
+                id       : PermissionType.Movements.toString(),
                 title    : 'Movimientos',
                 translate: 'Movimientos',
                 hidden   : false,
@@ -74,7 +74,7 @@ export const navigation: Navigation[] = [
                 url      : '/Movimientos',
             },
             {
-                id       : PermissionType.Ventas.toString(),
+                id       : PermissionType.Sales.toString(),
                 title    : 'Ventas',
                 translate: 'Ventas',
                 hidden   : false,
@@ -83,7 +83,7 @@ export const navigation: Navigation[] = [
                 url      : '/Ventas',
             },
             {
-                id       : PermissionType.Anular.toString(),
+                id       : PermissionType.Cancel.toString(),
                 title    : 'Anular',
                 translate: 'Anular',
                 hidden   : false,
@@ -92,7 +92,7 @@ export const navigation: Navigation[] = [
                 url      : '/Anular',
             },
             {
-                id       : PermissionType.Devolucion.toString(),
+                id       : PermissionType.Return.toString(),
                 title    : 'Devolución',
                 translate: 'Ventas',
                 hidden   : false,
@@ -103,14 +103,14 @@ export const navigation: Navigation[] = [
         ]
     },
     {
-        id       : 'Stock',
+        id       : PermissionType.Stock.toString(),
         title    : 'STOCK',
         translate: 'NAV.STOCK.TITLE',
         icon     : 'admin_panel_settings',
         type     : 'collapsable',
         children : [
             {
-                id       : PermissionType.Stock.toString(),
+                id       : PermissionType.Items.toString(),
                 title    : 'STOCKLIST',
                 translate:  'NAV.STOCK.SUBTITLES.STOCKLIST',
                 hidden   : false,

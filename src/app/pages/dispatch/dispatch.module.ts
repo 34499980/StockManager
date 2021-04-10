@@ -12,10 +12,12 @@ import { StepTwoComponent } from './steps/step-two/step-two.component';
 import { StepThreeComponent } from './steps/step-three/step-three.component';
 import { DispatchResolver } from './dispatch-list/dispatch.resolver';
 import { DispatchViewReciveComponent } from './dispatch-view-recive/dispatch-view-recive.component';
+import { AuthGuard } from 'src/app/core/services/auth-guard.service';
 const routes: Routes = [
   {
     path: 'all',
     component: DispatchListComponent,
+    canActivate: [AuthGuard], 
     resolve:{  
       countries: CountriesResolver,
       office: OfficeResolver,
@@ -26,6 +28,7 @@ const routes: Routes = [
   {
     path: 'create/:id',
     component: DispatchCreateComponent,
+    canActivate: [AuthGuard], 
     resolve:{
       offices: OfficeResolver,
       countries: CountriesResolver,
@@ -36,6 +39,7 @@ const routes: Routes = [
   {
     path: 'recive/:id',
     component: DispatchViewReciveComponent,
+    canActivate: [AuthGuard], 
     resolve:{
       offices: OfficeResolver,
       countries: CountriesResolver,
@@ -46,6 +50,7 @@ const routes: Routes = [
   {
     path: 'create',
     component: DispatchCreateComponent,
+    canActivate: [AuthGuard], 
     resolve:{
       offices: OfficeResolver,
       countries: CountriesResolver,

@@ -7,10 +7,12 @@ import { OfficeDetailComponent } from './office-detail/office-detail.component';
 import { OfficeResolver } from 'src/app/resolvers/office.resolver';
 import { CountriesResolver } from 'src/app/resolvers/countries.resolver';
 import { OfficeDetailService } from './office-detail/office-detail.resolver';
+import { AuthGuard } from 'src/app/core/services/auth-guard.service';
 const routes: Routes = [
   {
     path: 'all',
     component: OfficeListComponent,
+    canActivateChild: [AuthGuard], 
     resolve:{  
       countries: CountriesResolver
      
@@ -19,6 +21,7 @@ const routes: Routes = [
   {
     path: ':id',
     component: OfficeDetailComponent,
+    canActivateChild: [AuthGuard], 
     resolve:{
       office: OfficeDetailService,
       countries: CountriesResolver  
@@ -27,6 +30,7 @@ const routes: Routes = [
   {
     path: '',
     component: OfficeDetailComponent,
+    canActivateChild: [AuthGuard], 
     resolve:{      
       countries: CountriesResolver  
     }

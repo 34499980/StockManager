@@ -56,7 +56,7 @@ export class AuthenticationService {
       
        }
     Autorization(value: User){ 
-           
+        console.log(value)   
         this.loggedIn.next(true)
         sessionStorage.setItem('user', value.userName)
         sessionStorage.setItem('roleId', value.idRole.toString())
