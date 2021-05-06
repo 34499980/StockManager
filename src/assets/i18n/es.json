@@ -190,7 +190,8 @@
         "REQUIRED":"Campo requerido",
         "MAXLENGTH" : "Supero el limite de caracteres",
         "INVALIDCHAR": "Caracter invalido",        
-        "EMAIL": "Debe ser un email valido"
+        "EMAIL": "Debe ser un email valido",
+        "ACCESS": "No tiene acceso"
     },
     "ERRORS":{
         "errOfficeAllReadyExist": "El nombre de sucursal ya existe!",

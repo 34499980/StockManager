@@ -58,6 +58,7 @@ export class LoginComponent implements OnInit {
       this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
   onFocusOutEvent(event){
+    if(event.target.value)
     this.authenticationService.getImageByUser(event.target.value).subscribe(res => {
       const imageFile = res as unknown as ImageFile;
       this.cameraImage = imageFile.image// this.sanitizer.bypassSecurityTrustResourceUrl(imageFile.image);

@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 import { AppRouting } from 'src/app/enums/AppRouting.enum';
 import { DomSanitizer } from '@angular/platform-browser';
 import { UserValidate } from 'src/app/models/userValidate.model';
+import { PermissionType } from 'src/app/enums/navigation.enum';
+import { Auth } from 'src/app/models/auth';
 
 
 const headers = new HttpHeaders();
@@ -20,8 +22,9 @@ headers.append('Access-Control-Allow-Origin', '*');
 const options = {headers: headers}
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-    private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+    private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     private currentUserSubject: BehaviorSubject<User>;
+    private _user = new  BehaviorSubject<Auth>(null);
     public currentUser: Observable<User>;
     // tslint:disable-next-line: no-construct
     public ErrorMessage = new String()
@@ -34,7 +37,11 @@ export class AuthenticationService {
     }
     get isLoggedIn() {
         return this.loggedIn.asObservable();
-      }     
+      }    
+     public get getCurrentUserSubject() {
+        return this._user.asObservable();
+      }
+     
       getSession(): any{
        return sessionStorage.getItem('user');
       }
@@ -55,6 +62,7 @@ export class AuthenticationService {
          return sessionStorage.getItem('file');
       
        }
+       
     Autorization(value: User){ 
         console.log(value)   
         this.loggedIn.next(true)
@@ -66,6 +74,10 @@ export class AuthenticationService {
         if(value.file)
         sessionStorage.setItem('file', value.file)
         this.setAuthorization(value);
+        this._user.next({
+          userName: value.userName,
+          permissions: value.permissions
+        });
       return value
     }
     login(username: string, pass: string) {
@@ -79,6 +91,8 @@ export class AuthenticationService {
     }
     logout() {           
       this.loggedIn.next(false);
+      this._user.next(null);
+      sessionStorage.clear();
       this.router.navigate([AppRouting.Login]);
     }
     getImageByUser(name: string): Observable<string>{

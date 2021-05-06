@@ -40,8 +40,8 @@ export class StockService {
       })
     );
     }
-  getStockByFilter(filter: StockFilter): Observable<Stock_Office[]>{
-    return  this.http.post<Stock_Office[]>(environment.RestFullApi+'stock/GetStockFilter',filter)
+  getStockByFilter(filter: StockFilter): Observable<any>{
+    return  this.http.post<any>(environment.RestFullApi+'stock/GetStockFilter',filter)
     .pipe(
         map(res => {
         return res

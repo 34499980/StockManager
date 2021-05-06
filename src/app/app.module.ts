@@ -12,6 +12,7 @@ import { CoreModule } from './core/core.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TokenInterceptor } from './core/services/token-interceptor.services';
+import { MenuService } from './services/menu.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -41,6 +42,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   exports:[],
   providers: [
+    MenuService,
     {
     provide: HTTP_INTERCEPTORS,
     useClass: HttpErrorInterceptor,

@@ -8,11 +8,16 @@ import { OfficeResolver } from 'src/app/resolvers/office.resolver';
 import { CountriesResolver } from 'src/app/resolvers/countries.resolver';
 import { OfficeDetailService } from './office-detail/office-detail.resolver';
 import { AuthGuard } from 'src/app/core/services/auth-guard.service';
+import { PermissionType } from 'src/app/enums/navigation.enum';
+import { PermissionsGuard } from 'src/app/core/services/permissions.guard';
 const routes: Routes = [
   {
     path: 'all',
     component: OfficeListComponent,
-    canActivateChild: [AuthGuard], 
+   // canActivate: [AuthGuard], 
+    data: {
+     // permissions: [PermissionType.OfficeList]
+    },
     resolve:{  
       countries: CountriesResolver
      
@@ -21,7 +26,10 @@ const routes: Routes = [
   {
     path: ':id',
     component: OfficeDetailComponent,
-    canActivateChild: [AuthGuard], 
+   // canActivate: [AuthGuard], 
+    data: {
+    //  permissions: [PermissionType.Office]
+    },
     resolve:{
       office: OfficeDetailService,
       countries: CountriesResolver  
@@ -30,7 +38,10 @@ const routes: Routes = [
   {
     path: '',
     component: OfficeDetailComponent,
-    canActivateChild: [AuthGuard], 
+   // canActivate: [AuthGuard], 
+    data: {
+     // permissions: [PermissionType.Office]
+    },
     resolve:{      
       countries: CountriesResolver  
     }
@@ -45,7 +56,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule
   ],
-  providers: [OfficeDetailService, CountriesResolver]
+  providers: [OfficeDetailService, CountriesResolver, PermissionsGuard, AuthGuard]
 
 })
 export class OfficeModule { }

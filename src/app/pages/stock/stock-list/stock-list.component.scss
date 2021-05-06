@@ -14,6 +14,9 @@
       top:0;
       
     }
+    mat-paginator{
+      background-color: lightgray;
+    }
     mat-table:hover {
       overflow-y: scroll;
     }
@@ -86,7 +89,7 @@
   }
   
   .example-container {
-    height: 90%;
+   // height: 90%;
     position: absolute;
     top: 60px;
     bottom: 60px;

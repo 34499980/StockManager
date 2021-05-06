@@ -42,6 +42,7 @@ import { ModalDispatchComponent } from './dialogs/modal-dispatch/modal-dispatch.
 import { DialogValidateComponent } from './dialogs/dialogValidate/dialogValidate.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { DirectivesModule } from '../directives/directives.module';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 const COMPONENTS = [
     InputrequiredComponent,
@@ -63,6 +64,7 @@ const MODULES = [
 @NgModule({
     imports: [
     CommonModule,
+    MatPaginatorModule,
     MatFormFieldModule ,
     LayoutModule,
     MatTableModule,
@@ -99,6 +101,7 @@ const MODULES = [
   exports: [
     CommonModule,
     MatFormFieldModule ,
+    MatPaginatorModule,
     MatTableModule,
     MatToolbarModule,
     MatSidenavModule,

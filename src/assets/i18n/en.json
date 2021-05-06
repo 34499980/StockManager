@@ -186,7 +186,8 @@
         "REQUIRED":"Enter is required",
         "MAXLENGTH" : "Over the income limit",
         "INVALIDCHAR": "Invalid character",
-        "EMAIL": "Must be a valid email address"
+        "EMAIL": "Must be a valid email address",
+        "ACCESS": "Access dinied"
     },
      "ERRORS":{
         "errOfficeAllReadyExist": "The office name is allready in use",

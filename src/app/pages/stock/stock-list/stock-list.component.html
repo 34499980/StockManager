@@ -1,4 +1,4 @@
-<ng-container>
+
     <form [formGroup]="searchControl">
       <div class="header" fxLayoutAlign="space-between">
         
@@ -15,6 +15,10 @@
      
      
         <div fxFlex fxLayoutAlign="end center" >
+          <mat-paginator fxFlex="60%" [pageSizeOptions]="[1,5, 10, 25, 100]" [length]="tableCountSubject | async"
+          [pageIndex]="0"  [pageSize]="10" showFirstLastButtons>
+           
+          </mat-paginator>
           <button mat-mini-fab color="primary"  matTooltip="Agregar" matTooltipPosition="above" (click)="addStock()" >
             <mat-icon>add</mat-icon>
           </button>
@@ -101,97 +105,104 @@
         </mat-sidenav>
     
         <mat-sidenav-content fxLayout="row wrap">
-          <!--TABLE-->
-          <mat-table *ngIf="!loading" #table [dataSource]="dataSource"          
-            class="center scroll" >                           
+          <div fxFlex="0 1 auto" fxLayout="row">
+           <!--TABLE-->
+            <mat-table *ngIf="!loading" #table [dataSource]="dataSource" matSort        
+             (matSortChange)="setMatSorting($event)" class="center scroll" >                           
 
 
-              <ng-container matColumnDef="NAME">
-                  <mat-header-cell *matHeaderCellDef>
-                      {{'STOCK.NAME' | translate}}
-                  </mat-header-cell>
-                  <mat-cell *matCellDef="let stock_office">
-                      <p class="text-truncate" >{{stock_office.stock.name}}</p>
-                  </mat-cell>
-              </ng-container>
+                <ng-container matColumnDef="NAME">
+                    <mat-header-cell *matHeaderCellDef>
+                        {{'STOCK.NAME' | translate}}
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let stock_office">
+                        <p class="text-truncate" >{{stock_office.stock.name}}</p>
+                    </mat-cell>
+                </ng-container>
 
-              <ng-container matColumnDef="CODE">
+                <ng-container matColumnDef="CODE">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>
+                        {{'STOCK.CODE' | translate}}
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let stock_office">
+                        <p class="text-truncate">{{stock_office.stock.code}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="BRAND">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>
+                        {{'STOCK.BRAND' | translate}}
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let stock_office">
+                        <p class="text-truncate">{{stock_office.stock.brand}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="MODEL">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>
-                      {{'STOCK.CODE' | translate}}
+                      {{'STOCK.MODEL' | translate}}
                   </mat-header-cell>
                   <mat-cell *matCellDef="let stock_office">
-                      <p class="text-truncate">{{stock_office.stock.code}}</p>
+                      <p class="text-truncate">{{stock_office.stock.model}}</p>
                   </mat-cell>
               </ng-container>
+                
 
-              <ng-container matColumnDef="BRAND">
+                <ng-container matColumnDef="OFFICE">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>
+                        {{'STOCK.OFFICE' | translate}}
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let stock_office">
+                        <p class="text-truncate">{{stock_office.office.name}}</p>
+                    </mat-cell>
+                </ng-container>  
+
+                <ng-container matColumnDef="UNITY">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>
-                      {{'STOCK.BRAND' | translate}}
+                      {{'STOCK.UNITY' | translate}}
                   </mat-header-cell>
-                  <mat-cell *matCellDef="let stock_office">
-                      <p class="text-truncate">{{stock_office.stock.brand}}</p>
+                  <mat-cell *matCellDef="let stock_office" fxLayoutAlign="center center">
+                      <p class="text-truncate">{{stock_office.unity}}</p>
                   </mat-cell>
-              </ng-container>
+              </ng-container>           
 
-              <ng-container matColumnDef="MODEL">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>
-                    {{'STOCK.MODEL' | translate}}
-                </mat-header-cell>
-                <mat-cell *matCellDef="let stock_office">
-                    <p class="text-truncate">{{stock_office.stock.model}}</p>
-                </mat-cell>
-            </ng-container>
               
+                
 
-              <ng-container matColumnDef="OFFICE">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>
-                      {{'STOCK.OFFICE' | translate}}
-                  </mat-header-cell>
-                  <mat-cell *matCellDef="let stock_office">
-                      <p class="text-truncate">{{stock_office.office.name}}</p>
-                  </mat-cell>
-              </ng-container>  
+                <ng-container matColumnDef="ACTIONS">
+                    <mat-header-cell *matHeaderCellDef class="cell50-w"></mat-header-cell>
+                    <mat-cell *matCellDef="let stock_office" fxLayout="row" fxLayoutAlign="flex-start center" class="cell50-w">
+                        <button mat-icon-button color="primary" fxFlex="0 1 auto"
+                        
+                            matTooltip= "{{'GENERALACTIONS.ADD' | translate}}"
+                            (click)="editStock(stock_office.stock.id)">
+                            <mat-icon class="mx-8" color="primary"  >create</mat-icon>
+                        </button>
+                        <button *ngIf="showPermission()" mat-icon-button color="primary" fxFlex="0 1 auto"
+                        matTooltip= "{{'GENERALACTIONS.DELETE' | translate}}"
+                        (click)="deleteStock(stock_office.stock.id)">
+                        <mat-icon class="mx-8"  style="color:red" >delete</mat-icon>
+                    </button>
+                    </mat-cell>
+                </ng-container>
 
-              <ng-container matColumnDef="UNITY">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>
-                    {{'STOCK.UNITY' | translate}}
-                </mat-header-cell>
-                <mat-cell *matCellDef="let stock_office" fxLayoutAlign="center center">
-                    <p class="text-truncate">{{stock_office.unity}}</p>
-                </mat-cell>
-            </ng-container>           
+                <mat-header-row *matHeaderRowDef="displayedColumns;"></mat-header-row>
 
-             
-              
+                <mat-row *matRowDef="let stock_office; columns: displayedColumns;"
+                    [class.user-pointer]="false" matRipple>
+                </mat-row>
 
-              <ng-container matColumnDef="ACTIONS">
-                  <mat-header-cell *matHeaderCellDef class="cell50-w"></mat-header-cell>
-                  <mat-cell *matCellDef="let stock_office" fxLayout="row" fxLayoutAlign="flex-start center" class="cell50-w">
-                      <button mat-icon-button color="primary" fxFlex="0 1 auto"
-                       
-                          matTooltip= "{{'GENERALACTIONS.ADD' | translate}}"
-                          (click)="editStock(stock_office.stock.id)">
-                          <mat-icon class="mx-8" color="primary"  >create</mat-icon>
-                      </button>
-                      <button *ngIf="showPermission()" mat-icon-button color="primary" fxFlex="0 1 auto"
-                      matTooltip= "{{'GENERALACTIONS.DELETE' | translate}}"
-                      (click)="deleteStock(stock_office.stock.id)">
-                      <mat-icon class="mx-8"  style="color:red" >delete</mat-icon>
-                  </button>
-                  </mat-cell>
-              </ng-container>
-
-              <mat-header-row *matHeaderRowDef="displayedColumns;"></mat-header-row>
-
-              <mat-row *matRowDef="let stock_office; columns: displayedColumns;"
-                  [class.user-pointer]="false" matRipple>
-              </mat-row>
-
-          </mat-table>
-          <!--END TABLE-->
-          <div *ngIf="loading" fxFlex fxLayout="column" fxLayoutAlign="center center" style="height:100%">
-            <mat-spinner diameter="50" strokeWidth="5"></mat-spinner>
+            </mat-table>
+            <!--END TABLE-->
+            <div *ngIf="loading" fxFlex fxLayout="column" fxLayoutAlign="center center" style="height:100%">
+              <mat-spinner diameter="50" strokeWidth="5"></mat-spinner>
+            </div>
           </div>
+          <div fxFlex="100%" fxLayout="row" fxLayoutAlign="center end">
+         
+          </div>
+        
+       
          
         </mat-sidenav-content>
       </mat-sidenav-container>
@@ -199,5 +210,4 @@
   
   
   
-  </ng-container>
   
