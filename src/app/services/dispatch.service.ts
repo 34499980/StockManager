@@ -32,8 +32,8 @@ export class DispatchService {
         })
       );
   }
-  GetAllDispatchFilter(filter: DispatchFilter): Observable<Dispatch[]> {
-    return this.http.post<Dispatch[]>(environment.RestFullApi + 'dispatch/GetDispatchFilter', filter)
+  GetAllDispatchFilter(filter: DispatchFilter): Observable<any> {
+    return this.http.post<any>(environment.RestFullApi + 'dispatch/GetDispatchFilter', filter)
       .pipe(
         map(res => {
           return res;

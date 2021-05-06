@@ -10,6 +10,10 @@
      
      
         <div fxFlex fxLayoutAlign="end center" >
+          <mat-paginator fxFlex="60%" [pageSizeOptions]="[1,5, 10, 25, 100]" [length]="tableCountSubject | async"
+          [pageIndex]="0"  [pageSize]="10" showFirstLastButtons>
+           
+          </mat-paginator>
           <button  mat-mini-fab color="primary"  matTooltip="Agregar" matTooltipPosition="above" (click)="add()" >
             <mat-icon>add</mat-icon>
           </button>
@@ -195,10 +199,10 @@
         
         </mat-sidenav>
     
-        <mat-sidenav-content fxLayout="row wrap" fxLayoutAlign="center start">
+        <mat-sidenav-content fxLayout="row wrap">
           <!--TABLE-->
-          <mat-table *ngIf="!loading" #table  [dataSource]="dataSource"          
-            class="scroll" >                           
+          <mat-table *ngIf="!loading" #table  [dataSource]="dataSource"matSort        
+          (matSortChange)="setMatSorting($event)" class="center scroll">                           
 
 
               <ng-container matColumnDef="CODE">

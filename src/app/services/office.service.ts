@@ -36,8 +36,8 @@ export class OfficeService {
         })
     );
   }
-  getOfficeByFilter(filter: OfficeFilter){
-    return  this.http.post(environment.RestFullApi+'office/GetOfficeFilter', filter)
+  getOfficeByFilter(filter: OfficeFilter): Observable<any>{
+    return  this.http.post<any>(environment.RestFullApi+'office/GetOfficeFilter', filter)
     .pipe(
         map(res => {
             return res

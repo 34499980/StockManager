@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDrawer } from '@angular/material/sidenav';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { BehaviorSubject, merge, Subject } from 'rxjs';
+import { switchMap, tap } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { RolesEnum } from 'src/app/enums/Roles.Enum';
 import { Office } from 'src/app/models/office.model';
@@ -16,6 +16,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogconfirmComponent } from 'src/app/shared/dialogs/dialogconfirm/dialogconfirm.component';
 import { ToastService } from 'src/app/services/toast.service';
 import { Country } from 'src/app/models/country.model';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort, Sort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-office-list',
@@ -27,6 +29,11 @@ export class OfficeListComponent implements OnInit {
   countriesData: Country[];
   officeData$: Subject<Office[]> = new Subject();
   dataSource = new MatTableDataSource([]);
+  tableCountSubject = new BehaviorSubject<number>(0);
+  @ViewChild(MatPaginator)  paginator: MatPaginator;
+  @ViewChild(MatSort)  sort: MatSort;
+  sortBy = 'NAME';
+    sortOrder = 'desc';
   loading : boolean = true;
   displayedColumns = [
     'NAME',
@@ -58,7 +65,7 @@ export class OfficeListComponent implements OnInit {
       disabled: [false]
     })
     this.getOfficesFilter();
-    this.loadData();
+    //this.loadData();
     this.searchControl.valueChanges.subscribe(val => {
       if((val.name !== '' || val.name !== null  && val.name?.length > 3) ||
         (val.postalCode !== '' && val.postalCode !== null && val.postalCode?.length === 4)){
@@ -70,6 +77,37 @@ export class OfficeListComponent implements OnInit {
      
      
   }
+  ngAfterViewInit(): void {
+    this.loadData();
+   // this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+  //  this.searchControl.valueChanges.subscribe(() => this.paginator.pageIndex = 0);
+
+    merge(this.paginator.page)
+      .pipe(
+        tap(_ => {
+            this.loadData();
+        })
+      )
+      .subscribe();
+  }
+  setSortingOrder(sort) {
+    this.sortOrder = sort;
+    this.loadData();
+}
+
+setSortingBy(sort) {
+    this.sortBy = sort;
+    this.loadData();
+}
+setMatSorting(sort: Sort) {
+    if (this.sortBy !== sort.active) {
+        this.setSortingBy(sort.active);
+    }
+    if (this.sortOrder !== sort.direction) {
+        sort.direction = sort.direction || this.sortOrder === 'asc' ? 'desc' : 'asc';
+        this.setSortingOrder(sort.direction);
+    }
+}
   getOfficesFilter(){
     this.loading = true;
     this.officeData$.pipe(
@@ -80,12 +118,15 @@ export class OfficeListComponent implements OnInit {
           idCountry: parseInt(this.searchControl.controls.country.value, 10),
           address: this.searchControl.controls.address.value,
           postalCode: parseInt(this.searchControl.controls.postalCode.value, 10),
-          active: parseInt(this.authenticationService.getCurrentRole()) !== RolesEnum.Administrator? false: Boolean(this.searchControl.controls.disabled.value)
+          active: parseInt(this.authenticationService.getCurrentRole()) !== RolesEnum.Administrator? false: Boolean(this.searchControl.controls.disabled.value),
+          pageIndex: this.paginator.pageIndex + 1,
+          pageSize: this.paginator.pageSize
         };
         return this.officeService.getOfficeByFilter(officeFilter);
       })
     ).subscribe(res =>{
-       this.dataSource.data = res as Office[]
+       this.dataSource.data = res.data as Office[]
+       this.tableCountSubject.next(res.rowCount);
        this.loading = false;
     });
    

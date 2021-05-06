@@ -115,6 +115,9 @@
   mat-sidenav-content{  
     background-color: #fff8e1;  
   }
+  mat-paginator{
+    background-color: lightgray;
+  }
   @media screen and (min-width: 1600px) {
     .example-sidenav {
       display: flex;

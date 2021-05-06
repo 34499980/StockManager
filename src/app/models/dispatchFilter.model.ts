@@ -1,4 +1,6 @@
-export interface DispatchFilter {
+import { TableProperties } from "./table-properties.model";
+
+export interface DispatchFilter extends TableProperties {
     code: number;
     userName: string;
     createdDateFrom: string;

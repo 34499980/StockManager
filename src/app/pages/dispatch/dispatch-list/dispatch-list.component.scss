@@ -1,9 +1,9 @@
     .center{
       position: fixed;
-      margin-left: auto;
-      margin-right: auto ;
-      top: 220px;
-      left: 23%;
+    //  top: 220px;
+     // left: 30%;
+     // margin-top: -100px;
+     // margin-left: 3%;
       }
       mat-divider{
         width: 90%;
@@ -39,7 +39,7 @@
   }
   mat-table {
       list-style-type: none;        
-      width: 90%;    
+      width: 87%;    
       }
   
   .filtter{
@@ -116,6 +116,9 @@
   mat-sidenav-content{  
     background-color: #fff8e1;  
   }
+  mat-paginator{
+    background-color: lightgray;
+  }
   @media screen and (min-width: 1600px) {
     .example-sidenav {
       display: flex;     
@@ -125,4 +128,11 @@
       overflow: hidden;
       height: 95%;
     }
+    .center{
+      position: fixed;
+    //  top: 220px;
+     // left: 30%;
+     // margin-top: -100px;
+      margin-left: 1.5%;
+      }
   }
