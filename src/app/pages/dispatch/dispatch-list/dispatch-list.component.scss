@@ -1,9 +1,16 @@
-    .center{
+    .centerTable{
       position: fixed;
     //  top: 220px;
      // left: 30%;
      // margin-top: -100px;
      // margin-left: 3%;
+      }
+      .center{
+        position: fixed;
+        top: 220px;
+        left: 30%;
+        margin-top: -100px;
+        margin-left: -100px;
       }
       mat-divider{
         width: 90%;
@@ -39,7 +46,7 @@
   }
   mat-table {
       list-style-type: none;        
-      width: 87%;    
+      width: 88%;    
       }
   
   .filtter{

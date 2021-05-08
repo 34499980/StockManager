@@ -16,7 +16,7 @@
      
         <div fxFlex fxLayoutAlign="end center" >
           <mat-paginator fxFlex="60%" [pageSizeOptions]="[1,5, 10, 25, 100]" [length]="tableCountSubject | async"
-          [pageIndex]="0"  [pageSize]="10" showFirstLastButtons>
+          [pageIndex]="0"  [pageSize]="10" showFirstLastButtons >
            
           </mat-paginator>
           <button *ngIf="canEdit()" mat-mini-fab color="primary"  matTooltip="Agregar" matTooltipPosition="above" (click)="add()" >
