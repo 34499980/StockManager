@@ -102,6 +102,7 @@ constructor(private activateRoute: ActivatedRoute,
   }
   ngAfterViewInit(): void {
     this.loadData();
+    this.paginator._intl.itemsPerPageLabel = '';
    // this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
   //  this.searchControl.valueChanges.subscribe(() => this.paginator.pageIndex = 0);
 

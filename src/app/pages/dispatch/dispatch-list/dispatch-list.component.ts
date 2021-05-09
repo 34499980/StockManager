@@ -100,6 +100,7 @@ export class DispatchListComponent implements OnInit {
   }
   ngAfterViewInit(): void {
     this.loadData();
+    this.paginator._intl.itemsPerPageLabel = '';
    // this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
   //  this.searchControl.valueChanges.subscribe(() => this.paginator.pageIndex = 0);
 
@@ -154,7 +155,7 @@ setMatSorting(sort: Sort) {
     ).subscribe(res =>{     
        this.dataSource.data = res.data as DispatchGet[];
        this.loading = false;
-       this.tableCountSubject.next(res.rwoCount);
+       this.tableCountSubject.next(res.rowCount);
     //   this.table.nativeElement.scrollIntoView();
     });
    
