@@ -49,7 +49,7 @@ export class SidenavComponent implements OnInit {
     // tslint:disable-next-line: no-string-literal
    // this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     this.isLogged$ = this.authenticationService.isLoggedIn;
-    this.userService.getScreens().subscribe(data => {this.screens = data})
+   
 
     this.isLogged$.subscribe(res => 
       {
@@ -60,6 +60,30 @@ export class SidenavComponent implements OnInit {
         //Comentar para dev
        // this.router.navigate([AppRouting.Login])
       }
+      this.userService.getScreens().subscribe(data => {
+        this.screens = []
+          this.authenticationService.getCurrentUserSubject.subscribe(res => {
+            if(res){
+              let pages: any[] = []
+              data.forEach(item => {
+                if(res.permissions.find(x => x.moduleId == item.id)){
+                  const father = {...item};
+                  father.children = [];
+                  item.children.forEach(element => {
+                    if(res.permissions.find(x => x.valueId == element.id)){
+                      father.children.push(element);
+                    }
+                  });
+                  if(father.children.length > 0 && !this.screens.find(x => x.id == father.id))
+                     this.screens.push(father);
+                }
+                
+              })              
+            } else {
+              this.router.navigate([AppRouting.Login])
+            }            
+        });
+      });
      
       
     })

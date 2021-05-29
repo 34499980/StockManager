@@ -82,8 +82,8 @@ export class PaneluserComponent implements OnInit {
             (parseInt(this.authentication.getCurrentRole()) === RolesEnum.Manager && 
             this.user.idRole !== RolesEnum.Administrator) ||
            (parseInt(this.authentication.getCurrentRole()) === RolesEnum.Manager 
-           && this.user?.idOffice == parseInt(this.authentication.getCurrentOffice())) ||
-           this.user.userName === this.authentication.getSession()
+           && this.user?.idOffice == parseInt(this.authentication.getCurrentOffice())) &&
+           this.user.userName == this.authentication.getSession()
            
   }
  

@@ -45,12 +45,12 @@
    <mat-accordion displayMode=""  >
     <mat-expansion-panel flFlex="100" *ngFor="let item of this.screens">
       <mat-expansion-panel-header class="specific-class">
-        <mat-panel-title class="mat-cell white"><strong>{{'NAV.' + item.title + '.TITLE'| translate}}</strong></mat-panel-title>
+        <mat-panel-title class="mat-cell white pointer"><strong>{{'NAV.' + item.title + '.TITLE'| translate}}</strong></mat-panel-title>
       </mat-expansion-panel-header>
       
       <mat-nav-list *ngFor="let i of item.children">   
 
-            <a fxFlex="100" *ngIf="i" class="white"  [routerLink]="i?.url">{{'NAV.' + item.title + '.SUBTITLES.' + i?.title | translate}}</a>
+            <a fxFlex="100" *ngIf="i" class="white pointer"  [routerLink]="i?.url">{{'NAV.' + item.title + '.SUBTITLES.' + i?.title | translate}}</a>
            
          
         </mat-nav-list>
