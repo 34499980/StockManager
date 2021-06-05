@@ -2,7 +2,7 @@
   <form [formGroup]="formControl" fxFlex="100%" fxLayout="row" fxLayoutAlign="center center">
     <div fxFlex fxLayout="row wrap" fxLayoutAlign="center center"> 
       <app-inputrequired fxFlex="100%" fxLayout="row" fxLayoutAlign="center" title="{{'USERS.USERNAME' | translate}}"  formControlName="userName"></app-inputrequired>  
-      <app-inputrequired   fxFlex="100%" fxLayout="row" fxLayoutAlign="center" title="{{'USERS.PASSWORD' | translate}}"  formControlName="password"></app-inputrequired>  
+      <app-inputrequired  type="password" fxFlex="100%" fxLayout="row" fxLayoutAlign="center" title="{{'USERS.PASSWORD' | translate}}"  formControlName="password"></app-inputrequired>  
     </div>
     
   
@@ -10,7 +10,7 @@
 
   <div fxFlex="100%" fxLayout="row" fxLayoutAlign="space-around">
     
-    <button class="mx-8" mat-raised-button mat-dialog-close>
+    <button class="mx-8" mat-button mat-dialog-close>
       <span class="mx-8">
         Cancelar
       </span>

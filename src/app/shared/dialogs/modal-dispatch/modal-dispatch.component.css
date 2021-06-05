@@ -1,9 +1,10 @@
 .container{
- width: 2000px;
+ width: 1000px;
  height: 500px;
 }
 mat-table{
     width: 100%;
+    min-width: 1000px;
 }
 .margin-right{
     margin-right: 12px;
