@@ -58,3 +58,6 @@
    .datePicker{
      width: 85%;
    }
+   .pointer{
+     cursor: pointer;
+   }

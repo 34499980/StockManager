@@ -111,7 +111,7 @@
        
 
         <input [disabled]="!canEdit()" type="file" style="width: 5px;" #file (change)="OnFileSelected($event)" style="visibility: hidden" />
-         <img  fxFlex="70%" [src]="cameraImage || image" (click)="file.click()" >
+         <img class="pointer" fxFlex="70%" [src]="cameraImage || image" (click)="file.click()" >
         
         </div>
       </div>
