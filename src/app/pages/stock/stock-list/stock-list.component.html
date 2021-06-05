@@ -70,7 +70,7 @@
             <mat-label fxFlex="100%">{{'STOCK.COUNTRY' | translate}}</mat-label>
             <mat-form-field fxFlex="100%"appearance="outline" floatLabel="always" 
               color="primary">
-              <mat-select formControlName="idCountry" placeholder="Todos"> 
+              <mat-select formControlName="idCountry" placeholder="{{'STOCK.ALL' | translate}}"> 
                 <mat-option *ngFor="let c of countriesData" [value]="c.id" >
                   {{c.description}}
                 
@@ -82,7 +82,7 @@
             <mat-label fxFlex="100%">{{'STOCK.OFFICE' | translate}}</mat-label>
             <mat-form-field fxFlex="100%" appearance="outline" floatLabel="always" 
                 color="primary">
-                <mat-select formControlName="idOffice" placeholder="Todos">      
+                <mat-select formControlName="idOffice" placeholder="{{'STOCK.ALL' | translate}}">      
                   <mat-option [value]="''">{{'STOCK.ALL' | translate}}</mat-option>                          
                   <mat-option *ngFor="let c of (officeData$|async)" [value]="c.id" >
                     {{c.name}}

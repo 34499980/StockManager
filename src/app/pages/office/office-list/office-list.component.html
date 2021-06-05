@@ -61,7 +61,7 @@
             <div fxFlex="90%" fxLayout="column">
               <mat-label class="font-weight-400">{{'OFFICE.COUNTRY' | translate}}</mat-label>
               <mat-form-field fxFlex="100%" appearance="outline" floatLabel="always"  color="primary">
-                <mat-select formControlName="country" placeholder="Todos">      
+                <mat-select formControlName="country" placeholder="{{'OFFICE.ALL' | translate}}">      
                   <mat-option [value]="''">{{'OFFICE.ALL' | translate}}</mat-option>                          
                   <mat-option *ngFor="let c of countriesData" [value]="c.id" >
                     {{c.description}}

@@ -44,7 +44,7 @@
               <mat-label fxFlex="100%">{{'USERS.ROLE' | translate}}</mat-label>
               <mat-form-field appearance="outline" floatLabel="always" 
                   color="primary">
-                  <mat-select formControlName="role" placeholder="Todos">      
+                  <mat-select formControlName="role" placeholder="{{'USERS.ALL' | translate}}">      
                     <mat-option [value]="''">{{'USERS.ALL' | translate}}</mat-option>                          
                     <mat-option *ngFor="let r of rolesData" [value]="r.id" >
                       {{'ROLE-LIST.'+r.description | translate}}
@@ -57,7 +57,7 @@
               <mat-label fxFlex="100%">{{'USERS.COUNTRY' | translate}}</mat-label>
               <mat-form-field appearance="outline" floatLabel="always" 
                   color="primary">
-                  <mat-select formControlName="country" placeholder="Todos">      
+                  <mat-select formControlName="country" placeholder="{{'USERS.ALL' | translate}}">      
                     <mat-option [value]="''">{{'USERS.ALL' | translate}}</mat-option>                          
                     <mat-option *ngFor="let c of countriesData" [value]="c.id" >
                       {{c.description}}
@@ -70,7 +70,7 @@
               <mat-label fxFlex="100%">{{'USERS.OFFICE' | translate}}</mat-label>
               <mat-form-field appearance="outline" floatLabel="always"
                   color="primary">
-                  <mat-select formControlName="office" placeholder="Todos"> 
+                  <mat-select formControlName="office" placeholder="{{'USERS.ALL' | translate}}"> 
                     <mat-option [value]="''">{{'USERS.ALL' | translate}}</mat-option>                      
                     <mat-option *ngFor="let r of officeData" [value]="r.id" >
                       {{r.name}}

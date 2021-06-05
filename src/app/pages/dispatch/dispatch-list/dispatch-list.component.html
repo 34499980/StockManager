@@ -53,7 +53,7 @@
               <mat-label fxFlex="100%">{{'DISPATCH.STATUS' | translate}}</mat-label>
               <mat-form-field fxFlex="100%" appearance="outline" floatLabel="always"  
                   color="primary">
-                  <mat-select formControlName="state" placeholder="Todos">      
+                  <mat-select formControlName="state" placeholder="{{'DISPATCH.ALL' | translate}}">      
                     <mat-option [value]="''">{{'DISPATCH.ALL' | translate}}</mat-option>                          
                     <mat-option *ngFor="let c of statesData" [value]="c.id" >                   
                       {{'DISPATCH-STATUS-LIST.' + c.description | translate}}
@@ -163,7 +163,7 @@
                 <mat-label fxFlex="100%">{{'OFFICE.COUNTRY' | translate}}</mat-label>
                 <mat-form-field appearance="outline" floatLabel="always"  
                     color="primary">
-                    <mat-select formControlName="country" placeholder="Todos"> 
+                    <mat-select formControlName="country" placeholder="{{'DISPATCH.ALL' | translate}}"> 
                       <mat-option *ngFor="let c of countriesData" [value]="c.id" >
                         {{c.description}}
                       
@@ -175,7 +175,7 @@
                 <mat-label fxFlex="100%">{{'DISPATCH.OFFICE' | translate}}</mat-label>
                 <mat-form-field appearance="outline" floatLabel="always" 
                     color="primary">
-                    <mat-select formControlName="destiny" placeholder="Todos">      
+                    <mat-select formControlName="destiny" placeholder="{{'DISPATCH.ALL' | translate}}">      
                       <mat-option [value]="''">{{'DISPATCH.ALL' | translate}}</mat-option>                          
                       <mat-option *ngFor="let c of officeData" [value]="c.id" >
                         {{c.name}}
