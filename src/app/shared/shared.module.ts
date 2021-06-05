@@ -43,6 +43,7 @@ import { DialogValidateComponent } from './dialogs/dialogValidate/dialogValidate
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { DirectivesModule } from '../directives/directives.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatStepperModule } from '@angular/material/stepper';
 
 const COMPONENTS = [
     InputrequiredComponent,
@@ -90,6 +91,7 @@ const MODULES = [
     MatMenuModule,
     MatCheckboxModule, 
     MatTooltipModule,
+    MatStepperModule,
     ToastrModule.forRoot({
       timeOut: 7000,
       positionClass: 'toast-bottom-center',
@@ -100,6 +102,7 @@ const MODULES = [
   ],
   exports: [
     CommonModule,
+    MatStepperModule,
     MatFormFieldModule ,
     MatPaginatorModule,
     MatTableModule,

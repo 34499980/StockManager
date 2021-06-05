@@ -199,7 +199,8 @@
         "errStockNotFound": "No se encontro el producto",
         "errStockHasChange": "El stock fue modificado",
         "errProductWithoutStock": "Producto sin stock",
-        "errCheckDsipatchItems": "Verifica los articulos del despacho"
+        "errCheckDsipatchItems": "Verifica los articulos del despacho",
+        "errUserOrPass": "Usuario o contraseña incorrecta"
     }
 
     

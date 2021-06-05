@@ -195,7 +195,8 @@
         "errStockNotFound": "Stock not found",
         "errStockHasChange": "Stock has change",
         "errProductWithoutStock": "Product without stock",
-        "errCheckDsipatchItems": "Check the dispatch items"
+        "errCheckDsipatchItems": "Check the dispatch items",
+        "errUserOrPass": "Icorrect user or password"
     }
 
 }

@@ -96,3 +96,6 @@
   mat-sidenav-content{  
     background-color: #fff8e1;  
   }
+  ::ng-deep .mat-horizontal-stepper-header {
+    pointer-events: none !important;
+}
