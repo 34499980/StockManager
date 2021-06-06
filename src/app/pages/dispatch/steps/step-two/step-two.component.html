@@ -16,7 +16,7 @@
   matTooltipPosition="above" mat-raised-button color="primary"
   (click)="update()">{{'GENERALACTIONS.SAVE' | translate}}
     </button>
-    <button class="ml-12" [disabled]="this.dispatch?.dispatch_stock?.length == 0"
+    <button class="ml-12" [disabled]="this.dataSource.data.length == 0"
   matTooltipPosition="above" mat-raised-button color="primary"
   (click)="confirm()">{{'GENERALACTIONS.CONFIRM' | translate}}
     </button>

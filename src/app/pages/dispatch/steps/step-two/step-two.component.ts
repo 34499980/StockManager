@@ -102,7 +102,8 @@ export class StepTwoComponent implements OnInit {
       const stockOffice = this.searchStockByOffice(stock.stock_Office);
       this.dispatch.dispatch_stock.find(x => x.idStock === stock.id).unity = 0;
       stockOffice.unity--;
-      this.dataSource.data = this.dataSource.data.find(x => x.code !== stock.code);
+      this.dataSource.data = this.dataSource.data.filter(x => x.id != stock.id);
+      console.log(this.dataSource)
     }
    
   }
