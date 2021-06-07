@@ -57,6 +57,12 @@ export class AuthenticationService {
        getCurrentToken(): any{
         return sessionStorage.getItem('token');
        }
+       getCurrentId(): any{
+        return sessionStorage.getItem('userId');
+       }
+       getCurrentLenguage(): any{
+        return sessionStorage.getItem('lenguage');
+       }
        getCurrentImage = () =>{       
         
          return sessionStorage.getItem('file');
@@ -70,11 +76,13 @@ export class AuthenticationService {
        
     Autorization(value: User){        
         this.loggedIn.next(true)
+        sessionStorage.setItem('userId', value.id.toString())
         sessionStorage.setItem('user', value.userName)
         sessionStorage.setItem('roleId', value.idRole.toString())
         sessionStorage.setItem('idCountry', value.idCountry.toString())
         sessionStorage.setItem('idOffice', value.idOffice.toString())
         sessionStorage.setItem('token', value.token.toString())
+        sessionStorage.setItem('lenguage', value.lenguage.toString())
         sessionStorage.setItem('permissions', value.permissions.toString())
         if(value.file)
         sessionStorage.setItem('file', value.file)

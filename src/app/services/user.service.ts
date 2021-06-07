@@ -8,6 +8,7 @@ import { map, catchError } from 'rxjs/operators';
 import { User } from '../models/user';
 import { navigation } from '../core/sidenav/navigation';
 import { UserFilter } from '../models/UserFilter.model';
+import {  UserLenguage } from '../models/userLenguage.modal';
 const headers = new HttpHeaders();
 headers.append('Access-Control-Allow-Headers', 'Content-Type');
 headers.append('Access-Control-Allow-Methods', 'GET,POST,PUT,DEconstE,OPTIONS');
@@ -68,6 +69,14 @@ export class UserService {
     }
     saveUsuario(user: User): Observable<any>{
         return  this.http.post(environment.RestFullApi+'User', user)
+        .pipe(
+            map(res => {
+                return res
+            })
+        );
+    }
+    UpdateLenguage(user: UserLenguage): Observable<any>{
+        return  this.http.post(environment.RestFullApi+'User/UpdateUserLenguage', user)
         .pipe(
             map(res => {
                 return res

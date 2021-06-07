@@ -18,6 +18,7 @@ import { AppRouting } from 'src/app/enums/AppRouting.enum';
 })
 
 export class SidenavComponent implements OnInit {
+  userName: string;
   screens: any
   isLogged$: Observable<boolean>;
   submitted = false;
@@ -55,7 +56,10 @@ export class SidenavComponent implements OnInit {
       {
       if(res) {
         if (this.authenticationService.getCurrentImage() != 'undefined')
-         this.cameraImage = this.authenticationService.getCurrentImage()
+        this.authenticationService.getCurrentUserSubject.subscribe(() => {
+          this.cameraImage = this.authenticationService.getCurrentImage();
+          this.userName = this.authenticationService.getSession()
+        })       
       } else {
         //Comentar para dev
        // this.router.navigate([AppRouting.Login])

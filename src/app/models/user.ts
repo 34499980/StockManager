@@ -18,6 +18,7 @@ export interface User{
     idCountry: number;
     active: boolean;
     token?: string;
+    lenguage?: string;
     permissions?: [];
 
 

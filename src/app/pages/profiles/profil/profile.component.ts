@@ -64,10 +64,16 @@ export class ProfileComponent implements OnInit {
       address: [this.user?.address || '', [Validators.required, Validators.maxLength(50), this.EmailValidator]],
       postalCode: [this.user?.postalCode || '', [Validators.required, Validators.maxLength(50), Validators.pattern(/^[0-9]\d*$/)]],
       office: [this.user?.idOffice || '', Validators.required],
-      role: [this.user?.idRole || '', [Validators.required, Validators.maxLength(50)]],
+      role: [ this.user?.idRole || '',[Validators.required, Validators.maxLength(50)]],
       state:[this.user?.active || false],
       country: [this.user?.idCountry || parseInt(this.authenticationService.getCurrentCountry(), 10), Validators.required],
     });
+    let flag = this.canEditRole()
+    if(flag){
+      this.userControl.controls.role.enable()
+    } else{
+      this.userControl.controls.role.disable()
+    }
 
 }
 validateSpinner() {
@@ -138,6 +144,22 @@ canEdit(){
          (parseInt(this.authenticationService.getCurrentRole()) === RolesEnum.Manager 
          && this.user?.idOffice == parseInt(this.authenticationService.getCurrentOffice())) ||
          this.authenticationService.getSession() === this.user?.userName && this.user && !this.user?.active;
+}
+canEditRole(){
+  console.log(this.authenticationService.getCurrentRole())
+  console.log( parseInt(this.authenticationService.getCurrentRole()) == RolesEnum.Administrator)
+  console.log(parseInt(this.authenticationService.getCurrentRole()) == RolesEnum.Manager)
+  console.log(this.user?.idOffice == parseInt(this.authenticationService.getCurrentOffice()) &&
+  this.authenticationService.getSession() != this.user?.userName)
+  console.log(parseInt(this.authenticationService.getCurrentRole()) == RolesEnum.Administrator ||
+  (parseInt(this.authenticationService.getCurrentRole()) == RolesEnum.Manager && 
+  this.user?.idOffice == parseInt(this.authenticationService.getCurrentOffice()) &&
+  this.authenticationService.getSession() != this.user?.userName))
+  
+  return parseInt(this.authenticationService.getCurrentRole()) == RolesEnum.Administrator ||
+          (parseInt(this.authenticationService.getCurrentRole()) == RolesEnum.Manager && 
+          this.user?.idOffice == parseInt(this.authenticationService.getCurrentOffice()) &&
+          this.authenticationService.getSession() != this.user?.userName)
 }
 cancel(){
   if(!this.userControl.pristine) {

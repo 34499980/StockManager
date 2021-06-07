@@ -73,3 +73,6 @@ mat-sidenav {
 mat-sidenav-content{
   background-color: #fff8e1;
 }
+.bold {
+  font-weight: bold;
+}
