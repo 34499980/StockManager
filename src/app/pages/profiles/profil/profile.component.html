@@ -46,7 +46,7 @@
           <mat-error  *ngIf="userControl.controls.office.hasError('required')">{{'ERROR-MESSAGE.REQUIRED' | translate}}</mat-error>         
           <ng-content></ng-content>
         </ng-container>
-        <mat-form-field *ngIf="showPermissionAdmin()" appearance="outline">
+        <mat-form-field *ngIf="canEdit()" appearance="outline">
           <mat-label>{{'USERS.STATE' | translate}}</mat-label>
           <mat-select formControlName="state" [(value)]="userControl.controls.state">                       
             <mat-option [value]="true">{{'STATES-LIST.ENABLED' | translate}}</mat-option>    

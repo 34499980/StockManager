@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, Output, ViewChild, ElementRef, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
@@ -19,6 +19,7 @@ import { DialogconfirmComponent } from '../../dialogs/dialogconfirm/dialogconfir
 })
 export class PaneluserComponent implements OnInit {
  @Input() user: UserGet;
+ @Output() reloadEvent = new EventEmitter<boolean>();
   image: string
   cameraImage: SafeResourceUrl;
   _param: any
@@ -71,8 +72,9 @@ export class PaneluserComponent implements OnInit {
        dialogRef.afterClosed().subscribe(result => {
          if(result === true){
           this.userService.remove(this.user.id).subscribe(() => 
-          {this.toastService.success(this.translate.instant('USERS.ACTIONS.DELETE' ,{user: user.userName})),
-          window.location.reload();
+          {this.toastService.success(this.translate.instant('USERS.ACTIONS.DELETE' ,{user: user.userName}))
+          this.reloadEvent.emit(true);
+          //window.location.reload();
         });
       }
    });
@@ -80,7 +82,7 @@ export class PaneluserComponent implements OnInit {
   canEdit(){
     return parseInt(this.authentication.getCurrentRole()) === RolesEnum.Administrator ||
             (parseInt(this.authentication.getCurrentRole()) === RolesEnum.Manager && 
-            this.user.idRole !== RolesEnum.Administrator) ||
+            this.user.idRole !== RolesEnum.Administrator && this.user.idRole !== RolesEnum.Manager) ||
            (parseInt(this.authentication.getCurrentRole()) === RolesEnum.Manager 
            && this.user?.idOffice == parseInt(this.authentication.getCurrentOffice())) &&
            this.user.userName == this.authentication.getSession()

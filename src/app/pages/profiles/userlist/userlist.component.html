@@ -100,7 +100,7 @@
         <ul class="scroll" *ngFor="let user of usersData">
           
           <li>
-              <app-paneluser [user]="user" ></app-paneluser>
+              <app-paneluser [user]="user" (reloadEvent)="this.loadData()" ></app-paneluser>
           </li> 
            
          

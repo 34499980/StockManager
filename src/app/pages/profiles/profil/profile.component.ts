@@ -146,15 +146,6 @@ canEdit(){
          this.authenticationService.getSession() === this.user?.userName && this.user && !this.user?.active;
 }
 canEditRole(){
-  console.log(this.authenticationService.getCurrentRole())
-  console.log( parseInt(this.authenticationService.getCurrentRole()) == RolesEnum.Administrator)
-  console.log(parseInt(this.authenticationService.getCurrentRole()) == RolesEnum.Manager)
-  console.log(this.user?.idOffice == parseInt(this.authenticationService.getCurrentOffice()) &&
-  this.authenticationService.getSession() != this.user?.userName)
-  console.log(parseInt(this.authenticationService.getCurrentRole()) == RolesEnum.Administrator ||
-  (parseInt(this.authenticationService.getCurrentRole()) == RolesEnum.Manager && 
-  this.user?.idOffice == parseInt(this.authenticationService.getCurrentOffice()) &&
-  this.authenticationService.getSession() != this.user?.userName))
   
   return parseInt(this.authenticationService.getCurrentRole()) == RolesEnum.Administrator ||
           (parseInt(this.authenticationService.getCurrentRole()) == RolesEnum.Manager && 
