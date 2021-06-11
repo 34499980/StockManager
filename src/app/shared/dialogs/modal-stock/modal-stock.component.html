@@ -32,7 +32,7 @@
                
                 <mat-form-field appearance="outline" floatLabel="always" color="primary">
                     <mat-label>{{'STOCK.OFFICE' | translate}}</mat-label>
-                    <mat-select [formControl]="officeForm.controls.idOffice" (selectionChange)="selectedOffice($event.value)"> 
+                    <mat-select [formControl]="officeForm.controls.idOffice"> 
                     <mat-option *ngFor="let c of (officeData$) | async" [value]="c.id" >
                         {{c.name}}
                     

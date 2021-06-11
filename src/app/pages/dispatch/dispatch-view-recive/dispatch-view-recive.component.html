@@ -26,7 +26,7 @@
         
         <div fxFlex="20%"  >
           <form [formGroup]="formControl">
-            <mat-form-field appearance="outline"  *ngIf="validateState()">
+            <mat-form-field appearance="outline" class="ml-8"  *ngIf="validateState()">
                 <mat-label>{{'DISPATCH.CODE' | translate}}</mat-label>
                 <input matInput formControlName="code"  #input autocomplete="off">            
               </mat-form-field>
@@ -38,11 +38,11 @@
           </form>
         </div>
         <div  *ngIf="validateState() || showButton" >
-          <button 
+          <button class="margin-right"
           matTooltipPosition="above" mat-raised-button color="primary"
           (click)="update()">{{'GENERALACTIONS.SAVE' | translate}}
            </button>
-           <button  
+           <button  class="margin-right" [disabled]="canConfirm()"
           matTooltipPosition="above" mat-raised-button color="primary"
           (click)="confirm()">{{'GENERALACTIONS.CONFIRM' | translate}}
            </button>

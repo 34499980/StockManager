@@ -60,6 +60,7 @@ export class ModalStockComponent implements OnInit {
       idOffice: [parseInt(this.authentication.getCurrentOffice(), 10)],
       idCountry: [parseInt(this.authentication.getCurrentCountry(), 10) ]
     })
+    this.selectedOffice();
     this.stockForm = this.builder.group({      
       code: [this.stock?.code || '' , [Validators.required, Validators.maxLength(250)]],
       name: [this.stock?.name || '' , [Validators.required, Validators.maxLength(250)]],
@@ -111,7 +112,8 @@ export class ModalStockComponent implements OnInit {
       }
      
   } 
-  selectedOffice(idOffice: number){
+  selectedOffice(){
+    this.officeForm.controls.idOffice.valueChanges.subscribe(idOffice => {
       this.stockForm.markAsPristine();
       this.stockForm.controls.code.setValue(this.stock?.code);
       this.stockForm.controls.name.setValue(this.stock?.name);
@@ -141,6 +143,8 @@ export class ModalStockComponent implements OnInit {
         this.stockForm.controls.unity.setValue(stock_Officelist.unity);
         this.officeForm.controls.idOffice.setValue(stock_Officelist.idOffice)
       }
+    });
+     
       
 
     

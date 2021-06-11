@@ -174,7 +174,7 @@
                     <mat-cell *matCellDef="let stock_office" fxLayout="row" fxLayoutAlign="flex-start center" class="cell50-w">
                         <button *ngIf="showEditPermission(stock_office)" mat-icon-button color="primary" fxFlex="0 1 auto"
                         
-                            matTooltip= "{{'GENERALACTIONS.ADD' | translate}}"
+                            matTooltip= "{{'GENERALACTIONS.EDIT' | translate}}"
                             (click)="editStock(stock_office.stock.id)">
                             <mat-icon class="mx-8" color="primary"  >create</mat-icon>
                         </button>

@@ -223,7 +223,7 @@ setMatSorting(sort: Sort) {
   }
   showEditPermission(stock_office){
     return (RolesEnum.Administrator == this.authentication.getCurrentRole() ||
-           RolesEnum.Manager == this.authentication.getCurrentRole() && stock_office.office.id == this.authentication.getCurrentOffice())
+            stock_office.office.id == this.authentication.getCurrentOffice())
   }
   showPermission() {
     return (RolesEnum.Administrator == this.authentication.getCurrentRole())

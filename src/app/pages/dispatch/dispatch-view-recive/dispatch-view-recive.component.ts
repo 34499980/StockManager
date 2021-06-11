@@ -114,5 +114,8 @@ export class DispatchViewReciveComponent implements OnInit {
   cancel() {
     this.router.navigate([AppRouting.DispatchList])
   }
+  canConfirm() {
+  return  this.dataSource.data.find(x => x.count != x.unity)
+  }
 
 }
