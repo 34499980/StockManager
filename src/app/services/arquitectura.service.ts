@@ -7,6 +7,11 @@ import { map } from 'rxjs/operators';
 import { Dispatch } from '../models/dispatch';
 import { ModalDispatchComponent } from '../shared/dialogs/modal-dispatch/modal-dispatch.component';
 import { DialogValidateComponent } from '../shared/dialogs/dialogValidate/dialogValidate.component';
+import { dispatch } from 'rxjs/internal/observable/pairs';
+import { Country } from '../models/country.model';
+import { Office } from '../models/office.model';
+import { StockGet } from '../models/stock';
+import { ModalStockComponent } from '../shared/dialogs/modal-stock/modal-stock.component';
 @Injectable({
   providedIn: 'root'
 })
@@ -492,6 +497,18 @@ openDialogDispatch(dispatch: Dispatch){
    map(res => {return res}    
    )
   )
+}
+openDialogStock(officeData: Office[], countriesData: Country[], stock?: StockGet){
+  return this._dialog.open(ModalStockComponent,{
+    disableClose: true,  
+    height: '480px',
+     width: '65%',
+     data: {
+            countriesData: countriesData,
+            stock:  stock,
+            officeData: officeData  
+          }      
+  })
 }
 openDialogValidate(){
   const dialogRef = this._dialog.open(DialogValidateComponent, {

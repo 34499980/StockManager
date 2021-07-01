@@ -16,6 +16,7 @@ import { Office } from 'src/app/models/office.model';
 import { Stock, StockGet } from 'src/app/models/stock';
 import { StockFilter } from 'src/app/models/stockFilter.mode';
 import { Stock_Office } from 'src/app/models/stock_office.model';
+import { ArquitecturaService } from 'src/app/services/arquitectura.service';
 import { OfficeService } from 'src/app/services/office.service';
 import { StockService } from 'src/app/services/stock.service';
 import { ToastService } from 'src/app/services/toast.service';
@@ -60,6 +61,7 @@ constructor(private activateRoute: ActivatedRoute,
   private router: Router,
   private officeService: OfficeService,
   private toastService: ToastService,
+  private arquitecturaService: ArquitecturaService,
   private authentication: AuthenticationService) { }
 
   ngOnInit(): void { 
@@ -170,14 +172,7 @@ setMatSorting(sort: Sort) {
     this.loadData();
   }
   addStock(){  
-    const dialogRef = this.dialog.open(ModalStockComponent,{
-      disableClose: true,  
-      height: '460px',
-       width: '60%',
-       data: {countriesData: this.countriesData,
-              officeData: this.officeData 
-            }      
-    }).afterClosed().subscribe(res => {
+   this.arquitecturaService.openDialogStock(this.officeData, this.countriesData).afterClosed().subscribe(res => {
       if(res){
         this.loadData();
       }
@@ -204,16 +199,8 @@ setMatSorting(sort: Sort) {
   editStock(id: number){
     this.stockService.getStockById(id).subscribe(res => {
       res.unity = res.stock_Office.find(x => x.idOffice == res.idOffice).unity
-      const dialogRef = this.dialog.open(ModalStockComponent,{
-        disableClose: true,  
-        height: '480px',
-         width: '65%',
-         data: {
-                countriesData: this.countriesData,
-                stock:  res as StockGet,
-                officeData: this.officeData  
-              }      
-      }).afterClosed().subscribe(res => {
+     this.arquitecturaService.openDialogStock(this.officeData, this.countriesData, res as StockGet)
+      .afterClosed().subscribe(res => {
         if(res){
           this.loadData();
         }
