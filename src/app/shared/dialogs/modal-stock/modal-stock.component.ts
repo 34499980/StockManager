@@ -141,7 +141,7 @@ export class ModalStockComponent implements OnInit {
      
       if(stock_Officelist){
         this.stockForm.controls.unity.setValue(stock_Officelist.unity);
-        this.officeForm.controls.idOffice.setValue(stock_Officelist.idOffice)
+       // this.officeForm.controls.idOffice.setValue(stock_Officelist.idOffice)
       }
     });
      
