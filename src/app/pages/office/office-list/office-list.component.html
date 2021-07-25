@@ -1,36 +1,39 @@
+<div>
+  <div class="header" fxLayoutAlign="space-between">
+        
+    <!--SEARCH BAR-->
+    
+    <div class="searchWrapper" fxLayout="row wrap">
+      <div class="search ml-16 mt-6" fxLayout="row"  appearance="outline" floatLabel="always">  
+        <mat-icon>search</mat-icon>       
+        <input class="search ml-16 mt-6"  autocomplete="off" matInput [formControl]="searchControl.controls.name" placeholder="{{'OFFICE.SEARCH' | translate}}" >
+      </div>  
+    </div>
+       
+                 
+
+
+  <div fxFlex fxLayoutAlign="end center" >
+    <mat-paginator fxFlex="60%" [pageSizeOptions]="[1,5, 10, 25, 100]" [length]="tableCountSubject | async"
+    [pageIndex]="0"  [pageSize]="10" showFirstLastButtons >
+     
+    </mat-paginator>
+    <button *ngIf="canEdit()" mat-mini-fab color="primary"  matTooltip="Agregar" matTooltipPosition="above" (click)="add()" >
+      <mat-icon>add</mat-icon>
+    </button>
+    <div class="paddingButton">
+   <button mat-mini-fab color="primary"  matTooltip="Filtros" matTooltipPosition="above" (click)="sidenav.toggle()" >
+    <mat-icon>filter_list</mat-icon>
+  </button>
+</div>
+  
+</div>
+
+  </div>
+</div>
 <div class="container">
     <form [formGroup]="searchControl">
-      <div class="header" fxLayoutAlign="space-between">
-        
-          <!--SEARCH BAR-->
-          
-          <div class="searchWrapper" fxLayout="row wrap">
-            <div class="search ml-16 mt-6" fxLayout="row"  appearance="outline" floatLabel="always">  
-              <mat-icon>search</mat-icon>       
-              <input class="search ml-16 mt-6"  autocomplete="off" matInput formControlName="name" placeholder="{{'OFFICE.SEARCH' | translate}}" >
-            </div>  
-          </div>
-             
-                       
-     
-     
-        <div fxFlex fxLayoutAlign="end center" >
-          <mat-paginator fxFlex="60%" [pageSizeOptions]="[1,5, 10, 25, 100]" [length]="tableCountSubject | async"
-          [pageIndex]="0"  [pageSize]="10" showFirstLastButtons >
-           
-          </mat-paginator>
-          <button *ngIf="canEdit()" mat-mini-fab color="primary"  matTooltip="Agregar" matTooltipPosition="above" (click)="add()" >
-            <mat-icon>add</mat-icon>
-          </button>
-          <div class="paddingButton">
-         <button mat-mini-fab color="primary"  matTooltip="Filtros" matTooltipPosition="above" (click)="sidenav.toggle()" >
-          <mat-icon>filter_list</mat-icon>
-        </button>
-      </div>
-        
-      </div>
-      
-    </div>
+   
       <mat-sidenav-container class="example-container">
         <mat-sidenav #sidenav mode="side" class="example-sidenav"
                     position="end" >
