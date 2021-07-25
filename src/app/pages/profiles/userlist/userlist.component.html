@@ -5,7 +5,7 @@
         <div class="searchWrapper" fxLayout="row wrap">
           <div class="search ml-16 mt-6" fxLayout="row"  appearance="outline" floatLabel="always">  
             <mat-icon>search</mat-icon>       
-            <input class="search ml-16 mt-6"  autocomplete="off" matInput formControlName="name" placeholder="{{'USERS.SEARCH' | translate}}" >
+            <input class="search ml-16 mt-6"  autocomplete="off" matInput [formControl]="searchControl.controls.name" placeholder="{{'USERS.SEARCH' | translate}}" >
           </div>  
         </div>
       <div fxFlex fxLayoutAlign="end center" >
