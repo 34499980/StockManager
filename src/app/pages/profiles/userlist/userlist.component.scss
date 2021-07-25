@@ -1,12 +1,15 @@
-
+.container {
+  height: 100vh;
+  z-index: 10; 
+  width: 100%;
+}
 
   .header{
     background-color: lightgray;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     width: 100%;
-    height: 50px;    
-    position: sticky;
-    top:0;
+    z-index: 10; 
+    height: 50px; 
     
   }
  ng-container{
@@ -93,7 +96,7 @@ mat-sidenav-container{
   width: 210px;
   background-color: white;
   overflow: hidden;
-  height: 90%;
+  height: 85%;
 }
 
 .example-header {
@@ -117,6 +120,6 @@ mat-sidenav-content{
     width: 210px;
     background-color: white;
     overflow: hidden;
-    height: 95%;
+    height: 92%;
   }
 }
