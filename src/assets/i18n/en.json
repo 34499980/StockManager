@@ -5,7 +5,8 @@
         "SUBTITLES":{
             "PROFILE": "Profile",
             "USERS": "Users",
-            "ANNULMENT": "Annulment"  
+            "ANNULMENT": "Annulment",
+            "HISTORY": "History"  
             }      
         },
         "OFFICE":{
@@ -26,7 +27,22 @@
             "DISPATCHDETAIL": "Dispatch detail"
         }
     }
-    },    
+    }, 
+     "HISTORY":{
+        "DATEPROCES": "Date",
+        "USERNAME": "UserName",
+        "OFFICE": "Office",
+        "ACTION": "Action",
+        "DETAIL": "Detail",
+        "FILTERS": {
+            "USERNAME": "Username",
+            "DATEFROM": "Date From",
+            "DATETO": "Date To",
+            "ACTION": "Action",
+            "OFFICE": "Office",
+            "ALL": "All"
+        }
+    }  ,  
     "DISPATCH":{        
         "CODE":"Code",
         "USERNAME":"UserName",

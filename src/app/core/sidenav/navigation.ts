@@ -26,8 +26,7 @@ export const navigation: Navigation[] = [
                 type     : 'item',
                 icon     : 'how_to_vote',
                 url      : '/Profile',
-            },
-            ,
+            },            
             {
                 id       : PermissionType.Annulment.toString(),
                 title    : 'ANNULMENT',
@@ -36,6 +35,16 @@ export const navigation: Navigation[] = [
                 type     : 'item',
                 icon     : 'how_to_vote',
                 url      : '/Anulaciones',
+            },
+            ,            
+            {
+                id       : PermissionType.History.toString(),
+                title    : 'HISTORY',
+                translate: 'NAV.ADMINISTRATION.SUBTITLES.HISTORY',
+                hidden   : false,
+                type     : 'item',
+                icon     : 'how_to_vote',
+                url      : '/History',
             },
         ]
     },

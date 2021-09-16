@@ -41,6 +41,11 @@ const appRoutes: Routes = [
     path: AppRouting.Dispatch,
     loadChildren: () => import('./pages/dispatch/dispatch.module'). then(m => m.DispatchModule)
    
+  },
+  {
+    path: AppRouting.History,
+    loadChildren: () => import('./pages/history/history.module'). then(m => m.HistoryModule)
+   
   }
 ];
 

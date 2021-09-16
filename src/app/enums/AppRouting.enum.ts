@@ -9,6 +9,7 @@ export const enum  AppRouting {
     Dispatch = 'Dispatch',
     DispatchList = 'Dispatch/all',
     DispatchCreate = 'Dispatch/create',
-    DispatchRecive = 'Dispatch/recive'
+    DispatchRecive = 'Dispatch/recive',
+    History = 'History'
 
 }

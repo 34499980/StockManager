@@ -5,7 +5,8 @@
         "SUBTITLES":{
             "PROFILE": "Perfil",
             "USERS": "Usuarios",
-            "ANNULMENT": "Anulación"
+            "ANNULMENT": "Anulación",
+            "HISTORY": "Historial"
         
             }
         },
@@ -74,7 +75,22 @@
             "UPDATE": "La sucursal fue actualizada"
         }
         
-    },    
+    },  
+    "HISTORY":{
+        "DATEPROCES": "Fecha",
+        "USERNAME": "Usuario",
+        "OFFICE": "Sucursal",
+        "ACTION": "Acción",
+        "DETAIL": "Detalle",
+         "FILTERS": {
+            "USERNAME": "Usuario",
+            "DATEFROM": "Desde",
+            "DATETO": "Hasta",
+            "ACTION": "Acción",
+            "OFFICE": "Sucursal",
+            "ALL": "Todos"
+        }
+    }  ,
     "DISPATCH":{        
         "CODE":"Codigo",
         "USERNAME":"Usuario",

@@ -3,6 +3,7 @@ export const enum PermissionType {
     UserList = 2,
     Profile = 3,
     Annulment = 4,
+    History = 5,
 
     Offices = 10,
     Office = 11,
