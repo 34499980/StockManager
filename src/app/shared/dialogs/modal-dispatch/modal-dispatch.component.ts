@@ -1,6 +1,7 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { DispatchState } from 'src/app/enums/dispatch-state.enum';
 import { Dispatch } from 'src/app/models/dispatch';
 import { DispatchService } from 'src/app/services/dispatch.service';
 
@@ -31,6 +32,7 @@ export class ModalDispatchComponent implements OnInit {
     this.dataSource.data = [...this.dispatch.stock];  
   }
   save() {
+    this.dispatch.idState = DispatchState.Update;
     this.dispatchService.updateStock(this.dispatch).subscribe(() => 
     this.dialogRef.close(this.dispatch)
     );

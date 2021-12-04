@@ -41,6 +41,43 @@
             "ACTION": "Action",
             "OFFICE": "Office",
             "ALL": "All"
+        },
+        "TYPE":{
+           "DispatchCreate": "Dispatch create",
+           "DispatchUpdate": "DIpatch update",
+           "DispatchSend": "Dispatch send",
+           "DispatchRecive": "Dispatch recive",
+           "DispatchFinish": "Dispatch finish",
+           "DispatchDelete": "Dispatch delete",
+           "UserCreate": "User createed",
+           "UserUpdate": "User updated",
+           "UserDelete": "User deleted",
+           "OfficeCreate": "Office created",
+           "OfficeUpdate": "Office updated",
+           "OfficeDelete": "Office deleted",
+           "StockCreate": "Stock created",
+           "StockUpdate": "Stock updated",
+           "StockDeleted": "Stock delted"
+
+
+        },
+        "MESSAGE":{
+           "DispatchCreate" : "The dispatch {{ActionDetail}} was created",
+           "DispatchUpdate": "The dispatch {{ActionDetail}} was updated",
+           "DispatchSend": "The dispatch {{ActionDetail}} was send",
+           "DispatchRecive": "The dispatch {{ActionDetail}} was recived",
+           "DispatchFinish": "The dispatch {{ActionDetail}} was closed",
+           "DispatchDelete": "The dispatch {{ActionDetail}} was deleted",
+           "UserCreate": "The user {{ActionDetail}} was created",
+           "UserUpdate": "The user {{ActionDetail}} was update",
+           "UserDelete": "The user {{ActionDetail}} was deleted",
+           "OfficeCreate": "The office {{ActionDetail}} was created",
+           "OfficeUpdate": "The office {{ActionDetail}} was updated",
+           "OfficeDelete": "The office {{ActionDetail}} was deleted",
+           "StockCreate": "The stock {{ActionDetail}} was created",
+           "StockUpdate": "The stock {{ActionDetail}} was updated",
+           "StockDeleted": "The stock {{ActionDetail}} was deleted"
+
         }
     }  ,  
     "DISPATCH":{        

@@ -3,5 +3,6 @@ export const enum DispatchState {
     Dispatched = 2,
     Received = 3,
     Finalized = 4,
-    Incomplete = 5
+    Incomplete = 5,
+    Update = 6
   }

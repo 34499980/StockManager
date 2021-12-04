@@ -108,11 +108,11 @@
 
 
               <ng-container matColumnDef="DATEPROCES">
-                  <mat-header-cell *matHeaderCellDef>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>
                       {{'HISTORY.DATEPROCES' | translate}}
                   </mat-header-cell>
                   <mat-cell *matCellDef="let history">
-                      <p class="text-truncate" >{{history.dateproces}}</p>
+                      <p class="text-truncate" >{{history.dateProces | date: 'dd/MM/yyyy'}}</p>
                   </mat-cell>
               </ng-container>
 
@@ -121,7 +121,7 @@
                       {{'HISTORY.USERNAME' | translate}}
                   </mat-header-cell>
                   <mat-cell *matCellDef="let history">
-                      <p class="text-truncate">{{history.userName}}</p>
+                      <p class="text-truncate">{{history.user.userName}}</p>
                   </mat-cell>
               </ng-container>
 
@@ -130,7 +130,7 @@
                       {{'HISTORY.OFFICE' | translate}}
                   </mat-header-cell>
                   <mat-cell *matCellDef="let history">
-                      <p class="text-truncate">{{history.office}}</p>
+                      <p class="text-truncate">{{history.office.name}}</p>
                   </mat-cell>
               </ng-container>
 
@@ -139,17 +139,17 @@
                     {{'HISTORY.ACTION' | translate}}
                 </mat-header-cell>
                 <mat-cell *matCellDef="let history">
-                    <p class="text-truncate">{{history.action}}</p>
+                    <p class="text-truncate">{{'HISTORY.TYPE.'+ history.subAction | translate}}</p>
                 </mat-cell>
             </ng-container>
               
 
               <ng-container matColumnDef="DETAIL">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="300px">
                       {{'HISTORY.DETAIL' | translate}}
                   </mat-header-cell>
-                  <mat-cell *matCellDef="let history">
-                      <p class="text-truncate">{{history.detail}}</p>
+                  <mat-cell *matCellDef="let history" fxFlex="300px">
+                      <p class="text-truncate"  [innerHTML]="'HISTORY.MESSAGE.'+ history.subAction | translate: ({ActionDetail: history.actionDetail})"></p>
                   </mat-cell>
               </ng-container>            
 

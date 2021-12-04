@@ -72,16 +72,7 @@ export const navigation: Navigation[] = [
                 type     : 'item',
                 icon     : 'business_center',
                 url      : '/Office/all',
-            },
-            {
-                id       : PermissionType.Movements.toString(),
-                title    : 'Movimientos',
-                translate: 'Movimientos',
-                hidden   : false,
-                type     : 'item',
-                icon     : 'business_center',
-                url      : '/Movimientos',
-            },
+            },           
             {
                 id       : PermissionType.Sales.toString(),
                 title    : 'Ventas',

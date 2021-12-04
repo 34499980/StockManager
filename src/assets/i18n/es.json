@@ -89,6 +89,43 @@
             "ACTION": "Acción",
             "OFFICE": "Sucursal",
             "ALL": "Todos"
+        },
+        "TYPE":{
+            "DispatchCreate": "Despacho creado",
+            "DispatchUpdate": "Despacho actualizado",
+            "DispatchSend": "Despacho enviado",
+            "DispatchRecive": "Despacho recibido",
+            "DispatchFinish": "Despacho finalizado",
+            "DispatchDelete": "Despacho eliminado",
+            "UserCreate": "Usuario creado",
+            "UserUpdate": "Usuario actualizado",
+            "UserDelete": "Usuario eliminado",
+            "OfficeCreate": "Sucursal creado",
+            "OfficeUpdate": "Sucursal actualizado",
+            "OfficeDelete": "Sucursal eliminado",
+            "StockCreate": "Producto creado",
+            "StockUpdate": "Producto actualizado",
+            "StockDeleted": "Producto eliminado"
+
+
+        },
+        "MESSAGE":{
+            "DispatchCreate" : "El despacho {{ActionDetail}} fue creado",
+            "DispatchUpdate": "El despacho {{ActionDetail}} fue actualizado",
+            "DispatchSend": "El despacho {{ActionDetail}} fue enviado",
+            "DispatchRecive": "El despacho {{ActionDetail}} fue recibido",
+            "DispatchFinish": "El despacho {{ActionDetail}} fue finalizado",
+            "DispatchDelete": "El despacho {{ActionDetail}} fue eliminado",
+            "UserCreate": "El usuario {{ActionDetail}} fue creado",
+            "UserUpdate": "El usuario {{ActionDetail}} fue actualizado",
+            "UserDelete": "El usuario {{ActionDetail}} fue eliminado",
+            "OfficeCreate": "La sucursal {{ActionDetail}} fue creado",
+            "OfficeUpdate": "La sucursal {{ActionDetail}} fue actualizado",
+            "OfficeDelete": "La sucursal {{ActionDetail}} fue eliminado",
+            "StockCreate": "El producto {{ActionDetail}} fue creado",
+            "StockUpdate": "El producto {{ActionDetail}} fue actualizado",
+            "StockDeleted": "El producto {{ActionDetail}} fue eliminado"
+
         }
     }  ,
     "DISPATCH":{        

@@ -101,6 +101,7 @@ export class DispatchViewReciveComponent implements OnInit {
     });
   }
   update(){
+    this.dispatch.idState = DispatchState.Update;
     this.dispatchService.update(this.dispatch).subscribe(() => 
       {
         this.toastService.success(this.translate.instant('DISPATCH.ACTIONS.UPDATE'));

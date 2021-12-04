@@ -63,7 +63,7 @@ constructor(private activateRoute: ActivatedRoute,
    // this.countriesData = this.activateRoute.snapshot.data.countries as Country[];
     this.searchControl = this.formBuilder.group({
       userName: [''],
-      idOffice: [''],
+      idOffice: [parseInt(this.authentication.getCurrentOffice(), 10)],
       dateProcesFrom: [''],
       dateProcesTo: [''],
       action: [''],
@@ -137,7 +137,7 @@ setMatSorting(sort: Sort) {
         
         const historyFilter : HistoryFilter = {
           userName: this.searchControl.controls.userName.value,
-          idOffice: this.searchControl.controls.idOffice.value,
+          idOffice: parseInt(this.searchControl.controls.idOffice.value,10),
           dateProcesFrom: this.searchControl.controls.dateProcesFrom.value,
           dateProcesTo: this.searchControl.controls.dateProcesTo.value,
           action: this.searchControl.controls.action.value,          
